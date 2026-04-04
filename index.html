@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuizMaster — Pietro</title>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCRIPT LOADER  —  l'unica sezione da aggiornare
+     quando aggiungi un nuovo test.
+     Aggiungi UN <script> per ogni file .js nella cartella data/.
+     L'ordine non conta. Il motore legge QUIZ_BANK e QUIZ_REGISTRY.
+     ═══════════════════════════════════════════════════════ -->
+<script src="data/_registry.js"></script>
+
+<!-- STORIA -->
+<script src="data/storia/fascismo.js"></script>
+<!-- <script src="data/storia/prima-guerra.js"></script>  -->
+<!-- <script src="data/storia/seconda-guerra.js"></script> -->
+
+<!-- SCIENZE -->
+<!-- <script src="data/scienze/cellula.js"></script> -->
+
+<!-- ITALIANO -->
+<!-- <script src="data/italiano/promessi-sposi.js"></script> -->
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --bg:    #09090f;
+  --surf:  #111118;
+  --card:  #15151e;
+  --ln:    #1e1e2a;
+  --ln2:   #272738;
+  --tx:    #eef0f8;
+  --mu:    #52566e;
+  --mu2:   #8890b5;
+  --ok:    #22c55e;
+  --ko:    #ef4444;
+  --acc:   #dc2626;   /* cambia dinamicamente per materia */
+  --r:     16px;
+  --sh:    0 16px 48px rgba(0,0,0,.55);
+}
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Nunito',sans-serif;
+  background:var(--bg); color:var(--tx);
+  min-height:100vh; overflow-x:hidden;
+}
+body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse 55% 35% at 10% 10%, rgba(220,38,38,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 45% at 88% 88%, rgba(99,102,241,.06) 0%, transparent 70%);
+}
+
+.wrap { max-width:820px; margin:0 auto; padding:28px 16px 72px; position:relative; z-index:1; }
+
+/* ── LOGO ── */
+.logo { text-align:center; margin-bottom:38px; }
+.logo .wm {
+  font-size:2rem; font-weight:900; letter-spacing:-1.5px;
+  background:linear-gradient(130deg,#fff 30%,var(--mu2));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.logo .sub {
+  font-family:'Space Mono',monospace; font-size:.67rem;
+  letter-spacing:3px; text-transform:uppercase; color:var(--mu); margin-top:4px;
+}
+
+/* ── SCREENS ── */
+.scr { display:none; }
+.scr.on { display:block; animation:up .28s ease; }
+@keyframes up { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── LABEL SEZIONE ── */
+.lbl {
+  font-family:'Space Mono',monospace; font-size:.67rem;
+  letter-spacing:3px; text-transform:uppercase; color:var(--mu); margin-bottom:12px;
+}
+
+/* ════════ HOME ════════ */
+
+.subj-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
+  gap:10px; margin-bottom:28px;
+}
+.subj-card {
+  background:var(--card); border:2px solid var(--ln2); border-radius:var(--r);
+  padding:22px 14px; cursor:pointer; text-align:center;
+  transition:border-color .2s, transform .2s, box-shadow .2s;
+}
+.subj-card:hover, .subj-card.sel {
+  border-color:var(--acc);
+  transform:translateY(-3px);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--acc) 18%, transparent);
+}
+.sc-ico  { font-size:2rem; display:block; margin-bottom:8px; }
+.sc-name { font-weight:800; font-size:.96rem; }
+.sc-n    { font-family:'Space Mono',monospace; font-size:.67rem; color:var(--mu); margin-top:3px; }
+
+/* Lista test */
+#test-panel { display:none; margin-bottom:28px; }
+
+.test-item {
+  display:flex; align-items:center; gap:14px;
+  padding:15px 18px; background:var(--card);
+  border:2px solid var(--ln2); border-radius:var(--r);
+  margin-bottom:9px; cursor:pointer;
+  transition:border-color .18s, transform .18s;
+}
+.test-item:hover  { border-color:var(--acc); transform:translateX(5px); }
+.test-item.coming { opacity:.45; cursor:default; }
+.test-item.coming:hover { border-color:var(--ln2); transform:none; }
+
+.ti-ico  { font-size:1.5rem; flex-shrink:0; }
+.ti-body { flex:1; }
+.ti-name { font-weight:800; font-size:.97rem; }
+.ti-desc { font-size:.78rem; color:var(--mu2); margin-top:2px; }
+.ti-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
+.ti-badge {
+  font-family:'Space Mono',monospace; font-size:.65rem;
+  color:var(--mu); background:var(--ln2); padding:3px 9px; border-radius:20px; white-space:nowrap;
+}
+.ti-best  { font-family:'Space Mono',monospace; font-size:.67rem; color:var(--ok); }
+.ti-soon  { font-family:'Space Mono',monospace; font-size:.65rem; color:var(--mu); font-style:italic; }
+
+.empty-box {
+  text-align:center; padding:28px; color:var(--mu); font-size:.88rem;
+  border:2px dashed var(--ln2); border-radius:var(--r);
+}
+
+/* Storico */
+.hist-box { background:var(--card); border:2px solid var(--ln); border-radius:var(--r); padding:20px; }
+.hist-hd  { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.hist-hd h3 { font-family:'Space Mono',monospace; font-size:.67rem; letter-spacing:3px; text-transform:uppercase; color:var(--mu); }
+.btn-del {
+  font-family:'Nunito',sans-serif; font-size:.74rem; font-weight:700;
+  background:transparent; border:1px solid var(--ko); color:var(--ko);
+  border-radius:20px; padding:3px 11px; cursor:pointer; transition:background .2s;
+}
+.btn-del:hover { background:rgba(239,68,68,.1); }
+
+.hist-row {
+  display:flex; align-items:center; gap:9px; padding:8px 0;
+  border-bottom:1px solid var(--ln); font-size:.83rem;
+}
+.hist-row:last-child { border-bottom:none; }
+.hr-date  { font-family:'Space Mono',monospace; font-size:.69rem; color:var(--mu); min-width:66px; }
+.hr-pill  { font-size:.69rem; font-weight:700; padding:2px 8px; border-radius:20px; flex-shrink:0; }
+.hr-topic { flex:1; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.hr-stars { font-size:.8rem; flex-shrink:0; }
+.hr-pct   { font-weight:900; min-width:36px; text-align:right; }
+.phi { color:var(--ok); } .pmi { color:#f5a623; } .plo { color:var(--ko); }
+.hist-empty { text-align:center; color:var(--mu); padding:18px; font-size:.86rem; }
+
+/* ════════ QUIZ ════════ */
+
+.q-topbar { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+.q-num    { font-family:'Space Mono',monospace; font-size:.78rem; color:var(--mu); white-space:nowrap; }
+.prog     { flex:1; height:7px; background:var(--ln2); border-radius:100px; overflow:hidden; }
+.prog-fill {
+  height:100%; border-radius:100px;
+  background:linear-gradient(90deg, var(--acc), color-mix(in srgb, var(--acc) 55%, #fff));
+  transition:width .4s ease;
+}
+.slive { font-weight:900; font-size:.84rem; color:#f5a623; white-space:nowrap; }
+
+.tmr-c { text-align:center; margin-bottom:12px; }
+.tmr {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:52px; height:52px; border-radius:50%; border:3px solid var(--ln2);
+  font-family:'Space Mono',monospace; font-size:1.2rem; font-weight:700;
+  transition:border-color .3s, color .3s;
+}
+.tmr.red { border-color:var(--ko); color:var(--ko); animation:throb .45s infinite alternate; }
+@keyframes throb { from{transform:scale(1)} to{transform:scale(1.1)} }
+
+.q-card {
+  background:var(--card); border:2px solid var(--ln2); border-radius:var(--r);
+  padding:24px 26px; margin-bottom:14px; box-shadow:var(--sh);
+}
+.q-tag  { font-family:'Space Mono',monospace; font-size:.64rem; letter-spacing:3px; text-transform:uppercase; color:var(--acc); margin-bottom:9px; }
+.q-text { font-size:1.08rem; font-weight:700; line-height:1.55; }
+
+.opts { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+@media(max-width:510px){ .opts{grid-template-columns:1fr} }
+
+.opt {
+  display:flex; align-items:center; gap:11px; padding:14px 16px;
+  background:var(--card); border:2px solid var(--ln2); border-radius:var(--r);
+  cursor:pointer; font-family:'Nunito',sans-serif; font-size:.92rem; font-weight:700;
+  color:var(--tx); text-align:left; transition:border-color .14s, transform .14s, background .14s;
+}
+.opt:hover:not(:disabled) { transform:translateY(-2px); }
+.opt:disabled { cursor:default; transform:none!important; }
+.ok-lbl {
+  width:29px; height:29px; border-radius:7px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.78rem; font-weight:900;
+}
+/* slot colors — fissi */
+.opt[data-s="0"]            { border-color:#e94560; }
+.opt[data-s="0"] .ok-lbl   { background:#e94560; color:#fff; }
+.opt[data-s="0"]:hover:not(:disabled){ background:rgba(233,69,96,.1); }
+.opt[data-s="1"]            { border-color:#3b82f6; }
+.opt[data-s="1"] .ok-lbl   { background:#3b82f6; color:#fff; }
+.opt[data-s="1"]:hover:not(:disabled){ background:rgba(59,130,246,.1); }
+.opt[data-s="2"]            { border-color:#f5a623; }
+.opt[data-s="2"] .ok-lbl   { background:#f5a623; color:#111; }
+.opt[data-s="2"]:hover:not(:disabled){ background:rgba(245,166,35,.1); }
+.opt[data-s="3"]            { border-color:#22c55e; }
+.opt[data-s="3"] .ok-lbl   { background:#22c55e; color:#111; }
+.opt[data-s="3"]:hover:not(:disabled){ background:rgba(34,197,94,.1); }
+.opt.correct { background:rgba(34,197,94,.14)!important; border-color:var(--ok)!important; }
+.opt.wrong   { background:rgba(239,68,68,.12)!important; border-color:var(--ko)!important; }
+
+.fb { margin-top:13px; border-radius:var(--r); padding:13px 16px; display:none; align-items:flex-start; gap:11px; animation:up .22s ease; }
+.fb.on { display:flex; }
+.fb.ok { background:rgba(34,197,94,.12); border:1.5px solid var(--ok); }
+.fb.ko { background:rgba(239,68,68,.09); border:1.5px solid var(--ko); }
+.fb-ico  { font-size:1.25rem; flex-shrink:0; margin-top:1px; }
+.fb-main { font-weight:800; font-size:.93rem; }
+.fb-exp  { font-size:.81rem; color:var(--mu2); margin-top:4px; line-height:1.5; }
+
+.btn-next {
+  display:none; margin:16px auto 0;
+  padding:12px 42px; background:var(--acc); border:none; border-radius:50px;
+  color:#fff; font-family:'Nunito',sans-serif; font-size:.98rem; font-weight:900;
+  cursor:pointer; letter-spacing:.3px;
+  box-shadow:0 6px 22px color-mix(in srgb, var(--acc) 45%, transparent);
+  transition:transform .2s, box-shadow .2s;
+}
+.btn-next:hover { transform:translateY(-2px); }
+.btn-next.on    { display:block; }
+
+/* ════════ RISULTATI ════════ */
+
+.res-hero {
+  background:var(--card); border:2px solid var(--ln2); border-radius:var(--r);
+  padding:34px 26px; text-align:center; box-shadow:var(--sh); margin-bottom:14px;
+}
+.r-emo   { font-size:3.8rem; margin-bottom:10px; }
+.r-pts   { font-size:3.6rem; font-weight:900; color:var(--acc); }
+.r-sub   { color:var(--mu); font-size:.84rem; }
+.r-title { font-weight:800; font-size:.98rem; margin-top:10px; }
+.r-stars { font-size:1.65rem; margin:9px 0 3px; }
+
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin:18px 0; }
+.stat  { background:var(--surf); border:1px solid var(--ln); border-radius:12px; padding:13px; text-align:center; }
+.sv    { font-size:1.45rem; font-weight:900; }
+.sl    { font-family:'Space Mono',monospace; font-size:.65rem; color:var(--mu); margin-top:2px; }
+.sv-g  { color:var(--ok); } .sv-r { color:var(--ko); } .sv-b { color:#3b82f6; }
+
+.btn-row { display:flex; gap:9px; flex-wrap:wrap; justify-content:center; margin-top:16px; }
+.btn { padding:11px 26px; border-radius:50px; cursor:pointer; font-family:'Nunito',sans-serif; font-size:.9rem; font-weight:800; transition:transform .2s; border:2px solid transparent; }
+.btn:hover { transform:translateY(-2px); }
+.btn-f { background:var(--acc); color:#fff; }
+.btn-o { background:transparent; border-color:var(--ln2); color:var(--tx); }
+
+.review { margin-top:12px; }
+.rv {
+  background:var(--card); border-radius:12px; padding:13px 15px;
+  margin-bottom:8px; border-left:4px solid var(--ln2); font-size:.86rem;
+}
+.rv.ok { border-left-color:var(--ok); } .rv.ko { border-left-color:var(--ko); }
+.rv-q   { font-weight:700; margin-bottom:4px; }
+.rv-a   { color:var(--mu2); }
+.rv-ok  { color:var(--ok); font-weight:700; }
+.rv-ko  { color:var(--ko); text-decoration:line-through; }
+.rv-exp { color:var(--mu); font-size:.78rem; margin-top:4px; line-height:1.5; }
+
+/* ════════ DÉBRIEFING ════════ */
+
+.db-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:24px; flex-wrap:wrap; gap:12px;
+}
+.db-title {
+  font-size:1.1rem; font-weight:900;
+}
+.db-meta {
+  font-family:'Space Mono',monospace; font-size:.7rem; color:var(--mu);
+}
+.db-counter {
+  font-family:'Space Mono',monospace; font-size:.78rem; color:var(--mu);
+  background:var(--ln2); padding:4px 12px; border-radius:20px; white-space:nowrap;
+}
+
+/* Card domanda nel débriefing */
+.db-card {
+  background:var(--card); border:2px solid var(--ln2); border-radius:var(--r);
+  margin-bottom:16px; overflow:hidden; animation:up .25s ease;
+}
+.db-card-head {
+  display:flex; align-items:center; gap:12px;
+  padding:16px 20px; border-bottom:1px solid var(--ln2);
+}
+.db-num {
+  width:32px; height:32px; border-radius:8px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Space Mono',monospace; font-size:.8rem; font-weight:700;
+  background:var(--ln2); color:var(--mu2);
+}
+.db-card.ok .db-num { background:rgba(34,197,94,.2); color:var(--ok); }
+.db-card.ko .db-num { background:rgba(239,68,68,.18); color:var(--ko); }
+.db-card.skip .db-num { background:rgba(245,166,35,.18); color:#f5a623; }
+
+.db-q { font-weight:800; font-size:.98rem; line-height:1.45; flex:1; }
+
+.db-status {
+  font-size:.72rem; font-weight:700; padding:3px 10px; border-radius:20px;
+  white-space:nowrap; flex-shrink:0;
+}
+.db-card.ok   .db-status { background:rgba(34,197,94,.18); color:var(--ok); }
+.db-card.ko   .db-status { background:rgba(239,68,68,.15); color:var(--ko); }
+.db-card.skip .db-status { background:rgba(245,166,35,.15); color:#f5a623; }
+
+.db-body { padding:16px 20px; display:flex; flex-direction:column; gap:10px; }
+
+/* Risposta data (errata) */
+.db-chosen {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 14px; border-radius:10px;
+  background:rgba(239,68,68,.08); border:1.5px solid rgba(239,68,68,.3);
+  font-size:.88rem;
+}
+.db-chosen .dc-lbl { font-size:.75rem; color:var(--ko); font-weight:700; flex-shrink:0; }
+.db-chosen .dc-txt { color:var(--mu2); text-decoration:line-through; }
+
+/* Risposta corretta */
+.db-correct {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 14px; border-radius:10px;
+  background:rgba(34,197,94,.1); border:1.5px solid rgba(34,197,94,.35);
+  font-size:.88rem;
+}
+.db-correct .dc-lbl { font-size:.75rem; color:var(--ok); font-weight:700; flex-shrink:0; }
+.db-correct .dc-txt { color:var(--tx); font-weight:700; }
+
+/* Spiegazione */
+.db-exp {
+  background:var(--surf); border-radius:10px; padding:12px 14px;
+  border-left:3px solid var(--acc);
+}
+.db-exp .de-tag {
+  font-family:'Space Mono',monospace; font-size:.62rem; letter-spacing:2px;
+  text-transform:uppercase; color:var(--acc); margin-bottom:5px;
+}
+.db-exp .de-txt { font-size:.86rem; color:var(--mu2); line-height:1.6; }
+
+/* Barra navigazione débriefing */
+.db-nav {
+  position:sticky; bottom:0; left:0; right:0;
+  background:linear-gradient(to top, var(--bg) 70%, transparent);
+  padding:16px 0 8px; margin-top:8px;
+  display:flex; justify-content:center; gap:10px; flex-wrap:wrap;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="logo">
+  <div class="wm">⚡ QuizMaster</div>
+  <div class="sub">studio interattivo · Pietro</div>
+</header>
+
+<!-- ══ HOME ══ -->
+<div id="s-home" class="scr on">
+  <div class="lbl">📚 Materia</div>
+  <div class="subj-grid" id="subj-grid"></div>
+
+  <div id="test-panel">
+    <div class="lbl" id="test-lbl">📖 Test</div>
+    <div id="test-list"></div>
+  </div>
+
+  <div class="hist-box">
+    <div class="hist-hd">
+      <h3>🕐 Storico sessioni</h3>
+      <button class="btn-del" onclick="clearHist()">Cancella</button>
+    </div>
+    <div id="hist-list"></div>
+  </div>
+</div>
+
+<!-- ══ QUIZ ══ -->
+<div id="s-quiz" class="scr">
+  <div class="q-topbar">
+    <span class="q-num" id="q-num">1 / —</span>
+    <div class="prog"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+    <span class="slive" id="slive">⭐ 0</span>
+  </div>
+  <div class="tmr-c"><div class="tmr" id="tmr">20</div></div>
+  <div class="q-card">
+    <div class="q-tag">Domanda</div>
+    <div class="q-text" id="q-text"></div>
+  </div>
+  <div class="opts" id="opts"></div>
+  <div class="fb" id="fb">
+    <span class="fb-ico" id="fb-ico"></span>
+    <div><div class="fb-main" id="fb-main"></div><div class="fb-exp" id="fb-exp"></div></div>
+  </div>
+  <button class="btn-next" id="btn-next" onclick="nextQ()">Avanti →</button>
+</div>
+
+<!-- ══ RISULTATI ══ -->
+<div id="s-res" class="scr">
+  <div class="res-hero">
+    <div class="r-emo"   id="r-emo"></div>
+    <div class="r-pts"   id="r-pts"></div>
+    <div class="r-sub">punti</div>
+    <div class="r-title" id="r-title"></div>
+    <div class="r-stars" id="r-stars"></div>
+    <div class="stats">
+      <div class="stat"><div class="sv sv-g" id="r-ok"></div><div class="sl">CORRETTE</div></div>
+      <div class="stat"><div class="sv sv-r" id="r-ko"></div><div class="sl">ERRATE</div></div>
+      <div class="stat"><div class="sv sv-b" id="r-pct"></div><div class="sl">PUNTEGGIO</div></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-f" onclick="restart()">🔄 Riprova</button>
+      <button class="btn btn-o" onclick="showDebrief()">📖 Rivedi tutto</button>
+      <button class="btn btn-o" onclick="goHome()">🏠 Home</button>
+    </div>
+  </div>
+  <div class="review" id="review"></div>
+</div>
+
+<!-- ══ DÉBRIEFING ══ -->
+<div id="s-debrief" class="scr">
+  <div class="db-header">
+    <div>
+      <div class="db-title">📖 Riepilogo completo</div>
+      <div class="db-meta" id="db-meta"></div>
+    </div>
+    <span class="db-counter" id="db-counter"></span>
+  </div>
+  <div id="db-cards"></div>
+  <div class="db-nav">
+    <button class="btn btn-f" onclick="restart()">🔄 Riprova</button>
+    <button class="btn btn-o" onclick="showScr('s-res'); window.scrollTo(0,0)">← Risultati</button>
+    <button class="btn btn-o" onclick="goHome()">🏠 Home</button>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  COSTANTI
+// ═══════════════════════════════════════════════════════
+const PTS  = { fast:150, mid:100, slow:50 };
+const KEYS = ['A','B','C','D'];
+
+// Chiavi localStorage strutturate
+// best score:   pietroquiz:<materia>:<id>:v<version>:best
+// history:      pietroquiz:global:history
+// Includere la versione nella chiave best rende il comportamento
+// trasparente: cambi version → nuovo record, quello vecchio resta leggibile.
+const lsKeyBest = (subj, id, ver) => `pietroquiz:${subj}:${id}:v${ver||1}:best`;
+const lsKeyHist = () => `pietroquiz:global:history`;
+
+// ═══════════════════════════════════════════════════════
+//  STATO GLOBALE
+// ═══════════════════════════════════════════════════════
+let G = {
+  subj:null,        // oggetto registry materia corrente
+  testMeta:null,    // oggetto test da _registry
+  testData:null,    // oggetto QUIZ_BANK[id]
+  qs:[], idx:0, score:0, ans:[],
+  _opts:[], _corrOrig:0,
+  tmr:null, tLeft:0
+};
+
+// ═══════════════════════════════════════════════════════
+//  BOOT
+// ═══════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  buildSubjects();
+  renderHist();
+});
+
+// ═══════════════════════════════════════════════════════
+//  HOME — MATERIE
+// ═══════════════════════════════════════════════════════
+function buildSubjects() {
+  const reg = window.QUIZ_REGISTRY || [];
+  document.getElementById('subj-grid').innerHTML = reg.map(s => {
+    const enabled = (s.tests||[]).filter(t => t.enabled && window.QUIZ_BANK?.[t.id]).length;
+    const total   = (s.tests||[]).length;
+    const label   = enabled ? `${enabled} test` : total ? `${total} in arrivo` : 'nessun test';
+    return `<div class="subj-card" id="sc-${s.subject}"
+              style="--acc:${s.subjectColor}"
+              onclick="selSubj('${s.subject}')">
+      <span class="sc-ico">${s.subjectIcon}</span>
+      <div class="sc-name">${s.subject.charAt(0).toUpperCase()+s.subject.slice(1)}</div>
+      <div class="sc-n">${label}</div>
+    </div>`;
+  }).join('');
+}
+
+function selSubj(subjId) {
+  G.subj = (window.QUIZ_REGISTRY||[]).find(s => s.subject === subjId);
+  if (!G.subj) return;
+  setColor(G.subj.subjectColor);
+
+  document.querySelectorAll('.subj-card').forEach(c => c.classList.remove('sel'));
+  document.getElementById(`sc-${subjId}`)?.classList.add('sel');
+
+  const tests = G.subj.tests || [];
+  const panel = document.getElementById('test-panel');
+  const list  = document.getElementById('test-list');
+  document.getElementById('test-lbl').textContent =
+    `📖 Test — ${subjId.charAt(0).toUpperCase()+subjId.slice(1)}`;
+
+  if (!tests.length) {
+    list.innerHTML = `<div class="empty-box">🚧 Nessun test ancora.<br>Chiedi a papà di aggiungere il primo argomento!</div>`;
+  } else {
+    list.innerHTML = tests.map(t => {
+      const loaded  = !!window.QUIZ_BANK?.[t.id];
+      const active  = t.enabled && loaded;
+      const best    = active ? getBest(subjId, t.id, window.QUIZ_BANK?.[t.id]?.version) : null;
+      const qCount  = loaded ? window.QUIZ_BANK[t.id].questions.length : t.questionCount;
+      const onclick = active ? `onclick="startQuiz('${t.id}')"` : '';
+      return `<div class="test-item ${active?'':'coming'}" ${onclick}>
+        <span class="ti-ico">${t.icon||G.subj.subjectIcon}</span>
+        <div class="ti-body">
+          <div class="ti-name">${t.title}</div>
+          <div class="ti-desc">${t.description||''}</div>
+        </div>
+        <div class="ti-right">
+          <span class="ti-badge">${qCount ? qCount+' domande' : '—'}</span>
+          ${best  ? `<span class="ti-best">⭐ Best ${best}%</span>` : ''}
+          ${!active ? `<span class="ti-soon">prossimamente</span>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  panel.style.display = 'block';
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+// ═══════════════════════════════════════════════════════
+//  QUIZ
+// ═══════════════════════════════════════════════════════
+function startQuiz(testId) {
+  G.testData = window.QUIZ_BANK[testId];
+  G.subj     = (window.QUIZ_REGISTRY||[]).find(s => s.subject === G.testData.subject);
+  G.testMeta = G.subj?.tests?.find(t => t.id === testId);
+  setColor(G.subj?.subjectColor || '#dc2626');
+
+  G.qs    = shuffle([...G.testData.questions]);
+  G.idx   = 0; G.score = 0; G.ans = [];
+  showScr('s-quiz');
+  renderQ();
+}
+
+function renderQ() {
+  const q = G.qs[G.idx], tot = G.qs.length;
+  document.getElementById('q-num').textContent  = `${G.idx+1} / ${tot}`;
+  document.getElementById('prog').style.width   = `${(G.idx/tot)*100}%`;
+  document.getElementById('slive').textContent  = `⭐ ${G.score}`;
+  document.getElementById('q-text').textContent = q.q;
+
+  const opts = shuffle(q.options.map((o,i) => ({text:o, orig:i})));
+  G._opts = opts; G._corrOrig = q.answer;
+
+  document.getElementById('opts').innerHTML = opts.map((o,i) =>
+    `<button class="opt" data-s="${i}" onclick="pick(${i})">
+       <span class="ok-lbl">${KEYS[i]}</span>
+       <span>${o.text}</span>
+     </button>`
+  ).join('');
+
+  hideFB();
+  document.getElementById('btn-next').classList.remove('on');
+  startTmr(G.testData.timePerQuestion || 20);
+}
+
+function pick(di) {
+  stopTmr();
+  const elapsed = (G.testData.timePerQuestion||20) - G.tLeft;
+  const q  = G.qs[G.idx];
+  const ok = G._opts[di].orig === G._corrOrig;
+  let pts  = 0;
+  if (ok) { pts = elapsed<=5?PTS.fast:elapsed<=12?PTS.mid:PTS.slow; G.score+=pts; }
+
+  G.ans.push({ q:q.q, ok, chosen:G._opts[di].text, correct:q.options[G._corrOrig], exp:q.explanation||'' });
+
+  document.querySelectorAll('.opt').forEach((b,i) => {
+    b.disabled=true;
+    if (G._opts[i].orig===G._corrOrig) b.classList.add('correct');
+    else if (i===di && !ok) b.classList.add('wrong');
+  });
+  showFB(ok, pts, q.explanation);
+  document.getElementById('slive').textContent = `⭐ ${G.score}`;
+  document.getElementById('btn-next').classList.add('on');
+}
+
+function nextQ() { G.idx++; G.idx>=G.qs.length ? showRes() : renderQ(); }
+
+// ═══════════════════════════════════════════════════════
+//  TIMER
+// ═══════════════════════════════════════════════════════
+function startTmr(sec) {
+  G.tLeft=sec; updTmr(); clearInterval(G.tmr);
+  G.tmr = setInterval(() => { G.tLeft--; updTmr(); if(G.tLeft<=0){clearInterval(G.tmr);timeUp();} }, 1000);
+}
+function stopTmr() { clearInterval(G.tmr); }
+function updTmr()  {
+  const el=document.getElementById('tmr'); el.textContent=G.tLeft;
+  el.classList.toggle('red', G.tLeft<=5);
+}
+function timeUp() {
+  const q=G.qs[G.idx];
+  G.ans.push({q:q.q,ok:false,chosen:'—',correct:q.options[G._corrOrig],exp:q.explanation||''});
+  document.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true;if(G._opts[i].orig===G._corrOrig)b.classList.add('correct');});
+  showFB(false,0,q.explanation,true);
+  document.getElementById('btn-next').classList.add('on');
+}
+
+// ═══════════════════════════════════════════════════════
+//  FEEDBACK
+// ═══════════════════════════════════════════════════════
+function showFB(ok,pts,exp,timeout=false) {
+  const el=document.getElementById('fb');
+  el.className='fb on '+(ok?'ok':'ko');
+  document.getElementById('fb-ico').textContent  = ok?'✅':timeout?'⏱️':'❌';
+  document.getElementById('fb-main').textContent = ok?`Esatto! +${pts} punti`:timeout?'Tempo scaduto!':'Risposta errata';
+  document.getElementById('fb-exp').textContent  = exp||'';
+}
+function hideFB() { document.getElementById('fb').className='fb'; }
+
+// ═══════════════════════════════════════════════════════
+//  RISULTATI
+// ═══════════════════════════════════════════════════════
+function showRes() {
+  stopTmr();
+  const tot=G.qs.length, ok=G.ans.filter(a=>a.ok).length, pct=Math.round(ok/tot*100);
+  const [emo,stars] = pct>=90?['🏆','⭐⭐⭐']:pct>=70?['🎉','⭐⭐']:pct>=50?['💪','⭐']:['📚',''];
+
+  document.getElementById('r-emo').textContent   = emo;
+  document.getElementById('r-pts').textContent   = G.score;
+  document.getElementById('r-title').textContent = `${G.subj?.subject||''} — ${G.testData.title}`;
+  document.getElementById('r-stars').textContent = stars||'Riprova!';
+  document.getElementById('r-ok').textContent    = ok;
+  document.getElementById('r-ko').textContent    = tot-ok;
+  document.getElementById('r-pct').textContent   = pct+'%';
+
+  document.getElementById('review').innerHTML = G.ans.map((a,i) => `
+    <div class="rv ${a.ok?'ok':'ko'}">
+      <div class="rv-q">${i+1}. ${a.q}</div>
+      <div class="rv-a">
+        ${a.ok?`<span class="rv-ok">✅ ${a.chosen}</span>`
+               :`<span class="rv-ko">❌ ${a.chosen}</span> <span class="rv-ok">→ ✅ ${a.correct}</span>`}
+      </div>
+      ${a.exp?`<div class="rv-exp">${a.exp}</div>`:''}
+    </div>`).join('');
+
+  // salva sessione + aggiorna best (chiave versionata)
+  const subj=G.testData.subject, id=G.testData.id, ver=G.testData.version||1;
+  saveSess({ subj, subjColor:G.subj?.subjectColor, testId:id, testTitle:G.testData.title, score:G.score, pct, ok, tot, stars, version:ver });
+  const prev=getBest(subj,id,ver);
+  if (!prev || pct>prev) localStorage.setItem(lsKeyBest(subj,id,ver), pct);
+
+  showScr('s-res');
+}
+
+// ═══════════════════════════════════════════════════════
+//  NAVIGAZIONE
+// ═══════════════════════════════════════════════════════
+function showScr(id) { document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); window.scrollTo(0,0); }
+function goHome()  { stopTmr(); setColor('#dc2626'); showScr('s-home'); renderHist(); }
+function restart() { startQuiz(G.testData.id); }
+function setColor(c) { document.documentElement.style.setProperty('--acc',c); }
+
+// ═══════════════════════════════════════════════════════
+//  DÉBRIEFING
+// ═══════════════════════════════════════════════════════
+function showDebrief() {
+  const tot = G.ans.length;
+  const ok  = G.ans.filter(a=>a.ok).length;
+  const ko  = G.ans.filter(a=>!a.ok && a.chosen !== '—').length;
+  const skip= G.ans.filter(a=>a.chosen === '—').length;
+
+  document.getElementById('db-meta').textContent =
+    `${G.testData.title} — ${G.subj?.subject||''}`;
+  document.getElementById('db-counter').textContent =
+    `✅ ${ok}  ❌ ${ko}${skip ? `  ⏱ ${skip}` : ''}  su ${tot}`;
+
+  document.getElementById('db-cards').innerHTML = G.ans.map((a, i) => {
+    const type   = a.ok ? 'ok' : a.chosen === '—' ? 'skip' : 'ko';
+    const label  = a.ok ? '✅ Esatta' : a.chosen === '—' ? '⏱ Tempo' : '❌ Errata';
+
+    // Riga risposta data (solo se sbagliata o scaduta)
+    const chosenRow = (!a.ok && a.chosen !== '—') ? `
+      <div class="db-chosen">
+        <span class="dc-lbl">La tua risposta</span>
+        <span class="dc-txt">${a.chosen}</span>
+      </div>` : '';
+
+    // Riga risposta corretta (sempre)
+    const correctRow = `
+      <div class="db-correct">
+        <span class="dc-lbl">${a.ok ? 'Risposta' : 'Corretta'}</span>
+        <span class="dc-txt">${a.correct}</span>
+      </div>`;
+
+    // Spiegazione (sempre se presente)
+    const expRow = a.exp ? `
+      <div class="db-exp">
+        <div class="de-tag">Spiegazione</div>
+        <div class="de-txt">${a.exp}</div>
+      </div>` : '';
+
+    return `
+      <div class="db-card ${type}">
+        <div class="db-card-head">
+          <div class="db-num">${i+1}</div>
+          <div class="db-q">${a.q}</div>
+          <span class="db-status">${label}</span>
+        </div>
+        <div class="db-body">
+          ${chosenRow}
+          ${correctRow}
+          ${expRow}
+        </div>
+      </div>`;
+  }).join('');
+
+  showScr('s-debrief');
+}
+
+// ═══════════════════════════════════════════════════════
+//  STORICO  (chiavi strutturate)
+// ═══════════════════════════════════════════════════════
+function getBest(subj, id, ver) {
+  // Legge il best score della versione corrente del test
+  const v = localStorage.getItem(lsKeyBest(subj, id, ver||1));
+  return v ? parseInt(v) : null;
+}
+function loadSess() {
+  try { return JSON.parse(localStorage.getItem(lsKeyHist()))||[]; } catch { return []; }
+}
+function saveSess(d) {
+  const s=loadSess(); s.unshift({...d, date:new Date().toISOString()});
+  if(s.length>80) s.pop();
+  localStorage.setItem(lsKeyHist(), JSON.stringify(s));
+}
+function renderHist() {
+  const s=loadSess(), el=document.getElementById('hist-list');
+  if(!s.length){el.innerHTML='<div class="hist-empty">Nessuna sessione ancora. Scegli una materia! 🚀</div>';return;}
+  el.innerHTML=s.slice(0,15).map(r=>{
+    const d=new Date(r.date);
+    const ds=`${d.getDate()}/${d.getMonth()+1} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+    const cls=r.pct>=80?'phi':r.pct>=60?'pmi':'plo';
+    const cap=r.subj?r.subj.charAt(0).toUpperCase()+r.subj.slice(1):'';
+    return `<div class="hist-row">
+      <span class="hr-date">${ds}</span>
+      <span class="hr-pill" style="background:${r.subjColor}22;color:${r.subjColor}">${cap}</span>
+      <span class="hr-topic">${r.testTitle}</span>
+      <span class="hr-stars">${r.stars||''}</span>
+      <span class="hr-pct ${cls}">${r.pct}%</span>
+    </div>`;
+  }).join('');
+}
+function clearHist() {
+  if(!confirm('Cancellare tutto lo storico e tutti i record?')) return;
+  Object.keys(localStorage)
+    .filter(k => k.startsWith('pietroquiz:'))
+    .forEach(k => localStorage.removeItem(k));
+  renderHist();
+}
+
+// ═══════════════════════════════════════════════════════
+//  UTILITY
+// ═══════════════════════════════════════════════════════
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+</script>
+</body>
+</html>
