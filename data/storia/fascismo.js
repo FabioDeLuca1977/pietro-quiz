@@ -498,8 +498,52 @@ window.QUIZ_BANK["fascismo"] = {
       ],
       answer: 1,
       explanation: "Uno Stato totalitario non si limita a governare: vuole controllare pensieri, valori e comportamenti di tutti i cittadini in ogni ambito della vita quotidiana."
+    },
+
+
+    // ══════════════════════════════════════════
+    //  AGGIUNTE — 4 concetti mancanti
+    // ══════════════════════════════════════════
+
+    {
+      q: "Chi è Benedetto Croce e quale posizione assume nei confronti del fascismo?",
+      options: [
+        "Un generale dell'esercito che appoggia Mussolini fino al 1938",
+        "Un importante intellettuale e filosofo che diventa oppositore del regime",
+        "Il fondatore del Partito Popolare, costretto all'esilio",
+        "Un deputato socialista che denuncia i brogli elettorali del 1924"
+      ],
+      answer: 1,
+      explanation: "Benedetto Croce è uno dei più importanti filosofi italiani del Novecento. A differenza di altri oppositori non viene esiliato, ma diventa un simbolo dell'opposizione intellettuale al regime fascista."
+    },
+    {
+      q: "Cos'è il 'libro unico' introdotto dal fascismo nelle scuole?",
+      options: [
+        "Un registro dove gli insegnanti annotano i voti degli alunni",
+        "Un testo scolastico unico e obbligatorio per tutti, controllato dal regime",
+        "Il libro dei discorsi di Mussolini usato come lettura obbligatoria",
+        "Un elenco di libri vietati nelle biblioteche scolastiche"
+      ],
+      answer: 1,
+      explanation: "Il libro unico è un testo scolastico obbligatorio per tutti gli studenti italiani, controllato dal regime per garantire una formazione uniforme all'ideologia fascista."
+    },
+    {
+      q: "Cos'è la 'battaglia della lira' lanciata dal fascismo?",
+      options: [
+        "Una campagna militare per conquistare nuovi territori",
+        "Una campagna economica per rivalutare e rafforzare la lira italiana",
+        "Una raccolta di fondi per finanziare l'esercito fascista",
+        "Una misura per tassare le banche straniere operanti in Italia"
+      ],
+      answer: 1,
+      explanation: "La 'battaglia della lira' è una campagna economica fascista per rivalutare la lira italiana, rafforzandone il valore rispetto alle valute straniere."
+    },
+    {
+      q: "Quale ente viene fondato dal fascismo nel 1941 nel settore energetico?",
+      options: ["AGIP", "IRI", "SNAM", "ENI"],
+      answer: 2,
+      explanation: "La SNAM (Società Nazionale Metanodotti) viene fondata nel 1941 per la distribuzione del gas metano in Italia, completando il sistema di enti statali insieme ad AGIP (1926) e IRI (1933)."
     }
 
-  ] // fine questions — 40 domande totali
+  ] // fine questions — 51 domande totali
 };
-
