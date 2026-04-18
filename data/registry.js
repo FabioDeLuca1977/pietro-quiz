@@ -41,20 +41,28 @@ window.QUIZ_REGISTRY = [
     ]
   },
 
-  // ── SCIENZE ─────────────────────────────────────────────
+  // ── SCIENZE ─────────────────────────────────────────  // ── SCIENZE ─────────────────────────────────────────────
   {
     subject:     "scienze",
     subjectIcon: "🔬",
     subjectColor:"#16a34a",
     tests: [
-      // {
-      //   id:            "cellula",
-      //   title:         "La Cellula",
-      //   description:   "Struttura, organelli e funzioni",
-      //   icon:          "🧫",
-      //   questionCount: 0,
-      //   enabled:       false
-      // }
+      {
+        id:            "energia-cap1",
+        title:         "Cap. 1 — Fonti di energia",
+        description:   "Definizione, Sole, fonti, centrali, idrogeno, richiesta elettrica, EROEI",
+        icon:          "⚡",
+        questionCount: 23,
+        enabled:       true
+      },
+      {
+        id:            "energia-cap2",
+        title:         "Cap. 2 — Combustibili fossili",
+        description:   "Combustione, carbone, petrolio, gas naturale, centrali, raffinazione",
+        icon:          "🔥",
+        questionCount: 33,
+        enabled:       true
+      }
     ]
   },
 
