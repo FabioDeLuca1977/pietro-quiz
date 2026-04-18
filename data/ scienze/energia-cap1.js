@@ -2,7 +2,7 @@
 //  data/scienze/energia-cap1.js  (v2 — copertura completa)
 //  Unità F — Cap. 1 FONTI DI ENERGIA (pagg. 242-251)
 //
-//  22 domande che coprono TUTTI i concetti del capitolo.
+//  23 domande che coprono TUTTI i concetti del capitolo.
 //  Verificato sulle foto del libro il 18/04/2026.
 // ============================================================
 
