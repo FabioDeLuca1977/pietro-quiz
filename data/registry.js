@@ -41,7 +41,7 @@ window.QUIZ_REGISTRY = [
     ]
   },
 
-  // ── SCIENZE ─────────────────────────────────────────  // ── SCIENZE ─────────────────────────────────────────────
+  // ── SCIENZE ─────────────────────────────────────────────
   {
     subject:     "scienze",
     subjectIcon: "🔬",
@@ -52,7 +52,7 @@ window.QUIZ_REGISTRY = [
         title:         "Cap. 1 — Fonti di energia",
         description:   "Definizione, Sole, fonti, centrali, idrogeno, richiesta elettrica, EROEI",
         icon:          "⚡",
-        questionCount: 23,
+        questionCount: 40,
         enabled:       true
       },
       {
@@ -60,11 +60,12 @@ window.QUIZ_REGISTRY = [
         title:         "Cap. 2 — Combustibili fossili",
         description:   "Combustione, carbone, petrolio, gas naturale, centrali, raffinazione",
         icon:          "🔥",
-        questionCount: 33,
+        questionCount: 75,
         enabled:       true
       }
     ]
   },
+ 
 
   // ── ITALIANO ────────────────────────────────────────────
   {
