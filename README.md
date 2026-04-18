@@ -203,3 +203,5 @@ Ogni volta che aggiungi o modifichi un test:
 | Feedback | Risposta immediata + spiegazione |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
+
+<!-- redeploy 2026-04-18 -->
