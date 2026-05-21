@@ -1,16 +1,30 @@
-// Musica - Capitolo 9: Tra Decadentismo e Avanguardie
-// Espressionismo, Folklore/Esotismo, Neoclassicismo novecentesco
+// ============================================================
+//  data/musica/decadentismo-avanguardie.js  (v1)
+//  Capitolo 9 — Tra Decadentismo e Avanguardie
+//
+//  35 domande sui 3 temi del capitolo:
+//  1) Espressionismo e atonalità (Schönberg)
+//  2) Folklore ed esotismo (Mascagni, Bartók, De Falla, Puccini)
+//  3) Neoclassicismo novecentesco (Stravinskij)
+//
+//  Verificato sul testo del libro il 21/05/2026.
+// ============================================================
 
-window.QUIZ_DATA = window.QUIZ_DATA || {};
-window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
-  subject: "musica",
-  id: "decadentismo-avanguardie",
-  title: "Tra Decadentismo e Avanguardie",
-  description: "Espressionismo, atonalità, folklore, esotismo e Neoclassicismo nel Novecento",
-  version: 1,
+window.QUIZ_BANK = window.QUIZ_BANK || {};
+
+window.QUIZ_BANK["decadentismo-avanguardie"] = {
+
+  id:              "decadentismo-avanguardie",
+  subject:         "musica",
+  title:           "Cap. 9 — Tra Decadentismo e Avanguardie",
+  description:     "Espressionismo, atonalità, folklore, esotismo e Neoclassicismo nel Novecento",
+  icon:            "🎼",
+  version:         1,
+  timePerQuestion: 20,
+
   questions: [
 
-    // === ESPRESSIONISMO E ATONALITÀ (9 domande) ===
+    // ── ESPRESSIONISMO E ATONALITÀ (10 domande) ──────
     {
       q: "In quale area geografica nasce l'Espressionismo?",
       options: [
@@ -19,7 +33,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Spagna e Portogallo",
         "Russia e Paesi dell'Est"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "L'Espressionismo nasce nei Paesi di lingua tedesca e nel Nord Europa. Vuole esprimere il disagio interiore e l'angoscia dell'uomo moderno."
     },
     {
@@ -30,7 +44,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Il disagio interiore, l'angoscia e la crisi dell'uomo moderno",
         "L'ammirazione per il passato classico"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "L'Espressionismo vuole esprimere il disagio interiore, l'angoscia e la crisi dell'uomo moderno: per questo Schönberg usa una musica dissonante."
     },
     {
@@ -41,7 +55,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Arnold Schönberg",
         "Manuel de Falla"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "Arnold Schönberg è il principale musicista dell'Espressionismo. Rifiuta le regole tradizionali e si ispira alla psicanalisi di Freud."
     },
     {
@@ -52,7 +66,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Alla matematica di Einstein",
         "Alla pittura di Picasso"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "Schönberg si ispira alla psicanalisi di Freud per esprimere il disagio interiore e l'angoscia dell'uomo moderno."
     },
     {
@@ -63,7 +77,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Assenza di accordi tradizionali",
         "Tonalità precise"
       ],
-      correct: 3,
+      answer: 3,
       explanation: "Nella musica atonale NON esistono più tonalità precise: tutti i suoni sembrano instabili. Schönberg elimina scale e accordi tradizionali."
     },
     {
@@ -74,7 +88,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Nostalgia e malinconia",
         "Calma e meditazione"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "Nella musica atonale tutti i suoni sembrano instabili e la musica esprime angoscia e inquietudine, in linea con lo spirito dell'Espressionismo."
     },
     {
@@ -85,7 +99,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Ottoni e percussioni",
         "Pianoforte e celesta"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "In Vorgefühle l'orchestra è molto grande, con forti contrasti sonori e un uso importante di ottoni e percussioni, che creano un clima inquietante e violento."
     },
     {
@@ -96,7 +110,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Histoire du soldat",
         "Danze popolari rumene"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "Vorgefühle è tratto dai Fünf Orchesterstücke di Schönberg. Usa un'orchestra molto grande con ottoni e percussioni, creando un clima inquietante."
     },
     {
@@ -107,7 +121,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Dopo la Prima guerra mondiale",
         "All'inizio dell'Ottocento"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "Schönberg inventa la dodecafonia dopo la Prima guerra mondiale: un metodo basato sui dodici suoni della scala cromatica, tutti con la stessa importanza."
     },
     {
@@ -118,11 +132,11 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "5 suoni, di tradizione orientale",
         "12 suoni, tutti con la stessa importanza"
       ],
-      correct: 3,
+      answer: 3,
       explanation: "La dodecafonia si basa sui dodici suoni della scala cromatica e tutti i suoni hanno la stessa importanza: nessuno prevale sugli altri."
     },
 
-    // === FOLKLORE ED ESOTISMO (15 domande) ===
+    // ── FOLKLORE ED ESOTISMO (16 domande) ────────────
     {
       q: "Quali interessi crescono nel Novecento e portano alla nascita dell'etnomusicologia?",
       options: [
@@ -131,7 +145,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "La musica elettronica",
         "Le sinfonie romantiche dell'Ottocento"
       ],
-      correct: 0,
+      answer: 0,
       explanation: "Nel Novecento cresce l'interesse per musica popolare, tradizioni locali e culture lontane. Nasce così l'etnomusicologia."
     },
     {
@@ -142,7 +156,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Musicografia",
         "Folkloristica"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "L'etnomusicologia è lo studio delle musiche etniche e popolari, che nasce nel Novecento insieme all'interesse per le tradizioni locali."
     },
     {
@@ -153,7 +167,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Giovanni Verga",
         "Alessandro Manzoni"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "Il Verismo nasce dalla letteratura di Giovanni Verga: racconta la vita delle persone povere, con ambientazioni rurali e passioni forti."
     },
     {
@@ -164,7 +178,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Passioni forti e realistiche",
         "Ambientazioni nobili e raffinate di corte"
       ],
-      correct: 3,
+      answer: 3,
       explanation: "Il Verismo racconta la vita delle persone povere in ambientazioni rurali, con passioni forti e realistiche: l'opposto delle scene di corte."
     },
     {
@@ -175,7 +189,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "La sagra della primavera",
         "Cavalleria rusticana"
       ],
-      correct: 3,
+      answer: 3,
       explanation: "Cavalleria rusticana di Mascagni è ambientata in Sicilia, presenta elementi popolari e racconta un dramma passionale: un esempio di opera verista."
     },
     {
@@ -186,7 +200,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "In Spagna",
         "In Ungheria"
       ],
-      correct: 0,
+      answer: 0,
       explanation: "Cavalleria rusticana ha un'ambientazione siciliana, con presenza di elementi popolari e un dramma passionale."
     },
     {
@@ -197,7 +211,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Crescendo continui e trilli ripetuti",
         "Voci bianche con arpa e celesta"
       ],
-      correct: 0,
+      answer: 0,
       explanation: "\"O Lola\" ha lo stile della siciliana: andamento lento, modo minore e canto appassionato."
     },
     {
@@ -208,7 +222,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Cinese e orientale",
         "Siciliano e meridionale"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "Bartók studia il folklore musicale ungherese e balcanico, raccogliendo melodie popolari e usando ritmi e danze tradizionali."
     },
     {
@@ -219,7 +233,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Note di pedale e melodie modali",
         "Stile barocco con trilli"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "Le Danze popolari rumene hanno ritmi vivaci, accompagnamento semplice, ripetizioni, note di pedale e melodie modali."
     },
     {
@@ -230,7 +244,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Musica popolare ungherese e atonalità",
         "Musica colta europea e folklore spagnolo"
       ],
-      correct: 3,
+      answer: 3,
       explanation: "De Falla unisce la musica colta europea con il folklore spagnolo. La sua musica ha ritmi vivaci, percussioni e melodie gitane."
     },
     {
@@ -241,7 +255,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Voci bianche e strumenti a fiato cinesi",
         "Dissonanze atonali e dodecafonia"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "La musica di De Falla è riconoscibile per i ritmi vivaci, l'uso delle percussioni e le melodie gitane di origine spagnola."
     },
     {
@@ -252,7 +266,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Voci bianche e glockenspiel",
         "Stile barocco e ritmo moderato"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "La Danza ritual del fuego è una musica inquietante e travolgente, con trilli ripetuti, crescendo continui e ritmo sempre più intenso."
     },
     {
@@ -263,7 +277,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Alle danze balcaniche",
         "Alla musica popolare siciliana"
       ],
-      correct: 0,
+      answer: 0,
       explanation: "Puccini si ispira all'Oriente e alla musica cinese: la Turandot è ambientata nella Cina antica e usa melodie pentatoniche e strumenti orientali."
     },
     {
@@ -274,7 +288,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Cina antica, città di Pechino",
         "Russia zarista"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "La Turandot di Puccini è ambientata nella Cina antica, nella città di Pechino. Usa melodie pentatoniche e strumenti orientali."
     },
     {
@@ -285,7 +299,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Pianoforte e violino",
         "Arpa, celesta e glockenspiel"
       ],
-      correct: 3,
+      answer: 3,
       explanation: "\"Là sui monti dell'Est\" è cantato da un coro di voci bianche su melodia pentatonica, accompagnato da arpa, celesta e glockenspiel."
     },
     {
@@ -296,11 +310,11 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Liù, mezzosoprano",
         "Timur, basso"
       ],
-      correct: 0,
+      answer: 0,
       explanation: "Nessun dorma è cantato da Calaf, un tenore. È una melodia molto espressiva e appassionata, con il celebre finale \"Vincerò!\"."
     },
 
-    // === NEOCLASSICISMO (6 domande) ===
+    // ── NEOCLASSICISMO (9 domande) ───────────────────
     {
       q: "Quali stili musicali del passato recupera il Neoclassicismo novecentesco?",
       options: [
@@ -309,7 +323,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Romanticismo e Verismo",
         "Espressionismo e dodecafonia"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "Dopo la Prima guerra mondiale, alcuni musicisti recuperano la musica del Rinascimento e del Barocco, ma la reinterpretano in modo moderno."
     },
     {
@@ -320,7 +334,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Pietro Mascagni",
         "Igor Stravinskij"
       ],
-      correct: 3,
+      answer: 3,
       explanation: "Igor Stravinskij è il principale autore del Neoclassicismo. Tra le sue opere importanti: Petruska, La sagra della primavera e Pulcinella."
     },
     {
@@ -331,7 +345,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Cavalleria rusticana",
         "Pulcinella"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "Cavalleria rusticana è di Mascagni, NON di Stravinskij. Le opere importanti di Stravinskij sono Petruska, La sagra della primavera e Pulcinella."
     },
     {
@@ -342,7 +356,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Melodie pentatoniche orientali",
         "Ritmi balcanici e note di pedale"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "Pulcinella ha ritmo moderato, stile gioioso, richiami alla musica barocca e presenza di trilli: tipico esempio di Neoclassicismo."
     },
     {
@@ -353,7 +367,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "I teatri chiudono e mancano i soldi per le grandi orchestre",
         "Le orchestre diventano più grandi e ricche"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "Durante la Prima guerra mondiale molti teatri chiudono, gli spettacoli vengono cancellati e manca il denaro per le grandi orchestre. Per questo nascono opere con pochi strumenti come l'Histoire du soldat."
     },
     {
@@ -364,7 +378,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "L'umanità sofferente",
         "La fortuna"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "Nell'Histoire du soldat il soldato rappresenta l'umanità sofferente, il violino rappresenta l'anima, il diavolo rappresenta il destino malvagio."
     },
     {
@@ -375,7 +389,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "L'umanità sofferente",
         "La guerra"
       ],
-      correct: 1,
+      answer: 1,
       explanation: "Nell'Histoire du soldat: il soldato rappresenta l'umanità sofferente, il violino rappresenta l'anima, il diavolo rappresenta il destino malvagio."
     },
     {
@@ -386,7 +400,7 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "Il destino malvagio",
         "Il passato barocco"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "Nell'Histoire du soldat il diavolo rappresenta il destino malvagio: compra il violino (l'anima) dal soldato (l'umanità sofferente)."
     },
     {
@@ -397,8 +411,9 @@ window.QUIZ_DATA["musica:decadentismo-avanguardie"] = {
         "In pianissimo con i tamburi",
         "Con il coro di voci bianche"
       ],
-      correct: 2,
+      answer: 2,
       explanation: "La Marcia trionfale del diavolo è una musica ironica e beffarda, con ritmo nervoso e percussioni; il finale è in pianissimo con i tamburi."
     }
+
   ]
 };
