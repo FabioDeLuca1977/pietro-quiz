@@ -66,7 +66,24 @@ window.QUIZ_REGISTRY = [
     ]
   },
  
+  // ── MUSICA ──────────────────────────────────────────────
+  {
+    subject:     "musica",
+    subjectIcon: "🎼",
+    subjectColor:"#3b82f6",
+    tests: [
+      {
+        id:            "decadentismo-avanguardie",
+        title:         "Cap. 9 — Tra Decadentismo e Avanguardie",
+        description:   "Espressionismo, folklore, Neoclassicismo nel Novecento",
+        icon:          "🎼",
+        questionCount: 35,
+        enabled:       true
+      }
+    ]
+  }, 
 
+  
   // ── ITALIANO ────────────────────────────────────────────
   {
     subject:     "italiano",
