@@ -12,7 +12,7 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
 window.QUIZ_BANK["energia-cap2"] = {
 
   id:              "energia-cap2",
-  subject:         "scienze",
+  subject:         "tecnologia",
   title:           "Cap. 2 — Combustibili fossili",
   description:     "Combustione, carbone, petrolio, gas naturale, centrali, raffinazione",
   icon:            "🔥",
