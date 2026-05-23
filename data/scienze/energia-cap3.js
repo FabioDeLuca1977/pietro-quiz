@@ -1,4 +1,3 @@
-
 // ============================================================
 //  data/scienze/energia-cap3.js
 //  Unità F — Cap. 3 FONTI RINNOVABILI (pagg. 272-279)
@@ -21,7 +20,7 @@ window.QUIZ_BANK["energia-cap3"] = {
 
   // ── METADATI ─────────────────────────────────────────────
   id:              "energia-cap3",
-  subject:         "scienze",
+  subject:         "tecnologia",
   title:           "Cap. 3 — Fonti rinnovabili",
   description:     "Solare, idroelettrico, geotermico, biomasse, fotovoltaico",
   icon:            "🌱",
