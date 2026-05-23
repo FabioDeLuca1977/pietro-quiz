@@ -12,7 +12,7 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
 window.QUIZ_BANK["energia-cap1"] = {
 
   id:              "energia-cap1",
-  subject:         "scienze",
+  subject:         "tecnologia",
   title:           "Cap. 1 — Fonti di energia",
   description:     "Definizione, Sole, fonti, centrali, idrogeno, richiesta elettrica, EROEI",
   icon:            "⚡",
