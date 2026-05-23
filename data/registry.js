@@ -65,6 +65,15 @@ window.QUIZ_REGISTRY = [
       }
     ]
   },
+
+  {
+  id:            "energia-cap3",
+  title:         "Cap. 3 — Fonti rinnovabili",
+  description:   "Solare, idroelettrico, geotermico, eolico, biomasse",
+  icon:          "🌱",
+  enabled:       true,
+  questionCount: 57   // o il numero scelto
+}
  
   // ── MUSICA ──────────────────────────────────────────────
   {
