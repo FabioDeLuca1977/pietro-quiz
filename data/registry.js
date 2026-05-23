@@ -1,6 +1,6 @@
 // ============================================================
-//  data/_registry.js  —  SCHEMA DEFINITIVO
-//  Versione: 1.0
+//  data/registry.js  —  SCHEMA DEFINITIVO
+//  Versione: 1.1
 //
 //  AGGIUNGERE UN TEST:
 //    1. Crea data/<materia>/<id>.js
@@ -13,7 +13,6 @@
 //
 //  NAMING  →  sempre kebab-case: "prima-guerra", "analisi-logica"
 // ============================================================
-
 window.QUIZ_REGISTRY = [
 
   // ── STORIA ──────────────────────────────────────────────
@@ -29,7 +28,7 @@ window.QUIZ_REGISTRY = [
         icon:          "🏛️",
         questionCount: 47,
         enabled:       true
-      },
+      }
       // {
       //   id:            "prima-guerra",
       //   title:         "La Prima Guerra Mondiale",
@@ -41,10 +40,10 @@ window.QUIZ_REGISTRY = [
     ]
   },
 
-  // ── SCIENZE ─────────────────────────────────────────────
+  // ── TECNOLOGIA ──────────────────────────────────────────
   {
-    subject:     "scienze",
-    subjectIcon: "🔬",
+    subject:     "tecnologia",
+    subjectIcon: "⚙️",
     subjectColor:"#16a34a",
     tests: [
       {
@@ -62,19 +61,18 @@ window.QUIZ_REGISTRY = [
         icon:          "🔥",
         questionCount: 75,
         enabled:       true
+      },
+      {
+        id:            "energia-cap3",
+        title:         "Cap. 3 — Fonti rinnovabili",
+        description:   "Solare, idroelettrico, geotermico, eolico, biomasse",
+        icon:          "🌱",
+        questionCount: 58,
+        enabled:       true
       }
     ]
   },
 
-  {
-  id:            "energia-cap3",
-  title:         "Cap. 3 — Fonti rinnovabili",
-  description:   "Solare, idroelettrico, geotermico, eolico, biomasse",
-  icon:          "🌱",
-  enabled:       true,
-  questionCount: 57   // o il numero scelto
-}
- 
   // ── MUSICA ──────────────────────────────────────────────
   {
     subject:     "musica",
@@ -90,9 +88,8 @@ window.QUIZ_REGISTRY = [
         enabled:       true
       }
     ]
-  }, 
+  },
 
-  
   // ── ITALIANO ────────────────────────────────────────────
   {
     subject:     "italiano",
@@ -119,4 +116,3 @@ window.QUIZ_REGISTRY = [
   // }
 
 ];
-
