@@ -1,15 +1,15 @@
-
 // ============================================================
 //  data/scienze/energia-cap3.js
 //  Unità F — Cap. 3 FONTI RINNOVABILI (pagg. 272-279)
 //
-//  57 domande che coprono tutto il capitolo:
+//  75 domande che coprono TUTTO il capitolo (pp. 272-279):
 //  - §1 Fonti rinnovabili: sfida per il futuro
 //  - §2 Energia solare (caratteristiche e svantaggi)
 //  - §3 Solare termodinamico CSP (parabolici, torre solare)
 //  - §4 Centrale fotovoltaica + Solar Impulse
 //  - §5 Idroelettrica (standard, pompaggio, fluviale, impatti)
 //  - §6 Energia geotermica
+//  + 19 domande di ripasso che testano tutti i dati e dettagli del libro
 //
 //  Verificato sulle foto del libro il 23/05/2026.
 //  Allineato a cap1.js v4 e cap2.js.
@@ -740,7 +740,7 @@ window.QUIZ_BANK["energia-cap3"] = {
     },
 
     // ════════════════════════════════════════════════════════
-    //  EXTRA — DOMANDE DI RIPASSO E SINTESI  (2)
+    //  RIPASSO COMPLETO — DATI E DETTAGLI MANCANTI  (19)
     // ════════════════════════════════════════════════════════
 
     {
@@ -765,6 +765,210 @@ window.QUIZ_BANK["energia-cap3"] = {
       ],
       answer: 1,
       explanation: "Il gruppo turbina-alternatore è presente nella centrale a torre solare, a specchi parabolici, idroelettrica standard, di pompaggio, fluviale e geotermica. Solo il fotovoltaico produce direttamente corrente elettrica dalla luce senza turbina."
+    },
+
+    {
+      q: "Quale Paese europeo è in testa nei consumi da fonti rinnovabili nel 2016 secondo il grafico Eurostat?",
+      options: [
+        "Italia",
+        "Germania",
+        "Svezia",
+        "Spagna"
+      ],
+      answer: 2,
+      explanation: "Secondo il grafico Eurostat di pagina 273, la classifica dei Paesi europei con maggior consumo da rinnovabili nel 2016 vede in testa: Svezia, Finlandia, Lettonia, Austria, Danimarca."
+    },
+
+    {
+      q: "Nella centrale a torre solare, nella caldaia in cima alla torre si raggiungono temperature di:",
+      options: [
+        "Decine di gradi",
+        "Centinaia di gradi",
+        "Migliaia di gradi",
+        "Milioni di gradi"
+      ],
+      answer: 1,
+      explanation: "Nella caldaia in cima alla torre solare si raggiungono temperature di centinaia di gradi che producono vapore surriscaldato. Il vapore aziona il gruppo turbina-alternatore generando elettricità."
+    },
+
+    {
+      q: "Quanto è grande un singolo pannello fotovoltaico di una centrale?",
+      options: [
+        "Tra 1 e 5 m²",
+        "Tra 10 e 30 m²",
+        "Tra 50 e 150 m² (come un appartamento)",
+        "Oltre 500 m²"
+      ],
+      answer: 2,
+      explanation: "Ogni pannello fotovoltaico di una centrale è grande come un appartamento, tra i 50 e i 150 m². La centrale è formata da centinaia di questi pannelli."
+    },
+
+    {
+      q: "Come è mantenuto orientato un pannello fotovoltaico nella centrale?",
+      options: [
+        "È fisso, orientato a sud",
+        "Ha un sostegno con meccanismo che lo mantiene perpendicolare ai raggi del Sole",
+        "È mobile ma seguito a mano",
+        "Ruota a 360° ogni ora"
+      ],
+      answer: 1,
+      explanation: "Ogni pannello ha un sostegno e un meccanismo che lo mantiene perpendicolare ai raggi del Sole, per massimizzare l'energia raccolta."
+    },
+
+    {
+      q: "La centrale fotovoltaica in costruzione in Cina (oltre 46 km² di pannelli) avrà una capacità di:",
+      options: [
+        "850 MW (come il Lon-gyangxia)",
+        "2 GW, il doppio di una centrale nucleare",
+        "500 MW, la metà di una termoelettrica",
+        "10 GW, dieci volte una nucleare"
+      ],
+      answer: 1,
+      explanation: "La centrale in costruzione in Cina avrà oltre 46 km² di pannelli e una capacità di 2 GW, il doppio di una centrale nucleare."
+    },
+
+    {
+      q: "Quando viene messa in funzione la centrale idroelettrica standard?",
+      options: [
+        "Sempre, 24 ore al giorno",
+        "Solo di notte",
+        "Quando la richiesta di elettricità è maggiore",
+        "Solo in inverno"
+      ],
+      answer: 2,
+      explanation: "La centrale idroelettrica standard viene messa in funzione, se necessario, quando la richiesta di elettricità è maggiore."
+    },
+
+    {
+      q: "Da cosa dipende la potenza di una centrale idroelettrica?",
+      options: [
+        "Solo dalla quantità d'acqua disponibile",
+        "Solo dal dislivello",
+        "Dalla quantità d'acqua disponibile E dal dislivello tra invaso e centrale",
+        "Dal tipo di turbina usata"
+      ],
+      answer: 2,
+      explanation: "La potenza dipende da due fattori combinati: la quantità d'acqua disponibile e la differenza di quota tra l'invaso e la centrale."
+    },
+
+    {
+      q: "Cosa significa 'mini idroelettrico'?",
+      options: [
+        "Una centrale piccola in una caverna",
+        "Si sfruttano dislivelli di pochi metri (non centinaia)",
+        "Una centrale solo per una casa",
+        "Una centrale senza diga"
+      ],
+      answer: 1,
+      explanation: "Il mini idroelettrico sfrutta dislivelli da pochi metri. L'idroelettrico tradizionale sfrutta dislivelli che vanno fino a centinaia di metri."
+    },
+
+    {
+      q: "Quali sono i 3 componenti speciali della centrale di pompaggio rispetto a quella standard?",
+      options: [
+        "Diga ad arco, vapordotti, eliostati",
+        "Bacino di accumulo a valle, alternatori reversibili, turbine reversibili",
+        "Caldaia, condensatore, torre di raffreddamento",
+        "Inverter, pannelli, moduli"
+      ],
+      answer: 1,
+      explanation: "La centrale di pompaggio è identica a quella standard ma ha 3 elementi in più: un bacino di accumulo a valle, alternatori reversibili (che diventano motori), turbine reversibili (che diventano pompe)."
+    },
+
+    {
+      q: "Dove può essere costruita una centrale di pompaggio?",
+      options: [
+        "Solo all'aperto a fondovalle",
+        "Anche in caverna, scavata nella montagna",
+        "Solo sotto una diga",
+        "Solo sopra l'invaso"
+      ],
+      answer: 1,
+      explanation: "La centrale di pompaggio può essere in caverna, cioè scavata nella montagna. Un esempio è la centrale di San Fiorano in Valcamonica."
+    },
+
+    {
+      q: "La diga ad arco sul fiume Kurobe (Giappone) ha un salto d'acqua di:",
+      options: [
+        "86 metri",
+        "186 metri",
+        "286 metri",
+        "1000 metri"
+      ],
+      answer: 1,
+      explanation: "La diga ad arco sul fiume Kurobe (Giappone) ha un salto d'acqua di 186 metri."
+    },
+
+    {
+      q: "Dove si trova la centrale di pompaggio di San Fiorano e qual è la sua produzione annua?",
+      options: [
+        "In Veneto, 100 GWh",
+        "In Valcamonica (Lombardia), 342 GWh",
+        "In Toscana, 250 MW",
+        "In Campania, 1000 MW"
+      ],
+      answer: 1,
+      explanation: "San Fiorano è una centrale idroelettrica di generazione e pompaggio situata in Valcamonica (Lombardia), con una produzione media annua di 342 GWh."
+    },
+
+    {
+      q: "Dove è costruita la centrale di una centrale fluviale?",
+      options: [
+        "A 30 km dalla diga",
+        "Dentro la diga stessa",
+        "Sul fondo del fiume",
+        "Sulla riva opposta"
+      ],
+      answer: 1,
+      explanation: "Nella centrale fluviale, la massa d'acqua è costretta a passare per la centrale, costruita dentro la diga, e fa girare le turbine Kaplan."
+    },
+
+    {
+      q: "Di cosa è dotata la diga di una centrale fluviale per gestire le piene del fiume?",
+      options: [
+        "Di sirene di allarme",
+        "Di paratoie (grossi portelloni) che vengono aperte",
+        "Di valvole di sicurezza",
+        "Di canali di scarico laterali"
+      ],
+      answer: 1,
+      explanation: "La diga della centrale fluviale è dotata di paratoie (grossi portelloni) che vengono aperte quando il fiume è in piena."
+    },
+
+    {
+      q: "A quale altra centrale è 'simile' la centrale geotermica?",
+      options: [
+        "Alla centrale fotovoltaica",
+        "Alla centrale termoelettrica a carbone",
+        "Alla centrale idroelettrica",
+        "Alla centrale a torre solare"
+      ],
+      answer: 1,
+      explanation: "La centrale geotermica è simile alla centrale termoelettrica a carbone, con la differenza che il vapore in pressione è un prodotto naturale prelevato dal sottosuolo."
+    },
+
+    {
+      q: "L'energia geotermica è:",
+      options: [
+        "Solo calore",
+        "Solo forza meccanica",
+        "Al tempo stesso calore e forza meccanica",
+        "Solo elettricità"
+      ],
+      answer: 2,
+      explanation: "L'energia geotermica è al tempo stesso calore e forza meccanica, e per questo può azionare le turbine di una centrale termoelettrica."
+    },
+
+    {
+      q: "Da dove preleva il vapore il rubinetto di presa della centrale geotermica?",
+      options: [
+        "Dalla caldaia",
+        "Dal pozzo di estrazione nel sottosuolo",
+        "Dai vapordotti",
+        "Dalla torre di raffreddamento"
+      ],
+      answer: 1,
+      explanation: "Il rubinetto di presa preleva il vapore dal pozzo di estrazione nel sottosuolo e lo immette nei vapordotti."
     }
 
   ]
