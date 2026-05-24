@@ -488,7 +488,7 @@ window.QUIZ_BANK["energia-cap3"] = {
       options: [
         "Turbina Kaplan",
         "Turbina Pelton",
-        "Turbina a vapore",
+        "Turbina Francis",
         "Turbina eolica"
       ],
       answer: 1,
@@ -592,7 +592,7 @@ window.QUIZ_BANK["energia-cap3"] = {
       options: [
         "Turbina Pelton",
         "Turbina Kaplan",
-        "Turbina a vapore",
+        "Turbina Francis",
         "Turbina eolica"
       ],
       answer: 1,
