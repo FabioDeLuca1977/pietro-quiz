@@ -21,14 +21,28 @@
 <!-- TECNOLOGIA -->
 <script src="data/scienze/energia-cap1.js"></script>
 <script src="data/scienze/energia-cap2.js"></script>
-<script src="data/scienze/energia-cap3.js"></script>     
-<!-- <script src="data/scienze/cellula.js"></script>
+<script src="data/scienze/energia-cap3.js"></script>
+<!-- <script src="data/scienze/cellula.js"></script> -->
 
 <!-- MUSICA -->
 <script src="data/musica/decadentismo-avanguardie.js"></script>
 
 <!-- ITALIANO -->
 <!-- <script src="data/italiano/promessi-sposi.js"></script> -->
+
+<!-- INGLESE — reading esame -->
+<script src="data/inglese/reading-en-1-new-york.js"></script>
+<script src="data/inglese/reading-en-2-darwin.js"></script>
+<script src="data/inglese/reading-en-3-electric-cars.js"></script>
+<script src="data/inglese/reading-en-4-automobile.js"></script>
+<script src="data/inglese/reading-en-5-ferrari.js"></script>
+
+<!-- SPAGNOLO — reading esame -->
+<script src="data/spagnolo/reading-es-1-barcelona.js"></script>
+<script src="data/spagnolo/reading-es-2-andalucia.js"></script>
+<script src="data/spagnolo/reading-es-3-internet.js"></script>
+<script src="data/spagnolo/reading-es-4-seat.js"></script>
+<script src="data/spagnolo/reading-es-5-seguridad.js"></script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&display=swap');
@@ -177,7 +191,19 @@ body::before {
 }
 .slive { font-weight:900; font-size:.84rem; color:#f5a623; white-space:nowrap; }
 
+/* Pulsante testo (solo test reading) */
+.btn-txt {
+  display:none; align-items:center; gap:5px;
+  font-family:'Nunito',sans-serif; font-size:.76rem; font-weight:800;
+  background:transparent; border:1.5px solid var(--acc); color:var(--tx);
+  border-radius:20px; padding:5px 12px; cursor:pointer; white-space:nowrap;
+  transition:background .2s;
+}
+.btn-txt:hover { background:color-mix(in srgb, var(--acc) 15%, transparent); }
+.btn-txt.on { display:inline-flex; }
+
 .tmr-c { text-align:center; margin-bottom:12px; }
+.tmr-c.off { display:none; }
 .tmr {
   display:inline-flex; align-items:center; justify-content:center;
   width:52px; height:52px; border-radius:50%; border:3px solid var(--ln2);
@@ -233,6 +259,13 @@ body::before {
 .fb-ico  { font-size:1.25rem; flex-shrink:0; margin-top:1px; }
 .fb-main { font-weight:800; font-size:.93rem; }
 .fb-exp  { font-size:.81rem; color:var(--mu2); margin-top:4px; line-height:1.5; }
+.fb-go {
+  display:none; margin-top:8px;
+  font-family:'Nunito',sans-serif; font-size:.78rem; font-weight:800;
+  background:var(--acc); border:none; color:#fff;
+  border-radius:20px; padding:6px 14px; cursor:pointer;
+}
+.fb-go.on { display:inline-block; }
 
 .btn-next {
   display:none; margin:16px auto 0;
@@ -244,6 +277,32 @@ body::before {
 }
 .btn-next:hover { transform:translateY(-2px); }
 .btn-next.on    { display:block; }
+
+/* ════════ READING — testo da leggere ════════ */
+
+.rd-sheet {
+  background:var(--card); border:2px solid var(--ln2); border-radius:var(--r);
+  padding:24px 26px; box-shadow:var(--sh); margin-bottom:16px;
+}
+.rd-photo { font-style:italic; color:var(--mu2); font-size:.85rem; margin-bottom:16px; }
+.rd-sheet p { font-size:.98rem; line-height:1.75; margin-bottom:15px; }
+.rd-sheet p:last-child { margin-bottom:0; }
+mark.rd-hl {
+  background:rgba(245,166,35,.4); color:var(--tx);
+  padding:1px 3px; border-radius:3px;
+}
+
+/* Overlay "torna al testo" durante il quiz */
+.txt-ov {
+  display:none; position:fixed; inset:0; z-index:60;
+  background:rgba(9,9,15,.94); overflow-y:auto; padding:20px 16px 40px;
+}
+.txt-ov.on { display:block; animation:up .2s ease; }
+.txt-ov .inner { max-width:760px; margin:0 auto; }
+.txt-ov .ov-bar {
+  position:sticky; top:0; z-index:2; display:flex; justify-content:flex-end;
+  padding:6px 0 12px; background:linear-gradient(to bottom, rgba(9,9,15,.96) 60%, transparent);
+}
 
 /* ════════ RISULTATI ════════ */
 
@@ -396,14 +455,25 @@ body::before {
   </div>
 </div>
 
+<!-- ══ READING — testo prima delle domande ══ -->
+<div id="s-read" class="scr">
+  <div class="lbl" id="rd-lbl">📄 Leggi il testo</div>
+  <div class="rd-sheet" id="rd-sheet"></div>
+  <div class="btn-row">
+    <button class="btn btn-f" onclick="beginReadingQs()">✏️ Inizia le domande</button>
+    <button class="btn btn-o" onclick="goHome()">🏠 Home</button>
+  </div>
+</div>
+
 <!-- ══ QUIZ ══ -->
 <div id="s-quiz" class="scr">
   <div class="q-topbar">
     <span class="q-num" id="q-num">1 / —</span>
     <div class="prog"><div class="prog-fill" id="prog" style="width:0%"></div></div>
+    <button class="btn-txt" id="btn-txt" onclick="openText(false)">📄 Testo</button>
     <span class="slive" id="slive">⭐ 0</span>
   </div>
-  <div class="tmr-c"><div class="tmr" id="tmr">20</div></div>
+  <div class="tmr-c" id="tmr-c"><div class="tmr" id="tmr">20</div></div>
   <div class="q-card">
     <div class="q-tag">Domanda</div>
     <div class="q-text" id="q-text"></div>
@@ -411,9 +481,23 @@ body::before {
   <div class="opts" id="opts"></div>
   <div class="fb" id="fb">
     <span class="fb-ico" id="fb-ico"></span>
-    <div><div class="fb-main" id="fb-main"></div><div class="fb-exp" id="fb-exp"></div></div>
+    <div>
+      <div class="fb-main" id="fb-main"></div>
+      <div class="fb-exp" id="fb-exp"></div>
+      <button class="fb-go" id="fb-go" onclick="openText(true)">📄 Torna al testo e rileggi</button>
+    </div>
   </div>
   <button class="btn-next" id="btn-next" onclick="nextQ()">Avanti →</button>
+</div>
+
+<!-- ══ OVERLAY TESTO (reading) ══ -->
+<div class="txt-ov" id="txt-ov">
+  <div class="inner">
+    <div class="ov-bar">
+      <button class="btn btn-f" onclick="closeText()">✕ Torna alla domanda</button>
+    </div>
+    <div class="rd-sheet" id="ov-sheet"></div>
+  </div>
 </div>
 
 <!-- ══ RISULTATI ══ -->
@@ -480,7 +564,7 @@ let G = {
   testMeta:null,    // oggetto test da _registry
   testData:null,    // oggetto QUIZ_BANK[id]
   qs:[], idx:0, score:0, ans:[],
-  _opts:[], _corrOrig:0,
+  _opts:[], _corrOrig:0, _curEv:null,
   tmr:null, tLeft:0
 };
 
@@ -534,6 +618,7 @@ function selSubj(subjId) {
       const best    = active ? getBest(subjId, t.id, window.QUIZ_BANK?.[t.id]?.version) : null;
       const qCount  = loaded ? window.QUIZ_BANK[t.id].questions.length : t.questionCount;
       const onclick = active ? `onclick="startQuiz('${t.id}')"` : '';
+      const isRd    = loaded && window.QUIZ_BANK[t.id].type === 'reading';
       return `<div class="test-item ${active?'':'coming'}" ${onclick}>
         <span class="ti-ico">${t.icon||G.subj.subjectIcon}</span>
         <div class="ti-body">
@@ -541,7 +626,7 @@ function selSubj(subjId) {
           <div class="ti-desc">${t.description||''}</div>
         </div>
         <div class="ti-right">
-          <span class="ti-badge">${qCount ? qCount+' domande' : '—'}</span>
+          <span class="ti-badge">${isRd?'📄 reading · ':''}${qCount ? qCount+' domande' : '—'}</span>
           ${best  ? `<span class="ti-best">⭐ Best ${best}%</span>` : ''}
           ${!active ? `<span class="ti-soon">prossimamente</span>` : ''}
         </div>
@@ -556,6 +641,9 @@ function selSubj(subjId) {
 // ═══════════════════════════════════════════════════════
 //  QUIZ
 // ═══════════════════════════════════════════════════════
+function isReading() { return G.testData?.type === 'reading'; }
+function tpq()       { const v = G.testData?.timePerQuestion; return (v === 0) ? 0 : (v || 20); }
+
 function startQuiz(testId) {
   G.testData = window.QUIZ_BANK[testId];
   G.subj     = (window.QUIZ_REGISTRY||[]).find(s => s.subject === G.testData.subject);
@@ -564,8 +652,32 @@ function startQuiz(testId) {
 
   G.qs    = shuffle([...G.testData.questions]);
   G.idx   = 0; G.score = 0; G.ans = [];
-  showScr('s-quiz');
-  renderQ();
+
+  if (isReading()) {
+    // Prima il testo, come all'esame: si legge, poi si risponde.
+    document.getElementById('rd-lbl').textContent = `📄 ${G.testData.title} — leggi il testo`;
+    renderSheet('rd-sheet', null);
+    showScr('s-read');
+  } else {
+    showScr('s-quiz');
+    renderQ();
+  }
+}
+
+function beginReadingQs() { showScr('s-quiz'); renderQ(); }
+
+// Renderizza il testo del reading in un contenitore.
+// Se ev è valorizzato, evidenzia la frase esatta (id hl-t per lo scroll).
+function renderSheet(elId, ev) {
+  const r = G.testData.reading || { paras: [] };
+  let html = '';
+  if (r.photo) html += `<div class="rd-photo">🖼️ ${r.photo}</div>`;
+  html += r.paras.map(p => {
+    let t = p;
+    if (ev && p.includes(ev)) t = p.replace(ev, `<mark class="rd-hl" id="hl-t">${ev}</mark>`);
+    return `<p>${t}</p>`;
+  }).join('');
+  document.getElementById(elId).innerHTML = html;
 }
 
 function renderQ() {
@@ -576,7 +688,7 @@ function renderQ() {
   document.getElementById('q-text').textContent = q.q;
 
   const opts = shuffle(q.options.map((o,i) => ({text:o, orig:i})));
-  G._opts = opts; G._corrOrig = q.answer;
+  G._opts = opts; G._corrOrig = q.answer; G._curEv = q.ev || null;
 
   document.getElementById('opts').innerHTML = opts.map((o,i) =>
     `<button class="opt" data-s="${i}" onclick="pick(${i})">
@@ -587,16 +699,32 @@ function renderQ() {
 
   hideFB();
   document.getElementById('btn-next').classList.remove('on');
-  startTmr(G.testData.timePerQuestion || 20);
+  document.getElementById('btn-txt').classList.toggle('on', isReading());
+
+  // Timer: timePerQuestion 0 → nessun timer (modalità reading)
+  const t = tpq();
+  if (t > 0) {
+    document.getElementById('tmr-c').classList.remove('off');
+    startTmr(t);
+  } else {
+    stopTmr();
+    document.getElementById('tmr-c').classList.add('off');
+  }
 }
 
 function pick(di) {
   stopTmr();
-  const elapsed = (G.testData.timePerQuestion||20) - G.tLeft;
+  const t = tpq();
+  const elapsed = t > 0 ? (t - G.tLeft) : 0;
   const q  = G.qs[G.idx];
   const ok = G._opts[di].orig === G._corrOrig;
   let pts  = 0;
-  if (ok) { pts = elapsed<=5?PTS.fast:elapsed<=12?PTS.mid:PTS.slow; G.score+=pts; }
+  if (ok) {
+    // Senza timer (reading) il punteggio è fisso: niente premio velocità,
+    // perché tornare sul testo è la strategia giusta, non un ritardo.
+    pts = t > 0 ? (elapsed<=5?PTS.fast:elapsed<=12?PTS.mid:PTS.slow) : PTS.mid;
+    G.score += pts;
+  }
 
   G.ans.push({ q:q.q, ok, chosen:G._opts[di].text, correct:q.options[G._corrOrig], exp:q.explanation||'' });
 
@@ -611,6 +739,21 @@ function pick(di) {
 }
 
 function nextQ() { G.idx++; G.idx>=G.qs.length ? showRes() : renderQ(); }
+
+// ═══════════════════════════════════════════════════════
+//  OVERLAY TESTO (reading)
+//  openText(false) → testo pulito (pulsante 📄 in alto)
+//  openText(true)  → testo con la frase della domanda evidenziata
+// ═══════════════════════════════════════════════════════
+function openText(withEv) {
+  if (!isReading()) return;
+  renderSheet('ov-sheet', withEv ? G._curEv : null);
+  document.getElementById('txt-ov').classList.add('on');
+  const hl = document.getElementById('hl-t');
+  if (hl) setTimeout(() => hl.scrollIntoView({behavior:'smooth', block:'center'}), 80);
+  else document.getElementById('txt-ov').scrollTop = 0;
+}
+function closeText() { document.getElementById('txt-ov').classList.remove('on'); }
 
 // ═══════════════════════════════════════════════════════
 //  TIMER
@@ -641,14 +784,18 @@ function showFB(ok,pts,exp,timeout=false) {
   document.getElementById('fb-ico').textContent  = ok?'✅':timeout?'⏱️':'❌';
   document.getElementById('fb-main').textContent = ok?`Esatto! +${pts} punti`:timeout?'Tempo scaduto!':'Risposta errata';
   document.getElementById('fb-exp').textContent  = exp||'';
+  document.getElementById('fb-go').classList.toggle('on', isReading() && !!G._curEv);
 }
-function hideFB() { document.getElementById('fb').className='fb'; }
+function hideFB() {
+  document.getElementById('fb').className='fb';
+  document.getElementById('fb-go').classList.remove('on');
+}
 
 // ═══════════════════════════════════════════════════════
 //  RISULTATI
 // ═══════════════════════════════════════════════════════
 function showRes() {
-  stopTmr();
+  stopTmr(); closeText();
   const tot=G.qs.length, ok=G.ans.filter(a=>a.ok).length, pct=Math.round(ok/tot*100);
   const [emo,stars] = pct>=90?['🏆','⭐⭐⭐']:pct>=70?['🎉','⭐⭐']:pct>=50?['💪','⭐']:['📚',''];
 
@@ -683,7 +830,7 @@ function showRes() {
 //  NAVIGAZIONE
 // ═══════════════════════════════════════════════════════
 function showScr(id) { document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); window.scrollTo(0,0); }
-function goHome()  { stopTmr(); setColor('#dc2626'); showScr('s-home'); renderHist(); }
+function goHome()  { stopTmr(); closeText(); setColor('#dc2626'); showScr('s-home'); renderHist(); }
 function restart() { startQuiz(G.testData.id); }
 function setColor(c) { document.documentElement.style.setProperty('--acc',c); }
 
