@@ -1,6 +1,6 @@
 // ============================================================
 //  data/registry.js  —  SCHEMA DEFINITIVO
-//  Versione: 1.1
+//  Versione: 1.2
 //
 //  AGGIUNGERE UN TEST:
 //    1. Crea data/<materia>/<id>.js
@@ -12,9 +12,14 @@
 //    enabled: false   →  appare come "Prossimamente"
 //
 //  NAMING  →  sempre kebab-case: "prima-guerra", "analisi-logica"
+//
+//  NOVITÀ v1.2 — test di tipo "reading":
+//    nel file dati: type:"reading", reading:{photo,paras},
+//    timePerQuestion:0 (niente timer), campo ev per domanda.
+//    Il motore mostra il testo prima delle domande e il pulsante
+//    "📄 Torna al testo" con la frase evidenziata.
 // ============================================================
 window.QUIZ_REGISTRY = [
-
   // ── STORIA ──────────────────────────────────────────────
   {
     subject:     "storia",
@@ -39,7 +44,6 @@ window.QUIZ_REGISTRY = [
       // }
     ]
   },
-
   // ── TECNOLOGIA ──────────────────────────────────────────
   {
     subject:     "tecnologia",
@@ -51,7 +55,7 @@ window.QUIZ_REGISTRY = [
         title:         "Cap. 1 — Fonti di energia",
         description:   "Definizione, Sole, fonti, centrali, idrogeno, richiesta elettrica, EROEI",
         icon:          "⚡",
-        questionCount: 40,
+        questionCount: 33,   // FIX v1.2: il file v4 contiene 33 domande, non 40
         enabled:       true
       },
       {
@@ -72,7 +76,6 @@ window.QUIZ_REGISTRY = [
       }
     ]
   },
-
   // ── MUSICA ──────────────────────────────────────────────
   {
     subject:     "musica",
@@ -89,7 +92,6 @@ window.QUIZ_REGISTRY = [
       }
     ]
   },
-
   // ── ITALIANO ────────────────────────────────────────────
   {
     subject:     "italiano",
@@ -105,8 +107,103 @@ window.QUIZ_REGISTRY = [
       //   enabled:       false
       // }
     ]
+  },
+  // ── INGLESE (reading esame) ─────────────────────────────
+  {
+    subject:     "inglese",
+    subjectIcon: "🇬🇧",
+    subjectColor:"#7c3aed",
+    tests: [
+      {
+        id:            "reading-en-1-new-york",
+        title:         "Reading 1 — A Visit to New York City",
+        description:   "New York: luoghi, numeri e curiosità · A2",
+        icon:          "🗽",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "reading-en-2-darwin",
+        title:         "Reading 2 — Darwin and the Beagle",
+        description:   "Darwin e il viaggio del Beagle · A2",
+        icon:          "🧬",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "reading-en-3-electric-cars",
+        title:         "Reading 3 — The Future of Electric Cars",
+        description:   "Le auto elettriche · A2",
+        icon:          "🔋",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "reading-en-4-automobile",
+        title:         "Reading 4 — The History of the Automobile",
+        description:   "Benz, Ford e la catena di montaggio · A2",
+        icon:          "🚗",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "reading-en-5-ferrari",
+        title:         "Reading 5 — Ferrari: An Italian Legend",
+        description:   "Enzo Ferrari, Maranello e la F1 · A2",
+        icon:          "🏎️",
+        questionCount: 10,
+        enabled:       true
+      }
+    ]
+  },
+  // ── SPAGNOLO (reading esame) ────────────────────────────
+  {
+    subject:     "spagnolo",
+    subjectIcon: "🇪🇸",
+    subjectColor:"#e11d48",
+    tests: [
+      {
+        id:            "reading-es-1-barcelona",
+        title:         "Reading 1 — Barcelona, una ciudad fascinante",
+        description:   "Monumentos, Gaudí y cultura · A1",
+        icon:          "⛪",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "reading-es-2-andalucia",
+        title:         "Reading 2 — Un viaje a Andalucía",
+        description:   "Sevilla, Córdoba, Granada · A1",
+        icon:          "💃",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "reading-es-3-internet",
+        title:         "Reading 3 — El uso de Internet entre los jóvenes",
+        description:   "Redes sociales y educación digital · A1",
+        icon:          "📱",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "reading-es-4-seat",
+        title:         "Reading 4 — SEAT, los coches de España",
+        description:   "1950, Martorell y los coches eléctricos · A1",
+        icon:          "🚙",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "reading-es-5-seguridad",
+        title:         "Reading 5 — La seguridad en la carretera",
+        description:   "Cinturón, casco y paso de cebra · A1",
+        icon:          "🚦",
+        questionCount: 10,
+        enabled:       true
+      }
+    ]
   }
-
   // ── NUOVA MATERIA (decommenta e adatta) ─────────────────
   // ,{
   //   subject:     "geografia",
@@ -114,5 +211,4 @@ window.QUIZ_REGISTRY = [
   //   subjectColor:"#0891b2",
   //   tests: []
   // }
-
 ];
