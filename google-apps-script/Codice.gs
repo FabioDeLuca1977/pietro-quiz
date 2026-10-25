@@ -1,15 +1,18 @@
 // ============================================================
 //  QuizMaster — registro dei tentativi (Google Apps Script)
 //
-//  Si incolla in: Foglio Google → Estensioni → Apps Script.
-//  Proprietà dello script da impostare (Impostazioni progetto →
-//  Proprietà script):
-//    TOKEN_SITO   = lo stesso valore di "token" in data/config.js
-//    CHIAVE_PAPA  = una parola segreta scelta da te (serve a papa.html
-//                   per leggere i risultati; non scriverla da nessuna parte
-//                   nel sito)
+//  Funziona sia incollato nel foglio (Estensioni → Apps Script) sia come
+//  script separato: in quel caso FOGLIO_ID indica il foglio da usare.
+//
+//  PRIMO AVVIO: esegui la funzione  configura  (▶ Esegui). Imposta da sola
+//    TOKEN_SITO   = il "token" di data/config.js (serve al sito per scrivere)
+//    CHIAVE_PAPA  = una chiave segreta generata a caso (serve a papa.html per
+//                   leggere): la trovi nel Registro di esecuzione.
 //  Istruzioni complete: GUIDA-PAPA.md
 // ============================================================
+
+const FOGLIO_ID   = '';                 // vuoto = il foglio a cui è collegato lo script
+const TOKEN_SITO_PREDEFINITO = 'e158991b257f360923fd6fa9';   // = token in data/config.js (non è un segreto)
 
 const FOGLIO_TENTATIVI = 'Tentativi';
 const FOGLIO_RISPOSTE  = 'Risposte';
@@ -29,7 +32,7 @@ function doPost(e) {
     const token = props.getProperty('TOKEN_SITO');
     if (!token || d.token !== token) return json({ ok: false, error: 'token' });
 
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = apri();
     const tent = foglio(ss, FOGLIO_TENTATIVI, COL_TENTATIVI);
     // niente doppioni se il sito rimanda lo stesso tentativo
     if (tent.getLastRow() > 1 &&
@@ -56,10 +59,31 @@ function doPost(e) {
 function doGet(e) {
   const chiave = PropertiesService.getScriptProperties().getProperty('CHIAVE_PAPA');
   if (!chiave || !e.parameter || e.parameter.key !== chiave) return json({ ok: false, error: 'chiave' });
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = apri();
   return json({ ok: true,
                 tentativi: righe(ss.getSheetByName(FOGLIO_TENTATIVI)),
                 risposte:  righe(ss.getSheetByName(FOGLIO_RISPOSTE)) });
+}
+
+// Da eseguire una volta (▶ Esegui): imposta token e chiave, crea le schede
+// e scrive una riga di prova. La chiave di papà compare nel Registro.
+function configura() {
+  const props = PropertiesService.getScriptProperties();
+  if (!props.getProperty('TOKEN_SITO')) props.setProperty('TOKEN_SITO', TOKEN_SITO_PREDEFINITO);
+  let chiave = props.getProperty('CHIAVE_PAPA');
+  if (!chiave) { chiave = Utilities.getUuid().replace(/-/g, '').slice(0, 16); props.setProperty('CHIAVE_PAPA', chiave); }
+  const ss = apri();
+  foglio(ss, FOGLIO_TENTATIVI, COL_TENTATIVI);
+  foglio(ss, FOGLIO_RISPOSTE, COL_RISPOSTE);
+  const vuoto = ss.getSheetByName('Foglio1') || ss.getSheetByName('Sheet1');
+  if (vuoto && ss.getSheets().length > 2 && vuoto.getLastRow() === 0) ss.deleteSheet(vuoto);
+  prova();
+  Logger.log('FATTO. Foglio: ' + ss.getUrl());
+  Logger.log('CHIAVE_PAPA (da inserire nella pagina di papà): ' + chiave);
+}
+
+function apri() {
+  return FOGLIO_ID ? SpreadsheetApp.openById(FOGLIO_ID) : SpreadsheetApp.getActiveSpreadsheet();
 }
 
 // Prova a mano dall'editor (▶ Esegui) per controllare che tutto funzioni.
