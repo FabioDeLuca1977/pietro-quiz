@@ -2,8 +2,8 @@
 //  data/scienze/misure-cap1-problemi.js  (v1)
 //  Unità A — Cap. 1 PROBLEMI (pagg. 5-33)
 //
-//  39 domande. Problemi con risposta da scrivere (type:"numeric") e qualche scelta multipla, senza timer. Quelli con «p. N» sono del libro (risultato stampato);
-//  gli altri sono creati sul loro modello. Tutti i calcoli verificati.
+//  39 domande. Problemi con risposta da scrivere (type:"numeric") e qualche scelta multipla, senza timer. Quelli con «p. N» o «es. N» sono del libro (risultato stampato);
+//  quelli con «come …» o senza riferimento sono creati sul modello del libro. Tutti i calcoli verificati.
 //  Fonte: foto del libro di scienze, ottobre 2026.
 // ============================================================
 

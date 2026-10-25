@@ -185,7 +185,7 @@ window.QUIZ_BANK["materia-cap2"] = {
         "L'infiammabilità"
       ],
       "answer": 0,
-      "explanation": "Il volume dipende dalle dimensioni del campione, quindi è estensivo; densità, temperature di ebollizione e proprietà chimiche sono intensive (p. 43)."
+      "explanation": "Il volume dipende dalle dimensioni del campione, quindi è estensivo; densità, temperature di ebollizione e proprietà chimiche sono intensive (pp. 19 e 43)."
     },
 
     {

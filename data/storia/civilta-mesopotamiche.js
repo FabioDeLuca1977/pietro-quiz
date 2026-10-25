@@ -81,7 +81,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
     },
 
     {
-      "q": "Come si chiamavano i Sumeri?",
+      "q": "Come si definivano i Sumeri?",
       "options": [
         "Le teste nere",
         "I figli del fiume",
@@ -485,7 +485,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
         "Il faraone d'Egitto"
       ],
       "answer": 1,
-      "explanation": "Creso, famoso per le sue ricchezze, era re di Lidia, regno che controllava molte città greche; fu portato prigioniero in Persia (p. 54)."
+      "explanation": "Creso, famoso per le sue ricchezze, era re di Lidia, regno che aveva nella sua area di influenza molte città greche della costa egea; fu portato prigioniero in Persia (p. 54)."
     },
 
     {
