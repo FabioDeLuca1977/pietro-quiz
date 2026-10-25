@@ -10,6 +10,6 @@
 // ============================================================
 window.QUIZ_CONFIG = {
   student:   "Pietro",
-  reportUrl: "",
+  reportUrl: "https://script.google.com/macros/s/AKfycbyj9VY1rTAW8GbtILgVZvsXqCnWk0Px44kKnyqMPVasSwjsh0na9_D6RhYwJT3757AEIQ/exec",
   token:     "e158991b257f360923fd6fa9"
 };
