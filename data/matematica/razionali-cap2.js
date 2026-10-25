@@ -57,15 +57,15 @@ window.QUIZ_BANK["razionali-cap2"] = {
     },
 
     {
-      "q": "Quale di queste frazioni è impropria?",
+      "q": "Secondo la classificazione del libro, quale di queste frazioni è impropria?",
       "options": [
         "4/5",
-        "21/7",
+        "3/8",
         "2/6",
         "8/3"
       ],
       "answer": 3,
-      "explanation": "8/3: il numeratore è maggiore del denominatore e non ne è multiplo. 4/5 e 2/6 sono proprie, 21/7 è apparente (p. 78)."
+      "explanation": "8/3: il numeratore è maggiore del denominatore e non ne è multiplo. 4/5, 3/8 e 2/6 sono proprie. Attenzione: 21/7 per il libro non è impropria ma apparente (p. 78)."
     },
 
     {
@@ -345,7 +345,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
     },
 
     {
-      "q": "Per il segno di una potenza in Q, quale regola è corretta?",
+      "q": "Per il segno di una potenza in Q (con base diversa da 0), quale regola è corretta?",
       "options": [
         "Con esponente pari la potenza è sempre negativa",
         "Con esponente dispari la potenza è sempre positiva",
@@ -465,15 +465,15 @@ window.QUIZ_BANK["razionali-cap2"] = {
     },
 
     {
-      "q": "Se il divisore è 7, dopo al massimo quante divisioni il periodo si ripete?",
+      "q": "Una frazione con denominatore 7 genera un numero periodico. Al massimo quante cifre può avere il periodo?",
       "options": [
         "7",
         "6",
         "10",
-        "Mai"
+        "Infinite"
       ],
       "answer": 1,
-      "explanation": "I resti possibili vanno da 1 a b − 1: con divisore 7 il periodo si ripete dopo al massimo 6 divisioni (box «Quanto è lungo il periodo?», p. 88)."
+      "explanation": "I resti possibili vanno da 1 a b − 1, quindi il periodo è lungo al massimo b − 1 cifre: con 7 al massimo 6 (box «Quanto è lungo il periodo?», p. 88)."
     },
 
     {
