@@ -250,8 +250,9 @@ Ogni volta che aggiungi o modifichi un test:
 | Risposta da scrivere | `type:"numeric"`, con tolleranza e unità |
 | Risposta a frazione | `type:"fraction"`, controlla valore e riduzione |
 | Frazioni impilate | In matematica `13/12` nei testi diventa una frazione vera; anteprima mentre si scrive |
-| Home | Serie di giorni 🔥, domande fatte, media, «Riprendi» l'ultimo test, anello di avanzamento per materia |
-| Effetti | Timer ad anello, «🔥 di fila», punti che volano, coriandoli da 80% in su (disattivati con «riduci movimento») |
+| Home (stile social) | Storie delle materie in alto, «Per te» con i quiz mai fatti o più deboli, serie di giorni 🔥, «Riprendi» |
+| Quiz come storie | Gradiente sobrio della materia, segmenti in alto che si riempiono col tempo, spiegazione in un foglio dal basso, scorri a sinistra per andare avanti, «🔥 di fila», coriandoli da 80% |
+| Condividi | A fine quiz «Condividi la storia» crea un'immagine 1080×1920 del risultato (WhatsApp/Instagram) |
 | App sul telefono | `manifest.webmanifest` + `icons/`: da Safari → Condividi → «Aggiungi alla schermata Home» |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
