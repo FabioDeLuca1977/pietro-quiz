@@ -534,6 +534,23 @@ mark.rd-hl { background:#ffe27a; color:var(--ink); padding:1px 3px; border-radiu
   display:grid; grid-template-columns:repeat(3,1fr); gap:8px;
 }
 
+/* ════════ ACCESSO ════════ */
+.login { min-height:70vh; display:flex; flex-direction:column; justify-content:center; padding:10px 0 30px; }
+.lg-hi { font-family:var(--f-d); font-weight:800; font-size:2.1rem; letter-spacing:-1px; line-height:1.05; margin-bottom:6px; }
+.lg-hi em { font-style:normal; color:var(--acc); }
+.lg-sub { font-family:var(--f-h); font-size:1.35rem; color:var(--mu2); margin-bottom:26px; }
+.lg-lab { font-family:var(--f-h); font-size:1.25rem; font-weight:700; color:color-mix(in srgb, var(--acc) 75%, var(--ink)); margin-bottom:10px; }
+.lg-in {
+  width:100%; padding:14px 12px; border-radius:14px; border:2px solid rgba(28,33,64,.18); background:#fff; color:var(--ink);
+  font-family:var(--f-m); font-size:1.6rem; font-weight:700; letter-spacing:.45em; text-align:center; text-transform:uppercase; outline:none;
+}
+.lg-in:focus { border-color:var(--acc); box-shadow:0 0 0 4px color-mix(in srgb, var(--acc) 22%, transparent); }
+.lg-go:disabled { opacity:.6; }
+.lg-msg { min-height:1.4em; margin-top:12px; font-size:.86rem; font-weight:700; color:var(--ko); text-align:center; }
+.lg-note { margin-top:18px; font-size:.8rem; color:var(--mu); text-align:center; line-height:1.5; }
+.who { display:block; margin:12px auto 0; background:none; border:none; color:var(--mu2); font-size:.78rem; font-weight:600; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+.who[hidden] { display:none; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation:none!important; transition:none!important; }
 }
@@ -547,8 +564,24 @@ mark.rd-hl { background:#ffe27a; color:var(--ink); padding:1px 3px; border-radiu
   <span class="sub" id="today"></span>
 </header>
 
+<!-- ══ ACCESSO ══ -->
+<div id="s-login" class="scr">
+  <div class="login">
+    <div class="lg-hi">Benvenuto in<br><em>QuizMaster</em> ✏️</div>
+    <div class="lg-sub">l'app per ripassare, un quiz alla volta</div>
+    <div class="q-card">
+      <div class="lg-lab">Il tuo codice d'accesso</div>
+      <input class="lg-in" id="lg-code" maxlength="10" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false"
+             placeholder="······" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn-next on lg-go" id="lg-go" onclick="doLogin()">Entra →</button>
+    <div class="lg-msg" id="lg-msg" role="status"></div>
+    <div class="lg-note">Non hai un codice? Chiedilo a chi ti ha invitato.<br>Lo inserisci una volta sola: il telefono se lo ricorda.</div>
+  </div>
+</div>
+
 <!-- ══ HOME ══ -->
-<div id="s-home" class="scr on">
+<div id="s-home" class="scr">
   <section class="hero">
     <div class="hello">Ciao <span id="h-name">Pietro</span> <span class="wave">👋</span></div>
     <div class="hello-sub" id="h-sub">Cosa ripassiamo oggi?</div>
@@ -559,6 +592,7 @@ mark.rd-hl { background:#ffe27a; color:var(--ink); padding:1px 3px; border-radiu
     </div>
     <button class="resume" id="resume" hidden></button>
   </section>
+  <button class="who" id="who" onclick="logout()" hidden></button>
 
   <div class="lbl">Materie</div>
   <div class="subj-grid" id="subj-grid"></div>
@@ -653,7 +687,7 @@ mark.rd-hl { background:#ffe27a; color:var(--ink); padding:1px 3px; border-radiu
     <div class="btn-row">
       <button class="btn btn-f" onclick="restart()">🔄 Riprova</button>
       <button class="btn btn-o" onclick="showDebrief()">📖 Rivedi tutto</button>
-      <button class="btn btn-w" onclick="sendToDad()">📤 Manda a papà su WhatsApp</button>
+      <button class="btn btn-w" id="btn-wa" onclick="sendToDad()">📤 Manda a papà su WhatsApp</button>
       <button class="btn btn-o" onclick="openSubj()">📚 Altri test</button>
       <button class="btn btn-o" onclick="goHome()">🏠 Home</button>
     </div>
@@ -712,7 +746,10 @@ let G = {
 //  BOOT
 // ═══════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
-  renderHome();
+  document.getElementById('today').textContent =
+    new Date().toLocaleDateString('it-IT', { weekday:'long', day:'numeric', month:'long' });
+  if (needLogin()) showScr('s-login');
+  else { showScr('s-home'); renderHome(); checkUser(); }
   flushOutbox();   // invia eventuali risultati rimasti in coda
 });
 
@@ -720,6 +757,55 @@ document.addEventListener('DOMContentLoaded', () => {
 //  HOME — MATERIE
 // ═══════════════════════════════════════════════════════
 const DEF_ACC = '#7c83ff';
+
+// ═══════════════════════════════════════════════════════
+//  ACCESSO CON CODICE PERSONALE
+//  Il codice lo verifica lo script Google (scheda «Utenti» del foglio di papà).
+//  Il telefono ricorda chi è entrato; a ogni apertura ricontrolla in silenzio
+//  che il codice sia ancora attivo. Senza reportUrl l'accesso è disattivato.
+// ═══════════════════════════════════════════════════════
+const LS_USER = 'pietroquiz:user';
+function getUser() { try { return JSON.parse(localStorage.getItem(LS_USER)); } catch { return null; } }
+function needLogin() { return !!(window.QUIZ_CONFIG?.reportUrl) && !getUser(); }
+function studentName() { return getUser()?.nome || window.QUIZ_CONFIG?.student || 'Pietro'; }
+function canReport() { const u = getUser(); return u ? !!u.invia : true; }
+
+async function askServer(code) {
+  const url = window.QUIZ_CONFIG.reportUrl + '?action=login&code=' + encodeURIComponent(code);
+  const r = await fetch(url, { cache:'no-store' });
+  return r.json();
+}
+async function doLogin() {
+  const inp = document.getElementById('lg-code'), msg = document.getElementById('lg-msg'), go = document.getElementById('lg-go');
+  const code = inp.value.trim().toUpperCase().replace(/\s+/g, '');
+  if (code.length < 4) { msg.textContent = 'Scrivi il codice che ti hanno dato.'; inp.focus(); return; }
+  go.disabled = true; go.textContent = 'Controllo…'; msg.textContent = '';
+  try {
+    const r = await askServer(code);
+    if (r.ok) {
+      localStorage.setItem(LS_USER, JSON.stringify({ nome:r.nome, invia:!!r.invia, code, ts:Date.now() }));
+      inp.value = ''; showScr('s-home'); renderHome();
+    } else {
+      msg.textContent = r.error === 'troppi' ? 'Troppi tentativi: riprova fra 10 minuti.'
+                      : r.error === 'disattivo' ? 'Questo codice non è attivo.' : 'Codice non valido. Controlla e riprova.';
+      inp.focus(); inp.select();
+    }
+  } catch { msg.textContent = 'Serve la connessione a internet per entrare la prima volta.'; }
+  go.disabled = false; go.textContent = 'Entra →';
+}
+// Ricontrollo silenzioso: se papà disattiva un codice, quel telefono esce.
+async function checkUser() {
+  const u = getUser(); if (!u || !window.QUIZ_CONFIG?.reportUrl) return;
+  try {
+    const r = await askServer(u.code);
+    if (r.ok) localStorage.setItem(LS_USER, JSON.stringify({ ...u, nome:r.nome, invia:!!r.invia, ts:Date.now() }));
+    else if (r.error === 'codice' || r.error === 'disattivo') logout(true);
+  } catch {}   // senza rete si continua a studiare
+}
+function logout(silent) {
+  if (!silent && !confirm('Uscire da QuizMaster? Per rientrare servirà di nuovo il codice.')) return;
+  localStorage.removeItem(LS_USER); stopTmr(); setColor(DEF_ACC); showScr('s-login');
+}
 const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
 
 // Media dei record (best %) dei test attivi di una materia, per l'anello.
@@ -734,7 +820,9 @@ function subjProgress(s) {
 function renderHome() {
   setColor(DEF_ACC);
   const cfg = window.QUIZ_CONFIG || {};
-  document.getElementById('h-name').textContent = cfg.student || 'Pietro';
+  document.getElementById('h-name').textContent = studentName();
+  const who = document.getElementById('who');
+  who.hidden = !getUser(); who.textContent = `Non sei ${studentName()}? Esci`;
   const d = new Date();
   document.getElementById('today').textContent =
     d.toLocaleDateString('it-IT', { weekday:'long', day:'numeric', month:'long' });
@@ -1217,6 +1305,7 @@ function showRes() {
   if (!prev || pct>prev) localStorage.setItem(lsKeyBest(subj,id,ver), pct);
 
   reportAttempt(true);
+  document.getElementById('btn-wa').textContent = canReport() ? '📤 Manda a papà su WhatsApp' : '📤 Manda il risultato su WhatsApp';
   showScr('s-res');
 }
 
@@ -1237,7 +1326,7 @@ function reportAttempt(completed) {
   const item = {
     id:        (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random()),
     token:     cfg.token || '',
-    student:   cfg.student || '',
+    student:   studentName(),
     ts:        new Date().toISOString(),
     completed: !!completed,
     subject:   G.testData.subject,
@@ -1253,7 +1342,7 @@ function reportAttempt(completed) {
     answers:   G.ans.map(a => ({ q:txt(a.q), chosen:txt(a.chosen), correct:txt(a.correct), ok:!!a.ok }))
   };
   G.lastReport = item;
-  if (!cfg.reportUrl) return;
+  if (!cfg.reportUrl || !canReport()) return;   // nel foglio solo chi ha «invia risultati»
   let box = []; try { box = JSON.parse(localStorage.getItem(LS_OUTBOX)) || []; } catch {}
   box.push(item); if (box.length > 50) box = box.slice(-50);
   localStorage.setItem(LS_OUTBOX, JSON.stringify(box));
@@ -1280,7 +1369,7 @@ function sendToDad() {
   const cfg  = window.QUIZ_CONFIG || {};
   const min  = Math.floor(r.seconds/60), sec = r.seconds%60;
   const wrong = r.answers.filter(a => !a.ok);
-  let t = `📚 ${cfg.student||'Quiz'} — ${r.testTitle}\n✅ ${r.ok}/${r.total} (${r.pct}%) · ⏱ ${min} min ${sec} s\n`;
+  let t = `📚 ${r.student||'Quiz'} — ${r.testTitle}\n✅ ${r.ok}/${r.total} (${r.pct}%) · ⏱ ${min} min ${sec} s\n`;
   if (wrong.length) {
     t += `\n❌ Da ripassare (${wrong.length}):\n`;
     wrong.slice(0, 12).forEach((a,i) => { t += `${i+1}. ${a.q}\n   → giusta: ${a.correct}${a.chosen && a.chosen!=='—' ? ` (ha risposto: ${a.chosen})` : ''}\n`; });
@@ -1397,7 +1486,7 @@ function renderHist() {
 function clearHist() {
   if(!confirm('Cancellare tutto lo storico e tutti i record?')) return;
   Object.keys(localStorage)
-    .filter(k => k.startsWith('pietroquiz:') && k !== LS_OUTBOX)
+    .filter(k => k.startsWith('pietroquiz:') && k !== LS_OUTBOX && k !== LS_USER)
     .forEach(k => localStorage.removeItem(k));
   renderHome();
 }

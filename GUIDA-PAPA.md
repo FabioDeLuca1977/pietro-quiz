@@ -55,6 +55,24 @@ e pubblica. Da quel momento ogni quiz di Pietro arriva nel foglio.
 Nella pagina trovi: numero di tentativi, tempo di studio, andamento per ogni test,
 le domande sbagliate più spesso e il dettaglio di ogni tentativo.
 
+## 6. Chi può entrare nel sito (codici d'accesso)
+
+Il sito chiede un **codice personale** la prima volta che lo si apre su un telefono; poi se lo ricorda.
+I codici stanno nella scheda **Utenti** del foglio:
+
+| nome | codice | attivo | invia risultati | ultimo accesso | note |
+|---|---|---|---|---|---|
+
+- **Pietro** ha già il suo codice, con *invia risultati = SI*: i suoi quiz arrivano nel foglio.
+- **Far entrare un compagno:** in una delle righe libere scrivi il nome e metti *attivo = SI*.
+  Dagli il codice di quella riga. Lascia *invia risultati = NO*: i suoi risultati restano solo sul suo telefono
+  (lo script li rifiuta comunque).
+- **Bloccare qualcuno:** metti *attivo = NO*. Alla successiva apertura del sito, quel telefono esce da solo.
+- **Altri codici:** aggiungi una riga con nome e un codice di almeno 4 lettere/cifre a tua scelta.
+- *ultimo accesso* si aggiorna da solo: vedi chi usa l'app.
+
+Il codice protegge l'ingresso nell'app; le domande dei quiz restano comunque nel repository pubblico su GitHub.
+
 ---
 
 ## Da sapere
