@@ -11,6 +11,7 @@
      Aggiungi UN <script> per ogni file .js nella cartella data/.
      L'ordine non conta. Il motore legge QUIZ_BANK e QUIZ_REGISTRY.
      ═══════════════════════════════════════════════════════ -->
+<script src="data/config.js"></script>
 <script src="data/registry.js"></script>
 
 <!-- STORIA -->
@@ -526,6 +527,7 @@ mark.rd-hl {
     <div class="btn-row">
       <button class="btn btn-f" onclick="restart()">🔄 Riprova</button>
       <button class="btn btn-o" onclick="showDebrief()">📖 Rivedi tutto</button>
+      <button class="btn btn-o" onclick="sendToDad()">📤 Manda a papà</button>
       <button class="btn btn-o" onclick="goHome()">🏠 Home</button>
     </div>
   </div>
@@ -584,6 +586,7 @@ let G = {
 document.addEventListener('DOMContentLoaded', () => {
   buildSubjects();
   renderHist();
+  flushOutbox();   // invia eventuali risultati rimasti in coda
 });
 
 // ═══════════════════════════════════════════════════════
@@ -662,6 +665,7 @@ function startQuiz(testId) {
 
   G.qs    = shuffle([...G.testData.questions]);
   G.idx   = 0; G.score = 0; G.ans = [];
+  G.t0    = Date.now(); G.sent = false;
 
   if (isReading()) {
     // Prima il testo, come all'esame: si legge, poi si risponde.
@@ -912,15 +916,85 @@ function showRes() {
   const prev=getBest(subj,id,ver);
   if (!prev || pct>prev) localStorage.setItem(lsKeyBest(subj,id,ver), pct);
 
+  reportAttempt(true);
   showScr('s-res');
+}
+
+// ═══════════════════════════════════════════════════════
+//  REPORT A PAPÀ
+//  1) invio automatico al foglio Google (se QUIZ_CONFIG.reportUrl è impostato)
+//     con coda locale: se manca la rete, riprova all'apertura successiva;
+//  2) pulsante "Manda a papà" che apre WhatsApp con il riepilogo.
+// ═══════════════════════════════════════════════════════
+const LS_OUTBOX = 'pietroquiz:outbox';
+function txt(s) { const d=document.createElement('div'); d.innerHTML=String(s??''); return d.textContent; }
+
+function reportAttempt(completed) {
+  if (G.sent || !G.testData || !G.ans.length) return;
+  G.sent = true;
+  const cfg = window.QUIZ_CONFIG || {};
+  const ok  = G.ans.filter(a=>a.ok).length;
+  const item = {
+    id:        (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random()),
+    token:     cfg.token || '',
+    student:   cfg.student || '',
+    ts:        new Date().toISOString(),
+    completed: !!completed,
+    subject:   G.testData.subject,
+    testId:    G.testData.id,
+    testTitle: G.testData.title,
+    version:   G.testData.version || 1,
+    answered:  G.ans.length,
+    total:     G.qs.length,
+    ok,
+    pct:       Math.round(ok / G.qs.length * 100),
+    score:     G.score,
+    seconds:   Math.round((Date.now() - (G.t0||Date.now())) / 1000),
+    answers:   G.ans.map(a => ({ q:txt(a.q), chosen:txt(a.chosen), correct:txt(a.correct), ok:!!a.ok }))
+  };
+  G.lastReport = item;
+  if (!cfg.reportUrl) return;
+  let box = []; try { box = JSON.parse(localStorage.getItem(LS_OUTBOX)) || []; } catch {}
+  box.push(item); if (box.length > 50) box = box.slice(-50);
+  localStorage.setItem(LS_OUTBOX, JSON.stringify(box));
+  flushOutbox();
+}
+
+async function flushOutbox() {
+  const cfg = window.QUIZ_CONFIG || {};
+  if (!cfg.reportUrl) return;
+  let box = []; try { box = JSON.parse(localStorage.getItem(LS_OUTBOX)) || []; } catch {}
+  for (const item of [...box]) {
+    try {
+      // text/plain + no-cors: richiesta "semplice", accettata da Google Apps Script
+      await fetch(cfg.reportUrl, { method:'POST', mode:'no-cors',
+        headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(item) });
+      let cur = []; try { cur = JSON.parse(localStorage.getItem(LS_OUTBOX)) || []; } catch {}
+      localStorage.setItem(LS_OUTBOX, JSON.stringify(cur.filter(x => x.id !== item.id)));
+    } catch { break; }   // niente rete: si riprova la prossima volta
+  }
+}
+
+function sendToDad() {
+  const r = G.lastReport; if (!r) return;
+  const cfg  = window.QUIZ_CONFIG || {};
+  const min  = Math.floor(r.seconds/60), sec = r.seconds%60;
+  const wrong = r.answers.filter(a => !a.ok);
+  let t = `📚 ${cfg.student||'Quiz'} — ${r.testTitle}\n✅ ${r.ok}/${r.total} (${r.pct}%) · ⏱ ${min} min ${sec} s\n`;
+  if (wrong.length) {
+    t += `\n❌ Da ripassare (${wrong.length}):\n`;
+    wrong.slice(0, 12).forEach((a,i) => { t += `${i+1}. ${a.q}\n   → giusta: ${a.correct}${a.chosen && a.chosen!=='—' ? ` (ha risposto: ${a.chosen})` : ''}\n`; });
+    if (wrong.length > 12) t += `… e altre ${wrong.length-12}\n`;
+  } else t += `\n🏆 Tutte giuste!\n`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
 }
 
 // ═══════════════════════════════════════════════════════
 //  NAVIGAZIONE
 // ═══════════════════════════════════════════════════════
 function showScr(id) { document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on')); document.getElementById(id).classList.add('on'); window.scrollTo(0,0); }
-function goHome()  { stopTmr(); closeText(); setColor('#dc2626'); showScr('s-home'); renderHist(); }
-function restart() { startQuiz(G.testData.id); }
+function goHome()  { reportAttempt(false); stopTmr(); closeText(); setColor('#dc2626'); showScr('s-home'); renderHist(); }
+function restart() { reportAttempt(false); startQuiz(G.testData.id); }
 function setColor(c) { document.documentElement.style.setProperty('--acc',c); }
 
 // ═══════════════════════════════════════════════════════

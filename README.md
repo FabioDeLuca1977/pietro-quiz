@@ -8,9 +8,13 @@
 ```
 pietro-quiz/
 ├── index.html                   ← motore  (modificare solo per nuove funzioni)
+├── papa.html                    ← pagina di papà: tentativi di Pietro (dal foglio Google)
+├── GUIDA-PAPA.md                ← come collegare il foglio Google (una volta sola)
+├── google-apps-script/Codice.gs ← programma da incollare nel foglio Google
 ├── README.md
 └── data/
     ├── registry.js              ← unica fonte di verità (materie + test)
+    ├── config.js                ← nome studente, indirizzo del foglio Google, token
     └── scienze/
         ├── misure-cap1.js            ✅ Cap. 1 Grandezze e misure (teoria)
         ├── misure-cap1-problemi.js   ✅ Cap. 1 problemi (risposta da scrivere)
