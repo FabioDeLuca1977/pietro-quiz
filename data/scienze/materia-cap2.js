@@ -53,7 +53,7 @@ window.QUIZ_BANK["materia-cap2"] = {
         "Si muovono liberamente, con forze di attrazione trascurabili"
       ],
       "answer": 3,
-      "explanation": "In un gas le forze di attrazione sono trascurabili e le particelle si muovono liberamente; per questo i gas sono facilmente comprimibili (p. 41)."
+      "explanation": "In un gas le forze di attrazione sono trascurabili e le particelle si muovono liberamente (p. 41). I gas sono facilmente comprimibili a causa del notevole spazio vuoto tra le particelle."
     },
 
     {
@@ -101,7 +101,7 @@ window.QUIZ_BANK["materia-cap2"] = {
         "Che i gas non sono fatti di particelle"
       ],
       "answer": 1,
-      "explanation": "L'anello di cloruro di ammonio si forma più vicino all'acido cloridrico: l'ammoniaca diffonde più velocemente. La diffusione conferma che i gas sono particelle in movimento (pp. 41–42)."
+      "explanation": "L'anello di cloruro di ammonio non si forma a metà strada: l'ammoniaca diffonde più velocemente (quindi l'anello risulta più vicino all'acido cloridrico). La diffusione conferma che i gas sono particelle in movimento (pp. 41–42)."
     },
 
     {
@@ -237,15 +237,15 @@ window.QUIZ_BANK["materia-cap2"] = {
     },
 
     {
-      "q": "Un bicchiere d'acqua con cubetti di ghiaccio è una miscela:",
+      "q": "Un bicchiere d'acqua con cubetti di ghiaccio è un sistema:",
       "options": [
-        "Omogenea, perché acqua e ghiaccio sono trasparenti",
-        "Eterogenea, perché presenta due fasi distinte",
-        "Eterogenea, perché acqua e ghiaccio sono sostanze diverse",
-        "Nessuna delle precedenti"
+        "Omogeneo, perché acqua e ghiaccio sono trasparenti",
+        "Eterogeneo, perché presenta due fasi distinte",
+        "Eterogeneo, perché acqua e ghiaccio sono sostanze diverse",
+        "Omogeneo, perché contiene una sola sostanza"
       ],
       "answer": 1,
-      "explanation": "Una miscela eterogenea ha due o più fasi; acqua e ghiaccio sono la stessa sostanza in due fasi diverse (es. 17, p. 67; fasi, p. 44)."
+      "explanation": "Acqua e ghiaccio sono la stessa sostanza in due stati fisici: a rigore non è una miscela (che contiene due o più sostanze, p. 44), ma presenta due fasi distinte, quindi è eterogeneo. Il libro lo chiede nell'es. 17 di p. 67, senza stampare la soluzione."
     },
 
     {
@@ -305,7 +305,7 @@ window.QUIZ_BANK["materia-cap2"] = {
         "La massa di soluto"
       ],
       "answer": 3,
-      "explanation": "Aggiungendo solo solvente, la quantità di soluto resta la stessa mentre la concentrazione diminuisce."
+      "explanation": "Aggiungendo solo solvente, la quantità di soluto resta la stessa mentre la concentrazione diminuisce (es. 32, p. 67)."
     }
 
   ]

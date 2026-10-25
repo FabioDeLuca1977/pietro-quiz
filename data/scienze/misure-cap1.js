@@ -53,7 +53,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "Il kilogrammo"
       ],
       "answer": 3,
-      "explanation": "Nel SI l'unità di base della massa è il kilogrammo (kg); la mole è l'unità della quantità di sostanza (p. 9)."
+      "explanation": "Nel SI l'unità di base della massa è il kilogrammo (kg) (p. 9); la mole è l'unità della quantità di sostanza (tabella 1, p. 4)."
     },
 
     {
@@ -329,7 +329,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "La sua vicinanza al valore vero"
       ],
       "answer": 1,
-      "explanation": "La sensibilità è il valore più piccolo che lo strumento è in grado di rilevare: più è alta, più cifre significative ha la misura (p. 14)."
+      "explanation": "La sensibilità è il valore più piccolo che lo strumento è in grado di rilevare: più è alta, più cifre significative ha la misura (pp. 14–15)."
     },
 
     {

@@ -150,7 +150,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 0.00275,
       "unit": "kg",
       "answerText": "2,75 × 10⁻³ kg",
-      "explanation": "2,75 g × (1 kg / 1000 g) = 2,75 × 10⁻³ kg: al numeratore va l'unità richiesta (p. 9)."
+      "explanation": "2,75 g × (1 kg / 1000 g) = 2,75 × 10⁻³ kg: al numeratore va l'unità richiesta (come l'esempio di p. 9)."
     },
 
     {
@@ -289,7 +289,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": -4,
       "unit": "°C",
       "answerText": "−4 °C",
-      "explanation": "t(°C) = T(K) − 273 = 269 − 273 = −4 °C (Mettiti alla prova 10, p. 24). Attenzione al segno meno."
+      "explanation": "t(°C) = T(K) − 273 = 269 − 273 = −4 °C (Mettiti alla prova 10, p. 24). Attenzione al segno meno.",
+      "tolerance": 0.05
     },
 
     {
@@ -359,7 +360,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
 
     {
       "type": "numeric",
-      "q": "0,250 L di acqua a 23,0 °C ricevono 50 450 J (C = 4,18 J/g × °C). Qual è la temperatura finale?",
+      "q": "0,250 L di acqua a 23,0 °C ricevono 50 450 J (C = 4,18 J/g × °C, densità 1 g/mL). Qual è la temperatura finale?",
       "answer": 71.3,
       "unit": "°C",
       "answerText": "71,3 °C",
@@ -369,7 +370,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
 
     {
       "type": "numeric",
-      "q": "Si forniscono 871 kJ a 5,4 L di acqua a 293 K (C = 4,18 kJ/kg × K). Qual è la temperatura finale?",
+      "q": "Si forniscono 871 kJ a 5,4 L di acqua a 293 K (C = 4,18 kJ/kg × K, densità 1,00 g/mL). Qual è la temperatura finale?",
       "answer": 332,
       "unit": "K",
       "answerText": "332 K",

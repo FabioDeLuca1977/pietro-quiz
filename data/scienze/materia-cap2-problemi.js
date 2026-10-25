@@ -170,8 +170,8 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
       "q": "Quanti mL di alcol ci sono in 750 mL di vino al 13% vol?",
       "answer": 97.5,
       "unit": "mL",
-      "answerText": "97,5 mL",
-      "explanation": "volume alcol = 13 × 750 / 100 = 97,5 mL."
+      "answerText": "97,5 mL (con 2 cifre significative: 98 mL)",
+      "explanation": "volume alcol = 13 × 750 / 100 = 97,5 mL; con le cifre significative del dato (13%) si scrive 98 mL."
     },
 
     {
@@ -203,7 +203,7 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
 
     {
       "type": "numeric",
-      "q": "A 250 g di soluzione al 10% m/m si aggiungono 80 g di acqua. Qual è la nuova concentrazione?",
+      "q": "A 250 g di soluzione al 10% m/m di cloruro di calcio si aggiungono 80 g di acqua. Qual è la nuova concentrazione?",
       "answer": 7.6,
       "unit": "% m/m",
       "answerText": "7,6% m/m",
