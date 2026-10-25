@@ -108,6 +108,28 @@ e `2,5 × 10⁻⁴`. Si possono mescolare domande a crocette e da scrivere nello
 stesso test. Per gli arrotondamenti con le cifre significative meglio la
 scelta multipla: con la tolleranza un risultato non arrotondato verrebbe accettato.
 
+### Domanda con risposta a frazione (`type: "fraction"`) — novità v1.4
+
+```js
+{
+  type:        "fraction",
+  q:           "Calcola 5/6 + 1/4.",
+  answer:      "13/12",       // stringa "num/den" oppure intero ("-32")
+  answerText:  "13/12",       // come mostrare la soluzione (facoltativo)
+  form:        "reduced",     // "reduced" (default): valore giusto E ridotta ai minimi termini
+                              // "exact": stessa forma (es. «riduci al denominatore 30» → "55/30")
+                              // "any": basta il valore
+  explanation: "mcm(6; 4) = 12: 10/12 + 3/12 = 13/12"
+}
+```
+
+Lo studente scrive `13/12`, `-5/12`, `−(5/12)`, `5/-12` o un intero. Se il valore
+è giusto ma la frazione non è ridotta, la risposta è segnata sbagliata con l'avviso
+«va ridotta ai minimi termini».
+
+Tutti i testi (domande, opzioni, spiegazioni) sono testo semplice: il motore li
+mostra così come sono, quindi `<` e `>` si possono usare liberamente.
+
 > **Regola d'oro per i distrattori:** ogni risposta sbagliata deve essere
 > plausibile per chi ha studiato poco, ma chiaramente errata per chi ha capito.
 
@@ -226,6 +248,7 @@ Ogni volta che aggiungi o modifichi un test:
 | Rimescolamento | Domande e opzioni random ogni sessione |
 | Feedback | Risposta immediata + spiegazione |
 | Risposta da scrivere | `type:"numeric"`, con tolleranza e unità |
+| Risposta a frazione | `type:"fraction"`, controlla valore e riduzione |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
 

@@ -1,6 +1,6 @@
 // ============================================================
 //  data/registry.js  —  SCHEMA DEFINITIVO
-//  Versione: 1.3
+//  Versione: 1.4
 //
 //  AGGIUNGERE UN TEST:
 //    1. Crea data/<materia>/<id>.js
@@ -18,6 +18,10 @@
 //    timePerQuestion:0 (niente timer), campo ev per domanda.
 //    Il motore mostra il testo prima delle domande e il pulsante
 //    "📄 Torna al testo" con la frase evidenziata.
+// ============================================================
+//
+//  NOVITÀ v1.4 — matematica e tipo di domanda type:"fraction"
+//    (risposta a frazione, es. "-5/12"), vedi README.
 // ============================================================
 //
 //  NOVITÀ v1.3 — liceo: rimossi i test delle medie (restano nella
@@ -77,6 +81,38 @@ window.QUIZ_REGISTRY = [
         description:   "Percentuale in massa, in volume, massa su volume, diluizione · risposta da scrivere",
         icon:          "⚗️",
         questionCount: 24,
+        enabled:       true
+      }
+    ]
+  },
+  // ── MATEMATICA ─────────────────────────────
+  {
+    subject:     "matematica",
+    subjectIcon: "📐",
+    subjectColor:"#7c3aed",
+    tests: [
+      {
+        id:            "razionali-cap2",
+        title:         "Cap. 2 — Numeri razionali e reali: teoria",
+        description:   "Frazioni, Q, operazioni, potenze, decimali, proporzioni, reali, approssimazioni",
+        icon:          "➗",
+        questionCount: 60,
+        enabled:       true
+      },
+      {
+        id:            "razionali-cap2-calcoli",
+        title:         "Cap. 2 — Esercizi: frazioni e operazioni",
+        description:   "Semplificare, confrontare, + − × :, potenze · risposta da scrivere",
+        icon:          "🧮",
+        questionCount: 54,
+        enabled:       true
+      },
+      {
+        id:            "razionali-cap2-decimali",
+        title:         "Cap. 2 — Esercizi: decimali, proporzioni, percentuali",
+        description:   "Periodici, frazione generatrice, proporzioni, %, IVA, errori, notazione scientifica",
+        icon:          "📐",
+        questionCount: 47,
         enabled:       true
       }
     ]

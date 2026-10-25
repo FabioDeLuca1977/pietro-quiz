@@ -24,6 +24,9 @@
 <script src="data/scienze/misure-cap1-problemi.js"></script>
 <script src="data/scienze/materia-cap2.js"></script>
 <script src="data/scienze/materia-cap2-problemi.js"></script>
+<script src="data/matematica/razionali-cap2.js"></script>
+<script src="data/matematica/razionali-cap2-calcoli.js"></script>
+<script src="data/matematica/razionali-cap2-decimali.js"></script>
 
 <!-- TECNOLOGIA -->
 
@@ -709,11 +712,13 @@ function renderQ() {
       `<div class="num-box">
          <div class="num-row">
            <input class="num-in" id="num-in" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                  placeholder="scrivi il numero" onkeydown="if(event.key==='Enter')checkNum()">
+                  placeholder="${isFracQ(q) ? 'scrivi la frazione' : 'scrivi il numero'}" onkeydown="if(event.key==='Enter')checkNum()">
            ${q.unit ? `<span class="num-unit">${q.unit}</span>` : ''}
            <button class="num-go" id="num-go" onclick="checkNum()">OK</button>
          </div>
-         <div class="num-hint">Usa la virgola per i decimali. Per le potenze di 10 scrivi per esempio 2,5x10^-4 oppure 2,5e-4.</div>
+         <div class="num-hint">${isFracQ(q)
+           ? 'Scrivi la frazione con la barra, per esempio 13/12 oppure -5/12. Un numero intero puoi scriverlo così com’è, per esempio -32.'
+           : 'Usa la virgola per i decimali. Per le potenze di 10 scrivi per esempio 2,5x10^-4 oppure 2,5e-4.'}</div>
        </div>`;
     setTimeout(() => document.getElementById('num-in')?.focus(), 50);
   } else {
@@ -723,7 +728,7 @@ function renderQ() {
     document.getElementById('opts').innerHTML = opts.map((o,i) =>
       `<button class="opt" data-s="${i}" onclick="pick(${i})">
          <span class="ok-lbl">${KEYS[i]}</span>
-         <span>${o.text}</span>
+         <span>${escHtml(o.text)}</span>
        </button>`
     ).join('');
   }
@@ -774,7 +779,8 @@ function pick(di) {
 //  Campi: answer (numero), unit (facoltativo), answerText (come mostrare
 //  la soluzione, facoltativo), tolerance (relativa, default 0.02 = 2%).
 // ═══════════════════════════════════════════════════════
-function isNumQ(q) { return q && q.type === 'numeric'; }
+function isNumQ(q) { return q && (q.type === 'numeric' || q.type === 'fraction'); }
+function isFracQ(q) { return q && q.type === 'fraction'; }
 
 const SUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-','⁺':'+'};
 function parseNum(raw) { return parseNumAll(raw)[0]; }
@@ -794,6 +800,7 @@ function parseNumAll(raw) {
   return out.length ? out : [NaN];
 }
 function numText(q) {
+  if (isFracQ(q)) return q.answerText || String(q.answer);
   return q.answerText || (String(q.answer).replace('.', ',') + (q.unit ? ' ' + q.unit : ''));
 }
 function escHtml(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -803,24 +810,62 @@ function checkNum() {
   const el = document.getElementById('num-in');
   if (!el || el.disabled) return;
   const raw = el.value.trim();
-  const vals = parseNumAll(raw);
-  if (!raw || isNaN(vals[0])) { el.focus(); el.placeholder = 'scrivi un numero'; return; }
+  let ok, note = '';
+  if (isFracQ(q)) {
+    const r = checkFrac(q, raw);
+    if (!r) { el.value = ''; el.focus(); el.placeholder = 'scrivi una frazione, es. 3/4'; return; }
+    ok = r.ok; note = r.note;
+  } else {
+    const vals = parseNumAll(raw);
+    if (!raw || isNaN(vals[0])) { el.focus(); el.placeholder = 'scrivi un numero'; return; }
+    const tol = (q.tolerance !== undefined) ? q.tolerance : 0.02;
+    ok = vals.some(v => q.answer === 0 ? Math.abs(v) < 1e-9 : Math.abs(v - q.answer) <= Math.abs(q.answer) * tol);
+  }
 
   stopTmr();
   const t = tpq();
   const elapsed = t > 0 ? (t - G.tLeft) : 0;
-  const tol = (q.tolerance !== undefined) ? q.tolerance : 0.02;
-  const ok  = vals.some(v => q.answer === 0 ? Math.abs(v) < 1e-9 : Math.abs(v - q.answer) <= Math.abs(q.answer) * tol);
   let pts = 0;
   if (ok) { pts = t > 0 ? (elapsed<=5?PTS.fast:elapsed<=12?PTS.mid:PTS.slow) : PTS.mid; G.score += pts; }
 
-  G.ans.push({ q:q.q, ok, chosen:escHtml(raw + (q.unit ? ' ' + q.unit : '')), correct:numText(q), exp:q.explanation||'' });
+  G.ans.push({ q:q.q, ok, chosen:raw + (q.unit ? ' ' + q.unit : ''), correct:numText(q), exp:q.explanation||'' });
 
   el.disabled = true; el.classList.add(ok ? 'correct' : 'wrong');
   document.getElementById('num-go').disabled = true;
-  showFB(ok, pts, (ok ? '' : 'Risultato: ' + numText(q) + '. ') + (q.explanation||''));
+  showFB(ok, pts, note + (ok ? '' : 'Risultato: ' + numText(q) + '. ') + (q.explanation||''));
   document.getElementById('slive').textContent = `⭐ ${G.score}`;
   document.getElementById('btn-next').classList.add('on');
+}
+
+// ═══════════════════════════════════════════════════════
+//  RISPOSTA A FRAZIONE  (type:"fraction")
+//  Campi: answer (stringa "num/den" oppure intero, es. "-5/12", "-32"),
+//  answerText (facoltativo), form: "reduced" (default: valore giusto E
+//  ridotta ai minimi termini) | "exact" (stessi numeratore e denominatore,
+//  es. «riduci al denominatore 30») | "any" (basta il valore).
+// ═══════════════════════════════════════════════════════
+function parseFrac(raw) {
+  let s = String(raw||'').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c])
+                         .replace(/[−–]/g,'-').replace(/[\s()]/g,'').replace(/:/g,'/');
+  const m = s.match(/^([+-]*)(\d+)(?:\/([+-]*)(\d+))?$/);
+  if (!m) return null;
+  const neg = ((m[1].match(/-/g)||[]).length + ((m[3]||'').match(/-/g)||[]).length) % 2 === 1;
+  const n = parseInt(m[2],10), d = m[4] !== undefined ? parseInt(m[4],10) : 1;
+  if (d === 0) return null;
+  return { n: neg ? -n : n, d };
+}
+function gcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ [a,b]=[b,a%b]; } return a; }
+function checkFrac(q, raw) {
+  const u = parseFrac(raw), c = parseFrac(q.answer);
+  if (!u) return null;
+  const same = u.n * c.d === c.n * u.d;
+  const form = q.form || 'reduced';
+  if (!same) return { ok:false, note:'' };
+  if (form === 'exact' && !(u.n === c.n && u.d === c.d))
+    return { ok:false, note:'Il valore è giusto, ma qui serve proprio la forma richiesta. ' };
+  if (form === 'reduced' && gcd(u.n, u.d) !== 1)
+    return { ok:false, note:'Il valore è giusto, ma la frazione va ridotta ai minimi termini. ' };
+  return { ok:true, note:'' };
 }
 
 function nextQ() { G.idx++; G.idx>=G.qs.length ? showRes() : renderQ(); }
@@ -902,12 +947,12 @@ function showRes() {
 
   document.getElementById('review').innerHTML = G.ans.map((a,i) => `
     <div class="rv ${a.ok?'ok':'ko'}">
-      <div class="rv-q">${i+1}. ${a.q}</div>
+      <div class="rv-q">${i+1}. ${escHtml(a.q)}</div>
       <div class="rv-a">
-        ${a.ok?`<span class="rv-ok">✅ ${a.chosen}</span>`
-               :`<span class="rv-ko">❌ ${a.chosen}</span> <span class="rv-ok">→ ✅ ${a.correct}</span>`}
+        ${a.ok?`<span class="rv-ok">✅ ${escHtml(a.chosen)}</span>`
+               :`<span class="rv-ko">❌ ${escHtml(a.chosen)}</span> <span class="rv-ok">→ ✅ ${escHtml(a.correct)}</span>`}
       </div>
-      ${a.exp?`<div class="rv-exp">${a.exp}</div>`:''}
+      ${a.exp?`<div class="rv-exp">${escHtml(a.exp)}</div>`:''}
     </div>`).join('');
 
   // salva sessione + aggiorna best (chiave versionata)
@@ -927,7 +972,7 @@ function showRes() {
 //  2) pulsante "Manda a papà" che apre WhatsApp con il riepilogo.
 // ═══════════════════════════════════════════════════════
 const LS_OUTBOX = 'pietroquiz:outbox';
-function txt(s) { const d=document.createElement('div'); d.innerHTML=String(s??''); return d.textContent; }
+function txt(s) { return String(s??''); }   // i testi sono sempre testo semplice
 
 function reportAttempt(completed) {
   if (G.sent || !G.testData || !G.ans.length) return;
@@ -983,7 +1028,7 @@ function sendToDad() {
   let t = `📚 ${cfg.student||'Quiz'} — ${r.testTitle}\n✅ ${r.ok}/${r.total} (${r.pct}%) · ⏱ ${min} min ${sec} s\n`;
   if (wrong.length) {
     t += `\n❌ Da ripassare (${wrong.length}):\n`;
-    wrong.slice(0, 12).forEach((a,i) => { t += `${i+1}. ${a.q}\n   → giusta: ${a.correct}${a.chosen && a.chosen!=='—' ? ` (ha risposto: ${a.chosen})` : ''}\n`; });
+    wrong.slice(0, 12).forEach((a,i) => { t += `${i+1}. ${escHtml(a.q)}\n   → giusta: ${escHtml(a.correct)}${a.chosen && a.chosen!=='—' ? ` (ha risposto: ${escHtml(a.chosen)})` : ''}\n`; });
     if (wrong.length > 12) t += `… e altre ${wrong.length-12}\n`;
   } else t += `\n🏆 Tutte giuste!\n`;
   window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
@@ -1019,28 +1064,28 @@ function showDebrief() {
     const chosenRow = (!a.ok && a.chosen !== '—') ? `
       <div class="db-chosen">
         <span class="dc-lbl">La tua risposta</span>
-        <span class="dc-txt">${a.chosen}</span>
+        <span class="dc-txt">${escHtml(a.chosen)}</span>
       </div>` : '';
 
     // Riga risposta corretta (sempre)
     const correctRow = `
       <div class="db-correct">
         <span class="dc-lbl">${a.ok ? 'Risposta' : 'Corretta'}</span>
-        <span class="dc-txt">${a.correct}</span>
+        <span class="dc-txt">${escHtml(a.correct)}</span>
       </div>`;
 
     // Spiegazione (sempre se presente)
     const expRow = a.exp ? `
       <div class="db-exp">
         <div class="de-tag">Spiegazione</div>
-        <div class="de-txt">${a.exp}</div>
+        <div class="de-txt">${escHtml(a.exp)}</div>
       </div>` : '';
 
     return `
       <div class="db-card ${type}">
         <div class="db-card-head">
           <div class="db-num">${i+1}</div>
-          <div class="db-q">${a.q}</div>
+          <div class="db-q">${escHtml(a.q)}</div>
           <span class="db-status">${label}</span>
         </div>
         <div class="db-body">
