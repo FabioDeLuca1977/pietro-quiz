@@ -525,7 +525,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
     },
 
     {
-      "q": "Chi era Dario secondo il libro?",
+      "q": "Chi era Dario?",
       "options": [
         "Il figlio di Ciro",
         "Un membro della famiglia regnante",
@@ -533,7 +533,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
         "Un satrapo della Lidia"
       ],
       "answer": 1,
-      "explanation": "Il libro dice «un membro della famiglia regnante». Attenzione: le slide del prof lo chiamano «figlio» di Cambise (p. 55)."
+      "explanation": "Dario era «un membro della famiglia regnante», che si appoggiò ai sostenitori della religione fondata da Zarathustra; salì al potere nel 522 a.C. (p. 55)."
     },
 
     {
