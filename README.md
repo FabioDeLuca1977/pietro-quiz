@@ -1,5 +1,5 @@
 # ⚡ QuizMaster — Pietro
-**Schema definitivo v1.0 — struttura non modificabile**
+**Schema v1.3 — liceo** · i test delle medie sono stati rimossi (restano nella cronologia git)
 
 ---
 
@@ -7,17 +7,18 @@
 
 ```
 pietro-quiz/
-├── index.html                   ← motore  (NON toccare mai)
+├── index.html                   ← motore  (modificare solo per nuove funzioni)
 ├── README.md
 └── data/
-    ├── _registry.js             ← unica fonte di verità
-    ├── storia/
-    │   ├── fascismo.js          ✅ pronto
-    │   └── prima-guerra.js      (esempio futuro)
-    ├── scienze/
-    │   └── cellula.js           (esempio futuro)
-    └── italiano/
-        └── promessi-sposi.js    (esempio futuro)
+    ├── registry.js              ← unica fonte di verità (materie + test)
+    └── scienze/
+        ├── misure-cap1.js            ✅ Cap. 1 Grandezze e misure (teoria)
+        ├── misure-cap1-problemi.js   ✅ Cap. 1 problemi (risposta da scrivere)
+        ├── materia-cap2.js           ✅ Cap. 2 Trasformazioni fisiche (teoria)
+        └── materia-cap2-problemi.js  ✅ Cap. 2 concentrazioni (risposta da scrivere)
+
+Materie già presenti nel menu, ancora senza test: storia, tecnologia,
+musica, italiano, inglese, spagnolo.
 ```
 
 ---
@@ -61,7 +62,7 @@ window.QUIZ_BANK["nome-test"] = {
 
   // METADATI (tutti obbligatori)
   id:              "nome-test",       // = nome file senza .js
-  subject:         "storia",          // = subject in _registry.js
+  subject:         "storia",          // = subject in registry.js
   title:           "Titolo esteso",   // mostrato nell'interfaccia
   description:     "Breve didascalia",
   icon:            "🏛️",
@@ -84,6 +85,25 @@ window.QUIZ_BANK["nome-test"] = {
 }
 ```
 
+### Domanda con risposta da scrivere (`type: "numeric"`) — novità v1.3
+
+```js
+{
+  type:        "numeric",
+  q:           "Qual è la massa di 2,50 cm³ di piombo (d = 11,35 g/cm³)?",
+  answer:      28.4,          // numero (punto decimale, anche 2.5e-4)
+  unit:        "g",           // mostrata accanto alla casella (facoltativa)
+  answerText:  "28,4 g",      // come mostrare la soluzione (facoltativo)
+  tolerance:   0.02,          // tolleranza relativa: 0.02 = ±2% (default); 0 = valore esatto
+  explanation: "m = d × V = 11,35 × 2,50 = 28,375 → 28,4 g"
+}
+```
+
+Lo studente scrive il numero con la virgola; accetta anche `2,5x10^-4`, `2,5e-4`
+e `2,5 × 10⁻⁴`. Si possono mescolare domande a crocette e da scrivere nello
+stesso test. Per gli arrotondamenti con le cifre significative meglio la
+scelta multipla: con la tolleranza un risultato non arrotondato verrebbe accettato.
+
 > **Regola d'oro per i distrattori:** ogni risposta sbagliata deve essere
 > plausibile per chi ha studiato poco, ma chiaramente errata per chi ha capito.
 
@@ -100,9 +120,9 @@ window.QUIZ_BANK["nome-test"] = {
 ## ➕ Aggiungere un test — checklist
 
 ```
-□ 1. Crea  data/<materia>/<id>.js          (copia da fascismo.js)
+□ 1. Crea  data/<materia>/<id>.js          (copia da scienze/misure-cap1.js)
 □ 2. Modifica id, subject, title, description, icon, version, questions
-□ 3. In _registry.js  →  aggiungi oggetto test con enabled: true
+□ 3. In registry.js  →  aggiungi oggetto test con enabled: true
 □ 4. In index.html    →  aggiungi <script src="data/<materia>/<id>.js">
 □ 5. git add . && git commit -m "Storia: aggiunto <titolo>" && git push
 ```
@@ -114,7 +134,7 @@ window.QUIZ_BANK["nome-test"] = {
 ```
 □ 1. Crea cartella  data/<materia>/
 □ 2. Crea il primo test  data/<materia>/<id>.js
-□ 3. In _registry.js  →  aggiungi oggetto materia con subject, subjectIcon, subjectColor, tests[]
+□ 3. In registry.js  →  aggiungi oggetto materia con subject, subjectIcon, subjectColor, tests[]
 □ 4. In index.html    →  aggiungi <script src="data/<materia>/<id>.js">
 ```
 
@@ -131,8 +151,8 @@ Tutte le chiavi iniziano con `pietroquiz:` — nessun conflitto con altri siti.
 
 **Esempio concreto:**
 ```
-pietroquiz:storia:fascismo:v1:best   → "87"
-pietroquiz:storia:fascismo:v2:best   → "94"   (dopo aver aggiornato le domande)
+pietroquiz:scienze:misure-cap1:v1:best   → "87"
+pietroquiz:scienze:misure-cap1:v2:best   → "94"   (dopo aver aggiornato le domande)
 pietroquiz:global:history            → [{...}, {...}, ...]
 ```
 
@@ -201,6 +221,7 @@ Ogni volta che aggiungi o modifichi un test:
 | Test disabilitati | `enabled: false` → card grigia "prossimamente" |
 | Rimescolamento | Domande e opzioni random ogni sessione |
 | Feedback | Risposta immediata + spiegazione |
+| Risposta da scrivere | `type:"numeric"`, con tolleranza e unità |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
 

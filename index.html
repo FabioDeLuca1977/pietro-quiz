@@ -14,35 +14,25 @@
 <script src="data/registry.js"></script>
 
 <!-- STORIA -->
-<script src="data/storia/fascismo.js"></script>
 <!-- <script src="data/storia/prima-guerra.js"></script>  -->
 <!-- <script src="data/storia/seconda-guerra.js"></script> -->
 
+<!-- SCIENZE -->
+<script src="data/scienze/misure-cap1.js"></script>
+<script src="data/scienze/misure-cap1-problemi.js"></script>
+<script src="data/scienze/materia-cap2.js"></script>
+<script src="data/scienze/materia-cap2-problemi.js"></script>
+
 <!-- TECNOLOGIA -->
-<script src="data/scienze/energia-cap1.js"></script>
-<script src="data/scienze/energia-cap2.js"></script>
-<script src="data/scienze/energia-cap3.js"></script>
-<!-- <script src="data/scienze/cellula.js"></script> -->
 
 <!-- MUSICA -->
-<script src="data/musica/decadentismo-avanguardie.js"></script>
 
 <!-- ITALIANO -->
 <!-- <script src="data/italiano/promessi-sposi.js"></script> -->
 
 <!-- INGLESE — reading esame -->
-<script src="data/inglese/reading-en-1-new-york.js"></script>
-<script src="data/inglese/reading-en-2-darwin.js"></script>
-<script src="data/inglese/reading-en-3-electric-cars.js"></script>
-<script src="data/inglese/reading-en-4-automobile.js"></script>
-<script src="data/inglese/reading-en-5-ferrari.js"></script>
 
 <!-- SPAGNOLO — reading esame -->
-<script src="data/spagnolo/reading-es-1-barcelona.js"></script>
-<script src="data/spagnolo/reading-es-2-andalucia.js"></script>
-<script src="data/spagnolo/reading-es-3-internet.js"></script>
-<script src="data/spagnolo/reading-es-4-seat.js"></script>
-<script src="data/spagnolo/reading-es-5-seguridad.js"></script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Space+Mono:wght@400;700&display=swap');
@@ -251,6 +241,25 @@ body::before {
 .opt[data-s="3"]:hover:not(:disabled){ background:rgba(34,197,94,.1); }
 .opt.correct { background:rgba(34,197,94,.14)!important; border-color:var(--ok)!important; }
 .opt.wrong   { background:rgba(239,68,68,.12)!important; border-color:var(--ko)!important; }
+
+/* risposta da scrivere (type:"numeric") */
+.num-box { grid-column:1/-1; display:flex; flex-direction:column; gap:9px; }
+.num-row { display:flex; align-items:center; gap:10px; }
+.num-in {
+  flex:1; min-width:0; padding:14px 16px;
+  background:var(--card); border:2px solid var(--acc); border-radius:var(--r);
+  color:var(--tx); font-family:'Space Mono',monospace; font-size:1.05rem; font-weight:700; outline:none;
+}
+.num-in:disabled { opacity:.85; }
+.num-in.correct { border-color:var(--ok); background:rgba(34,197,94,.14); }
+.num-in.wrong   { border-color:var(--ko); background:rgba(239,68,68,.12); }
+.num-unit { font-weight:800; font-size:1rem; color:var(--mu2); white-space:nowrap; }
+.num-go {
+  padding:13px 22px; background:var(--acc); border:none; border-radius:50px;
+  color:#fff; font-family:'Nunito',sans-serif; font-size:.95rem; font-weight:900; cursor:pointer;
+}
+.num-go:disabled { opacity:.4; cursor:default; }
+.num-hint { font-size:.74rem; color:var(--mu); line-height:1.45; }
 
 .fb { margin-top:13px; border-radius:var(--r); padding:13px 16px; display:none; align-items:flex-start; gap:11px; animation:up .22s ease; }
 .fb.on { display:flex; }
@@ -687,15 +696,32 @@ function renderQ() {
   document.getElementById('slive').textContent  = `⭐ ${G.score}`;
   document.getElementById('q-text').textContent = q.q;
 
-  const opts = shuffle(q.options.map((o,i) => ({text:o, orig:i})));
-  G._opts = opts; G._corrOrig = q.answer; G._curEv = q.ev || null;
+  G._curEv = q.ev || null;
+  if (isNumQ(q)) {
+    // Risposta da scrivere: niente opzioni, casella + unità + conferma
+    G._opts = null; G._corrOrig = null;
+    document.getElementById('opts').innerHTML =
+      `<div class="num-box">
+         <div class="num-row">
+           <input class="num-in" id="num-in" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                  placeholder="scrivi il numero" onkeydown="if(event.key==='Enter')checkNum()">
+           ${q.unit ? `<span class="num-unit">${q.unit}</span>` : ''}
+           <button class="num-go" id="num-go" onclick="checkNum()">OK</button>
+         </div>
+         <div class="num-hint">Usa la virgola per i decimali. Per le potenze di 10 scrivi per esempio 2,5x10^-4 oppure 2,5e-4.</div>
+       </div>`;
+    setTimeout(() => document.getElementById('num-in')?.focus(), 50);
+  } else {
+    const opts = shuffle(q.options.map((o,i) => ({text:o, orig:i})));
+    G._opts = opts; G._corrOrig = q.answer;
 
-  document.getElementById('opts').innerHTML = opts.map((o,i) =>
-    `<button class="opt" data-s="${i}" onclick="pick(${i})">
-       <span class="ok-lbl">${KEYS[i]}</span>
-       <span>${o.text}</span>
-     </button>`
-  ).join('');
+    document.getElementById('opts').innerHTML = opts.map((o,i) =>
+      `<button class="opt" data-s="${i}" onclick="pick(${i})">
+         <span class="ok-lbl">${KEYS[i]}</span>
+         <span>${o.text}</span>
+       </button>`
+    ).join('');
+  }
 
   hideFB();
   document.getElementById('btn-next').classList.remove('on');
@@ -738,6 +764,51 @@ function pick(di) {
   document.getElementById('btn-next').classList.add('on');
 }
 
+// ═══════════════════════════════════════════════════════
+//  RISPOSTA DA SCRIVERE  (type:"numeric")
+//  Campi: answer (numero), unit (facoltativo), answerText (come mostrare
+//  la soluzione, facoltativo), tolerance (relativa, default 0.02 = 2%).
+// ═══════════════════════════════════════════════════════
+function isNumQ(q) { return q && q.type === 'numeric'; }
+
+const SUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-','⁺':'+'};
+function parseNum(raw) {
+  let s = String(raw||'').trim().toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c]);
+  s = s.replace(/[−–]/g,'-').replace(/\s+/g,'').replace(/,/g,'.');
+  const m = s.match(/^([+-]?(?:\d+\.?\d*|\.\d+))(?:(?:[x×*·]10\^?|e)([+-]?\d+))?/);
+  if (!m) return NaN;
+  return parseFloat(m[1]) * (m[2] !== undefined ? Math.pow(10, parseInt(m[2],10)) : 1);
+}
+function numText(q) {
+  return q.answerText || (String(q.answer).replace('.', ',') + (q.unit ? ' ' + q.unit : ''));
+}
+function escHtml(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function checkNum() {
+  const q  = G.qs[G.idx];
+  const el = document.getElementById('num-in');
+  if (!el || el.disabled) return;
+  const raw = el.value.trim();
+  const v   = parseNum(raw);
+  if (!raw || isNaN(v)) { el.focus(); el.placeholder = 'scrivi un numero'; return; }
+
+  stopTmr();
+  const t = tpq();
+  const elapsed = t > 0 ? (t - G.tLeft) : 0;
+  const tol = (q.tolerance !== undefined) ? q.tolerance : 0.02;
+  const ok  = q.answer === 0 ? Math.abs(v) < 1e-9 : Math.abs(v - q.answer) <= Math.abs(q.answer) * tol;
+  let pts = 0;
+  if (ok) { pts = t > 0 ? (elapsed<=5?PTS.fast:elapsed<=12?PTS.mid:PTS.slow) : PTS.mid; G.score += pts; }
+
+  G.ans.push({ q:q.q, ok, chosen:escHtml(raw + (q.unit ? ' ' + q.unit : '')), correct:numText(q), exp:q.explanation||'' });
+
+  el.disabled = true; el.classList.add(ok ? 'correct' : 'wrong');
+  document.getElementById('num-go').disabled = true;
+  showFB(ok, pts, (ok ? '' : 'Risultato: ' + numText(q) + '. ') + (q.explanation||''));
+  document.getElementById('slive').textContent = `⭐ ${G.score}`;
+  document.getElementById('btn-next').classList.add('on');
+}
+
 function nextQ() { G.idx++; G.idx>=G.qs.length ? showRes() : renderQ(); }
 
 // ═══════════════════════════════════════════════════════
@@ -769,6 +840,14 @@ function updTmr()  {
 }
 function timeUp() {
   const q=G.qs[G.idx];
+  if (isNumQ(q)) {
+    G.ans.push({q:q.q,ok:false,chosen:'—',correct:numText(q),exp:q.explanation||''});
+    const el=document.getElementById('num-in'); if(el) el.disabled=true;
+    const go=document.getElementById('num-go'); if(go) go.disabled=true;
+    showFB(false,0,'Risultato: '+numText(q)+'. '+(q.explanation||''),true);
+    document.getElementById('btn-next').classList.add('on');
+    return;
+  }
   G.ans.push({q:q.q,ok:false,chosen:'—',correct:q.options[G._corrOrig],exp:q.explanation||''});
   document.querySelectorAll('.opt').forEach((b,i)=>{b.disabled=true;if(G._opts[i].orig===G._corrOrig)b.classList.add('correct');});
   showFB(false,0,q.explanation,true);
