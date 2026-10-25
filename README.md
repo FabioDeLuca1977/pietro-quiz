@@ -249,6 +249,10 @@ Ogni volta che aggiungi o modifichi un test:
 | Feedback | Risposta immediata + spiegazione |
 | Risposta da scrivere | `type:"numeric"`, con tolleranza e unità |
 | Risposta a frazione | `type:"fraction"`, controlla valore e riduzione |
+| Frazioni impilate | In matematica `13/12` nei testi diventa una frazione vera; anteprima mentre si scrive |
+| Home | Serie di giorni 🔥, domande fatte, media, «Riprendi» l'ultimo test, anello di avanzamento per materia |
+| Effetti | Timer ad anello, «🔥 di fila», punti che volano, coriandoli da 80% in su (disattivati con «riduci movimento») |
+| App sul telefono | `manifest.webmanifest` + `icons/`: da Safari → Condividi → «Aggiungi alla schermata Home» |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
 

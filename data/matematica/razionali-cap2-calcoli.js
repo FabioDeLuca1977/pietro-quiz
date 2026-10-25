@@ -40,7 +40,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
         "Non è una frazione"
       ],
       "answer": 1,
-      "explanation": "15 è multiplo di 3, quindi 15/3 è apparente (PROVA SUBITO, p. 78)."
+      "explanation": "15 è multiplo di 3, quindi 15/3 è apparente (PROVA SUBITO, p. 78; risultato calcolato)."
     },
 
     {
@@ -52,7 +52,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
         "Irriducibile e propria"
       ],
       "answer": 2,
-      "explanation": "7 > 6 e 7 non è multiplo di 6: impropria (PROVA SUBITO, p. 78)."
+      "explanation": "7 > 6 e 7 non è multiplo di 6: impropria (PROVA SUBITO, p. 78; risultato calcolato)."
     },
 
     {
@@ -64,7 +64,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
         "Decimale"
       ],
       "answer": 1,
-      "explanation": "64 = 2 · 32, cioè 64 è multiplo di 32: apparente (PROVA SUBITO, p. 78)."
+      "explanation": "64 = 2 · 32, cioè 64 è multiplo di 32: apparente (PROVA SUBITO, p. 78; risultato calcolato)."
     },
 
     {
@@ -73,7 +73,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "answer": 35,
       "unit": "",
       "answerText": "35",
-      "explanation": "42 = 6 · 7, quindi anche il numeratore si moltiplica per 7: 5 · 7 = 35 (PROVA SUBITO, p. 79).",
+      "explanation": "42 = 6 · 7, quindi anche il numeratore si moltiplica per 7: 5 · 7 = 35 (PROVA SUBITO, p. 79; risultato calcolato).",
       "tolerance": 0
     },
 
@@ -83,7 +83,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "answer": 6,
       "unit": "",
       "answerText": "6",
-      "explanation": "9 = 3 · 3, quindi anche il denominatore si moltiplica per 3: 2 · 3 = 6 (PROVA SUBITO, p. 79).",
+      "explanation": "9 = 3 · 3, quindi anche il denominatore si moltiplica per 3: 2 · 3 = 6 (PROVA SUBITO, p. 79; risultato calcolato).",
       "tolerance": 0
     },
 
@@ -96,7 +96,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
         "Sì, con 10"
       ],
       "answer": 2,
-      "explanation": "Prodotti in croce: 14 · □ = 5 · 21 = 105, quindi □ = 7,5: non è naturale, la scrittura non si può completare (PROVA SUBITO «se è possibile», p. 79)."
+      "explanation": "Prodotti in croce: 14 · □ = 5 · 21 = 105, quindi □ = 7,5: non è naturale, la scrittura non si può completare (PROVA SUBITO «se è possibile», p. 79; risultato calcolato)."
     },
 
     {
@@ -128,7 +128,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Semplifica 15/20.",
       "answer": "3/4",
       "answerText": "3/4",
-      "explanation": "MCD = 5: 15/20 = 3/4 (PROVA SUBITO, p. 80)."
+      "explanation": "MCD = 5: 15/20 = 3/4 (PROVA SUBITO, p. 80; risultato calcolato)."
     },
 
     {
@@ -136,7 +136,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Semplifica 40/115.",
       "answer": "8/23",
       "answerText": "8/23",
-      "explanation": "MCD = 5: 40/115 = 8/23 (PROVA SUBITO, p. 80)."
+      "explanation": "MCD = 5: 40/115 = 8/23 (PROVA SUBITO, p. 80; risultato calcolato)."
     },
 
     {
@@ -144,7 +144,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Semplifica 126/147.",
       "answer": "6/7",
       "answerText": "6/7",
-      "explanation": "MCD = 21: 126/147 = 6/7 (PROVA SUBITO, p. 80)."
+      "explanation": "MCD = 21: 126/147 = 6/7 (PROVA SUBITO, p. 80; risultato calcolato)."
     },
 
     {
@@ -152,7 +152,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Semplifica 54/48.",
       "answer": "9/8",
       "answerText": "9/8",
-      "explanation": "MCD = 6: 54/48 = 9/8 (PROVA SUBITO, p. 80)."
+      "explanation": "MCD = 6: 54/48 = 9/8 (PROVA SUBITO, p. 80; risultato calcolato)."
     },
 
     {
@@ -160,7 +160,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Semplifica 56/98.",
       "answer": "4/7",
       "answerText": "4/7",
-      "explanation": "MCD = 14: 56/98 = 4/7 (PROVA SUBITO, p. 80)."
+      "explanation": "MCD = 14: 56/98 = 4/7 (PROVA SUBITO, p. 80; risultato calcolato)."
     },
 
     {
@@ -199,7 +199,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "answer": 24,
       "unit": "",
       "answerText": "24",
-      "explanation": "mcm(2; 6; 3; 8) = 24 (PROVA SUBITO, p. 80).",
+      "explanation": "mcm(2; 6; 3; 8) = 24 (PROVA SUBITO, p. 80; risultato calcolato).",
       "tolerance": 0
     },
 
@@ -224,7 +224,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
         "7/15 < 1/2 < 3/5 < 3/4 < −4/5 < −4/3"
       ],
       "answer": 0,
-      "explanation": "Prima i negativi (−4/3 = −20/15 è minore di −4/5 = −12/15), poi 7/15 < 1/2 < 3/5 < 3/4 (PROVA SUBITO, p. 83)."
+      "explanation": "Prima i negativi (−4/3 = −20/15 è minore di −4/5 = −12/15), poi 7/15 < 1/2 < 3/5 < 3/4 (PROVA SUBITO, p. 83; risultato calcolato)."
     },
 
     {
@@ -256,7 +256,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Calcola 3 + (−15/2).",
       "answer": "-9/2",
       "answerText": "−9/2",
-      "explanation": "6/2 − 15/2 = −9/2 (PROVA SUBITO a, p. 83)."
+      "explanation": "6/2 − 15/2 = −9/2 (PROVA SUBITO a, p. 83; risultato calcolato)."
     },
 
     {
@@ -264,7 +264,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Calcola −1/3 − (−7/6) + 2.",
       "answer": "17/6",
       "answerText": "17/6",
-      "explanation": "−2/6 + 7/6 + 12/6 = 17/6 (PROVA SUBITO b, p. 83)."
+      "explanation": "−2/6 + 7/6 + 12/6 = 17/6 (PROVA SUBITO b, p. 83; risultato calcolato)."
     },
 
     {
@@ -296,7 +296,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Scrivi il reciproco di −1/7.",
       "answer": "-7",
       "answerText": "−7",
-      "explanation": "Il reciproco di −1/7 è −7/1 = −7 (PROVA SUBITO, p. 84)."
+      "explanation": "Il reciproco di −1/7 è −7/1 = −7 (PROVA SUBITO, p. 84; risultato calcolato)."
     },
 
     {
@@ -304,7 +304,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Scrivi il reciproco di 6/5.",
       "answer": "5/6",
       "answerText": "5/6",
-      "explanation": "Il reciproco di 6/5 è 5/6 (PROVA SUBITO, p. 84)."
+      "explanation": "Il reciproco di 6/5 è 5/6 (PROVA SUBITO, p. 84; risultato calcolato)."
     },
 
     {
@@ -312,7 +312,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "options": [
         "0",
         "1",
-        "−0",
+        "−1",
         "Non esiste"
       ],
       "answer": 3,
@@ -340,7 +340,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Calcola (7/16) : (−14/8).",
       "answer": "-1/4",
       "answerText": "−1/4",
-      "explanation": "(7/16) · (−8/14) = −1/4 (PROVA SUBITO, p. 85)."
+      "explanation": "(7/16) · (−8/14) = −1/4 (PROVA SUBITO, p. 85; risultato calcolato)."
     },
 
     {
@@ -348,7 +348,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Calcola (13/2) : (26/15).",
       "answer": "15/4",
       "answerText": "15/4",
-      "explanation": "(13/2) · (15/26) = 15/4 (PROVA SUBITO, p. 85)."
+      "explanation": "(13/2) · (15/26) = 15/4 (PROVA SUBITO, p. 85; risultato calcolato)."
     },
 
     {
@@ -356,7 +356,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Calcola (7/2) : (2/14).",
       "answer": "49/2",
       "answerText": "49/2",
-      "explanation": "(7/2) · (14/2) = 49/2 (PROVA SUBITO, p. 85)."
+      "explanation": "(7/2) · (14/2) = 49/2 (PROVA SUBITO, p. 85; risultato calcolato)."
     },
 
     {
@@ -388,7 +388,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Calcola (−2/5)³.",
       "answer": "-8/125",
       "answerText": "−8/125",
-      "explanation": "(−2)³/5³ = −8/125 (PROVA SUBITO, p. 85)."
+      "explanation": "(−2)³/5³ = −8/125 (PROVA SUBITO, p. 85; risultato calcolato)."
     },
 
     {
@@ -396,7 +396,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Calcola (3/(−4))².",
       "answer": "9/16",
       "answerText": "9/16",
-      "explanation": "Esponente pari: 9/16 (PROVA SUBITO, p. 85)."
+      "explanation": "Esponente pari: 9/16 (PROVA SUBITO, p. 85; risultato calcolato)."
     },
 
     {
@@ -404,7 +404,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
       "q": "Calcola (2³/9)².",
       "answer": "64/81",
       "answerText": "64/81",
-      "explanation": "2³ = 8: (8/9)² = 64/81 (PROVA SUBITO, p. 85)."
+      "explanation": "2³ = 8: (8/9)² = 64/81 (PROVA SUBITO, p. 85; risultato calcolato)."
     },
 
     {
@@ -424,7 +424,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
         "(4/7)⁵"
       ],
       "answer": 0,
-      "explanation": "8 + 2 − 3 = 7: il risultato è (4/7)⁷ (PROVA SUBITO, p. 86)."
+      "explanation": "8 + 2 − 3 = 7: il risultato è (4/7)⁷ (PROVA SUBITO, p. 86; risultato calcolato)."
     },
 
     {

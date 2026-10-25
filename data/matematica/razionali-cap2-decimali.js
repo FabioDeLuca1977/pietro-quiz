@@ -96,7 +96,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "Irrazionale"
       ],
       "answer": 0,
-      "explanation": "80 = 2⁴ · 5: solo potenze di 2 e di 5 → decimale finito (PROVA SUBITO, p. 89; 11/80 = 0,1375)."
+      "explanation": "80 = 2⁴ · 5: solo potenze di 2 e di 5 → decimale finito (PROVA SUBITO, p. 89; risultato calcolato; 11/80 = 0,1375)."
     },
 
     {
@@ -108,7 +108,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "Intero"
       ],
       "answer": 1,
-      "explanation": "4/42 = 2/21 ridotta ai minimi termini; 21 = 3 · 7, solo fattori diversi da 2 e 5 → periodico semplice (PROVA SUBITO, p. 89)."
+      "explanation": "4/42 = 2/21 ridotta ai minimi termini; 21 = 3 · 7, solo fattori diversi da 2 e 5 → periodico semplice (PROVA SUBITO, p. 89; risultato calcolato)."
     },
 
     {
@@ -120,7 +120,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "Intero"
       ],
       "answer": 2,
-      "explanation": "12 = 2² · 3: una potenza di 2 e un altro fattore → periodico misto (PROVA SUBITO, p. 89; 25/12 = 2,08(3))."
+      "explanation": "12 = 2² · 3: una potenza di 2 e un altro fattore → periodico misto (PROVA SUBITO, p. 89; risultato calcolato; 25/12 = 2,08(3))."
     },
 
     {
@@ -132,7 +132,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "Irrazionale"
       ],
       "answer": 0,
-      "explanation": "40 = 2³ · 5 → decimale finito (PROVA SUBITO, p. 89; 23/40 = 0,575)."
+      "explanation": "40 = 2³ · 5 → decimale finito (PROVA SUBITO, p. 89; risultato calcolato; 23/40 = 0,575)."
     },
 
     {
@@ -148,7 +148,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
       "q": "Scrivi 8,34 come frazione ridotta ai minimi termini.",
       "answer": "417/50",
       "answerText": "417/50",
-      "explanation": "8,34 = 834/100 = 417/50 (PROVA SUBITO, p. 89)."
+      "explanation": "8,34 = 834/100 = 417/50 (PROVA SUBITO, p. 89; risultato calcolato)."
     },
 
     {
@@ -156,7 +156,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
       "q": "Scrivi 9,155 come frazione ridotta ai minimi termini.",
       "answer": "1831/200",
       "answerText": "1831/200",
-      "explanation": "9,155 = 9155/1000 = 1831/200 (PROVA SUBITO, p. 89)."
+      "explanation": "9,155 = 9155/1000 = 1831/200 (PROVA SUBITO, p. 89; risultato calcolato)."
     },
 
     {
@@ -180,7 +180,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
       "q": "Trasforma 5,(9) in frazione: a quale numero è uguale?",
       "answer": "6",
       "answerText": "6",
-      "explanation": "(59 − 5)/9 = 54/9 = 6 (PROVA SUBITO, p. 89)."
+      "explanation": "(59 − 5)/9 = 54/9 = 6 (PROVA SUBITO, p. 89; risultato calcolato)."
     },
 
     {
@@ -280,7 +280,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
       "unit": "%",
       "answerText": "≃ 66,7%",
       "explanation": "2 : 3 = x : 100 → x = 200/3 ≃ 66,7 (p. 92).",
-      "tolerance": 0.0008
+      "tolerance": 0.0006
     },
 
     {
@@ -385,12 +385,12 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
 
     {
       "type": "numeric",
-      "q": "Arrotonda 4587 alle migliaia: qual è l'errore relativo percentuale (con due decimali)?",
+      "q": "Arrotonda 4587 alle migliaia: qual è l'errore relativo percentuale?",
       "answer": 8.26,
       "unit": "%",
-      "answerText": "≃ 8,26%",
+      "answerText": "8,26%",
       "explanation": "e = 413/5000 = 0,0826 → 8,26% (PROVA SUBITO, p. 95; calcolato).",
-      "tolerance": 0.002
+      "tolerance": 0
     },
 
     {
@@ -450,7 +450,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "10³"
       ],
       "answer": 1,
-      "explanation": "d = 6 ≥ 5, quindi l'ordine di grandezza è 10⁴⁺¹ = 10⁵ (PROVA SUBITO, p. 96)."
+      "explanation": "d = 6 ≥ 5, quindi l'ordine di grandezza è 10⁴⁺¹ = 10⁵ (PROVA SUBITO, p. 96; risultato calcolato)."
     },
 
     {
@@ -462,7 +462,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "10³"
       ],
       "answer": 1,
-      "explanation": "0,3 · 10² = 3 · 10¹ e d = 3 < 5, quindi 10¹ (PROVA SUBITO, p. 96)."
+      "explanation": "0,3 · 10² = 3 · 10¹ e d = 3 < 5, quindi 10¹ (PROVA SUBITO, p. 96; risultato calcolato)."
     },
 
     {
@@ -474,7 +474,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "10⁻³"
       ],
       "answer": 1,
-      "explanation": "0,04 · 10⁻⁵ = 4 · 10⁻⁷ e d = 4 < 5, quindi 10⁻⁷ (PROVA SUBITO, p. 96)."
+      "explanation": "0,04 · 10⁻⁵ = 4 · 10⁻⁷ e d = 4 < 5, quindi 10⁻⁷ (PROVA SUBITO, p. 96; risultato calcolato)."
     },
 
     {
@@ -503,11 +503,11 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
 
     {
       "type": "numeric",
-      "q": "Con il programma Python di p. 96 inserisci 1, 3, 6, 15. Che percentuale stampa per il numero 6?",
+      "q": "Con il programma Python di p. 96 inserisci 1, 3, 6, 15. Nella lista delle percentuali, quale valore compare per il numero 6?",
       "answer": 24,
-      "unit": "%",
-      "answerText": "24",
-      "explanation": "La somma è 25; perc(6,25) = (6/25) · 100 = 24 (PROVA di p. 96; calcolato).",
+      "unit": "",
+      "answerText": "24 (il programma lo stampa come 24.0)",
+      "explanation": "La somma è 25; perc(6,25) = (6/25) · 100 = 24. La lista stampata è [4.0, 12.0, 24.0, 60.0] (PROVA di p. 96; calcolato).",
       "tolerance": 0
     }
 
