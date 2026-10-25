@@ -639,7 +639,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
       "unit": "a.C.",
       "answerText": "612 a.C.",
       "tolerance": 0,
-      "explanation": "Nel 612 a.C., da Nabopolassar con i Medi: gli Assiri spariscono dalla storia (p. 53)."
+      "explanation": "Nel 612 a.C., da Nabopolassar con i Medi; pochi anni dopo gli ultimi resti dell'esercito assiro furono dispersi e gli Assiri sparirono per sempre dalla storia (p. 53)."
     },
 
     {

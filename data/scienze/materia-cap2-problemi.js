@@ -2,7 +2,7 @@
 //  data/scienze/materia-cap2-problemi.js  (v1)
 //  Unità A — Cap. 2 PROBLEMI SULLE CONCENTRAZIONI (pagg. 48-49, 67)
 //
-//  24 domande. Problemi con risposta da scrivere (type:"numeric") e qualche scelta multipla, senza timer. Quelli con «p. N» o «es. N» sono del libro (risultato stampato);
+//  24 domande. Problemi con risposta da scrivere (type:"numeric") e qualche scelta multipla, senza timer. Quelli con «p. N» o «es. N» vengono dal libro (risultato stampato, salvo dove indicato);
 //  quelli con «come …» o senza riferimento sono creati sul modello del libro. Tutti i calcoli verificati.
 //  Fonte: foto del libro di scienze, ottobre 2026.
 // ============================================================
@@ -133,7 +133,8 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
       "answer": 380,
       "unit": "g",
       "answerText": "380 g",
-      "explanation": "Soluto = 5,00 × 400 / 100 = 20,0 g; acqua = 400 − 20,0 = 380 g."
+      "explanation": "Soluto = 5,00 × 400 / 100 = 20,0 g; acqua = 400 − 20,0 = 380 g. Attenzione: il 5% si calcola sulla soluzione (400 g), non sulla sola acqua.",
+      "tolerance": 0.002
     },
 
     {
