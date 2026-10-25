@@ -30,7 +30,16 @@ window.QUIZ_REGISTRY = [
     subject:     "storia",
     subjectIcon: "🏛️",
     subjectColor:"#dc2626",
-    tests: []
+    tests: [
+      {
+        id:            "civilta-mesopotamiche",
+        title:         "Cap. 2 — Le civiltà mesopotamiche",
+        description:   "Sumeri, Accadi, Babilonesi, Hittiti, Assiri, Persiani · con date da scrivere",
+        icon:          "🏺",
+        questionCount: 58,
+        enabled:       true
+      }
+    ]
   },
   // ── SCIENZE ─────────────────────────────
   {
