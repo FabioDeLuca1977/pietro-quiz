@@ -103,7 +103,7 @@ function configura() {
 function login(code) {
   const cache = CacheService.getScriptCache();
   const fails = Number(cache.get('fails') || 0);
-  if (fails > 30) return json({ ok: false, error: 'troppi' });       // troppi tentativi: pausa di 10 minuti
+  if (fails > 200) return json({ ok: false, error: 'troppi' });       // troppi tentativi: pausa di 10 minuti
   const c = code.trim().toUpperCase();
   const ss = apri();
   if (!ss.getSheetByName(FOGLIO_UTENTI)) return json({ ok: false, error: 'config' });   // non far uscire nessuno
@@ -119,8 +119,11 @@ function login(code) {
 function utenti(ss) {
   const sh = ss.getSheetByName(FOGLIO_UTENTI);
   if (!sh || sh.getLastRow() < 2) return [];
-  return sh.getRange(2, 1, sh.getLastRow() - 1, 4).getValues().map((r, i) => ({
-    riga: i + 2, nome: String(r[0]).trim(), codice: String(r[1]).trim().toUpperCase(),
+  const n = sh.getLastRow() - 1;
+  const r2 = sh.getRange(2, 1, n, 2);
+  const testi = r2.getDisplayValues ? r2.getDisplayValues() : r2.getValues();   // il codice come appare (es. «2345E6» non diventa un numero)
+  return sh.getRange(2, 1, n, 4).getValues().map((r, i) => ({
+    riga: i + 2, nome: String(testi[i][0]).trim(), codice: String(testi[i][1]).trim().toUpperCase(),
     attivo: si(r[2]), invia: si(r[3]) }));
 }
 function si(v) {   // SI, sì, x, 1 oppure casella spuntata
