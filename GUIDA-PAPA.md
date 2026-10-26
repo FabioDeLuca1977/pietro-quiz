@@ -70,6 +70,7 @@ I codici stanno nella scheda **Utenti** del foglio:
 - **Bloccare qualcuno:** metti *attivo = NO*. Alla successiva apertura del sito, quel telefono esce da solo.
 - **Altri codici:** aggiungi una riga con nome e un codice di almeno 4 lettere/cifre a tua scelta.
 - *ultimo accesso* si aggiorna da solo: vedi chi usa l'app.
+- Se inventi tu un codice, usa almeno due lettere (es. «KM42TR»): un codice come «2345E6» il foglio lo trasforma in un numero.
 
 Il codice protegge l'ingresso nell'app; le domande dei quiz restano comunque nel repository pubblico su GitHub.
 

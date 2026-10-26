@@ -515,7 +515,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
     <div class="hello-sub" id="h-sub">Cosa ripassiamo oggi?</div>
     <div class="kpis">
       <div class="kpi fire"><b id="k-streak">0</b><span>giorni di fila 🔥</span></div>
-      <div class="kpi"><b id="k-done">0</b><span>domande fatte</span></div>
+      <div class="kpi"><b id="k-done">0</b><span>errori recuperati 💪</span></div>
       <div class="kpi"><b id="k-avg">—</b><span>media ultimi 10</span></div>
     </div>
     <button class="resume" id="resume" hidden></button>
@@ -804,19 +804,26 @@ function renderModeSwitch() {
 const LS_WRONG = 'pietroquiz:wrong';
 function loadWrong() { try { return JSON.parse(localStorage.getItem(LS_WRONG)) || {}; } catch { return {}; } }
 function saveWrong(w) { try { localStorage.setItem(LS_WRONG, JSON.stringify(w)); } catch {} }
-function trackAnswer(q, ok) {
-  if (!q || !q._tid) return;
-  const w = loadWrong(), k = q._tid + '|' + q.q, today = new Date().toDateString();
+const DAY_GAP = 20 * 3600 * 1000;          // «un altro giorno» = almeno 20 ore dopo
+const LS_RECOV = 'pietroquiz:recovered';
+function trackAnswer(q, ok, timeout) {
+  if (!q || !q._tid || timeout) return;      // il tempo scaduto non è un errore di conoscenza
+  const w = loadWrong(), k = q._tid + '|' + q.q, now = Date.now();
   if (!ok) {
     const e = w[k] || { tid:q._tid, subj:q._subj, q:q.q, n:0 };
-    e.n++; e.last = Date.now(); e.okDays = []; w[k] = e;
+    e.n++; e.last = now; e.oks = []; delete e.okDays; w[k] = e;
   } else if (w[k]) {
-    const e = w[k]; e.okDays = e.okDays || [];
-    if (!e.okDays.includes(today)) e.okDays.push(today);
-    if (e.okDays.length >= 2) delete w[k];
+    const e = w[k]; e.oks = e.oks || []; e.lastOk = now;
+    const prev = e.oks.length ? e.oks[e.oks.length - 1] : e.last;
+    if (now - prev >= DAY_GAP) e.oks.push(now);          // vale solo se è passato almeno «un giorno»
+    if (e.oks.length >= 2) {                              // giusta in due giorni diversi: recuperata!
+      delete w[k];
+      try { localStorage.setItem(LS_RECOV, String((+localStorage.getItem(LS_RECOV) || 0) + 1)); } catch {}
+    }
   }
   saveWrong(w);
 }
+function recoveredCount() { try { return +localStorage.getItem(LS_RECOV) || 0; } catch { return 0; } }
 function wrongList(subj) {
   const bank = window.QUIZ_BANK || {};
   return Object.values(loadWrong())
@@ -828,7 +835,7 @@ function wrongList(subj) {
 // ═══════════════════════════════════════════════════════
 //  QUIZ «VIRTUALI»: lampo da 10, lampo misto, ripasso errori
 // ═══════════════════════════════════════════════════════
-function tag(q, d) { return Object.assign({}, q, { _tid:d.id, _subj:d.subject }); }
+function tag(q, d) { return Object.assign({}, q, { _tid:d.id, _subj:d.subject, _tpq:d.timePerQuestion }); }
 function activeTests(subj) {
   const out = [];
   (window.QUIZ_REGISTRY || []).forEach(s => (s.tests || []).forEach(t => {
@@ -850,21 +857,33 @@ function shortTitle(t) { return t.replace(/^Cap\. \d+ — /, ''); }
 function startLampo(testId) {
   const d = window.QUIZ_BANK[testId];
   const qs = shuffle(d.questions.map(q => tag(q, d))).slice(0, 10);
-  startCustom({ id:testId + '-lampo', subject:d.subject, title:'⚡ ' + shortTitle(d.title), tpq:d.timePerQuestion || 25 }, qs, () => startLampo(testId));
+  startCustom({ id:testId + '-lampo', subject:d.subject, title:'⚡ ' + shortTitle(d.title), tpq:d.timePerQuestion ?? 25 }, qs, () => startLampo(testId));
 }
 function startLampoMix(subj) {
   const tests = activeTests(subj);
   if (!tests.length) return;
   // 10 domande pescate a rotazione dai vari test (interleaving)
   const pools = shuffle(tests.map(d => shuffle(d.questions.map(q => tag(q, d)))));
-  const qs = []; let i = 0;
-  while (qs.length < 10 && pools.some(p => p.length)) { const p = pools[i++ % pools.length]; if (p.length) qs.push(p.pop()); }
+  const qs = []; let i = 0, games = 0;
+  while (qs.length < 10 && pools.some(p => p.length)) {
+    const p = pools[i++ % pools.length]; if (!p.length) continue;
+    const q = p.pop();
+    if (q.type === 'order' || q.type === 'classify') { if (games >= 2) continue; games++; }   // al massimo 2 giochi
+    qs.push(q);
+  }
   startCustom({ id:'lampo-' + (subj || 'misto'), subject:subj || 'misto',
                 title:'⚡ Lampo misto' + (subj ? ' · ' + cap(subj) : ''), tpq:25 }, qs, () => startLampoMix(subj));
 }
 function startReview(subj) {
-  const list = wrongList(subj).sort((a, b) => (b.e.n - a.e.n) || (a.e.last - b.e.last)).slice(0, 10);
+  // Ruota: prima le domande mai riproposte o riproposte da più tempo; salta quelle già giuste oggi.
+  const today = new Date().toDateString();
+  let list = wrongList(subj).filter(x => !x.e.lastOk || new Date(x.e.lastOk).toDateString() !== today);
+  if (!list.length) list = wrongList(subj);
+  list = list.sort((a, b) => ((a.e.asked || 0) - (b.e.asked || 0)) || (b.e.n - a.e.n)).slice(0, 10);
   if (!list.length) return;
+  const w = loadWrong(), now = Date.now();
+  list.forEach(x => { const k = x.e.tid + '|' + x.e.q; if (w[k]) w[k].asked = now; });
+  saveWrong(w);
   startCustom({ id:'ripasso-' + (subj || 'tutto'), subject:subj || 'misto',
                 title:'🔁 Ripasso errori' + (subj ? ' · ' + cap(subj) : ''), tpq:25 }, list.map(x => x.q), () => startReview(subj));
 }
@@ -889,13 +908,13 @@ function renderHome() {
   while (days.has(c.toDateString())) { streak++; c.setDate(c.getDate() - 1); }
   document.getElementById('k-streak').textContent = streak;
   document.getElementById('c-streak').textContent = `🔥 ${streak}`;
-  document.getElementById('k-done').textContent = ss.reduce((n, r) => n + (r.tot || 0), 0);
-  const last = ss.slice(0, 10);
+  document.getElementById('k-done').textContent = recoveredCount();
+  const last = ss.filter(r => !r.kind || r.kind === 'test').slice(0, 10);   // ripassi e lampo non abbassano la media
   document.getElementById('k-avg').textContent = last.length ? Math.round(last.reduce((n, r) => n + r.pct, 0) / last.length) + '%' : '—';
   document.getElementById('h-sub').textContent =
     !ss.length ? 'Pronto per il primo quiz?' :
     days.has(new Date().toDateString()) ? 'Oggi hai già studiato: continua così!' :
-    streak ? `Non perdere la serie di ${streak} ${streak === 1 ? 'giorno' : 'giorni'}!` : 'Cosa ripassiamo oggi?';
+    streak ? `Serie di ${streak} ${streak === 1 ? 'giorno' : 'giorni'}: basta un quiz lampo per continuarla.` : 'Cosa ripassiamo oggi?';
 
   // «Riprendi»: l'ultimo test fatto, a un tocco
   const rs = document.getElementById('resume');
@@ -911,6 +930,7 @@ function renderHome() {
   // Ripasso degli errori
   const nw = wrongList().length, ar = document.getElementById('act-rev');
   document.getElementById('rev-n').textContent = nw ? `${nw} ${nw === 1 ? 'domanda' : 'domande'} da sistemare` : 'nessun errore da ripassare 🎉';
+  const kd = document.getElementById('k-done').parentElement; if (kd) kd.title = 'Domande sbagliate e poi indovinate in due giorni diversi';
   ar.disabled = !nw; ar.classList.toggle('hot', nw > 0);
   // Invito a installare l'app (solo iPhone/iPad in Safari)
   let hide = false; try { hide = localStorage.getItem(LS_INST) === '1'; } catch {}
@@ -1010,7 +1030,8 @@ function selSubj(subjId) {
 // ═══════════════════════════════════════════════════════
 function isReading() { return G.testData?.type === 'reading'; }
 function tpq() {
-  const v = G.testData?.timePerQuestion, base = (v === 0) ? 0 : (v || 20);
+  const q = G.qs?.[G.idx];
+  const v = (q && q._tpq !== undefined) ? q._tpq : G.testData?.timePerQuestion, base = (v === 0) ? 0 : (v || 20);
   return getMode() === 'sfida' ? base : 0;   // in allenamento niente timer
 }
 
@@ -1029,7 +1050,7 @@ function runQuiz(list) {
   G.idx   = 0; G.score = 0; G.ans = []; G.combo = 0;
   document.getElementById('combo').classList.remove('on');
   G.t0    = Date.now(); G.sent = false; G.shareFile = null;
-  G.attemptId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
+  G.attemptId = (window.crypto?.randomUUID ? crypto.randomUUID() : 'id-' + Date.now() + '-' + Math.random().toString(36).slice(2));
 
   if (isReading()) {
     // Prima il testo, come all'esame: si legge, poi si risponde.
@@ -1115,6 +1136,7 @@ function renderQ() {
 
   // Timer: timePerQuestion 0 → nessun timer (modalità reading)
   let t = tpq();
+  G.tTot = 0;
   if (t > 0 && (isOrderQ(q) || isClassQ(q))) t = Math.max(t, 60);   // i giochi hanno bisogno di più tempo
   if (t > 0) {
     document.getElementById('tmr-c').classList.remove('off');
@@ -1164,6 +1186,16 @@ function pick(di) {
 //  type:"classify" → categories: [...], items: [{t:"testo", c:indice_categoria}]
 // ═══════════════════════════════════════════════════════
 function isOrderQ(q) { return q && q.type === 'order'; }
+// Elementi «in ordine» = la sequenza crescente più lunga: un elemento fuori posto
+// non fa diventare rossi anche quelli giusti.
+function orderKeep(seq) {
+  const n = seq.length, len = Array(n).fill(1), prev = Array(n).fill(-1);
+  for (let i = 0; i < n; i++) for (let j = 0; j < i; j++)
+    if (seq[j].i < seq[i].i && len[j] + 1 > len[i]) { len[i] = len[j] + 1; prev[i] = j; }
+  let best = 0; for (let i = 1; i < n; i++) if (len[i] > len[best]) best = i;
+  const keep = new Set(); for (let i = n ? best : -1; i >= 0; i = prev[i]) keep.add(i);
+  return keep;
+}
 function isClassQ(q) { return q && q.type === 'classify'; }
 function renderOrder(q) {
   G._opts = null; G._corrOrig = null;
@@ -1172,10 +1204,10 @@ function renderOrder(q) {
   G.ord = { pool, seq:[] }; drawOrder(false);
 }
 function drawOrder(done) {
-  const o = G.ord;
+  const o = G.ord, keep = done ? orderKeep(o.seq) : null;
   document.getElementById('opts').innerHTML = `<div class="game">
     <div class="g-lab">Il tuo ordine</div>
-    <div class="g-seq">${o.seq.map((x, k) => `<button class="g-chip in ${done ? (x.i === k ? 'ok' : 'ko') : ''}" ${done ? 'disabled' : ''} onclick="ordBack(${k})"><b>${k + 1}</b><span>${mathify(x.t)}</span></button>`).join('')
+    <div class="g-seq">${o.seq.map((x, k) => `<button class="g-chip in ${done ? (keep.has(k) ? 'ok' : 'ko') : ''}" ${done ? 'disabled' : ''} onclick="ordBack(${k})"><b>${k + 1}</b><span>${mathify(x.t)}</span></button>`).join('')
       || '<div class="g-empty">Tocca qui sotto gli elementi, dal primo all’ultimo</div>'}</div>
     ${o.pool.length && !done ? `<div class="g-pool">${o.pool.map((x, k) => `<button class="g-chip" onclick="ordPick(${k})"><span>${mathify(x.t)}</span></button>`).join('')}</div>` : ''}
     ${done ? '' : `<button class="g-go" ${o.pool.length ? 'disabled' : ''} onclick="confirmGame(false)">Conferma l'ordine</button>`}
@@ -1207,25 +1239,32 @@ function confirmGame(timeout) {
   if (!timeout && Date.now() < (G.lockUntil || 0)) return;
   if (document.getElementById('btn-next').classList.contains('on')) return;
   stopTmr();
-  let ok, chosen, correct;
+  let ok, chosen, correct, part;
   if (isOrderQ(q)) {
     const seq = G.ord.seq;
     ok = seq.length === q.items.length && seq.every((x, k) => x.i === k);
+    part = orderKeep(seq).size / q.items.length;
     chosen = seq.map(x => x.t).join(' → ');
     correct = q.items.join(' → ');
     drawOrder(true);
   } else {
     const c = G.cls;
     ok = q.items.every((x, i) => c.sel[i] === x.c);
+    part = q.items.filter((x, i) => c.sel[i] === x.c).length / q.items.length;
     chosen = q.items.map((x, i) => `${x.t}: ${c.sel[i] !== undefined ? q.categories[c.sel[i]] : '—'}`).join('; ');
     correct = q.items.map(x => `${x.t}: ${q.categories[x.c]}`).join('; ');
     drawClass(true);
   }
   const t = G.tTot || 0, elapsed = t > 0 ? (t - G.tLeft) : 0;
   let pts = 0;
-  if (ok) { pts = t > 0 ? (elapsed <= 15 ? PTS.fast : elapsed <= 35 ? PTS.mid : PTS.slow) : PTS.mid; G.score += pts; }
+  if (ok) pts = t > 0 ? (elapsed <= 15 ? PTS.fast : elapsed <= 35 ? PTS.mid : PTS.slow) : PTS.mid;
+  else pts = Math.round(PTS.mid * part * 0.8);           // punti in proporzione, anche se non è tutto giusto
+  G.score += pts;
   G.ans.push({ q:q.q, ok, chosen: chosen || '—', correct, exp:q.explanation || '' });
+  const nOk = Math.round(part * q.items.length);
   showFB(ok, pts, (ok ? '' : 'Soluzione: ' + correct + '. ') + (q.explanation || ''), !!timeout);
+  if (!ok && !timeout && nOk > 0)
+    document.getElementById('fb-main').textContent = `Quasi! ${nOk} su ${q.items.length} al posto giusto · +${pts} punti`;
   document.getElementById('slive').textContent = `⭐ ${G.score}`;
   document.getElementById('btn-next').classList.add('on');
 }
@@ -1281,6 +1320,7 @@ function checkNum() {
     if (r.mixed) { numWarn('I numeri misti come «3 1/2» non valgono: scrivi la frazione, per esempio 7/2.'); return; }
     ok = r.ok; note = r.note;
   } else {
+    if (/\d\s+\d+\s*\/\s*\d/.test(raw)) { numWarn('I numeri misti come «3 1/2» non valgono: scrivi il numero con la virgola, per esempio 3,5.'); return; }
     const vals = parseNumAll(raw, q.unit);
     if (!raw || isNaN(vals[0])) { numWarn('Non riesco a leggere il numero: usa la virgola per i decimali, per esempio 2,5 oppure 2,5x10^-4.'); return; }
     const tol = (q.tolerance !== undefined) ? q.tolerance : 0.02;
@@ -1402,7 +1442,10 @@ function updTmr()  {
 function timeUp() {
   const q=G.qs[G.idx];
   if (isOrderQ(q) || isClassQ(q)) { confirmGame(true); return; }
-  if (isNumQ(q) && document.getElementById('num-in')?.value.trim()) { G.lockUntil = 0; checkNum(); return; }   // vale quello che ha scritto
+  if (isNumQ(q) && document.getElementById('num-in')?.value.trim()) {   // vale quello che ha scritto…
+    G.lockUntil = 0; checkNum();
+    if (document.getElementById('btn-next').classList.contains('on')) return;   // …se si riesce a leggere
+  }
   if (isNumQ(q)) {
     G.ans.push({q:q.q,ok:false,chosen:'—',correct:numText(q),exp:q.explanation||''});
     const el=document.getElementById('num-in'); if(el) el.disabled=true;
@@ -1437,12 +1480,12 @@ function showFB(ok,pts,exp,timeout=false) {
     const r = marked.getBoundingClientRect(), room = innerHeight - sh - 12;
     if (r.bottom > room) window.scrollBy({ top: r.bottom - room, behavior:'smooth' });
   });
-  answerFx(ok, pts);
+  answerFx(ok, pts, timeout);
 }
 
 const PRAISE = ['Esatto!','Perfetto!','Grande!','Ottimo!','Così si fa!','Bravissimo!'];
-function answerFx(ok, pts) {
-  trackAnswer(G.qs[G.idx], ok);
+function answerFx(ok, pts, timeout) {
+  trackAnswer(G.qs[G.idx], ok, timeout);
   saveCurrent();
   G.combo = ok ? (G.combo||0) + 1 : 0;
   const cb = document.getElementById('combo');
@@ -1567,7 +1610,8 @@ function showRes() {
 
   // salva sessione + aggiorna best (chiave versionata)
   const subj=G.testData.subject, id=G.testData.id, ver=G.testData.version||1;
-  saveSess({ subj, subjColor:G.subj?.subjectColor, testId:id, testTitle:G.testData.title, score:G.score, pct, ok, tot, stars, version:ver });
+  const kind = !G.testData.virtual ? 'test' : /^ripasso/.test(id) ? 'ripasso' : 'lampo';
+  saveSess({ subj, subjColor:G.subj?.subjectColor, testId:id, testTitle:G.testData.title, score:G.score, pct, ok, tot, stars, version:ver, kind });
   const prev=getBest(subj,id,ver);
   if (!prev || pct>prev) localStorage.setItem(lsKeyBest(subj,id,ver), pct);
 
@@ -1641,7 +1685,8 @@ function reportAttempt(completed) {
 let flushing = false;
 async function flushOutbox() {
   const cfg = window.QUIZ_CONFIG || {};
-  if (!cfg.reportUrl || flushing) return;
+  if (!cfg.reportUrl) return;
+  if (flushing) { G.flushAgain = true; return; }
   flushing = true;
   try {
     for (const item of readBox()) {
@@ -1651,10 +1696,18 @@ async function flushOutbox() {
           headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(item) });
         r = await res.json();
       } catch { break; }                       // niente rete o risposta illeggibile: riprova più tardi
-      if (!r || !r.ok) { console.warn('Invio non accettato', r); break; }
+      if (!r || !r.ok) {
+        if (r && r.error && r.error !== 'occupato') {      // rifiutato (es. token): lo metto da parte, non blocca gli altri
+          try { const bad = JSON.parse(localStorage.getItem('pietroquiz:outbox-scartati') || '[]'); bad.push({ ...item, motivo:r.error });
+                localStorage.setItem('pietroquiz:outbox-scartati', JSON.stringify(bad.slice(-20))); } catch {}
+          writeBox(readBox().filter(x => x.id !== item.id)); continue;
+        }
+        break;                                             // occupato o risposta strana: riprova più tardi
+      }
       writeBox(readBox().filter(x => x.id !== item.id));
     }
   } finally { flushing = false; }
+  if (G.flushAgain) { G.flushAgain = false; flushOutbox(); }
 }
 window.addEventListener('online', flushOutbox);
 window.addEventListener('pageshow', flushOutbox);
@@ -1687,7 +1740,8 @@ function showScr(id) {
 }
 function goHome()  { reportAttempt(false); stopTmr(); closeText(); showScr('s-home'); renderHome(); }
 function quitQuiz() {
-  if (G.ans.length && G.idx < G.qs.length && !confirm('Vuoi uscire? Il quiz resta a metà.')) return;
+  if (G.ans.length === G.qs.length) { showRes(); return; }          // ha già risposto a tutto: è finito
+  if (G.ans.length && !confirm('Vuoi uscire? Il quiz resta a metà.')) return;
   reportAttempt(false); stopTmr(); closeText(); openSubj();
 }
 function restart() { reportAttempt(false); (G.replay || (() => startQuiz(G.testData.id)))(); }
@@ -1787,9 +1841,9 @@ function renderHist() {
   }).join('');
 }
 function clearHist() {
-  if(!confirm('Cancellare tutto lo storico e tutti i record?')) return;
+  if(!confirm('Cancellare lo storico e i record? Gli errori da ripassare restano.')) return;
   Object.keys(localStorage)
-    .filter(k => k.startsWith('pietroquiz:') && ![LS_OUTBOX, LS_USER, LS_CUR, LS_MODE, LS_INST].includes(k))
+    .filter(k => k.startsWith('pietroquiz:') && ![LS_OUTBOX, LS_USER, LS_CUR, LS_MODE, LS_INST, LS_WRONG, LS_RECOV].includes(k))
     .forEach(k => localStorage.removeItem(k));
   renderHome();
 }
