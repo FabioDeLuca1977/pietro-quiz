@@ -15,7 +15,7 @@ window.QUIZ_BANK["materia-cap2"] = {
   title:           "Cap. 2 — Le trasformazioni fisiche della materia",
   description:     "Stati fisici, teoria particellare, sostanze pure, miscele, soluzioni, solubilità",
   icon:            "🧪",
-  version:         3,
+  version:         4,
   timePerQuestion: 25,
 
   questions: [
@@ -242,7 +242,7 @@ window.QUIZ_BANK["materia-cap2"] = {
         "Omogeneo, perché acqua e ghiaccio sono trasparenti",
         "Eterogeneo, perché presenta due fasi distinte",
         "Eterogeneo, perché acqua e ghiaccio sono sostanze diverse",
-        "Omogeneo, perché contiene una sola sostanza"
+        "Omogeneo, perché il ghiaccio si scioglie nell'acqua"
       ],
       "answer": 1,
       "explanation": "Acqua e ghiaccio sono la stessa sostanza in due stati fisici: a rigore non è una miscela (che contiene due o più sostanze, p. 44), ma presenta due fasi distinte, quindi è eterogeneo. Il libro lo chiede nell'es. 17 di p. 67, senza stampare la soluzione."

@@ -1120,7 +1120,7 @@ function renderQ() {
            <input class="num-in" id="num-in" type="text" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                   placeholder="${isFracQ(q) ? 'scrivi la frazione' : 'scrivi il numero'}" onkeydown="if(event.key==='Enter')checkNum()"
                   ${isFracQ(q) ? 'oninput="fracPreview(this.value)"' : ''}>
-           ${q.unit ? `<span class="num-unit">${q.unit}</span>` : ''}
+           ${q.unit ? `<span class="num-unit">${escHtml(q.unit)}</span>` : ''}
            <button class="num-go" id="num-go" onclick="checkNum()">OK</button>
          </div>
          ${isFracQ(q) ? '<div class="num-prev" id="num-prev"></div>' : ''}
@@ -1321,6 +1321,11 @@ function finishSteps(timeout) {
   const q = G.qs[G.idx], st = G.st;
   if (document.getElementById('btn-next').classList.contains('on')) return;
   stopTmr();
+  const el = document.getElementById('num-in');
+  if (timeout && el && el.value.trim() && st.k < q.steps.length) {
+    const r = evalNumeric(q.steps[st.k], el.value.trim());
+    if (r.status === 'done') { st.res.push({ raw:el.value.trim(), ok:r.ok, note:r.note }); st.k++; }
+  }
   while (st.res.length < q.steps.length) st.res.push({ raw:'', ok:false, note:'' });
   st.k = q.steps.length;
   const nOk = st.res.filter(r => r.ok).length, ok = nOk === q.steps.length;
@@ -1358,9 +1363,11 @@ function parseNumAll(raw, unit) {
     : [s, s.replace(/\.(?=\d{3}(\D|$))/g,'')];
   const out = [];
   for (let t of variants) {
-    if (u) {                                                     // l'unità scritta in fondo è ammessa,
-      if (t.endsWith(u)) t = t.slice(0, -u.length);              // anche solo in parte («12,0%» per «% m/m»)
-      else { const tail = t.match(/[^\d.]+$/); if (tail && u.startsWith(tail[0])) t = t.slice(0, -tail[0].length); }
+    if (u) {                                                     // l'unità scritta in fondo è ammessa, anche in parte
+      for (let k = 1; k < t.length; k++) {                       // («12,0%» per «% m/m», «753 a.C», «12 cm^3»)
+        const tail = t.slice(k);
+        if (/\d$/.test(t.slice(0, k)) && /^[^\d.]/.test(tail) && u.startsWith(tail.replace(/\^/g, ''))) { t = t.slice(0, k); break; }
+      }
     }
     let m;
     if ((m = t.match(/^([+-]?)10\^([+-]?\d+)$/))) { out.push(parseFloat(m[1] + '1e' + m[2])); continue; }
@@ -1381,12 +1388,12 @@ function numWarn(msg) {
 //  risposta scritta deve avere proprio quelle cifre. Gli zeri finali di un
 //  intero (es. 2750) sono ambigui e non vengono penalizzati.
 // ═══════════════════════════════════════════════════════
-function sigRange(raw) {
+function sigRange(raw, dotDecimal) {
   let s = String(raw || '').trim().toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c])
             .replace(/[−–]/g, '-').replace(/\s+/g, '').replace(/[()]/g, '').replace(/^[+-]/, '');
   const m = s.match(/^\d*[.,]?\d*/); if (!m || !m[0]) return null;
   let mant = m[0];
-  if (/^\d{1,3}(\.\d{3})+$/.test(mant)) mant = mant.replace(/\./g, '');   // «2.750» = duemilasettecentocinquanta
+  if (!dotDecimal && /^\d{1,3}(\.\d{3})+$/.test(mant)) mant = mant.replace(/\./g, '');   // «2.750» = duemilasettecentocinquanta
   const hasDec = /[.,]/.test(mant);
   const d = mant.replace(/[.,]/g, '').replace(/^0+/, '');
   if (!d) return { min:1, max:1 };
@@ -1406,7 +1413,8 @@ function evalNumeric(q, raw) {
   const tol  = (q.tolerance !== undefined) ? q.tolerance : 0.02;
   const near = vals.some(v => q.answer === 0 ? Math.abs(v) < 1e-9 : Math.abs(v - q.answer) <= Math.abs(q.answer) * tol);
   if (!q.sig) return { status:'done', ok:near, note:'' };
-  const r = sigRange(raw), sigOk = !!r && r.min <= q.sig && q.sig <= r.max;
+  const dotDec = !raw.includes(',') && raw.includes('.') && sameSig(vals[0], q.answer, q.sig);   // il punto usato come virgola
+  const r = sigRange(raw, dotDec), sigOk = !!r && r.min <= q.sig && q.sig <= r.max;
   if (sigOk && vals.some(v => sameSig(v, q.answer, q.sig))) return { status:'done', ok:true, note:'' };
   const cs = q.sig === 1 ? '1 cifra significativa' : `${q.sig} cifre significative`;
   if (near && !sigOk) return { status:'done', ok:false, note:`Il valore è giusto, ma va scritto con ${cs}. ` };
@@ -1780,6 +1788,7 @@ function saveCurrent() {
 function recoverCurrent() {
   let c = null; try { c = JSON.parse(localStorage.getItem(LS_CUR)); } catch {}
   if (!c) return;
+  if (c.answered === c.total) c.completed = true;          // l'app era stata chiusa dopo l'ultima risposta
   try { localStorage.removeItem(LS_CUR); } catch {}
   const box = readBox(); if (!box.some(x => x.id === c.id)) { box.push(c); writeBox(box); }
 }
@@ -1811,7 +1820,12 @@ async function flushOutbox() {
         r = await res.json();
       } catch { break; }                       // niente rete o risposta illeggibile: riprova più tardi
       if (!r || !r.ok) {
-        if (r && r.error && r.error !== 'occupato') {      // rifiutato (es. token): lo metto da parte, non blocca gli altri
+        const definitivo = r && ['token', 'json'].includes(r.error);
+        if (!definitivo) {                                  // intoppo: riprovo più tardi, ma non all'infinito
+          const box = readBox(), it = box.find(x => x.id === item.id);
+          if (it) { it.tries = (it.tries || 0) + 1; if (it.tries < 30) { writeBox(box); break; } }
+        }
+        if (r && r.error) {                                 // rifiutato davvero (o troppe volte): da parte, non blocca gli altri
           try { const bad = JSON.parse(localStorage.getItem('pietroquiz:outbox-scartati') || '[]'); bad.push({ ...item, motivo:r.error });
                 localStorage.setItem('pietroquiz:outbox-scartati', JSON.stringify(bad.slice(-20))); } catch {}
           writeBox(readBox().filter(x => x.id !== item.id)); continue;

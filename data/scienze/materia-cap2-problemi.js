@@ -16,7 +16,7 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
   title:           "Cap. 2 — Problemi sulle concentrazioni",
   description:     "Percentuale in massa, in volume, massa su volume, diluizione · risposta da scrivere",
   icon:            "⚗️",
-  version:         2,
+  version:         3,
   timePerQuestion: 0,
 
   questions: [
@@ -117,7 +117,8 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
       "unit": "% m/m",
       "answerText": "8,75% m/m",
       "explanation": "800 g è già la massa della soluzione: 70,0 / 800 × 100 = 8,75% (es. 21a, p. 67).",
-      "tolerance": 0.01
+      "tolerance": 0.01,
+      "sig": 3
     },
 
     {
@@ -159,7 +160,8 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
       "answer": 22.5,
       "unit": "g",
       "answerText": "22,5 g",
-      "explanation": "massa soluto = 9,00 × 250 / 100 = 22,5 g (Mettiti alla prova 2, p. 48)."
+      "explanation": "massa soluto = 9,00 × 250 / 100 = 22,5 g (Mettiti alla prova 2, p. 48).",
+      "tolerance": 0.002
     },
 
     {
@@ -231,7 +233,7 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
       "unit": "% V/V",
       "answerText": "26,7% V/V",
       "explanation": "% V/V = 40,0 / 150 × 100 = 26,7% (Mettiti alla prova 3, p. 49).",
-      "tolerance": 0.01
+      "tolerance": 0.002
     },
 
     {
@@ -246,11 +248,11 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
     {
       "type": "numeric",
       "q": "Quanti mL di alcol ci sono in 750 mL di vino al 13% vol?",
-      "answer": 98,
+      "answer": 97.75,
       "unit": "mL",
-      "answerText": "98 mL",
-      "explanation": "volume alcol = 13 × 750 / 100 = 97,5 mL; con le cifre significative del dato (13%) si scrive 98 mL.",
-      "sig": 2
+      "answerText": "97,5 mL (anche 98 mL)",
+      "explanation": "volume alcol = 13 × 750 / 100 = 97,5 mL. Con le cifre significative del dato (13%) si scriverebbe 98 mL: valgono entrambe.",
+      "tolerance": 0.0026
     },
 
     {
@@ -277,7 +279,8 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
       "answer": 7.6,
       "unit": "g/L",
       "answerText": "7,6 g/L",
-      "explanation": "500 mL = 0,500 L; 3,8 g / 0,500 L = 7,6 g/L (Mettiti alla prova 4, p. 49)."
+      "explanation": "500 mL = 0,500 L; 3,8 g / 0,500 L = 7,6 g/L (Mettiti alla prova 4, p. 49).",
+      "tolerance": 0.005
     },
 
     {

@@ -1,8 +1,8 @@
 // ============================================================
 //  data/storia/civilta-mesopotamiche.js  (v1)
-//  Cap. 2 LE CIVILTÀ MESOPOTAMICHE (pagg. 34-61)
+//  Cap. 2 LE CIVILTÀ MESOPOTAMICHE (pagg. 36-59)
 //
-//  59 domande: crocette + 8 date da scrivere (Assiri e Persiani).
+//  59 domande: crocette + 8 numeriche da scrivere (7 date e il numero delle satrapie).
 //  Contenuti verificati sulle foto del libro, ottobre 2026.
 // ============================================================
 

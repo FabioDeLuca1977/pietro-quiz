@@ -16,7 +16,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
   title:           "Cap. 1 — Problemi",
   description:     "Conversioni, densità, temperature, calore, errore % · risposta da scrivere",
   icon:            "🧮",
-  version:         2,
+  version:         3,
   timePerQuestion: 0,
 
   questions: [
@@ -134,7 +134,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
           "answer": 720000,
           "unit": "cm",
           "answerText": "7,2 × 10⁵ cm",
-          "tolerance": 0.02,
+          "tolerance": 0.001,
           "explanation": "1 m = 10² cm: 7,2 × 10³ m × (10² cm / 1 m) = 7,2 × 10⁵ cm."
         }
       ],
@@ -156,7 +156,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 1080000000,
       "unit": "nm",
       "answerText": "1,08 × 10⁹ nm",
-      "explanation": "1 m = 10⁹ nm: 1,08 m × (1 nm / 10⁻⁹ m) = 1,08 × 10⁹ nm (Mettiti alla prova 2, p. 8)."
+      "explanation": "1 m = 10⁹ nm: 1,08 m × (1 nm / 10⁻⁹ m) = 1,08 × 10⁹ nm (Mettiti alla prova 2, p. 8).",
+      "tolerance": 0.001
     },
 
     {
@@ -165,7 +166,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 0.00275,
       "unit": "kg",
       "answerText": "2,75 × 10⁻³ kg",
-      "explanation": "2,75 g × (1 kg / 1000 g) = 2,75 × 10⁻³ kg: al numeratore va l'unità richiesta (come l'esempio di p. 9)."
+      "explanation": "2,75 g × (1 kg / 1000 g) = 2,75 × 10⁻³ kg: al numeratore va l'unità richiesta (come l'esempio di p. 9).",
+      "tolerance": 0.001
     },
 
     {
@@ -174,7 +176,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 2750,
       "unit": "mg",
       "answerText": "2,75 × 10³ mg (2750 mg)",
-      "explanation": "1 g = 1000 mg: 2,75 g × (1000 mg / 1 g) = 2750 mg."
+      "explanation": "1 g = 1000 mg: 2,75 g × (1000 mg / 1 g) = 2750 mg.",
+      "tolerance": 0.001
     },
 
     {
@@ -192,7 +195,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 0.0127,
       "unit": "L",
       "answerText": "0,0127 L = 1,27 × 10⁻² L",
-      "explanation": "1 mL = 1/1000 di L: 12,7 mL = 0,0127 L (Mettiti alla prova 3, p. 11)."
+      "explanation": "1 mL = 1/1000 di L: 12,7 mL = 0,0127 L (Mettiti alla prova 3, p. 11).",
+      "tolerance": 0.001
     },
 
     {
@@ -201,7 +205,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 330,
       "unit": "mL",
       "answerText": "330 mL",
-      "explanation": "1 cL = 10 mL: 33 cL = 330 mL = 0,33 L (es. 20, p. 32)."
+      "explanation": "1 cL = 10 mL: 33 cL = 330 mL = 0,33 L (es. 20, p. 32).",
+      "tolerance": 0.001
     },
 
     {
@@ -324,7 +329,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "unit": "K",
       "answerText": "333 K",
       "explanation": "T(K) = t(°C) + 273 = 60 + 273 = 333 K (Mettiti alla prova 9, p. 24).",
-      "tolerance": 0.005
+      "tolerance": 0.001
     },
 
     {
@@ -399,7 +404,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
           "answer": 167,
           "unit": "kJ",
           "answerText": "167 kJ",
-          "tolerance": 0.02,
+          "tolerance": 0.005,
           "explanation": "q = 4,18 J/(g × °C) × 500 g × 80 °C = 167 200 J = 167 kJ."
         }
       ],
@@ -483,7 +488,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
           "answer": 48.3,
           "unit": "°C",
           "answerText": "48,3 °C",
-          "tolerance": 0.005,
+          "tolerance": 0.001,
           "explanation": "ΔT = 50 450 J / (4,18 J/(g × °C) × 250 g) = 48,3 °C."
         },
         {
@@ -516,7 +521,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
           "answer": 39,
           "unit": "K",
           "answerText": "39 K",
-          "tolerance": 0.02,
+          "tolerance": 0.012,
           "explanation": "ΔT = 871 kJ / (4,18 kJ/(kg × K) × 5,4 kg) = 38,59… → 39 K (5,4 ha 2 cifre significative)."
         },
         {
@@ -539,7 +544,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "unit": "%",
       "answerText": "−3,03%",
       "explanation": "e% = (25,6 − 26,4) / 26,4 × 100 = −3,03%: si divide per il valore vero (Mettiti alla prova 16, p. 28).",
-      "tolerance": 0.01
+      "tolerance": 0.005
     },
 
     {

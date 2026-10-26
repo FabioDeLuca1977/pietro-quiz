@@ -15,7 +15,7 @@ window.QUIZ_BANK["misure-cap1"] = {
   title:           "Cap. 1 — Grandezze e misure",
   description:     "SI, notazione scientifica, cifre significative, densità, energia, temperatura, calore",
   icon:            "📏",
-  version:         3,
+  version:         4,
   timePerQuestion: 25,
 
   questions: [
@@ -377,7 +377,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "0,000930 kg/L"
       ],
       "answer": 1,
-      "explanation": "1 L = 1000 cm³ e 1 kg = 1000 g: 0,930 g/cm³ = 930 g/L = 0,930 kg/L."
+      "explanation": "1 L = 1000 cm³ e 1 kg = 1000 g: 0,930 g/cm³ = 930 g/L = 0,930 kg/L (es. 36, p. 33)."
     },
 
     {
@@ -473,7 +473,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "Non si sa senza la variazione di temperatura"
       ],
       "answer": 3,
-      "explanation": "q = C × m × ΔT: senza ΔT il calore non si può calcolare. 4,18 J servono per alzare di 1 °C la temperatura di 1 g di acqua (pp. 25–26)."
+      "explanation": "q = C × m × ΔT: senza ΔT il calore non si può calcolare. 4,18 J servono per alzare di 1 °C la temperatura di 1 g di acqua (pp. 25–27)."
     },
 
     {

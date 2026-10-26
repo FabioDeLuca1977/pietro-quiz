@@ -16,7 +16,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
   title:           "Cap. 2 — Esercizi: decimali, proporzioni, percentuali",
   description:     "Periodici, frazione generatrice, proporzioni, %, IVA, errori, notazione scientifica",
   icon:            "📐",
-  version:         4,
+  version:         5,
   timePerQuestion: 0,
 
   questions: [
@@ -294,7 +294,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
       "unit": "%",
       "answerText": "≃ 66,7%",
       "explanation": "2 : 3 = x : 100 → x = 200/3 ≃ 66,7 (p. 92).",
-      "tolerance": 0.0006
+      "tolerance": 0.0005
     },
 
     {
@@ -338,7 +338,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
       "unit": "€",
       "answerText": "≃ 738 €",
       "explanation": "(100 + 22) : 100 = 900 : p → p = 900 · 100/122 ≃ 738 € (p. 92).",
-      "tolerance": 0.001
+      "tolerance": 0.0005
     },
 
     {
