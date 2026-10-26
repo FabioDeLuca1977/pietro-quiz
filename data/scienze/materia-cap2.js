@@ -15,7 +15,7 @@ window.QUIZ_BANK["materia-cap2"] = {
   title:           "Cap. 2 — Le trasformazioni fisiche della materia",
   description:     "Stati fisici, teoria particellare, sostanze pure, miscele, soluzioni, solubilità",
   icon:            "🧪",
-  version:         2,
+  version:         3,
   timePerQuestion: 25,
 
   questions: [
@@ -157,7 +157,7 @@ window.QUIZ_BANK["materia-cap2"] = {
       "options": [
         "Si osservano quando interagisce con altre sostanze",
         "Si osservano senza che la sostanza cambi identità",
-        "Si possono osservare solo quando la sostanza è solida",
+        "Sono le stesse per tutti i materiali",
         "Si manifestano quando la sostanza cambia identità"
       ],
       "answer": 1,
@@ -218,7 +218,7 @@ window.QUIZ_BANK["materia-cap2"] = {
         "La sostanza presente in minore quantità, che si scioglie",
         "La sostanza presente in maggiore quantità, che scioglie",
         "Il solido in eccesso che si deposita sul fondo",
-        "Il liquido che si aggiunge per ultimo alla miscela"
+        "La sostanza presente in minore quantità, che scioglie"
       ],
       "answer": 1,
       "explanation": "Solvente = la sostanza presente in maggiore quantità che ha il compito di sciogliere; soluto = la sostanza disciolta (p. 45)."

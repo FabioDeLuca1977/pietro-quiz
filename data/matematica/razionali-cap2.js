@@ -15,7 +15,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
   title:           "Cap. 2 — Numeri razionali e reali: teoria",
   description:     "Frazioni, Q, operazioni, potenze, decimali, proporzioni, reali, approssimazioni",
   icon:            "➗",
-  version:         2,
+  version:         3,
   timePerQuestion: 30,
 
   questions: [
@@ -26,7 +26,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
         "Una coppia ordinata di numeri naturali, con il secondo diverso da zero",
         "Una coppia ordinata di numeri naturali, con il primo diverso da zero",
         "Una coppia ordinata di numeri naturali, con il secondo maggiore del primo",
-        "Una coppia di numeri naturali qualsiasi, in qualunque ordine"
+        "Una coppia ordinata di numeri naturali, con il primo multiplo del secondo"
       ],
       "answer": 0,
       "explanation": "Una frazione è una coppia ordinata di numeri naturali, con il secondo diverso da zero: il primo è il numeratore, il secondo il denominatore (p. 77)."
@@ -109,7 +109,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "options": [
         "Perché si otterrebbe 0/0, che non ha significato",
         "Perché si otterrebbe 0/n, cioè una frazione uguale a 0",
-        "Perché si otterrebbe una frazione con segno negativo",
+        "Perché si otterrebbe una frazione apparente, uguale a 1",
         "Perché si otterrebbe la frazione reciproca di quella data"
       ],
       "answer": 0,
@@ -120,7 +120,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "q": "Data una frazione, quante sono le frazioni a essa equivalenti?",
       "options": [
         "Una sola",
-        "Dieci",
+        "Un numero finito, che dipende dalla frazione",
         "Tante quanti sono i divisori del numeratore",
         "Infinite"
       ],
@@ -182,7 +182,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
         "Senza segno",
         "Intero",
         "Esatto, senza approssimazioni",
-        "Positivo e maggiore di 1"
+        "Irriducibile, ai minimi termini"
       ],
       "answer": 0,
       "explanation": "Assoluto significa «senza segno»: finora le frazioni erano di numeri naturali, che non hanno segno (p. 81)."
@@ -230,7 +230,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
         "−6/9",
         "6/9",
         "9/6",
-        "0"
+        "−9/6"
       ],
       "answer": 1,
       "explanation": "Il valore assoluto di un numero negativo è il suo opposto: |−6/9| = 6/9 (p. 82)."
@@ -242,7 +242,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
         "Lo stesso punto",
         "Due punti simmetrici rispetto allo 0",
         "Due punti diversi, a distanza 5/2",
-        "Nessun punto, perché sono negative"
+        "Due punti diversi, −10/4 più a sinistra"
       ],
       "answer": 0,
       "explanation": "Frazioni equivalenti danno lo stesso punto: ogni numero razionale è rappresentato da un solo punto (p. 82)."
@@ -289,8 +289,8 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "options": [
         "La frazione −c/d",
         "La frazione d/c",
-        "La frazione c/(c + d)",
-        "La frazione (c · d)/1"
+        "La frazione −d/c",
+        "La frazione 1/(c · d)"
       ],
       "answer": 1,
       "explanation": "La reciproca di c/d, con c ≠ 0, è d/c. Il prodotto di una frazione per la sua reciproca è sempre 1 (p. 84)."
@@ -458,7 +458,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
         "Finito",
         "Periodico semplice",
         "Periodico misto",
-        "Intero"
+        "Irrazionale"
       ],
       "answer": 2,
       "explanation": "11/12 = 11/(3 · 2²): una potenza di 2 e un fattore diverso da 2 e 5 → periodico misto, 0,91(6) (p. 89)."
@@ -505,7 +505,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "options": [
         "Un'uguaglianza fra due rapporti",
         "Il quoziente fra due numeri",
-        "La somma di due frazioni",
+        "Un'uguaglianza fra due prodotti",
         "Una frazione con denominatore 100"
       ],
       "answer": 0,
@@ -529,7 +529,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "options": [
         "Il prodotto degli estremi è uguale al prodotto dei medi",
         "La somma degli estremi è uguale alla somma dei medi",
-        "Gli antecedenti sono uguali",
+        "Il quoziente degli estremi è uguale al quoziente dei medi",
         "Il prodotto degli antecedenti è uguale al prodotto dei conseguenti"
       ],
       "answer": 0,
@@ -554,7 +554,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
         "2/10",
         "2/100",
         "2/1000",
-        "1/2"
+        "2/10 000"
       ],
       "answer": 2,
       "explanation": "2‰ si legge «due per mille» e significa 2/1000 (p. 91)."
@@ -638,7 +638,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
         "Quando a < v",
         "Quando a > v",
         "Quando a = v",
-        "Quando a è intero"
+        "Quando a ha più cifre di v"
       ],
       "answer": 1,
       "explanation": "Per difetto se a < v, per eccesso se a > v. Esempio: √5 = 2,2360… è approssimato per eccesso da 2,24 (p. 94)."

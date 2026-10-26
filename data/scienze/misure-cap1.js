@@ -15,7 +15,7 @@ window.QUIZ_BANK["misure-cap1"] = {
   title:           "Cap. 1 — Grandezze e misure",
   description:     "SI, notazione scientifica, cifre significative, densità, energia, temperatura, calore",
   icon:            "📏",
-  version:         2,
+  version:         3,
   timePerQuestion: 25,
 
   questions: [
@@ -24,7 +24,7 @@ window.QUIZ_BANK["misure-cap1"] = {
       "q": "Su quante grandezze fondamentali si basa il Sistema Internazionale (SI)?",
       "options": [
         "Cinque",
-        "Sei fondamentali e una derivata",
+        "Sei",
         "Sette",
         "Dieci"
       ],
@@ -86,7 +86,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "La forza con cui un oggetto cade",
         "Una grandezza legata alla quantità di materia di un corpo",
         "La forza che attrae un oggetto verso il centro della Terra",
-        "Una forma di energia"
+        "La misura dello spazio occupato da un corpo"
       ],
       "answer": 1,
       "explanation": "La massa è una proprietà dei corpi legata alla quantità di materia che li costituisce (p. 9)."
@@ -110,7 +110,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "Sì, perché la massa resta la stessa",
         "No, perché l'accelerazione di gravità cambia",
         "Sì, perché la quantità di materia non cambia",
-        "No, perché cambia il suo volume"
+        "No, perché cambia la sua massa"
       ],
       "answer": 1,
       "explanation": "Sulla Luna la gravità è circa 1/6 di quella terrestre: la massa resta uguale, il peso diventa circa sei volte minore (p. 9)."
@@ -134,7 +134,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "2,5 L = 2,5 m³",
         "2,5 L = 2,5 cm³",
         "2,5 L = 2,5 dm³",
-        "2,5 L = 2500 m³"
+        "2,5 L = 250 cm³"
       ],
       "answer": 2,
       "explanation": "1 L = 1 dm³, quindi 2,5 L = 2,5 dm³. Inoltre 1 L = 1000 cm³ e 1 mL = 1 cm³ (p. 10)."
@@ -218,7 +218,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "Positivo",
         "Negativo",
         "Uguale a zero",
-        "Uguale a uno"
+        "Uguale al numero delle cifre decimali"
       ],
       "answer": 1,
       "explanation": "Se la virgola si sposta verso sinistra n è positivo; se si sposta verso destra n è negativo (es. 0,0036 = 3,6 × 10⁻³, p. 5)."
@@ -482,7 +482,7 @@ window.QUIZ_BANK["misure-cap1"] = {
         "Perché ha un basso calore specifico",
         "Perché ha un elevato calore specifico",
         "Perché la sua densità aumenta",
-        "Perché il calore va dal freddo al caldo"
+        "Perché ha una temperatura di ebollizione alta"
       ],
       "answer": 1,
       "explanation": "L'acqua ha un calore specifico più alto delle sostanze comuni: si comporta come un «serbatoio di calore». La sabbia, con basso calore specifico, si raffredda in fretta (p. 26)."

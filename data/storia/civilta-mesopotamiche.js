@@ -15,7 +15,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
   title:           "Cap. 2 — Le civiltà mesopotamiche",
   description:     "Sumeri, Accadi, Babilonesi, Hittiti, Assiri, Persiani",
   icon:            "🏺",
-  version:         2,
+  version:         3,
   timePerQuestion: 25,
 
   questions: [
@@ -25,7 +25,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
       "options": [
         "Terra tra i due mari",
         "Terra in mezzo ai fiumi",
-        "Terra del sole nascente",
+        "Porta del dio",
         "Terra della pianura fertile"
       ],
       "answer": 1,
@@ -48,7 +48,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
       "q": "Quale evento segna la fine della preistoria e l'inizio della storia?",
       "options": [
         "La nascita dell'agricoltura",
-        "La fondazione di Babilonia",
+        "La nascita delle prime città",
         "L'invenzione della scrittura",
         "La lavorazione dei metalli"
       ],
@@ -74,7 +74,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
         "Perché si incideva su blocchi di legno a cuneo",
         "Perché i segni hanno la forma di cunei",
         "Perché le tavolette avevano la forma di un cuneo",
-        "Perché i segni si leggevano dal basso in alto"
+        "Perché ogni segno corrisponde a una sillaba"
       ],
       "answer": 1,
       "explanation": "I segni stilizzati hanno la forma di cunei (latino cuneus, «chiodo»); ogni segno corrisponde a una sillaba (p. 38)."
@@ -122,7 +122,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
         "Una tomba monumentale per i re defunti",
         "Un tempio, centro dell'economia e magazzino",
         "Una fortezza che era anche caserma e arsenale",
-        "Un canale per irrigare i campi della città"
+        "La «casa grande», il palazzo del re separato dal tempio"
       ],
       "answer": 1,
       "explanation": "Nella ziqqurat si concentrava il potere: culto, economia, magazzino, mercato e scuola (p. 39)."
@@ -206,7 +206,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
         "Gli Amorrei",
         "I Gutei",
         "Gli Hittiti",
-        "I Persiani"
+        "I Cassiti"
       ],
       "answer": 1,
       "explanation": "I Gutei, nomadi dell'Altopiano iranico: per la prima volta lo scontro tra popoli della pianura e degli altipiani (p. 44)."
@@ -326,7 +326,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
         "Gli Assiri di Tiglatpileser",
         "I popoli del mare venuti da Occidente",
         "I Mitanni dell'alta Mesopotamia",
-        "I Babilonesi di Hammurabi"
+        "Gli Egizi di Ramses II"
       ],
       "answer": 1,
       "explanation": "I «popoli del mare», venuti per lo più da Occidente navigando (p. 49)."
@@ -434,7 +434,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
         "Nabucodonosor II, alleato degli Egizi",
         "Nabopolassar, alleato dei Medi",
         "Nabonedo, alleato dei Persiani",
-        "Hammurabi, alleato di Mari"
+        "Nabucodonosor II, alleato dei Medi"
       ],
       "answer": 1,
       "explanation": "Nabopolassar (625–605 a.C. circa), della tribù dei Caldei, alleato con i Medi (p. 53)."
@@ -491,7 +491,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
     {
       "q": "Che cosa permette Ciro agli Ebrei dopo la conquista di Babilonia?",
       "options": [
-        "Di arruolarsi tra gli Immortali",
+        "Di trasferirsi a Persepoli, nel cuore della Persia",
         "Di tornare in Palestina",
         "Di diventare satrapi in Siria",
         "Di stabilirsi in Egitto"
@@ -624,7 +624,7 @@ window.QUIZ_BANK["civilta-mesopotamiche"] = {
         "Il dio del male e della menzogna",
         "Il dio del bene e della sapienza",
         "Il profeta fondatore della religione",
-        "Il libro sacro dei Persiani"
+        "Il capo dei Magi, sacerdoti e indovini persiani"
       ],
       "answer": 1,
       "explanation": "Ahura Mazda (bene) contro Ahriman (male); alla fine vincerà il bene. Il libro sacro è l'Avesta (p. 57)."

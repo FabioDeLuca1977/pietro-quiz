@@ -16,7 +16,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
   title:           "Cap. 2 — Esercizi: decimali, proporzioni, percentuali",
   description:     "Periodici, frazione generatrice, proporzioni, %, IVA, errori, notazione scientifica",
   icon:            "📐",
-  version:         2,
+  version:         3,
   timePerQuestion: 0,
 
   questions: [
@@ -105,7 +105,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "Finito",
         "Periodico semplice",
         "Periodico misto",
-        "Intero"
+        "Irrazionale"
       ],
       "answer": 1,
       "explanation": "4/42 = 2/21 ridotta ai minimi termini; 21 = 3 · 7, solo fattori diversi da 2 e 5 → periodico semplice (PROVA SUBITO, p. 89; risultato calcolato)."
@@ -117,7 +117,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
         "Finito",
         "Periodico semplice",
         "Periodico misto",
-        "Intero"
+        "Irrazionale"
       ],
       "answer": 2,
       "explanation": "12 = 2² · 3: una potenza di 2 e un altro fattore → periodico misto (PROVA SUBITO, p. 89; risultato calcolato; 25/12 = 2,08(3))."

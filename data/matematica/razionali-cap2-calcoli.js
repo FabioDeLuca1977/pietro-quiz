@@ -16,7 +16,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
   title:           "Cap. 2 — Esercizi: frazioni e operazioni",
   description:     "Semplificare, confrontare, + − × :, potenze · risposta da scrivere",
   icon:            "🧮",
-  version:         2,
+  version:         3,
   timePerQuestion: 0,
 
   questions: [
@@ -37,7 +37,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
         "Propria",
         "Apparente",
         "Impropria",
-        "Non è una frazione"
+        "Irriducibile"
       ],
       "answer": 1,
       "explanation": "15 è multiplo di 3, quindi 15/3 è apparente (PROVA SUBITO, p. 78; risultato calcolato)."
@@ -221,7 +221,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
         "−4/3 < −4/5 < 7/15 < 1/2 < 3/5 < 3/4",
         "−4/5 < −4/3 < 1/2 < 7/15 < 3/5 < 3/4",
         "−4/3 < −4/5 < 1/2 < 7/15 < 3/4 < 3/5",
-        "7/15 < 1/2 < 3/5 < 3/4 < −4/5 < −4/3"
+        "−4/5 < −4/3 < 7/15 < 1/2 < 3/4 < 3/5"
       ],
       "answer": 0,
       "explanation": "Prima i negativi (−4/3 = −20/15 è minore di −4/5 = −12/15), poi 7/15 < 1/2 < 3/5 < 3/4 (PROVA SUBITO, p. 83; risultato calcolato)."
