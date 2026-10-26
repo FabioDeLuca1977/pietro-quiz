@@ -15,7 +15,7 @@ window.QUIZ_BANK["misure-cap1"] = {
   title:           "Cap. 1 — Grandezze e misure",
   description:     "SI, notazione scientifica, cifre significative, densità, energia, temperatura, calore",
   icon:            "📏",
-  version:         1,
+  version:         2,
   timePerQuestion: 25,
 
   questions: [
@@ -143,10 +143,10 @@ window.QUIZ_BANK["misure-cap1"] = {
     {
       "q": "Che cosa sono le cifre significative di una misura?",
       "options": [
-        "Le cifre del valore «vero»",
-        "Solo le cifre decimali",
-        "Tutte le cifre note con certezza più la prima cifra incerta",
-        "Tutte le cifre, compresi gli zeri iniziali"
+        "Tutte le cifre note con certezza, senza quelle incerte",
+        "Le sole cifre decimali, cioè quelle dopo la virgola",
+        "Tutte le cifre note con certezza più la prima incerta",
+        "Tutte le cifre scritte, compresi gli zeri iniziali"
       ],
       "answer": 2,
       "explanation": "Definizione del libro: le cifre significative sono tutte le cifre note con certezza più la prima cifra incerta (p. 14)."
@@ -179,10 +179,10 @@ window.QUIZ_BANK["misure-cap1"] = {
     {
       "q": "Che cos'è il calore specifico?",
       "options": [
-        "Il calore necessario per alzare di 1 °C la temperatura di 1 g di sostanza",
-        "La temperatura raggiunta da 1 g di sostanza con 4,18 J",
-        "La temperatura a cui ghiaccio e acqua coesistono",
-        "Il calore totale contenuto in un corpo"
+        "Il calore che alza di 1 °C la temperatura di 1 g di sostanza",
+        "La temperatura raggiunta da 1 g di sostanza ricevendo 4,18 J",
+        "Il calore necessario per portare all'ebollizione 1 g di sostanza",
+        "Il calore totale posseduto da 1 g di sostanza a una data temperatura"
       ],
       "answer": 0,
       "explanation": "Il calore specifico è la quantità di energia termica necessaria per innalzare (o abbassare) di 1 °C (o 1 K) la temperatura di un grammo di sostanza (p. 25)."
@@ -217,8 +217,8 @@ window.QUIZ_BANK["misure-cap1"] = {
       "options": [
         "Positivo",
         "Negativo",
-        "Sempre zero",
-        "Uguale al numero di zeri finali"
+        "Uguale a zero",
+        "Uguale a uno"
       ],
       "answer": 1,
       "explanation": "Se la virgola si sposta verso sinistra n è positivo; se si sposta verso destra n è negativo (es. 0,0036 = 3,6 × 10⁻³, p. 5)."
@@ -323,10 +323,10 @@ window.QUIZ_BANK["misure-cap1"] = {
     {
       "q": "Che cosa si intende per sensibilità di uno strumento di misura?",
       "options": [
-        "Il valore più grande che può misurare",
+        "Il valore più grande che è in grado di misurare",
         "Il valore più piccolo che è in grado di rilevare",
-        "La sua capacità di dare sempre lo stesso valore",
-        "La sua vicinanza al valore vero"
+        "La sua capacità di dare misure vicine tra loro",
+        "La sua capacità di dare misure vicine al valore vero"
       ],
       "answer": 1,
       "explanation": "La sensibilità è il valore più piccolo che lo strumento è in grado di rilevare: più è alta, più cifre significative ha la misura (pp. 14–15)."
@@ -383,10 +383,10 @@ window.QUIZ_BANK["misure-cap1"] = {
     {
       "q": "Che cosa dice la legge di conservazione dell'energia?",
       "options": [
-        "L'energia si crea nelle centrali",
-        "L'energia si consuma con l'uso",
-        "L'energia non si crea né si distrugge, ma si converte da una forma all'altra",
-        "L'energia si conserva solo se non cambia forma"
+        "Si produce nelle centrali e si distrugge quando la usiamo",
+        "Si conserva nei corpi fermi e si consuma in quelli in movimento",
+        "Non si crea né si distrugge, ma si converte da una forma a un'altra",
+        "Si conserva se resta nella stessa forma e si perde quando si converte"
       ],
       "answer": 2,
       "explanation": "Legge di conservazione dell'energia: l'energia non si crea né si distrugge, ma può essere convertita da una forma a un'altra (p. 21)."
@@ -431,10 +431,10 @@ window.QUIZ_BANK["misure-cap1"] = {
     {
       "q": "Quale affermazione sulla scala Kelvin è corretta?",
       "options": [
-        "Può avere valori negativi",
-        "Lo zero corrisponde a 0 °C",
-        "Parte dallo zero assoluto, che corrisponde a −273,15 °C",
-        "1 K corrisponde a 1,8 °C"
+        "Ammette valori negativi, come la scala Celsius",
+        "Parte da 0 °C, la temperatura di fusione del ghiaccio",
+        "Parte dallo zero assoluto, pari a −273,15 °C",
+        "Una variazione di 1 K equivale a una di 1,8 °C"
       ],
       "answer": 2,
       "explanation": "La scala Kelvin non ha valori negativi: parte dallo zero assoluto (0 K = −273,15 °C). Una variazione di 1 K equivale a 1 °C (pp. 23–24)."
@@ -443,9 +443,9 @@ window.QUIZ_BANK["misure-cap1"] = {
     {
       "q": "Indica l'affermazione ERRATA sulla densità del rame:",
       "options": [
-        "È la stessa al mare e in montagna",
+        "È la stessa al livello del mare e in alta montagna",
         "Sulla Luna è minore, perché la gravità è minore",
-        "Diminuisce se la temperatura cresce",
+        "Diminuisce se la temperatura del rame cresce",
         "1 cm³ e 1 m³ di rame hanno la stessa densità"
       ],
       "answer": 1,
@@ -455,10 +455,10 @@ window.QUIZ_BANK["misure-cap1"] = {
     {
       "q": "Due masse d'acqua a temperatura diversa vengono messe a contatto. Che cosa succede?",
       "options": [
-        "L'acqua più calda acquista calore",
+        "L'acqua più calda acquista calore e si scalda",
         "L'acqua più calda cede calore e si raffredda",
-        "La massa maggiore cede sempre calore alla minore",
-        "Non si può prevedere"
+        "La massa maggiore cede calore a quella minore",
+        "Non si scambiano calore se le masse sono uguali"
       ],
       "answer": 1,
       "explanation": "Il trasferimento di calore avviene sempre dal corpo a temperatura maggiore a quello a temperatura minore (p. 25)."
@@ -467,10 +467,10 @@ window.QUIZ_BANK["misure-cap1"] = {
     {
       "q": "Per riscaldare 1 g di acqua occorre fornire:",
       "options": [
-        "1 J",
-        "4,18 J",
-        "1 cal",
-        "Non si può dire senza conoscere la variazione di temperatura"
+        "4,18 J, perché è il calore specifico dell'acqua",
+        "1 J, perché la massa dell'acqua è 1 g",
+        "4,18 kJ, perché 1 kcal corrisponde a 4,18 kJ",
+        "Non si sa senza la variazione di temperatura"
       ],
       "answer": 3,
       "explanation": "q = C × m × ΔT: senza ΔT il calore non si può calcolare. 4,18 J servono per alzare di 1 °C la temperatura di 1 g di acqua (pp. 25–26)."

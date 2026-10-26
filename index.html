@@ -35,6 +35,9 @@
 <script src="data/matematica/razionali-cap2.js"></script>
 <script src="data/matematica/razionali-cap2-calcoli.js"></script>
 <script src="data/matematica/razionali-cap2-decimali.js"></script>
+<script src="data/matematica/razionali-cap2-giochi.js"></script>
+<script src="data/scienze/scienze-giochi.js"></script>
+<script src="data/storia/civilta-mesopotamiche-giochi.js"></script>
 
 <!-- TECNOLOGIA -->
 
@@ -421,6 +424,59 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .lg-msg { min-height:1.4em; margin-top:12px; font-weight:800; text-align:center; }
 .lg-note { margin-top:16px; font-size:.84rem; opacity:.85; text-align:center; line-height:1.5; }
 
+/* ════════ MODALITÀ, AZIONI, INSTALLAZIONE ════════ */
+.mode-sw { display:flex; background:var(--card); border:1px solid var(--ln); border-radius:30px; padding:4px; margin-top:14px; }
+.mode-sw button { flex:1; border:none; background:none; border-radius:24px; padding:9px 8px; font-weight:800; font-size:.86rem; color:var(--mu2); cursor:pointer; }
+.mode-sw button.on { background:#fff; color:#111; }
+.mode-note { font-size:.76rem; color:var(--mu); margin:7px 4px 0; line-height:1.4; }
+.actions2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+.act { display:flex; flex-direction:column; align-items:flex-start; gap:3px; text-align:left; background:var(--card); border:1px solid var(--ln2);
+  border-radius:20px; padding:14px; cursor:pointer; }
+.act:active { transform:scale(.97); }
+.act .ai { font-size:1.4rem; }
+.act b { font-weight:800; font-size:.95rem; }
+.act span { font-size:.74rem; color:var(--mu2); font-weight:600; }
+.act:disabled { opacity:.5; cursor:default; }
+.act.hot { border-color:color-mix(in srgb, var(--ko) 60%, transparent); }
+.act.hot span { color:#ff8fa3; }
+.install { display:flex; gap:12px; align-items:flex-start; background:var(--card); border:1px solid var(--ln2); border-radius:20px; padding:14px; margin-top:14px; font-size:.84rem; line-height:1.45; color:var(--mu2); }
+.install[hidden] { display:none; }
+.install b { color:#fff; }
+.install button { margin-left:auto; background:none; border:none; color:var(--mu); font-size:1rem; cursor:pointer; }
+.ti-lampo { border:none; background:rgba(255,255,255,.1); color:#fff; font-weight:800; font-size:.72rem; padding:4px 10px; border-radius:20px; cursor:pointer; }
+
+/* ════════ GIOCHI: ORDINA / CLASSIFICA ════════ */
+.game { display:flex; flex-direction:column; gap:10px; }
+.g-lab { font-size:.78rem; font-weight:800; letter-spacing:.4px; text-transform:uppercase; opacity:.85; }
+.g-seq, .g-pool { display:flex; flex-direction:column; gap:8px; }
+.g-seq { min-height:58px; padding:8px; border-radius:20px; border:2px dashed rgba(255,255,255,.35); }
+.g-empty { font-size:.85rem; opacity:.8; padding:10px; text-align:center; }
+.g-chip { display:flex; align-items:center; gap:10px; width:100%; text-align:left; padding:12px 14px; border-radius:16px; cursor:pointer;
+  background:rgba(255,255,255,.16); border:1.5px solid rgba(255,255,255,.35); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  font-weight:700; font-size:.95rem; line-height:1.3; }
+.g-chip b { width:26px; height:26px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; background:#fff; color:#111; font-size:.8rem; }
+.g-chip.in { background:rgba(255,255,255,.9); color:#111; }
+.g-chip.in b { background:#111; color:#fff; }
+.g-chip.ok { background:#fff; color:#0b7a4b; } .g-chip.ok b { background:var(--ok); }
+.g-chip.ko { background:rgba(255,77,109,.85); color:#fff; } .g-chip.ko b { background:#fff; color:var(--ko); }
+.g-row { padding:10px 12px; border-radius:16px; background:rgba(255,255,255,.14); border:1.5px solid rgba(255,255,255,.3); }
+.g-row.ok { border-color:var(--ok); background:rgba(34,227,154,.18); }
+.g-row.ko { border-color:#fff; background:rgba(255,77,109,.6); }
+.g-it { font-weight:800; font-size:.98rem; margin-bottom:8px; }
+.g-pills { display:flex; flex-wrap:wrap; gap:6px; }
+.g-pill { border:1.5px solid rgba(255,255,255,.5); background:transparent; color:#fff; border-radius:20px; padding:7px 12px; font-weight:700; font-size:.82rem; cursor:pointer; }
+.g-pill.on { background:#fff; color:#111; border-color:#fff; }
+.g-pill.right { outline:2px solid var(--ok); outline-offset:2px; }
+.g-go { margin-top:4px; padding:15px; border:none; border-radius:18px; background:#111; color:#fff; font-weight:900; font-size:1rem; cursor:pointer; }
+.g-go:disabled { opacity:.4; cursor:default; }
+.num-hint.warn { color:#fff; background:rgba(255,77,109,.85); padding:8px 10px; border-radius:12px; font-weight:700; }
+
+/* Immagine da salvare (quando la condivisione non è disponibile) */
+.share-ov { position:fixed; inset:0; z-index:95; background:rgba(0,0,0,.92); display:none; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:20px; }
+.share-ov.on { display:flex; }
+.share-ov img { max-width:min(80vw, 380px); max-height:70svh; border-radius:18px; }
+.share-ov p { font-weight:700; text-align:center; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation:none!important; transition:none!important; }
 }
@@ -446,7 +502,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
            placeholder="······" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="lg-go" id="lg-go" onclick="doLogin()">Entra →</button>
     <div class="lg-msg" id="lg-msg" role="status"></div>
-    <div class="lg-note">Non hai un codice? Chiedilo a chi ti ha invitato.<br>Lo inserisci una volta sola: il telefono se lo ricorda.</div>
+    <div class="lg-note">Non hai un codice? Chiedilo a chi ti ha invitato.<br>Su questo telefono lo inserisci una volta sola. Se poi installi l'app sulla schermata Home, inseriscilo anche lì.</div>
   </div>
 </div>
 
@@ -463,6 +519,17 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
       <div class="kpi"><b id="k-avg">—</b><span>media ultimi 10</span></div>
     </div>
     <button class="resume" id="resume" hidden></button>
+    <div class="actions2">
+      <button class="act" id="act-rev" onclick="startReview()"><span class="ai">🔁</span><b>Ripassa gli errori</b><span id="rev-n"></span></button>
+      <button class="act" onclick="startLampoMix()"><span class="ai">⚡</span><b>Quiz lampo</b><span>10 domande miste</span></button>
+    </div>
+    <div class="mode-sw"></div>
+    <div class="mode-note"></div>
+    <div class="install" id="install" hidden>
+      <span style="font-size:1.4rem">📲</span>
+      <div><b>Installa l'app sul telefono.</b><br>In Safari: tocca <b>Condividi</b> → <b>Aggiungi alla schermata Home</b>. Così i tuoi progressi restano salvati.</div>
+      <button onclick="dismissInstall()" aria-label="Chiudi">✕</button>
+    </div>
   </section>
 
   <div class="lbl">Per te <small id="fy-sub">i quiz da fare o da migliorare</small></div>
@@ -488,6 +555,10 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
       <div class="sh-sub" id="sh-sub"></div>
     </div>
   </div>
+  <div class="actions2" id="subj-actions"></div>
+  <div class="mode-sw"></div>
+  <div class="mode-note"></div>
+  <div class="lbl">Quiz</div>
   <div id="test-list"></div>
 </div>
 
@@ -576,6 +647,10 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
   <div class="btn-row"><button class="btn btn-o" style="grid-column:1/-1" onclick="goHome()">🏠 Home</button></div>
 </div>
 <canvas id="confetti" hidden></canvas>
+<div class="share-ov" id="share-ov" onclick="this.classList.remove('on')">
+  <img id="share-img" alt="Il tuo risultato">
+  <p>Tieni premuto sull'immagine per salvarla o condividerla.<br><small>Tocca fuori per chiudere</small></p>
+</div>
 
 <!-- ══ DÉBRIEFING ══ -->
 <div id="s-debrief" class="scr">
@@ -631,7 +706,9 @@ document.addEventListener('DOMContentLoaded', () => {
     new Date().toLocaleDateString('it-IT', { weekday:'long', day:'numeric', month:'long' });
   if (needLogin()) showScr('s-login');
   else { showScr('s-home'); renderHome(); checkUser(); }
-  flushOutbox();   // invia eventuali risultati rimasti in coda
+  try { navigator.storage?.persist?.(); } catch {}
+  recoverCurrent();   // un quiz chiuso a metà diventa un tentativo «interrotto»
+  flushOutbox();      // invia eventuali risultati rimasti in coda
 });
 
 // ═══════════════════════════════════════════════════════
@@ -668,6 +745,7 @@ async function doLogin() {
       inp.value = ''; showScr('s-home'); renderHome();
     } else {
       msg.textContent = r.error === 'troppi' ? 'Troppi tentativi: riprova fra 10 minuti.'
+                      : r.error === 'config' ? 'Accesso non ancora configurato: avvisa chi ti ha invitato.'
                       : r.error === 'disattivo' ? 'Questo codice non è attivo.' : 'Codice non valido. Controlla e riprova.';
       inp.focus(); inp.select();
     }
@@ -697,6 +775,101 @@ function subjProgress(s) {
   const tried = act.filter((t,i) => bests[i] > 0).length;
   return { act:act.length, tried, pct: tried ? Math.round(bests.reduce((x,y)=>x+y,0) / act.length) : 0 };
 }
+
+// ═══════════════════════════════════════════════════════
+//  MODALITÀ: «allenamento» (predefinita: niente timer, 100 punti a risposta)
+//  oppure «sfida» (timer del test e bonus velocità).
+// ═══════════════════════════════════════════════════════
+const LS_MODE = 'pietroquiz:mode';
+function getMode() { try { return localStorage.getItem(LS_MODE) === 'sfida' ? 'sfida' : 'allenamento'; } catch { return 'allenamento'; } }
+function setMode(m) {
+  try { localStorage.setItem(LS_MODE, m); } catch {}
+  renderModeSwitch();
+  if (document.getElementById('s-subj').classList.contains('on') && G.subj) selSubj(G.subj.subject);
+}
+function renderModeSwitch() {
+  const m = getMode();
+  document.querySelectorAll('.mode-sw').forEach(el => el.innerHTML =
+    `<button class="${m === 'allenamento' ? 'on' : ''}" onclick="setMode('allenamento')">🧘 Allenamento</button>` +
+    `<button class="${m === 'sfida' ? 'on' : ''}" onclick="setMode('sfida')">⏱ Sfida</button>`);
+  document.querySelectorAll('.mode-note').forEach(el => el.textContent = m === 'sfida'
+    ? 'Sfida: c’è il tempo e chi risponde in fretta prende più punti.'
+    : 'Allenamento: niente tempo, ragiona con calma. Ogni risposta giusta vale 100 punti.');
+}
+
+// ═══════════════════════════════════════════════════════
+//  DOMANDE SBAGLIATE: ogni errore torna nel ripasso finché non
+//  è giusto in due giorni diversi.
+// ═══════════════════════════════════════════════════════
+const LS_WRONG = 'pietroquiz:wrong';
+function loadWrong() { try { return JSON.parse(localStorage.getItem(LS_WRONG)) || {}; } catch { return {}; } }
+function saveWrong(w) { try { localStorage.setItem(LS_WRONG, JSON.stringify(w)); } catch {} }
+function trackAnswer(q, ok) {
+  if (!q || !q._tid) return;
+  const w = loadWrong(), k = q._tid + '|' + q.q, today = new Date().toDateString();
+  if (!ok) {
+    const e = w[k] || { tid:q._tid, subj:q._subj, q:q.q, n:0 };
+    e.n++; e.last = Date.now(); e.okDays = []; w[k] = e;
+  } else if (w[k]) {
+    const e = w[k]; e.okDays = e.okDays || [];
+    if (!e.okDays.includes(today)) e.okDays.push(today);
+    if (e.okDays.length >= 2) delete w[k];
+  }
+  saveWrong(w);
+}
+function wrongList(subj) {
+  const bank = window.QUIZ_BANK || {};
+  return Object.values(loadWrong())
+    .filter(e => !subj || e.subj === subj)
+    .map(e => { const d = bank[e.tid], q = d?.questions.find(x => x.q === e.q); return q ? { e, q:tag(q, d) } : null; })
+    .filter(Boolean);
+}
+
+// ═══════════════════════════════════════════════════════
+//  QUIZ «VIRTUALI»: lampo da 10, lampo misto, ripasso errori
+// ═══════════════════════════════════════════════════════
+function tag(q, d) { return Object.assign({}, q, { _tid:d.id, _subj:d.subject }); }
+function activeTests(subj) {
+  const out = [];
+  (window.QUIZ_REGISTRY || []).forEach(s => (s.tests || []).forEach(t => {
+    const d = window.QUIZ_BANK?.[t.id];
+    if (t.enabled && d && d.type !== 'reading' && (!subj || s.subject === subj)) out.push(d);
+  }));
+  return out;
+}
+function startCustom(meta, questions, replay) {
+  G.testData = { id:meta.id, subject:meta.subject, title:meta.title, version:1,
+                 timePerQuestion: meta.tpq ?? 25, questions, virtual:true };
+  G.subj = (window.QUIZ_REGISTRY || []).find(s => s.subject === meta.subject) || null;
+  G.testMeta = null;
+  setColor(G.subj?.subjectColor || DEF_ACC);
+  runQuiz(questions);
+  G.replay = replay;
+}
+function shortTitle(t) { return t.replace(/^Cap\. \d+ — /, ''); }
+function startLampo(testId) {
+  const d = window.QUIZ_BANK[testId];
+  const qs = shuffle(d.questions.map(q => tag(q, d))).slice(0, 10);
+  startCustom({ id:testId + '-lampo', subject:d.subject, title:'⚡ ' + shortTitle(d.title), tpq:d.timePerQuestion || 25 }, qs, () => startLampo(testId));
+}
+function startLampoMix(subj) {
+  const tests = activeTests(subj);
+  if (!tests.length) return;
+  // 10 domande pescate a rotazione dai vari test (interleaving)
+  const pools = shuffle(tests.map(d => shuffle(d.questions.map(q => tag(q, d)))));
+  const qs = []; let i = 0;
+  while (qs.length < 10 && pools.some(p => p.length)) { const p = pools[i++ % pools.length]; if (p.length) qs.push(p.pop()); }
+  startCustom({ id:'lampo-' + (subj || 'misto'), subject:subj || 'misto',
+                title:'⚡ Lampo misto' + (subj ? ' · ' + cap(subj) : ''), tpq:25 }, qs, () => startLampoMix(subj));
+}
+function startReview(subj) {
+  const list = wrongList(subj).sort((a, b) => (b.e.n - a.e.n) || (a.e.last - b.e.last)).slice(0, 10);
+  if (!list.length) return;
+  startCustom({ id:'ripasso-' + (subj || 'tutto'), subject:subj || 'misto',
+                title:'🔁 Ripasso errori' + (subj ? ' · ' + cap(subj) : ''), tpq:25 }, list.map(x => x.q), () => startReview(subj));
+}
+const LS_INST = 'pietroquiz:install-hide';
+function dismissInstall() { try { localStorage.setItem(LS_INST, '1'); } catch {} document.getElementById('install').hidden = true; }
 
 function renderHome() {
   setColor(DEF_ACC);
@@ -735,6 +908,14 @@ function renderHome() {
     rs.hidden = false;
   } else rs.hidden = true;
 
+  // Ripasso degli errori
+  const nw = wrongList().length, ar = document.getElementById('act-rev');
+  document.getElementById('rev-n').textContent = nw ? `${nw} ${nw === 1 ? 'domanda' : 'domande'} da sistemare` : 'nessun errore da ripassare 🎉';
+  ar.disabled = !nw; ar.classList.toggle('hot', nw > 0);
+  // Invito a installare l'app (solo iPhone/iPad in Safari)
+  let hide = false; try { hide = localStorage.getItem(LS_INST) === '1'; } catch {}
+  document.getElementById('install').hidden = hide || navigator.standalone !== false;
+  renderModeSwitch();
   buildSubjects();
   buildForYou();
   renderHist();
@@ -761,8 +942,9 @@ function testCard(t, subj, withSubj) {
       <div class="ti-desc">${t.description || ''}</div>
       <div class="ti-meta">
         <span class="ti-badge">${qCount ? qCount + ' domande' : '—'}</span>
-        ${data ? `<span class="ti-badge">${tpqv ? '⏱ ' + tpqv + ' s' : 'senza timer'}</span>` : ''}
+        ${data ? `<span class="ti-badge">${getMode() === 'sfida' && tpqv ? '⏱ ' + tpqv + ' s' : 'senza timer'}</span>` : ''}
         ${nWrite ? `<span class="ti-badge">✍️ ${nWrite}</span>` : ''}
+        ${active && qCount > 10 ? `<button class="ti-lampo" onclick="event.stopPropagation();startLampo('${t.id}')">⚡ 10</button>` : ''}
         ${!active ? '<span class="ti-soon">presto</span>' : best ? `<span class="ti-best">${best}% <small>record</small></span>` : '<span class="ti-new">NUOVO</span>'}
       </div>
     </div>
@@ -813,6 +995,11 @@ function selSubj(subjId) {
   document.getElementById('sh-sub').textContent  =
     !pr.act ? 'presto qui i nuovi quiz' : `${pr.act} quiz · ${pr.tried ? 'media record ' + pr.pct + '%' : 'tutti da scoprire'}`;
 
+  const nws = wrongList(subjId).length, nAct = activeTests(subjId).length;
+  document.getElementById('subj-actions').innerHTML = !nAct ? '' :
+    `<button class="act ${nws ? 'hot' : ''}" ${nws ? '' : 'disabled'} onclick="startReview('${subjId}')"><span class="ai">🔁</span><b>Errori di ${cap(subjId)}</b><span>${nws ? nws + ' da sistemare' : 'nessuno 🎉'}</span></button>` +
+    `<button class="act" onclick="startLampoMix('${subjId}')"><span class="ai">⚡</span><b>Lampo misto</b><span>10 domande da tutti i quiz</span></button>`;
+  renderModeSwitch();
   list.innerHTML = tests.length ? tests.map(t => testCard(t, G.subj, false)).join('')
     : `<div class="empty-box">Ancora niente qui…<br>papà sta preparando i quiz! ✏️</div>`;
   showScr('s-subj');
@@ -822,7 +1009,10 @@ function selSubj(subjId) {
 //  QUIZ
 // ═══════════════════════════════════════════════════════
 function isReading() { return G.testData?.type === 'reading'; }
-function tpq()       { const v = G.testData?.timePerQuestion; return (v === 0) ? 0 : (v || 20); }
+function tpq() {
+  const v = G.testData?.timePerQuestion, base = (v === 0) ? 0 : (v || 20);
+  return getMode() === 'sfida' ? base : 0;   // in allenamento niente timer
+}
 
 function startQuiz(testId) {
   G.testData = window.QUIZ_BANK[testId];
@@ -830,10 +1020,16 @@ function startQuiz(testId) {
   G.testMeta = G.subj?.tests?.find(t => t.id === testId);
   setColor(G.subj?.subjectColor || DEF_ACC);
 
-  G.qs    = shuffle([...G.testData.questions]);
+  G.replay = () => startQuiz(testId);
+  runQuiz(G.testData.questions.map(q => tag(q, G.testData)));
+}
+
+function runQuiz(list) {
+  G.qs    = shuffle([...list]);
   G.idx   = 0; G.score = 0; G.ans = []; G.combo = 0;
   document.getElementById('combo').classList.remove('on');
-  G.t0    = Date.now(); G.sent = false;
+  G.t0    = Date.now(); G.sent = false; G.shareFile = null;
+  G.attemptId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
 
   if (isReading()) {
     // Prima il testo, come all'esame: si legge, poi si risponde.
@@ -879,13 +1075,17 @@ function renderQ() {
   document.getElementById('opts').classList.remove('done');
 
   G._curEv = q.ev || null;
-  if (isNumQ(q)) {
+  window.scrollTo(0, 0);
+  G.lockUntil = Date.now() + 350;   // niente tocchi «fantasma» mentre la domanda compare
+  if (isOrderQ(q)) renderOrder(q);
+  else if (isClassQ(q)) renderClass(q);
+  else if (isNumQ(q)) {
     // Risposta da scrivere: niente opzioni, casella + unità + conferma
     G._opts = null; G._corrOrig = null;
     document.getElementById('opts').innerHTML =
       `<div class="num-box">
          <div class="num-row">
-           <input class="num-in" id="num-in" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+           <input class="num-in" id="num-in" type="text" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                   placeholder="${isFracQ(q) ? 'scrivi la frazione' : 'scrivi il numero'}" onkeydown="if(event.key==='Enter')checkNum()"
                   ${isFracQ(q) ? 'oninput="fracPreview(this.value)"' : ''}>
            ${q.unit ? `<span class="num-unit">${q.unit}</span>` : ''}
@@ -896,7 +1096,7 @@ function renderQ() {
            ? 'Scrivi la frazione con la barra, per esempio 13/12 oppure -5/12. Un numero intero puoi scriverlo così com’è, per esempio -32.'
            : 'Usa la virgola per i decimali. Per le potenze di 10 scrivi per esempio 2,5x10^-4 oppure 2,5e-4.'}</div>
        </div>`;
-    setTimeout(() => document.getElementById('num-in')?.focus(), 50);
+    document.getElementById('num-in')?.focus({ preventScroll:true });   // sincrono: su iPhone apre la tastiera
   } else {
     const opts = shuffle(q.options.map((o,i) => ({text:o, orig:i})));
     G._opts = opts; G._corrOrig = q.answer;
@@ -914,7 +1114,8 @@ function renderQ() {
   document.getElementById('btn-txt').classList.toggle('on', isReading());
 
   // Timer: timePerQuestion 0 → nessun timer (modalità reading)
-  const t = tpq();
+  let t = tpq();
+  if (t > 0 && (isOrderQ(q) || isClassQ(q))) t = Math.max(t, 60);   // i giochi hanno bisogno di più tempo
   if (t > 0) {
     document.getElementById('tmr-c').classList.remove('off');
     startTmr(t);
@@ -925,6 +1126,7 @@ function renderQ() {
 }
 
 function pick(di) {
+  if (Date.now() < (G.lockUntil || 0) || !G._opts) return;
   stopTmr();
   const t = tpq();
   const elapsed = t > 0 ? (t - G.tLeft) : 0;
@@ -955,6 +1157,79 @@ function pick(di) {
 //  Campi: answer (numero), unit (facoltativo), answerText (come mostrare
 //  la soluzione, facoltativo), tolerance (relativa, default 0.02 = 2%).
 // ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+//  GIOCHI
+//  type:"order"    → items: elementi nell'ordine giusto (l'app li mescola);
+//                    si toccano nell'ordine, un tocco sull'elemento scelto lo rimette giù.
+//  type:"classify" → categories: [...], items: [{t:"testo", c:indice_categoria}]
+// ═══════════════════════════════════════════════════════
+function isOrderQ(q) { return q && q.type === 'order'; }
+function isClassQ(q) { return q && q.type === 'classify'; }
+function renderOrder(q) {
+  G._opts = null; G._corrOrig = null;
+  let pool = shuffle(q.items.map((t, i) => ({ t, i })));
+  if (pool.every((x, k) => x.i === k)) pool.reverse();          // mai già in ordine
+  G.ord = { pool, seq:[] }; drawOrder(false);
+}
+function drawOrder(done) {
+  const o = G.ord;
+  document.getElementById('opts').innerHTML = `<div class="game">
+    <div class="g-lab">Il tuo ordine</div>
+    <div class="g-seq">${o.seq.map((x, k) => `<button class="g-chip in ${done ? (x.i === k ? 'ok' : 'ko') : ''}" ${done ? 'disabled' : ''} onclick="ordBack(${k})"><b>${k + 1}</b><span>${mathify(x.t)}</span></button>`).join('')
+      || '<div class="g-empty">Tocca qui sotto gli elementi, dal primo all’ultimo</div>'}</div>
+    ${o.pool.length && !done ? `<div class="g-pool">${o.pool.map((x, k) => `<button class="g-chip" onclick="ordPick(${k})"><span>${mathify(x.t)}</span></button>`).join('')}</div>` : ''}
+    ${done ? '' : `<button class="g-go" ${o.pool.length ? 'disabled' : ''} onclick="confirmGame(false)">Conferma l'ordine</button>`}
+  </div>`;
+}
+function ordPick(k) { if (Date.now() < (G.lockUntil || 0)) return; G.ord.seq.push(G.ord.pool.splice(k, 1)[0]); drawOrder(false); }
+function ordBack(k) { G.ord.pool.push(G.ord.seq.splice(k, 1)[0]); drawOrder(false); }
+
+function renderClass(q) {
+  G._opts = null; G._corrOrig = null;
+  G.cls = { order: shuffle(q.items.map((_, i) => i)), sel:{} }; drawClass(false);
+}
+function drawClass(done) {
+  const q = G.qs[G.idx], c = G.cls;
+  const all = q.items.every((_, i) => c.sel[i] !== undefined);
+  document.getElementById('opts').innerHTML = `<div class="game">
+    ${c.order.map(i => { const x = q.items[i];
+      return `<div class="g-row ${done ? (c.sel[i] === x.c ? 'ok' : 'ko') : ''}">
+        <div class="g-it">${mathify(x.t)}</div>
+        <div class="g-pills">${q.categories.map((cat, ci) => `<button class="g-pill ${c.sel[i] === ci ? 'on' : ''} ${done && ci === x.c ? 'right' : ''}" ${done ? 'disabled' : ''} onclick="clsSet(${i},${ci})">${escHtml(cat)}</button>`).join('')}</div>
+      </div>`; }).join('')}
+    ${done ? '' : `<button class="g-go" ${all ? '' : 'disabled'} onclick="confirmGame(false)">Conferma</button>`}
+  </div>`;
+}
+function clsSet(i, ci) { if (Date.now() < (G.lockUntil || 0)) return; G.cls.sel[i] = ci; drawClass(false); }
+
+function confirmGame(timeout) {
+  const q = G.qs[G.idx];
+  if (!timeout && Date.now() < (G.lockUntil || 0)) return;
+  if (document.getElementById('btn-next').classList.contains('on')) return;
+  stopTmr();
+  let ok, chosen, correct;
+  if (isOrderQ(q)) {
+    const seq = G.ord.seq;
+    ok = seq.length === q.items.length && seq.every((x, k) => x.i === k);
+    chosen = seq.map(x => x.t).join(' → ');
+    correct = q.items.join(' → ');
+    drawOrder(true);
+  } else {
+    const c = G.cls;
+    ok = q.items.every((x, i) => c.sel[i] === x.c);
+    chosen = q.items.map((x, i) => `${x.t}: ${c.sel[i] !== undefined ? q.categories[c.sel[i]] : '—'}`).join('; ');
+    correct = q.items.map(x => `${x.t}: ${q.categories[x.c]}`).join('; ');
+    drawClass(true);
+  }
+  const t = G.tTot || 0, elapsed = t > 0 ? (t - G.tLeft) : 0;
+  let pts = 0;
+  if (ok) { pts = t > 0 ? (elapsed <= 15 ? PTS.fast : elapsed <= 35 ? PTS.mid : PTS.slow) : PTS.mid; G.score += pts; }
+  G.ans.push({ q:q.q, ok, chosen: chosen || '—', correct, exp:q.explanation || '' });
+  showFB(ok, pts, (ok ? '' : 'Soluzione: ' + correct + '. ') + (q.explanation || ''), !!timeout);
+  document.getElementById('slive').textContent = `⭐ ${G.score}`;
+  document.getElementById('btn-next').classList.add('on');
+}
+
 function isNumQ(q) { return q && (q.type === 'numeric' || q.type === 'fraction'); }
 function isFracQ(q) { return q && q.type === 'fraction'; }
 
@@ -962,18 +1237,31 @@ const SUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6',
 function parseNum(raw) { return parseNumAll(raw)[0]; }
 // Restituisce le letture possibili: il punto può essere decimale ("1.65")
 // o separatore delle migliaia ("2.750"); con la virgola i punti sono migliaia.
-function parseNumAll(raw) {
+function normUnit(u) {
+  return String(u || '').toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c]).replace(/\s+/g, '');
+}
+function parseNumAll(raw, unit) {
   let s = String(raw||'').trim().toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c]);
-  s = s.replace(/[−–]/g,'-').replace(/\s+/g,'');
+  s = s.replace(/[−–]/g,'-').replace(/\s+/g,'').replace(/[()]/g,'');
+  const u = normUnit(unit);
   const variants = s.includes(',')
     ? [s.replace(/\.(?=\d{3}(\D|$))/g,'').replace(/,/g,'.')]
     : [s, s.replace(/\.(?=\d{3}(\D|$))/g,'')];
   const out = [];
-  for (const t of variants) {
-    const m = t.match(/^([+-]?(?:\d+\.?\d*|\.\d+))(?:(?:[x×*·]10\^?|e)([+-]?\d+))?/);
-    if (m) out.push(parseFloat(m[1]) * (m[2] !== undefined ? Math.pow(10, parseInt(m[2],10)) : 1));
+  for (let t of variants) {
+    if (u && t.endsWith(u)) t = t.slice(0, -u.length);          // l'unità scritta in fondo è ammessa
+    let m;
+    if ((m = t.match(/^([+-]?)10\^([+-]?\d+)$/))) { out.push(parseFloat(m[1] + '1e' + m[2])); continue; }
+    if ((m = t.match(/^([+-]?\d+)\/(\d+)$/)) && +m[2] !== 0) { out.push(parseInt(m[1], 10) / parseInt(m[2], 10)); continue; }
+    m = t.match(/^([+-]?(?:\d+\.?\d*|\.\d+))(?:(?:[x×*·]10\^?|e)([+-]?\d+))?$/);
+    if (m) out.push(parseFloat(m[1] + (m[2] !== undefined ? 'e' + m[2] : '')));
   }
   return out.length ? out : [NaN];
+}
+function numWarn(msg) {
+  const h = document.querySelector('.num-hint'), el = document.getElementById('num-in');
+  if (h) { h.textContent = msg; h.classList.add('warn'); }
+  el?.focus();
 }
 function numText(q) {
   if (isFracQ(q)) return q.answerText || String(q.answer);
@@ -989,11 +1277,12 @@ function checkNum() {
   let ok, note = '';
   if (isFracQ(q)) {
     const r = checkFrac(q, raw);
-    if (!r) { el.value = ''; el.focus(); el.placeholder = 'scrivi una frazione, es. 3/4'; return; }
+    if (!r) { numWarn('Scrivi una frazione con la barra, per esempio 3/4 oppure -5/12.'); return; }
+    if (r.mixed) { numWarn('I numeri misti come «3 1/2» non valgono: scrivi la frazione, per esempio 7/2.'); return; }
     ok = r.ok; note = r.note;
   } else {
-    const vals = parseNumAll(raw);
-    if (!raw || isNaN(vals[0])) { el.focus(); el.placeholder = 'scrivi un numero'; return; }
+    const vals = parseNumAll(raw, q.unit);
+    if (!raw || isNaN(vals[0])) { numWarn('Non riesco a leggere il numero: usa la virgola per i decimali, per esempio 2,5 oppure 2,5x10^-4.'); return; }
     const tol = (q.tolerance !== undefined) ? q.tolerance : 0.02;
     ok = vals.some(v => q.answer === 0 ? Math.abs(v) < 1e-9 : Math.abs(v - q.answer) <= Math.abs(q.answer) * tol);
   }
@@ -1021,6 +1310,7 @@ function checkNum() {
 //  es. «riduci al denominatore 30») | "any" (basta il valore).
 // ═══════════════════════════════════════════════════════
 function parseFrac(raw) {
+  if (/\d\s+\d/.test(String(raw||''))) return { mixed:true };   // «3 1/2»: numero misto, non accettato
   let s = String(raw||'').replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c])
                          .replace(/[−–]/g,'-').replace(/[\s()]/g,'').replace(/:/g,'/');
   const m = s.match(/^([+-]*)(\d+)(?:\/([+-]*)(\d+))?$/);
@@ -1034,20 +1324,20 @@ function parseFrac(raw) {
 // Prima si fa l'escape (i testi sono testo semplice), poi si aggiunge il markup.
 function mathify(s) {
   const h = escHtml(s);
-  if (G.testData?.subject !== 'matematica') return h;
-  return h.replace(/(^|[^\d,.\/\w])([−-]?)(\d+)\/(\d+)(?![\d\/,])/g,
+  return h.replace(/(^|[^\d,.\/\w])([−-]?)(\d+)\/(\d+)(?![\d\/]|,\d)/g,
     (m, pre, sg, a, b) => `${pre}${sg ? '−' : ''}<span class="frac"><span>${a}</span><span>${b}</span></span>`);
 }
 function fracPreview(v) {
   const el = document.getElementById('num-prev'); if (!el) return;
   const f = parseFrac(v);
-  el.innerHTML = !f || !String(v).includes('/') ? '' :
+  el.innerHTML = !f || f.mixed || !String(v).includes('/') ? '' :
     `<small>hai scritto</small> ${f.n < 0 ? '−' : ''}<span class="frac"><span>${Math.abs(f.n)}</span><span>${f.d}</span></span>`;
 }
 function gcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ [a,b]=[b,a%b]; } return a; }
 function checkFrac(q, raw) {
   const u = parseFrac(raw), c = parseFrac(q.answer);
   if (!u) return null;
+  if (u.mixed) return { mixed:true };
   const same = u.n * c.d === c.n * u.d;
   const form = q.form || 'reduced';
   if (!same) return { ok:false, note:'' };
@@ -1069,11 +1359,14 @@ function closeSheet() {
     if (x0 === null) return;
     const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null;
     const quizOn = document.getElementById('s-quiz').classList.contains('on');
-    if (quizOn && dx < -60 && Math.abs(dy) < 60 && document.getElementById('btn-next').classList.contains('on')) nextQ();
+    const textOpen = document.getElementById('txt-ov').classList.contains('on');
+    if (quizOn && !textOpen && dx < -60 && Math.abs(dy) < 60 && document.getElementById('btn-next').classList.contains('on')) nextQ();
   }, { passive:true });
 })();
 
-function nextQ() { G.idx++; G.idx>=G.qs.length ? showRes() : renderQ(); }
+function nextQ() {
+  if (!document.getElementById('btn-next').classList.contains('on')) return;   // niente doppio «Avanti»
+  G.idx++; G.idx>=G.qs.length ? showRes() : renderQ(); }
 
 // ═══════════════════════════════════════════════════════
 //  OVERLAY TESTO (reading)
@@ -1108,6 +1401,8 @@ function updTmr()  {
 }
 function timeUp() {
   const q=G.qs[G.idx];
+  if (isOrderQ(q) || isClassQ(q)) { confirmGame(true); return; }
+  if (isNumQ(q) && document.getElementById('num-in')?.value.trim()) { G.lockUntil = 0; checkNum(); return; }   // vale quello che ha scritto
   if (isNumQ(q)) {
     G.ans.push({q:q.q,ok:false,chosen:'—',correct:numText(q),exp:q.explanation||''});
     const el=document.getElementById('num-in'); if(el) el.disabled=true;
@@ -1147,6 +1442,8 @@ function showFB(ok,pts,exp,timeout=false) {
 
 const PRAISE = ['Esatto!','Perfetto!','Grande!','Ottimo!','Così si fa!','Bravissimo!'];
 function answerFx(ok, pts) {
+  trackAnswer(G.qs[G.idx], ok);
+  saveCurrent();
   G.combo = ok ? (G.combo||0) + 1 : 0;
   const cb = document.getElementById('combo');
   cb.textContent = `🔥 ${G.combo} di fila`;
@@ -1198,8 +1495,8 @@ function confetti() {
   })(t0);
 }
 
-async function shareCard() {
-  const r = G.lastReport; if (!r) return;
+async function makeShareFile() {
+  const r = G.lastReport; if (!r) return null;
   try { await document.fonts.ready; } catch {}
   const W = 1080, H = 1920, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const c = cv.getContext('2d'), cs = getComputedStyle(document.documentElement);
@@ -1226,12 +1523,20 @@ async function shareCard() {
   c.font = F('700 52px'); c.fillText(`✅ ${r.ok}/${r.total}   ⭐ ${r.score} punti`, W / 2, 1530);
   c.font = F('600 44px'); c.fillStyle = 'rgba(255,255,255,.9)'; c.fillText(`${r.student} · ${new Date().toLocaleDateString('it-IT')}`, W / 2, 1760);
   const blob = await new Promise(res => cv.toBlob(res, 'image/png'));
-  const file = new File([blob], 'quizmaster.png', { type:'image/png' });
+  return new File([blob], 'quizmaster.png', { type:'image/png' });
+}
+// L'immagine si prepara appena compaiono i risultati: al tocco la condivisione
+// parte subito (iOS la rifiuta se passa troppo tempo dal tocco).
+async function shareCard() {
+  const file = G.shareFile || (G.shareFile = await makeShareFile());
+  if (!file) return;
   try {
     if (navigator.canShare?.({ files:[file] })) { await navigator.share({ files:[file], title:'QuizMaster' }); return; }
   } catch (e) { if (e?.name === 'AbortError') return; }
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'quizmaster.png'; a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  const img = document.getElementById('share-img');
+  if (img.dataset.url) URL.revokeObjectURL(img.dataset.url);
+  img.src = img.dataset.url = URL.createObjectURL(file);
+  document.getElementById('share-ov').classList.add('on');
 }
 
 function showRes() {
@@ -1267,6 +1572,7 @@ function showRes() {
   if (!prev || pct>prev) localStorage.setItem(lsKeyBest(subj,id,ver), pct);
 
   reportAttempt(true);
+  G.shareFile = null; setTimeout(async () => { G.shareFile = await makeShareFile(); }, 1300);
   document.getElementById('btn-wa').textContent = canReport() ? '📤 Manda a papà' : '📤 Manda su WhatsApp';
   showScr('s-res');
 }
@@ -1280,17 +1586,20 @@ function showRes() {
 const LS_OUTBOX = 'pietroquiz:outbox';
 function txt(s) { return String(s??''); }   // i testi sono sempre testo semplice
 
-function reportAttempt(completed) {
-  if (G.sent || !G.testData || !G.ans.length) return;
-  G.sent = true;
+const LS_CUR = 'pietroquiz:current';
+function readBox() { try { return JSON.parse(localStorage.getItem(LS_OUTBOX)) || []; } catch { return []; } }
+function writeBox(b) { try { localStorage.setItem(LS_OUTBOX, JSON.stringify(b.slice(-50))); } catch {} }
+function buildItem(completed) {
   const cfg = window.QUIZ_CONFIG || {};
   const ok  = G.ans.filter(a=>a.ok).length;
-  const item = {
-    id:        (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random()),
+  return {
+    id:        G.attemptId,
     token:     cfg.token || '',
     student:   studentName(),
+    code:      getUser()?.code || '',
     ts:        new Date().toISOString(),
     completed: !!completed,
+    mode:      getMode(),
     subject:   G.testData.subject,
     testId:    G.testData.id,
     testTitle: G.testData.title,
@@ -1303,28 +1612,53 @@ function reportAttempt(completed) {
     seconds:   Math.round((Date.now() - (G.t0||Date.now())) / 1000),
     answers:   G.ans.map(a => ({ q:txt(a.q), chosen:txt(a.chosen), correct:txt(a.correct), ok:!!a.ok }))
   };
+}
+// Dopo ogni risposta: copia del tentativo in corso. Se l'app viene chiusa a metà,
+// alla riapertura diventa un tentativo «interrotto» (stesso id: niente doppioni).
+function saveCurrent() {
+  if (G.sent || !G.testData || !G.ans.length || !canReport() || !window.QUIZ_CONFIG?.reportUrl) return;
+  try { localStorage.setItem(LS_CUR, JSON.stringify(buildItem(false))); } catch {}
+}
+function recoverCurrent() {
+  let c = null; try { c = JSON.parse(localStorage.getItem(LS_CUR)); } catch {}
+  if (!c) return;
+  try { localStorage.removeItem(LS_CUR); } catch {}
+  const box = readBox(); if (!box.some(x => x.id === c.id)) { box.push(c); writeBox(box); }
+}
+function reportAttempt(completed) {
+  if (G.sent || !G.testData || !G.ans.length) return;
+  G.sent = true;
+  const item = buildItem(completed);
   G.lastReport = item;
-  if (!cfg.reportUrl || !canReport()) return;   // nel foglio solo chi ha «invia risultati»
-  let box = []; try { box = JSON.parse(localStorage.getItem(LS_OUTBOX)) || []; } catch {}
-  box.push(item); if (box.length > 50) box = box.slice(-50);
-  localStorage.setItem(LS_OUTBOX, JSON.stringify(box));
+  try { localStorage.removeItem(LS_CUR); } catch {}
+  if (!window.QUIZ_CONFIG?.reportUrl || !canReport()) return;   // nel foglio solo chi ha «invia risultati»
+  const box = readBox(); box.push(item); writeBox(box);
   flushOutbox();
 }
 
+// Invio della coda: un tentativo esce dalla coda SOLO quando lo script risponde ok.
+// Se la risposta non arriva (rete, errore), resta e si riprova: lo script scarta i doppioni per id.
+let flushing = false;
 async function flushOutbox() {
   const cfg = window.QUIZ_CONFIG || {};
-  if (!cfg.reportUrl) return;
-  let box = []; try { box = JSON.parse(localStorage.getItem(LS_OUTBOX)) || []; } catch {}
-  for (const item of [...box]) {
-    try {
-      // text/plain + no-cors: richiesta "semplice", accettata da Google Apps Script
-      await fetch(cfg.reportUrl, { method:'POST', mode:'no-cors',
-        headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(item) });
-      let cur = []; try { cur = JSON.parse(localStorage.getItem(LS_OUTBOX)) || []; } catch {}
-      localStorage.setItem(LS_OUTBOX, JSON.stringify(cur.filter(x => x.id !== item.id)));
-    } catch { break; }   // niente rete: si riprova la prossima volta
-  }
+  if (!cfg.reportUrl || flushing) return;
+  flushing = true;
+  try {
+    for (const item of readBox()) {
+      let r = null;
+      try {
+        const res = await fetch(cfg.reportUrl, { method:'POST',
+          headers:{ 'Content-Type':'text/plain;charset=utf-8' }, body: JSON.stringify(item) });
+        r = await res.json();
+      } catch { break; }                       // niente rete o risposta illeggibile: riprova più tardi
+      if (!r || !r.ok) { console.warn('Invio non accettato', r); break; }
+      writeBox(readBox().filter(x => x.id !== item.id));
+    }
+  } finally { flushing = false; }
 }
+window.addEventListener('online', flushOutbox);
+window.addEventListener('pageshow', flushOutbox);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') flushOutbox(); });
 
 function sendToDad() {
   const r = G.lastReport; if (!r) return;
@@ -1356,7 +1690,7 @@ function quitQuiz() {
   if (G.ans.length && G.idx < G.qs.length && !confirm('Vuoi uscire? Il quiz resta a metà.')) return;
   reportAttempt(false); stopTmr(); closeText(); openSubj();
 }
-function restart() { reportAttempt(false); startQuiz(G.testData.id); }
+function restart() { reportAttempt(false); (G.replay || (() => startQuiz(G.testData.id)))(); }
 function setColor(c) {
   document.documentElement.style.setProperty('--acc',c);
   document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0b0e1a');
@@ -1455,7 +1789,7 @@ function renderHist() {
 function clearHist() {
   if(!confirm('Cancellare tutto lo storico e tutti i record?')) return;
   Object.keys(localStorage)
-    .filter(k => k.startsWith('pietroquiz:') && k !== LS_OUTBOX && k !== LS_USER)
+    .filter(k => k.startsWith('pietroquiz:') && ![LS_OUTBOX, LS_USER, LS_CUR, LS_MODE, LS_INST].includes(k))
     .forEach(k => localStorage.removeItem(k));
   renderHome();
 }

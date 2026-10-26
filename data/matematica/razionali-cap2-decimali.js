@@ -16,7 +16,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
   title:           "Cap. 2 — Esercizi: decimali, proporzioni, percentuali",
   description:     "Periodici, frazione generatrice, proporzioni, %, IVA, errori, notazione scientifica",
   icon:            "📐",
-  version:         1,
+  version:         2,
   timePerQuestion: 0,
 
   questions: [
@@ -396,10 +396,10 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
     {
       "q": "Qual è la frazione che indica √2?",
       "options": [
-        "1,414/1000",
-        "707/500",
-        "Nessuna: √2 non è un numero razionale",
-        "2/1"
+        "707/500, perché √2 = 1,414",
+        "2/1, perché √2 · √2 = 2",
+        "Nessuna: √2 è irrazionale",
+        "141/100, perché √2 ≈ 1,41"
       ],
       "answer": 2,
       "explanation": "Il libro dimostra per assurdo che √2 non si può scrivere come frazione: è irrazionale (p. 93)."

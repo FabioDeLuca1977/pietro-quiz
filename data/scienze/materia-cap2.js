@@ -15,7 +15,7 @@ window.QUIZ_BANK["materia-cap2"] = {
   title:           "Cap. 2 — Le trasformazioni fisiche della materia",
   description:     "Stati fisici, teoria particellare, sostanze pure, miscele, soluzioni, solubilità",
   icon:            "🧪",
-  version:         1,
+  version:         2,
   timePerQuestion: 25,
 
   questions: [
@@ -35,10 +35,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Nei solidi, le particelle:",
       "options": [
-        "Interagiscono con deboli forze attrattive",
-        "Occupano tutto il volume disponibile",
+        "Scorrono le une sulle altre, perché le forze attrattive sono minori",
+        "Si muovono liberamente, perché le forze attrattive sono trascurabili",
         "Possono solo vibrare, perché le forze attrattive sono molto intense",
-        "Sono molto distanti l'una dall'altra"
+        "Sono molto distanti, perché tra loro c'è molto spazio vuoto"
       ],
       "answer": 2,
       "explanation": "In un solido le particelle sono in stretto contatto, per forze attrattive molto intense, e possono solo vibrare (p. 41)."
@@ -47,9 +47,9 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Nello stato gassoso, le particelle:",
       "options": [
-        "Sono sottoposte a intense forze attrattive",
-        "Sono molto vicine tra loro",
-        "Scivolano le une sulle altre",
+        "Sono in stretto contatto, con forze di attrazione molto intense",
+        "Restano ferme, con forze di attrazione trascurabili",
+        "Scorrono le une sulle altre, con forze di attrazione minori",
         "Si muovono liberamente, con forze di attrazione trascurabili"
       ],
       "answer": 3,
@@ -59,10 +59,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Perché i gas sono facilmente comprimibili?",
       "options": [
-        "Perché le loro particelle sono più piccole",
+        "Perché le loro particelle si schiacciano facilmente",
         "Perché tra le particelle c'è molto spazio vuoto",
-        "Perché hanno una forma definita",
-        "Perché le loro particelle sono ferme"
+        "Perché tra le particelle agiscono forze molto intense",
+        "Perché le loro particelle sono ferme e vicine"
       ],
       "answer": 1,
       "explanation": "A causa del notevole spazio vuoto tra le particelle, i gas sono facilmente comprimibili (p. 41)."
@@ -71,10 +71,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Secondo il libro, quando si parla di «vapore» invece che di «gas»?",
       "options": [
-        "Quando la sostanza è gassosa a temperatura ambiente",
-        "Quando l'aeriforme deriva dal riscaldamento di un liquido o di un solido",
-        "Quando le particelle sono cariche elettricamente",
-        "Sono sinonimi anche in campo scientifico"
+        "Quando la sostanza è naturalmente gassosa a temperatura ambiente",
+        "Quando l'aeriforme si ottiene riscaldando un liquido o un solido",
+        "Quando l'aeriforme ha particelle cariche e ricche di energia",
+        "Quando l'aeriforme si raffredda e torna allo stato liquido"
       ],
       "answer": 1,
       "explanation": "Gas: sostanza naturalmente gassosa a temperatura ambiente. Vapore: aeriforme ottenuto riscaldando un liquido o un solido, come il vapore acqueo (p. 41)."
@@ -83,10 +83,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Che cos'è il plasma?",
       "options": [
-        "Un liquido molto denso",
-        "Un solido ad alta temperatura",
-        "Uno stato simile al gas, con particelle cariche elettricamente e ricche di energia",
-        "Un vapore a bassa pressione"
+        "Uno stato simile al liquido, con particelle libere di scorrere",
+        "Un vapore ottenuto riscaldando un liquido o un solido a bassa pressione",
+        "Uno stato simile al gas, con particelle cariche e ricche di energia",
+        "Uno stato simile al gas, con particelle neutre e quasi ferme"
       ],
       "answer": 2,
       "explanation": "Il plasma è il quarto stato della materia: simile a un gas ma con particelle cariche e ricchissime di energia (fulmini, tubi a fluorescenza, Sole, p. 41)."
@@ -107,10 +107,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Si mescolano 20 mL di alcol etilico e 30 mL di acqua. Che cosa si ottiene?",
       "options": [
-        "Esattamente 50 mL di soluzione",
+        "Una soluzione con volume uguale alla somma dei due volumi",
         "Una soluzione con massa uguale alla somma delle due masse",
-        "Una soluzione con volume maggiore di 50 mL",
-        "Nessuna delle precedenti"
+        "Una soluzione con volume maggiore della somma dei due volumi",
+        "Una soluzione con massa minore della somma delle due masse"
       ],
       "answer": 1,
       "explanation": "La massa è la somma delle masse, mentre il volume risulta minore della somma: le particelle di un liquido occupano gli spazi vuoti dell'altro (p. 42)."
@@ -131,10 +131,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Che cos'è una sostanza pura?",
       "options": [
-        "Qualsiasi materiale di origine naturale",
-        "Materia costituita da un solo componente, cioè da una sola specie chimica",
-        "Un materiale senza microrganismi",
-        "Un miscuglio omogeneo"
+        "Materia priva di microrganismi e di inquinanti",
+        "Materia costituita da un solo componente",
+        "Materia costituita da due o più sostanze",
+        "Materia di origine naturale, non lavorata"
       ],
       "answer": 1,
       "explanation": "Una sostanza pura è materia costituita da un solo componente (p. 42). L'acqua potabile non lo è (contiene sali), l'acqua distillata sì."
@@ -157,8 +157,8 @@ window.QUIZ_BANK["materia-cap2"] = {
       "options": [
         "Si osservano quando interagisce con altre sostanze",
         "Si osservano senza che la sostanza cambi identità",
-        "Sono uguali per tutti i materiali",
-        "Non si possono misurare"
+        "Si possono osservare solo quando la sostanza è solida",
+        "Si manifestano quando la sostanza cambia identità"
       ],
       "answer": 1,
       "explanation": "Le proprietà fisiche (colore, stato, densità, temperatura di fusione e di ebollizione…) si osservano senza che la sostanza cambi identità (p. 43)."
@@ -167,10 +167,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Quale di queste è una proprietà chimica del rame?",
       "options": [
-        "Ha densità 8,93 g/cm³",
-        "Fonde a 1085 °C",
+        "Ha una densità pari a 8,93 g/cm³",
+        "Fonde alla temperatura di 1085 °C",
         "All'aria umida si ricopre di verderame",
-        "Bolle a 2570 °C"
+        "Bolle alla temperatura di 2570 °C"
       ],
       "answer": 2,
       "explanation": "Le proprietà chimiche si manifestano quando la sostanza interagisce con altre: il rame all'aria umida forma il verderame (p. 43)."
@@ -191,10 +191,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Quando una miscela si dice eterogenea?",
       "options": [
-        "Quando ha composizione uniforme",
+        "Quando ha composizione uniforme in ogni sua parte",
         "Quando le sostanze non sono miscibili tra loro",
-        "Quando è formata da due liquidi",
-        "Quando è una soluzione"
+        "Quando contiene sostanze in stati fisici diversi",
+        "Quando presenta una sola fase, come le soluzioni"
       ],
       "answer": 1,
       "explanation": "Una miscela è eterogenea quando le sostanze non sono miscibili tra loro (latte, succo d'arancia, granito, p. 44)."
@@ -203,10 +203,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Che cos'è una soluzione?",
       "options": [
-        "Una miscela eterogenea",
-        "Una miscela omogenea e sempre liquida",
+        "Una miscela eterogenea di due o più sostanze",
+        "Una miscela omogenea di un solido in un liquido",
         "Una miscela omogenea di due o più sostanze",
-        "Una miscela di componenti nello stesso stato fisico"
+        "Una miscela di sostanze nello stesso stato fisico"
       ],
       "answer": 2,
       "explanation": "Le miscele omogenee si chiamano soluzioni e non sono solo liquide: esistono soluzioni gassose (l'aria) e solide (le leghe) (pp. 44–45)."
@@ -215,10 +215,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "In una soluzione, il solvente è:",
       "options": [
-        "La sostanza disciolta",
+        "La sostanza presente in minore quantità, che si scioglie",
         "La sostanza presente in maggiore quantità, che scioglie",
-        "Il solido che resta sul fondo",
-        "Sempre l'acqua"
+        "Il solido in eccesso che si deposita sul fondo",
+        "Il liquido che si aggiunge per ultimo alla miscela"
       ],
       "answer": 1,
       "explanation": "Solvente = la sostanza presente in maggiore quantità che ha il compito di sciogliere; soluto = la sostanza disciolta (p. 45)."
@@ -227,10 +227,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Il bronzo è:",
       "options": [
-        "Una sostanza pura",
-        "Una miscela eterogenea",
+        "Una sostanza pura, costituita da un solo metallo",
+        "Una miscela eterogenea di rame e stagno",
         "Una soluzione solida, lega di rame e stagno",
-        "Una soluzione gassosa"
+        "Una soluzione solida, lega di ferro e carbonio"
       ],
       "answer": 2,
       "explanation": "Le leghe sono soluzioni solido-solido: acciaio (ferro e carbonio) e bronzo (rame e stagno) (p. 45)."
@@ -251,10 +251,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Che cosa succede durante l'ebollizione dell'acqua salata?",
       "options": [
-        "Bolle a 100 °C costanti",
-        "Bolle a temperatura più alta e la temperatura continua a salire",
-        "Bolle a temperatura più bassa dell'acqua distillata",
-        "Non bolle"
+        "Bolle a 100 °C e la temperatura resta costante",
+        "Bolle a temperatura più alta, che continua a salire",
+        "Bolle a temperatura più bassa, che continua a scendere",
+        "Bolle a 100 °C, poi la temperatura continua a salire"
       ],
       "answer": 1,
       "explanation": "Evaporando, il solvente diminuisce e la soluzione si concentra: la temperatura di ebollizione è più alta e continua a crescere (p. 46)."
@@ -263,10 +263,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Che cosa indica la solubilità di una sostanza?",
       "options": [
-        "La concentrazione della soluzione ottenuta",
-        "La quantità di soluto che non si scioglie",
-        "La quantità massima che si scioglie in un solvente a una data temperatura",
-        "La velocità con cui si scioglie"
+        "Il rapporto tra la quantità di soluto e la quantità di soluzione",
+        "La quantità di soluto che resta sul fondo come corpo di fondo",
+        "La massima quantità di soluto che si scioglie, a una data temperatura",
+        "La velocità con cui il soluto si scioglie a una data temperatura"
       ],
       "answer": 2,
       "explanation": "La solubilità è la quantità massima di soluto che può sciogliersi, a una definita temperatura, in una data quantità di solvente (p. 47)."
@@ -275,10 +275,10 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "In genere, come varia la solubilità all'aumentare della temperatura?",
       "options": [
-        "Diminuisce sempre",
+        "Diminuisce, come mostra la curva del nitrato di potassio",
         "Cresce, ma ci sono eccezioni come il solfato di litio",
-        "Resta sempre uguale",
-        "Cresce sempre, senza eccezioni"
+        "Resta quasi costante, come per il cloruro di sodio",
+        "Cresce per pochi soluti, come il solfato di litio"
       ],
       "answer": 1,
       "explanation": "La solubilità in genere cresce con la temperatura; il solfato di litio, invece, diminuisce (figura 16, p. 47)."
@@ -299,9 +299,9 @@ window.QUIZ_BANK["materia-cap2"] = {
     {
       "q": "Quando si diluisce una soluzione aggiungendo solvente, che cosa NON cambia?",
       "options": [
-        "Il volume",
+        "La massa della soluzione",
         "La concentrazione",
-        "La densità",
+        "Il volume della soluzione",
         "La massa di soluto"
       ],
       "answer": 3,

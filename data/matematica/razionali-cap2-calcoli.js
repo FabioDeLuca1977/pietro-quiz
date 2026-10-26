@@ -16,7 +16,7 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
   title:           "Cap. 2 — Esercizi: frazioni e operazioni",
   description:     "Semplificare, confrontare, + − × :, potenze · risposta da scrivere",
   icon:            "🧮",
-  version:         1,
+  version:         2,
   timePerQuestion: 0,
 
   questions: [
@@ -90,10 +90,10 @@ window.QUIZ_BANK["razionali-cap2-calcoli"] = {
     {
       "q": "Si può completare 14/5 = 21/□ con un numero naturale?",
       "options": [
-        "Sì, con 7",
-        "Sì, con 15",
+        "Sì, con 12: si aggiunge 7 come al numeratore",
+        "Sì, con 15: si moltiplica per 3 il denominatore",
         "No: servirebbe 7,5, che non è un numero naturale",
-        "Sì, con 10"
+        "Sì, con 10: si moltiplica per 2 il denominatore"
       ],
       "answer": 2,
       "explanation": "Prodotti in croce: 14 · □ = 5 · 21 = 105, quindi □ = 7,5: non è naturale, la scrittura non si può completare (PROVA SUBITO «se è possibile», p. 79; risultato calcolato)."

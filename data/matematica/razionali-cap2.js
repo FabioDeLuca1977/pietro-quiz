@@ -15,7 +15,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
   title:           "Cap. 2 — Numeri razionali e reali: teoria",
   description:     "Frazioni, Q, operazioni, potenze, decimali, proporzioni, reali, approssimazioni",
   icon:            "➗",
-  version:         1,
+  version:         2,
   timePerQuestion: 30,
 
   questions: [
@@ -25,8 +25,8 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "options": [
         "Una coppia ordinata di numeri naturali, con il secondo diverso da zero",
         "Una coppia ordinata di numeri naturali, con il primo diverso da zero",
-        "Una coppia qualsiasi di numeri interi",
-        "Un numero decimale con la virgola"
+        "Una coppia ordinata di numeri naturali, con il secondo maggiore del primo",
+        "Una coppia di numeri naturali qualsiasi, in qualunque ordine"
       ],
       "answer": 0,
       "explanation": "Una frazione è una coppia ordinata di numeri naturali, con il secondo diverso da zero: il primo è il numeratore, il secondo il denominatore (p. 77)."
@@ -35,10 +35,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Vista come operatore, perché il denominatore di una frazione non può essere 0?",
       "options": [
-        "Perché indica quante parti consideriamo",
+        "Perché indica quante delle parti uguali consideriamo",
         "Perché indica in quante parti uguali dividiamo ogni intero",
-        "Perché il numeratore deve essere più grande",
-        "Perché 0 non è un numero naturale"
+        "Perché indica per quale numero moltiplichiamo l'intero",
+        "Perché indica quanti interi prendiamo in considerazione"
       ],
       "answer": 1,
       "explanation": "Il denominatore indica in quante parti uguali dividiamo ogni intero: per questo non può essere 0. Il numeratore indica quante parti consideriamo (p. 77)."
@@ -93,12 +93,12 @@ window.QUIZ_BANK["razionali-cap2"] = {
     },
 
     {
-      "q": "Che cosa dice la proprietà invariantiva delle frazioni?",
+      "q": "Secondo la proprietà invariantiva, come si ottiene una frazione equivalente a una data?",
       "options": [
-        "Sommando lo stesso numero a numeratore e denominatore si ottiene una frazione equivalente",
-        "Moltiplicando o dividendo numeratore e denominatore per uno stesso numero naturale diverso da zero si ottiene una frazione equivalente",
-        "Scambiando numeratore e denominatore si ottiene una frazione equivalente",
-        "Moltiplicando solo il numeratore si ottiene una frazione equivalente"
+        "Sommando o sottraendo a entrambi i termini uno stesso numero diverso da 0",
+        "Moltiplicando o dividendo entrambi i termini per uno stesso naturale diverso da 0",
+        "Scambiando fra loro numeratore e denominatore, se sono diversi da 0",
+        "Moltiplicando o dividendo il solo numeratore per un numero diverso da 0"
       ],
       "answer": 1,
       "explanation": "Proprietà invariantiva: m/n = (m · a)/(n · a) e m/n = (m : b)/(n : b), con n, a, b ≠ 0 (p. 79)."
@@ -108,9 +108,9 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "q": "Perché nella proprietà invariantiva non si può moltiplicare per 0?",
       "options": [
         "Perché si otterrebbe 0/0, che non ha significato",
-        "Perché si otterrebbe sempre 1",
-        "Perché la frazione diventerebbe negativa",
-        "Perché si otterrebbe la frazione reciproca"
+        "Perché si otterrebbe 0/n, cioè una frazione uguale a 0",
+        "Perché si otterrebbe una frazione con segno negativo",
+        "Perché si otterrebbe la frazione reciproca di quella data"
       ],
       "answer": 0,
       "explanation": "Moltiplicando per 0 numeratore e denominatore si ottiene 0/0, che non ha significato; e dividere per 0 è un'operazione impossibile (p. 79)."
@@ -131,10 +131,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Quando una frazione si dice irriducibile (ridotta ai minimi termini)?",
       "options": [
-        "Quando il numeratore è 1",
+        "Quando numeratore e denominatore sono entrambi numeri primi",
         "Quando numeratore e denominatore sono primi fra loro",
         "Quando il denominatore è una potenza di 10",
-        "Quando è una frazione propria"
+        "Quando il numeratore è un divisore del denominatore"
       ],
       "answer": 1,
       "explanation": "Una frazione è irriducibile se numeratore e denominatore sono primi fra loro: 11/8 lo è, 8/6 no (2 è divisore comune) (p. 80)."
@@ -143,10 +143,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Per ridurre due frazioni allo stesso denominatore, di solito quale denominatore comune si usa?",
       "options": [
-        "Il prodotto dei denominatori",
-        "Il MCD dei denominatori",
+        "Il prodotto dei due denominatori",
+        "Il massimo comune divisore dei denominatori",
         "Il minimo comune multiplo dei denominatori",
-        "Il denominatore più grande"
+        "Il maggiore dei due denominatori"
       ],
       "answer": 2,
       "explanation": "Si usa il minimo comune multiplo dei denominatori, chiamato minimo comune denominatore (p. 80)."
@@ -155,10 +155,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Che cos'è un numero razionale assoluto?",
       "options": [
-        "Una frazione ridotta ai minimi termini",
-        "Ognuno dei sottoinsiemi formati da tutte le frazioni fra loro equivalenti",
-        "Una frazione con il segno",
-        "Un numero decimale finito"
+        "La frazione irriducibile scelta come rappresentante",
+        "L'insieme di tutte le frazioni equivalenti a una data",
+        "Una frazione con il segno, positivo o negativo",
+        "L'insieme di tutte le frazioni con lo stesso denominatore"
       ],
       "answer": 1,
       "explanation": "Numero razionale assoluto: ognuno dei sottoinsiemi formati da tutte le frazioni fra loro equivalenti. Non è una frazione, ma l'insieme delle frazioni equivalenti (p. 81)."
@@ -191,10 +191,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Quali numeri razionali si chiamano opposti?",
       "options": [
-        "Due numeri con lo stesso segno",
-        "I numeri con segno diverso ottenuti dallo stesso numero razionale assoluto",
-        "Un numero e il suo reciproco",
-        "Due numeri il cui prodotto è 1"
+        "Due numeri discordi, cioè con segno diverso fra loro",
+        "Due numeri con segno diverso e lo stesso valore assoluto",
+        "Due numeri il cui prodotto è 1, come 4/7 e 7/4",
+        "Due numeri concordi con lo stesso valore assoluto"
       ],
       "answer": 1,
       "explanation": "Opposti: numeri con segno diverso ottenuti dallo stesso numero razionale assoluto, per esempio +4/7 e −4/7 (p. 81)."
@@ -299,10 +299,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Perché 0 non ha reciproco?",
       "options": [
-        "Perché 0 è pari",
-        "Perché 0 · 0 = 0",
+        "Perché 0 non è un numero razionale",
+        "Perché il reciproco di 0 sarebbe ancora 0",
         "Perché non esistono frazioni con denominatore 0",
-        "Perché 0 è l'elemento neutro"
+        "Perché 0 è l'elemento neutro della moltiplicazione"
       ],
       "answer": 2,
       "explanation": "0 non ha reciproco perché non esistono frazioni con denominatore 0 (p. 84)."
@@ -311,10 +311,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Che cosa c'è in Q che in Z non c'è, per la moltiplicazione?",
       "options": [
-        "La proprietà commutativa",
-        "L'elemento neutro 1",
-        "Per ogni numero non nullo, un numero che moltiplicato per esso dà 1",
-        "La legge di annullamento del prodotto"
+        "L'opposto di ogni numero diverso da 0",
+        "L'elemento neutro 1 della moltiplicazione",
+        "Il reciproco di ogni numero diverso da 0",
+        "La proprietà distributiva rispetto all'addizione"
       ],
       "answer": 2,
       "explanation": "A differenza di Z, in Q per ogni numero razionale c/d non nullo esiste il reciproco, che moltiplicato per c/d dà 1 (p. 84)."
@@ -325,8 +325,8 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "options": [
         "È il prodotto del primo per il reciproco del secondo",
         "È il prodotto del primo per l'opposto del secondo",
-        "È il prodotto dei reciproci",
-        "È la differenza fra il primo e il secondo"
+        "È il prodotto del reciproco del primo per il secondo",
+        "È il reciproco del prodotto del primo per il secondo"
       ],
       "answer": 0,
       "explanation": "Il quoziente è il prodotto del primo per il reciproco del secondo: (a/b) : (c/d) = (a/b) · (d/c), con b, c, d ≠ 0 (p. 85)."
@@ -349,8 +349,8 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "options": [
         "Con esponente pari la potenza è sempre negativa",
         "Con esponente dispari la potenza è sempre positiva",
-        "Con esponente pari la potenza ha sempre segno positivo",
-        "Il segno dipende solo dal denominatore"
+        "Con esponente pari la potenza è sempre positiva",
+        "Con esponente dispari la potenza è sempre negativa"
       ],
       "answer": 2,
       "explanation": "Esponente pari: potenza sempre positiva. Esponente dispari: negativa solo se la base è negativa, per esempio (−2/3)³ = −8/27 (p. 85)."
@@ -372,9 +372,9 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "q": "Le frazioni racchiuse nell'occhio di Horus sono:",
       "options": [
         "Potenze della frazione unitaria 1/2",
-        "Multipli di 1/3",
-        "Frazioni decimali",
-        "Frazioni improprie"
+        "Multipli della frazione unitaria 1/2",
+        "Potenze della frazione unitaria 1/3",
+        "Frazioni decimali, come 1/10 e 1/100"
       ],
       "answer": 0,
       "explanation": "L'occhio di Horus racchiude 1/2, 1/4, 1/8, 1/16, 1/32 e 1/64, cioè potenze di 1/2. Erano i sottomultipli dell'hekat (p. 86)."
@@ -383,10 +383,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Come si definisce una potenza di un numero razionale diverso da 0 con esponente intero negativo?",
       "options": [
-        "Ha la stessa base e l'esponente positivo",
+        "Ha la stessa base e per esponente l'opposto dell'esponente",
         "Ha per base il reciproco del numero e per esponente l'opposto dell'esponente",
-        "Ha per base l'opposto del numero e lo stesso esponente",
-        "Vale sempre 0"
+        "Ha per base l'opposto del numero e per esponente l'opposto dell'esponente",
+        "Ha per base il reciproco del numero e lo stesso esponente negativo"
       ],
       "answer": 1,
       "explanation": "Per esempio 2⁻³ = (1/2)³ = 1/8 (definizione, p. 87)."
@@ -395,10 +395,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Che cosa significa che Q è un insieme denso?",
       "options": [
-        "Che ha infiniti elementi",
-        "Che fra due numeri razionali diversi c'è sempre un numero razionale compreso fra i due",
-        "Che ogni numero ha un successivo",
-        "Che contiene tutti i numeri reali"
+        "Che ogni numero razionale ha un successivo e un precedente",
+        "Che fra due razionali diversi c'è sempre un altro razionale",
+        "Che fra due razionali diversi c'è sempre un numero intero",
+        "Che ogni punto della retta corrisponde a un numero razionale"
       ],
       "answer": 1,
       "explanation": "Dati due razionali diversi si trova sempre un razionale compreso fra i due: per questo precedente e successivo hanno significato in Z ma non in Q (p. 87)."
@@ -407,10 +407,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Le frazioni decimali sono quelle che hanno:",
       "options": [
-        "Il numeratore uguale a 10",
+        "Il numeratore uguale a una potenza di 10",
         "Il denominatore uguale a una potenza di 10",
-        "Il denominatore dispari",
-        "Infinite cifre dopo la virgola"
+        "Il denominatore uguale a un multiplo di 10",
+        "Infinite cifre decimali dopo la virgola"
       ],
       "answer": 1,
       "explanation": "Si chiamano frazioni decimali tutte le frazioni con denominatore potenza di 10, come 7/10, 11/100, 3/1000 (p. 88)."
@@ -421,8 +421,8 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "options": [
         "Le cifre si ripetono subito dopo la virgola",
         "Le cifre si ripetono, ma non subito dopo la virgola",
-        "Ha una sola cifra dopo la virgola",
-        "Non ha parte intera"
+        "Le cifre dopo la virgola sono in numero finito",
+        "Il periodo è formato da più di una cifra"
       ],
       "answer": 1,
       "explanation": "Semplice se le cifre si ripetono subito dopo la virgola; misto se si ripetono ma non subito: 58/45 = 1,2888… è misto (p. 88)."
@@ -479,10 +479,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Nella frazione generatrice di un numero periodico, il denominatore è formato da:",
       "options": [
-        "Tanti 9 quante sono le cifre del periodo, seguiti da tanti 0 quante sono le cifre dell'antiperiodo",
-        "Tanti 0 quante sono le cifre del periodo",
-        "Tanti 9 quante sono le cifre dell'antiperiodo",
-        "Sempre 99"
+        "Tanti 9 quante le cifre del periodo, poi tanti 0 quante quelle dell'antiperiodo",
+        "Tanti 0 quante le cifre del periodo, poi tanti 9 quante quelle dell'antiperiodo",
+        "Tanti 9 quante le cifre dell'antiperiodo, poi tanti 0 quante quelle del periodo",
+        "Tanti 9 quante le cifre del periodo, poi tanti 0 quante quelle della parte intera"
       ],
       "answer": 0,
       "explanation": "Regola di p. 89. Esempio del libro: 0,25(8) = (258 − 25)/900 = 233/900: periodo 8 (una cifra → un 9), antiperiodo 25 (due cifre → due 0). Altro esempio della stessa pagina: 4,(52) = (452 − 4)/99 = 448/99, due cifre di periodo → due 9."
@@ -563,10 +563,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Con l'IVA al 22%, se ti scontano l'IVA, di quanto è lo sconto in percentuale rispetto al prezzo con l'IVA?",
       "options": [
-        "Del 22%",
+        "Di circa il 22%",
         "Di circa il 18%",
-        "Del 50%",
-        "Del 12%"
+        "Di circa il 26%",
+        "Di circa l'11%"
       ],
       "answer": 1,
       "explanation": "Esempio di p. 92: 110 € di sconto su 610 € sono circa il 18%. È sbagliato credere che sia il 22%."
@@ -575,10 +575,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Come si dimostra, nel libro, che √2 non è un numero razionale?",
       "options": [
-        "Calcolando tutte le sue cifre",
-        "Per assurdo: si suppone che sia a/b ridotta ai minimi termini e si arriva a una contraddizione",
-        "Disegnando un triangolo equilatero",
-        "Mostrando che 2 è pari"
+        "Calcolando le sue cifre fino a trovare il periodo che si ripete",
+        "Per assurdo: posto √2 = a/b irriducibile, si giunge a una contraddizione",
+        "Con il compasso, riportando sulla retta l'ipotenusa di un triangolo",
+        "Mostrando che √2 è compreso fra 1,41 e 1,42, che sono razionali"
       ],
       "answer": 1,
       "explanation": "Supponendo √2 = a/b ridotta ai minimi termini, risultano pari sia a sia b: contraddizione. Quindi √2 non è razionale (p. 93)."
@@ -587,10 +587,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "A quali numeri decimali corrispondono i numeri irrazionali?",
       "options": [
-        "Ai decimali finiti",
-        "Ai decimali periodici semplici",
-        "Ai decimali con infinite cifre decimali e non periodici",
-        "Ai numeri interi"
+        "Ai decimali con infinite cifre e periodici",
+        "Ai decimali con un numero finito di cifre",
+        "Ai decimali con infinite cifre e non periodici",
+        "Ai decimali periodici con un periodo molto lungo"
       ],
       "answer": 2,
       "explanation": "I numeri irrazionali sono infiniti e corrispondono ai numeri decimali con infinite cifre decimali e non periodici (p. 93)."
@@ -612,9 +612,9 @@ window.QUIZ_BANK["razionali-cap2"] = {
       "q": "Che cos'è π secondo il libro?",
       "options": [
         "Il rapporto fra le misure di una circonferenza e del suo diametro",
-        "Il rapporto fra diametro e raggio",
-        "Un numero razionale uguale a 3,14",
-        "Il rapporto fra l'area e il raggio"
+        "Il rapporto fra le misure di una circonferenza e del suo raggio",
+        "Il rapporto fra le misure del diametro e della circonferenza",
+        "Un numero decimale finito, uguale a 3,14"
       ],
       "answer": 0,
       "explanation": "π = 3,141… è il rapporto fra le misure di una circonferenza e del suo diametro; è irrazionale (p. 93)."
@@ -626,7 +626,7 @@ window.QUIZ_BANK["razionali-cap2"] = {
         "A ogni punto della retta corrisponde un numero razionale",
         "A ogni punto della retta corrisponde un numero reale e viceversa",
         "I numeri irrazionali non si possono rappresentare sulla retta",
-        "A ogni numero reale corrispondono due punti"
+        "A ogni numero reale corrispondono due punti della retta"
       ],
       "answer": 1,
       "explanation": "A ogni punto corrisponde un numero reale e viceversa; a ogni razionale corrisponde un punto, ma non vale il viceversa (p. 94). √2 si riporta con il compasso (p. 93)."
@@ -647,10 +647,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Nell'arrotondamento, se la prima cifra che trascuriamo è maggiore o uguale a 5:",
       "options": [
-        "Confermiamo l'ultima cifra",
+        "Approssimiamo per difetto, confermando l'ultima cifra considerata",
         "Approssimiamo per eccesso, aumentando di 1 l'ultima cifra considerata",
-        "Togliamo 1 all'ultima cifra",
-        "Aggiungiamo uno 0"
+        "Approssimiamo per difetto, togliendo 1 all'ultima cifra considerata",
+        "Approssimiamo per eccesso, aggiungendo uno 0 dopo l'ultima cifra"
       ],
       "answer": 1,
       "explanation": "Se la prima cifra trascurata è ≥ 5 si approssima per eccesso; se è < 5 per difetto, confermando l'ultima cifra (p. 94)."
@@ -659,10 +659,10 @@ window.QUIZ_BANK["razionali-cap2"] = {
     {
       "q": "Come approssimazioni, perché 3,70 dice più di 3,7?",
       "options": [
-        "Perché è un numero più grande",
-        "Perché lo 0 dei centesimi comunica che la cifra 7 dei decimi è certa",
-        "Perché ha l'errore assoluto maggiore",
-        "Non c'è nessuna differenza"
+        "Perché lo 0 dei centesimi indica che il numero è più grande",
+        "Perché lo 0 dei centesimi comunica che il 7 dei decimi è certo",
+        "Perché lo 0 dei centesimi comunica che la cifra 7 è incerta",
+        "Perché lo 0 dei centesimi indica un'approssimazione per eccesso"
       ],
       "answer": 1,
       "explanation": "Aritmeticamente sono uguali, ma come approssimazione lo 0 in 3,70 comunica che la cifra 7 dei decimi è certa (box di p. 94)."

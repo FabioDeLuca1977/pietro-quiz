@@ -40,7 +40,15 @@ window.QUIZ_REGISTRY = [
         title:         "Cap. 2 — Le civiltà mesopotamiche",
         description:   "Sumeri, Accadi, Babilonesi, Hittiti, Assiri, Persiani · con date da scrivere",
         icon:          "🏺",
-        questionCount: 58,
+        questionCount: 59,
+        enabled:       true
+      },
+      {
+        id:            "civilta-mesopotamiche-giochi",
+        title:         "Cap. 2 — Gioca: ordina e classifica",
+        description:   "Sequenze di popoli e re, Assiri o Persiani, cronologia persiana",
+        icon:          "🧩",
+        questionCount: 10,
         enabled:       true
       }
     ]
@@ -82,6 +90,14 @@ window.QUIZ_REGISTRY = [
         icon:          "⚗️",
         questionCount: 24,
         enabled:       true
+      },
+      {
+        id:            "scienze-giochi",
+        title:         "Cap. 1-2 — Gioca: ordina e classifica",
+        description:   "Prefissi, unità, densità, miscele, grandezze, energia",
+        icon:          "🧩",
+        questionCount: 12,
+        enabled:       true
       }
     ]
   },
@@ -113,6 +129,14 @@ window.QUIZ_REGISTRY = [
         description:   "Periodici, frazione generatrice, proporzioni, %, IVA, errori, notazione scientifica",
         icon:          "📐",
         questionCount: 47,
+        enabled:       true
+      },
+      {
+        id:            "razionali-cap2-giochi",
+        title:         "Cap. 2 — Gioca: ordina e classifica",
+        description:   "Ordine dei razionali, tipi di frazioni e di decimali, insiemi",
+        icon:          "🧩",
+        questionCount: 12,
         enabled:       true
       }
     ]

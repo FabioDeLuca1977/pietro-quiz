@@ -130,6 +130,20 @@ Lo studente scrive `13/12`, `-5/12`, `−(5/12)`, `5/-12` o un intero. Se il val
 Tutti i testi (domande, opzioni, spiegazioni) sono testo semplice: il motore li
 mostra così come sono, quindi `<` e `>` si possono usare liberamente.
 
+### Giochi: «metti in ordine» (`type: "order"`) e «classifica» (`type: "classify"`) — novità v1.5
+
+```js
+{ type:"order", q:"Metti in ordine…", items:["primo","secondo","terzo","quarto"],   // nell'ordine GIUSTO: l'app li mescola
+  explanation:"… (p. 55)" }
+
+{ type:"classify", q:"Assiri o Persiani?", categories:["Assiri","Persiani"],
+  items:[ {t:"Deportazioni di massa", c:0}, {t:"Satrapie", c:1} ],                  // c = indice della categoria giusta
+  explanation:"… (pp. 51-56)" }
+```
+
+Sul telefono: per «ordina» si toccano gli elementi dal primo all'ultimo (un tocco su uno già scelto lo rimette giù);
+per «classifica» si sceglie la categoria di ogni elemento. In modalità Sfida i giochi hanno almeno 60 secondi.
+
 > **Regola d'oro per i distrattori:** ogni risposta sbagliata deve essere
 > plausibile per chi ha studiato poco, ma chiaramente errata per chi ha capito.
 
@@ -253,6 +267,10 @@ Ogni volta che aggiungi o modifichi un test:
 | Home (stile social) | Storie delle materie in alto, «Per te» con i quiz mai fatti o più deboli, serie di giorni 🔥, «Riprendi» |
 | Quiz come storie | Gradiente sobrio della materia, segmenti in alto che si riempiono col tempo, spiegazione in un foglio dal basso, scorri a sinistra per andare avanti, «🔥 di fila», coriandoli da 80% |
 | Condividi | A fine quiz «Condividi la storia» crea un'immagine 1080×1920 del risultato (WhatsApp/Instagram) |
+| Allenamento / Sfida | Predefinito «Allenamento»: niente timer, 100 punti a risposta. «Sfida»: timer del test e bonus velocità |
+| Ripassa gli errori | Ogni risposta sbagliata torna nel ripasso finché non è giusta in due giorni diversi |
+| Quiz lampo | 10 domande da un test (⚡ 10 sulla card) o miste da tutti i test di una materia (interleaving) |
+| Invio affidabile | Un tentativo esce dalla coda solo quando lo script risponde ok; un quiz chiuso a metà diventa «interrotto» |
 | App sul telefono | `manifest.webmanifest` + `icons/`: da Safari → Condividi → «Aggiungi alla schermata Home» |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
