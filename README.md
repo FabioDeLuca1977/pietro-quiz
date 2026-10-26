@@ -144,6 +144,25 @@ mostra così come sono, quindi `<` e `>` si possono usare liberamente.
 Sul telefono: per «ordina» si toccano gli elementi dal primo all'ultimo (un tocco su uno già scelto lo rimette giù);
 per «classifica» si sceglie la categoria di ogni elemento. In modalità Sfida i giochi hanno almeno 60 secondi.
 
+### Cifre significative (`sig`) e problemi a passi (`type: "steps"`) — novità v1.6
+
+```js
+{ type:"numeric", q:"…densità…", answer:0.862, unit:"g/cm³", answerText:"0,862 g/cm³", sig:3, explanation:"…" }
+```
+Con `sig` la risposta è giusta solo se, arrotondata a `sig` cifre, coincide con `answer` **e** lo studente ha scritto
+proprio `sig` cifre significative (gli zeri finali di un intero, es. 2750, sono ambigui e non penalizzati).
+Se il valore è giusto ma le cifre no: «Il valore è giusto, ma va scritto con 3 cifre significative».
+
+```js
+{ type:"steps", q:"0,250 L di acqua a 23,0 °C ricevono 50 450 J…",
+  steps:[ {q:"Massa dell'acqua?", answer:250, unit:"g", answerText:"250 g", tolerance:0.001, explanation:"…"},
+          {q:"ΔT?", answer:48.3, unit:"°C", answerText:"48,3 °C", tolerance:0.005, explanation:"…"},
+          {q:"Temperatura finale?", answer:71.3, unit:"°C", answerText:"71,3 °C", sig:3, explanation:"…"} ],
+  explanation:"… (p. 27)" }
+```
+I passi compaiono uno alla volta; dopo ogni passo si vede se è giusto e, se no, il valore corretto con cui proseguire.
+Punti in proporzione ai passi giusti. Per i passi con risultato esatto usare una tolleranza stretta (0.001).
+
 > **Regola d'oro per i distrattori:** ogni risposta sbagliata deve essere
 > plausibile per chi ha studiato poco, ma chiaramente errata per chi ha capito.
 
@@ -263,6 +282,8 @@ Ogni volta che aggiungi o modifichi un test:
 | Feedback | Risposta immediata + spiegazione |
 | Risposta da scrivere | `type:"numeric"`, con tolleranza e unità |
 | Risposta a frazione | `type:"fraction"`, controlla valore e riduzione |
+| Cifre significative | campo `sig` nelle risposte numeriche (18 problemi di scienze) |
+| Problemi a passi | `type:"steps"` (19 problemi: calore, soluzioni, proporzioni, IVA, errori) |
 | Frazioni impilate | In matematica `13/12` nei testi diventa una frazione vera; anteprima mentre si scrive |
 | Home (stile social) | Storie delle materie in alto, «Per te» con i quiz mai fatti o più deboli, serie di giorni 🔥, «Riprendi» |
 | Quiz come storie | Gradiente sobrio della materia, segmenti in alto che si riempiono col tempo, spiegazione in un foglio dal basso, scorri a sinistra per andare avanti, «🔥 di fila», coriandoli da 80% |

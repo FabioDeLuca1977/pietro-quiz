@@ -471,6 +471,16 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .g-go:disabled { opacity:.4; cursor:default; }
 .num-hint.warn { color:#fff; background:rgba(255,77,109,.85); padding:8px 10px; border-radius:12px; font-weight:700; }
 
+/* Problemi a passi */
+.steps .st-done, .steps .st-cur { border-radius:16px; padding:12px 14px; background:rgba(255,255,255,.14); border:1.5px solid rgba(255,255,255,.3); }
+.steps .st-done.ok { border-color:var(--ok); background:rgba(34,227,154,.16); }
+.steps .st-done.ko { border-color:#fff; background:rgba(255,77,109,.45); }
+.steps .st-cur { background:rgba(255,255,255,.2); border-color:#fff; }
+.st-q { font-weight:800; font-size:.95rem; line-height:1.35; margin-bottom:8px; }
+.st-q b { display:inline-grid; place-items:center; width:24px; height:24px; border-radius:50%; background:#fff; color:#111; font-size:.78rem; margin-right:6px; }
+.st-a { font-weight:700; font-size:.92rem; }
+.st-note { font-size:.8rem; font-weight:600; opacity:.9; margin-top:4px; }
+
 /* Immagine da salvare (quando la condivisione non è disponibile) */
 .share-ov { position:fixed; inset:0; z-index:95; background:rgba(0,0,0,.92); display:none; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:20px; }
 .share-ov.on { display:flex; }
@@ -1098,7 +1108,8 @@ function renderQ() {
   G._curEv = q.ev || null;
   window.scrollTo(0, 0);
   G.lockUntil = Date.now() + 350;   // niente tocchi «fantasma» mentre la domanda compare
-  if (isOrderQ(q)) renderOrder(q);
+  if (isStepsQ(q)) renderSteps(q);
+  else if (isOrderQ(q)) renderOrder(q);
   else if (isClassQ(q)) renderClass(q);
   else if (isNumQ(q)) {
     // Risposta da scrivere: niente opzioni, casella + unità + conferma
@@ -1115,7 +1126,7 @@ function renderQ() {
          ${isFracQ(q) ? '<div class="num-prev" id="num-prev"></div>' : ''}
          <div class="num-hint">${isFracQ(q)
            ? 'Scrivi la frazione con la barra, per esempio 13/12 oppure -5/12. Un numero intero puoi scriverlo così com’è, per esempio -32.'
-           : 'Usa la virgola per i decimali. Per le potenze di 10 scrivi per esempio 2,5x10^-4 oppure 2,5e-4.'}</div>
+           : 'Usa la virgola per i decimali. Per le potenze di 10 scrivi per esempio 2,5x10^-4 oppure 2,5e-4.' + (q.sig ? ' Attenzione alle cifre significative.' : '')}</div>
        </div>`;
     document.getElementById('num-in')?.focus({ preventScroll:true });   // sincrono: su iPhone apre la tastiera
   } else {
@@ -1138,6 +1149,7 @@ function renderQ() {
   let t = tpq();
   G.tTot = 0;
   if (t > 0 && (isOrderQ(q) || isClassQ(q))) t = Math.max(t, 60);   // i giochi hanno bisogno di più tempo
+  if (t > 0 && isStepsQ(q)) t = Math.max(t, 40 * q.steps.length);
   if (t > 0) {
     document.getElementById('tmr-c').classList.remove('off');
     startTmr(t);
@@ -1269,6 +1281,64 @@ function confirmGame(timeout) {
   document.getElementById('btn-next').classList.add('on');
 }
 
+// ═══════════════════════════════════════════════════════
+//  PROBLEMI A PASSI  (type:"steps")
+//  steps: [{q, answer, unit, answerText, tolerance, sig, explanation}, …]
+//  Dopo ogni passo si vede se è giusto; se è sbagliato compare il valore
+//  corretto con cui proseguire. Punti in proporzione ai passi giusti.
+// ═══════════════════════════════════════════════════════
+function isStepsQ(q) { return q && q.type === 'steps'; }
+function renderSteps(q) { G._opts = null; G._corrOrig = null; G.st = { k:0, res:[] }; drawSteps(false); }
+function drawSteps(done) {
+  const q = G.qs[G.idx], st = G.st;
+  const past = st.res.map((r, i) => { const p = q.steps[i];
+    return `<div class="st-done ${r.ok ? 'ok' : 'ko'}"><div class="st-q"><b>${i + 1}</b>${mathify(p.q)}</div>
+      <div class="st-a">${r.ok ? '✅' : '❌'} ${escHtml(r.raw || '—')}${p.unit && r.raw ? ' ' + escHtml(p.unit) : ''}${r.ok ? '' : ` → giusto: <b>${mathify(p.answerText || String(p.answer))}</b>`}</div>
+      ${r.note ? `<div class="st-note">${escHtml(r.note)}</div>` : ''}</div>`; }).join('');
+  let cur = '';
+  if (!done && st.k < q.steps.length) { const p = q.steps[st.k];
+    cur = `<div class="st-cur"><div class="st-q"><b>${st.k + 1}</b>${mathify(p.q)}</div>
+      <div class="num-row"><input class="num-in" id="num-in" type="text" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+        placeholder="scrivi il numero" onkeydown="if(event.key==='Enter')checkStep()">${p.unit ? `<span class="num-unit">${escHtml(p.unit)}</span>` : ''}
+        <button class="num-go" id="num-go" onclick="checkStep()">OK</button></div>
+      <div class="num-hint">Passo ${st.k + 1} di ${q.steps.length}. Usa la virgola per i decimali.${p.sig ? ' Attenzione alle cifre significative.' : ''}</div></div>`; }
+  document.getElementById('opts').innerHTML = `<div class="game steps">${past}${cur}</div>`;
+  document.getElementById('num-in')?.focus({ preventScroll:true });
+}
+function checkStep() {
+  if (Date.now() < (G.lockUntil || 0)) return;
+  const q = G.qs[G.idx], st = G.st, el = document.getElementById('num-in');
+  if (!el || !isStepsQ(q) || st.k >= q.steps.length) return;
+  const raw = el.value.trim(), r = evalNumeric(q.steps[st.k], raw);
+  if (r.status === 'mixed') { numWarn(MSG_MIXED); return; }
+  if (r.status === 'invalid') { numWarn(MSG_BADNUM); return; }
+  st.res.push({ raw, ok:r.ok, note:r.note }); st.k++;
+  try { navigator.vibrate?.(r.ok ? 12 : [30, 40, 30]); } catch {}
+  if (st.k < q.steps.length) { drawSteps(false); return; }
+  finishSteps(false);
+}
+function finishSteps(timeout) {
+  const q = G.qs[G.idx], st = G.st;
+  if (document.getElementById('btn-next').classList.contains('on')) return;
+  stopTmr();
+  while (st.res.length < q.steps.length) st.res.push({ raw:'', ok:false, note:'' });
+  st.k = q.steps.length;
+  const nOk = st.res.filter(r => r.ok).length, ok = nOk === q.steps.length;
+  const t = G.tTot || 0, elapsed = t > 0 ? (t - G.tLeft) : 0;
+  const pts = ok ? (t > 0 ? (elapsed <= 30 ? PTS.fast : elapsed <= 60 ? PTS.mid : PTS.slow) : PTS.mid)
+                 : Math.round(PTS.mid * nOk / q.steps.length * 0.8);
+  G.score += pts;
+  const chosen  = st.res.map((r, i) => `${i + 1}) ${r.raw || '—'}`).join('  ');
+  const correct = q.steps.map((p, i) => `${i + 1}) ${p.answerText || p.answer}`).join('  ');
+  G.ans.push({ q:q.q, ok, chosen, correct, exp:q.explanation || '' });
+  drawSteps(true);
+  showFB(ok, pts, (ok ? '' : 'Passi corretti: ' + correct + '. ') + (q.explanation || ''), !!timeout);
+  if (!ok && !timeout && nOk > 0)
+    document.getElementById('fb-main').textContent = `${nOk} passi su ${q.steps.length} giusti · +${pts} punti`;
+  document.getElementById('slive').textContent = `⭐ ${G.score}`;
+  document.getElementById('btn-next').classList.add('on');
+}
+
 function isNumQ(q) { return q && (q.type === 'numeric' || q.type === 'fraction'); }
 function isFracQ(q) { return q && q.type === 'fraction'; }
 
@@ -1288,7 +1358,10 @@ function parseNumAll(raw, unit) {
     : [s, s.replace(/\.(?=\d{3}(\D|$))/g,'')];
   const out = [];
   for (let t of variants) {
-    if (u && t.endsWith(u)) t = t.slice(0, -u.length);          // l'unità scritta in fondo è ammessa
+    if (u) {                                                     // l'unità scritta in fondo è ammessa,
+      if (t.endsWith(u)) t = t.slice(0, -u.length);              // anche solo in parte («12,0%» per «% m/m»)
+      else { const tail = t.match(/[^\d.]+$/); if (tail && u.startsWith(tail[0])) t = t.slice(0, -tail[0].length); }
+    }
     let m;
     if ((m = t.match(/^([+-]?)10\^([+-]?\d+)$/))) { out.push(parseFloat(m[1] + '1e' + m[2])); continue; }
     if ((m = t.match(/^([+-]?\d+)\/(\d+)$/)) && +m[2] !== 0) { out.push(parseInt(m[1], 10) / parseInt(m[2], 10)); continue; }
@@ -1302,6 +1375,47 @@ function numWarn(msg) {
   if (h) { h.textContent = msg; h.classList.add('warn'); }
   el?.focus();
 }
+// ═══════════════════════════════════════════════════════
+//  CIFRE SIGNIFICATIVE  (campo «sig»: numero di cifre richieste)
+//  Il valore deve coincidere con la risposta arrotondata a «sig» cifre e la
+//  risposta scritta deve avere proprio quelle cifre. Gli zeri finali di un
+//  intero (es. 2750) sono ambigui e non vengono penalizzati.
+// ═══════════════════════════════════════════════════════
+function sigRange(raw) {
+  let s = String(raw || '').trim().toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c])
+            .replace(/[−–]/g, '-').replace(/\s+/g, '').replace(/[()]/g, '').replace(/^[+-]/, '');
+  const m = s.match(/^\d*[.,]?\d*/); if (!m || !m[0]) return null;
+  let mant = m[0];
+  if (/^\d{1,3}(\.\d{3})+$/.test(mant)) mant = mant.replace(/\./g, '');   // «2.750» = duemilasettecentocinquanta
+  const hasDec = /[.,]/.test(mant);
+  const d = mant.replace(/[.,]/g, '').replace(/^0+/, '');
+  if (!d) return { min:1, max:1 };
+  if (hasDec) return { min:d.length, max:d.length };
+  return { min:(d.replace(/0+$/, '').length || 1), max:d.length };
+}
+function sameSig(v, a, n) {
+  if (a === 0) return Math.abs(v) < 1e-12;
+  const r = x => Number(Number(x).toPrecision(n));
+  return Math.abs(r(v) - r(a)) <= Math.abs(r(a)) * 1e-9;
+}
+// Valuta una risposta numerica (usata dalle domande «numeric» e dai passi dei problemi).
+function evalNumeric(q, raw) {
+  if (/\d\s+\d+\s*\/\s*\d/.test(raw)) return { status:'mixed' };
+  const vals = parseNumAll(raw, q.unit);
+  if (!raw || isNaN(vals[0])) return { status:'invalid' };
+  const tol  = (q.tolerance !== undefined) ? q.tolerance : 0.02;
+  const near = vals.some(v => q.answer === 0 ? Math.abs(v) < 1e-9 : Math.abs(v - q.answer) <= Math.abs(q.answer) * tol);
+  if (!q.sig) return { status:'done', ok:near, note:'' };
+  const r = sigRange(raw), sigOk = !!r && r.min <= q.sig && q.sig <= r.max;
+  if (sigOk && vals.some(v => sameSig(v, q.answer, q.sig))) return { status:'done', ok:true, note:'' };
+  const cs = q.sig === 1 ? '1 cifra significativa' : `${q.sig} cifre significative`;
+  if (near && !sigOk) return { status:'done', ok:false, note:`Il valore è giusto, ma va scritto con ${cs}. ` };
+  if (near) return { status:'done', ok:false, note:`Quasi: con ${cs} va arrotondato diversamente. ` };
+  return { status:'done', ok:false, note:'' };
+}
+const MSG_MIXED = 'I numeri misti come «3 1/2» non valgono: scrivi il numero con la virgola, per esempio 3,5.';
+const MSG_BADNUM = 'Non riesco a leggere il numero: usa la virgola per i decimali, per esempio 2,5 oppure 2,5x10^-4.';
+
 function numText(q) {
   if (isFracQ(q)) return q.answerText || String(q.answer);
   return q.answerText || (String(q.answer).replace('.', ',') + (q.unit ? ' ' + q.unit : ''));
@@ -1320,11 +1434,10 @@ function checkNum() {
     if (r.mixed) { numWarn('I numeri misti come «3 1/2» non valgono: scrivi la frazione, per esempio 7/2.'); return; }
     ok = r.ok; note = r.note;
   } else {
-    if (/\d\s+\d+\s*\/\s*\d/.test(raw)) { numWarn('I numeri misti come «3 1/2» non valgono: scrivi il numero con la virgola, per esempio 3,5.'); return; }
-    const vals = parseNumAll(raw, q.unit);
-    if (!raw || isNaN(vals[0])) { numWarn('Non riesco a leggere il numero: usa la virgola per i decimali, per esempio 2,5 oppure 2,5x10^-4.'); return; }
-    const tol = (q.tolerance !== undefined) ? q.tolerance : 0.02;
-    ok = vals.some(v => q.answer === 0 ? Math.abs(v) < 1e-9 : Math.abs(v - q.answer) <= Math.abs(q.answer) * tol);
+    const r = evalNumeric(q, raw);
+    if (r.status === 'mixed') { numWarn(MSG_MIXED); return; }
+    if (r.status === 'invalid') { numWarn(MSG_BADNUM); return; }
+    ok = r.ok; note = r.note;
   }
 
   stopTmr();
@@ -1442,6 +1555,7 @@ function updTmr()  {
 function timeUp() {
   const q=G.qs[G.idx];
   if (isOrderQ(q) || isClassQ(q)) { confirmGame(true); return; }
+  if (isStepsQ(q)) { finishSteps(true); return; }
   if (isNumQ(q) && document.getElementById('num-in')?.value.trim()) {   // vale quello che ha scritto…
     G.lockUntil = 0; checkNum();
     if (document.getElementById('btn-next').classList.contains('on')) return;   // …se si riesce a leggere

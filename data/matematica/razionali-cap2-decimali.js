@@ -16,7 +16,7 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
   title:           "Cap. 2 — Esercizi: decimali, proporzioni, percentuali",
   description:     "Periodici, frazione generatrice, proporzioni, %, IVA, errori, notazione scientifica",
   icon:            "📐",
-  version:         3,
+  version:         4,
   timePerQuestion: 0,
 
   questions: [
@@ -224,13 +224,27 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Trova x nella proporzione 22 : 8 = (x + 35) : x.",
-      "answer": 20,
-      "unit": "",
-      "answerText": "20",
-      "explanation": "Proprietà dello scomporre: 14 : 8 = 35 : x → x = (8 · 35)/14 = 20 (p. 91).",
-      "tolerance": 0
+      "steps": [
+        {
+          "q": "Passo 1: applica la proprietà dello scomporre, (a − b) : b = (c − d) : d. Quanto vale il primo termine 22 − 8?",
+          "answer": 14,
+          "unit": "",
+          "answerText": "14",
+          "tolerance": 0,
+          "explanation": "(22 − 8) : 8 = (x + 35 − x) : x, cioè 14 : 8 = 35 : x."
+        },
+        {
+          "q": "Passo 2: dalla proporzione 14 : 8 = 35 : x ricava x.",
+          "answer": 20,
+          "unit": "",
+          "answerText": "20",
+          "tolerance": 0,
+          "explanation": "14 · x = 8 · 35 → x = (8 · 35)/14 = 20."
+        }
+      ],
+      "explanation": "Proprietà dello scomporre: 14 : 8 = 35 : x → x = (8 · 35)/14 = 20 (p. 91)."
     },
 
     {
@@ -294,13 +308,27 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Una mountain bike costa 500 € senza IVA. Quanto costa con l'IVA al 22%?",
-      "answer": 610,
-      "unit": "€",
-      "answerText": "610 €",
-      "explanation": "500 · 22/100 = 110 € di IVA; 500 + 110 = 610 € (box EDUCAZIONE FINANZIARIA, p. 92).",
-      "tolerance": 0
+      "steps": [
+        {
+          "q": "Passo 1: calcola l'importo dell'IVA.",
+          "answer": 110,
+          "unit": "€",
+          "answerText": "110 €",
+          "tolerance": 0,
+          "explanation": "500 · 22/100 = 110 €."
+        },
+        {
+          "q": "Passo 2: calcola il prezzo con l'IVA.",
+          "answer": 610,
+          "unit": "€",
+          "answerText": "610 €",
+          "tolerance": 0,
+          "explanation": "prezzo iniziale + IVA = 500 + 110 = 610 €."
+        }
+      ],
+      "explanation": "500 · 22/100 = 110 € di IVA; 500 + 110 = 610 € (box EDUCAZIONE FINANZIARIA, p. 92)."
     },
 
     {
@@ -384,13 +412,35 @@ window.QUIZ_BANK["razionali-cap2-decimali"] = {
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Arrotonda 4587 alle migliaia: qual è l'errore relativo percentuale?",
-      "answer": 8.26,
-      "unit": "%",
-      "answerText": "8,26%",
-      "explanation": "e = 413/5000 = 0,0826 → 8,26% (PROVA SUBITO, p. 95; calcolato).",
-      "tolerance": 0
+      "steps": [
+        {
+          "q": "Passo 1: arrotonda 4587 alle migliaia.",
+          "answer": 5000,
+          "unit": "",
+          "answerText": "5000",
+          "tolerance": 0,
+          "explanation": "La prima cifra trascurata è 5: la cifra delle migliaia aumenta di 1 → 5000."
+        },
+        {
+          "q": "Passo 2: calcola l'errore assoluto E = |v − a|.",
+          "answer": 413,
+          "unit": "",
+          "answerText": "413",
+          "tolerance": 0,
+          "explanation": "E = |4587 − 5000| = 413."
+        },
+        {
+          "q": "Passo 3: calcola l'errore relativo percentuale e = E/|a| · 100%.",
+          "answer": 8.26,
+          "unit": "%",
+          "answerText": "8,26%",
+          "tolerance": 0,
+          "explanation": "e = 413/5000 = 0,0826 → 8,26%."
+        }
+      ],
+      "explanation": "e = 413/5000 = 0,0826 → 8,26% (PROVA SUBITO, p. 95; calcolato)."
     },
 
     {

@@ -16,7 +16,7 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
   title:           "Cap. 2 — Problemi sulle concentrazioni",
   description:     "Percentuale in massa, in volume, massa su volume, diluizione · risposta da scrivere",
   icon:            "⚗️",
-  version:         1,
+  version:         2,
   timePerQuestion: 0,
 
   questions: [
@@ -42,33 +42,72 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "36,0 g di cloruro di sodio sciolti in 75,4 g di acqua: qual è la percentuale in massa?",
-      "answer": 32.3,
-      "unit": "% m/m",
-      "answerText": "32,3% m/m",
-      "explanation": "Massa soluzione = 36,0 + 75,4 = 111,4 g; % = 36,0 / 111,4 × 100 = 32,3% (Costruisci le abilità, p. 48).",
-      "tolerance": 0.01
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa della soluzione.",
+          "answer": 111.4,
+          "unit": "g",
+          "answerText": "111,4 g",
+          "tolerance": 0.001,
+          "explanation": "massa soluzione = massa soluto + massa solvente = 36,0 + 75,4 = 111,4 g."
+        },
+        {
+          "q": "Passo 2: calcola la percentuale in massa.",
+          "answer": 32.3,
+          "unit": "% m/m",
+          "answerText": "32,3% m/m",
+          "tolerance": 0.01,
+          "sig": 3,
+          "explanation": "% m/m = 36,0 / 111,4 × 100 = 32,3%."
+        }
+      ],
+      "explanation": "Massa soluzione = 36,0 + 75,4 = 111,4 g; % = 36,0 / 111,4 × 100 = 32,3% (Costruisci le abilità, p. 48)."
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "5,12 g di cloruro di sodio in 60,35 mL di acqua (densità 1 g/mL): qual è la percentuale in massa?",
-      "answer": 7.82,
-      "unit": "% m/m",
-      "answerText": "7,82% m/m",
-      "explanation": "60,35 mL di acqua = 60,35 g; soluzione = 65,47 g; % = 5,12 / 65,47 × 100 = 7,82% (Mettiti alla prova 1, p. 48).",
-      "tolerance": 0.01
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa dell'acqua (densità 1 g/mL).",
+          "answer": 60.35,
+          "unit": "g",
+          "answerText": "60,35 g",
+          "tolerance": 0.001,
+          "explanation": "m = d × V = 1 g/mL × 60,35 mL = 60,35 g."
+        },
+        {
+          "q": "Passo 2: calcola la massa della soluzione.",
+          "answer": 65.47,
+          "unit": "g",
+          "answerText": "65,47 g",
+          "tolerance": 0.001,
+          "explanation": "massa soluzione = 5,12 + 60,35 = 65,47 g."
+        },
+        {
+          "q": "Passo 3: calcola la percentuale in massa.",
+          "answer": 7.82,
+          "unit": "% m/m",
+          "answerText": "7,82% m/m",
+          "tolerance": 0.01,
+          "sig": 3,
+          "explanation": "% m/m = 5,12 / 65,47 × 100 = 7,82%."
+        }
+      ],
+      "explanation": "60,35 mL di acqua = 60,35 g; soluzione = 65,47 g; % = 5,12 / 65,47 × 100 = 7,82% (Mettiti alla prova 1, p. 48)."
     },
 
     {
       "type": "numeric",
       "q": "12,0 g di zucchero in 88,0 g di acqua: qual è la percentuale in massa?",
-      "answer": 12.0,
+      "answer": 12,
       "unit": "% m/m",
       "answerText": "12,0% m/m",
       "explanation": "Soluzione = 12,0 + 88,0 = 100,0 g; % = 12,0 / 100,0 × 100 = 12,0%.",
-      "tolerance": 0.01
+      "tolerance": 0.01,
+      "sig": 3
     },
 
     {
@@ -82,13 +121,36 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "0,450 kg di cromato di potassio in 2550 g di acqua: qual è la percentuale in massa?",
-      "answer": 15.0,
-      "unit": "% m/m",
-      "answerText": "15,0% m/m",
-      "explanation": "0,450 kg = 450 g; soluzione = 450 + 2550 = 3000 g; % = 450 / 3000 × 100 = 15,0% (es. 21b, p. 67).",
-      "tolerance": 0.01
+      "steps": [
+        {
+          "q": "Passo 1: esprimi la massa del soluto in grammi.",
+          "answer": 450,
+          "unit": "g",
+          "answerText": "450 g",
+          "tolerance": 0.001,
+          "explanation": "0,450 kg × (1000 g / 1 kg) = 450 g."
+        },
+        {
+          "q": "Passo 2: calcola la massa della soluzione.",
+          "answer": 3000,
+          "unit": "g",
+          "answerText": "3000 g",
+          "tolerance": 0.001,
+          "explanation": "massa soluzione = 450 + 2550 = 3000 g."
+        },
+        {
+          "q": "Passo 3: calcola la percentuale in massa.",
+          "answer": 15,
+          "unit": "% m/m",
+          "answerText": "15,0% m/m",
+          "tolerance": 0.01,
+          "sig": 3,
+          "explanation": "% m/m = 450 / 3000 × 100 = 15,0%."
+        }
+      ],
+      "explanation": "0,450 kg = 450 g; soluzione = 450 + 2550 = 3000 g; % = 450 / 3000 × 100 = 15,0% (es. 21b, p. 67)."
     },
 
     {
@@ -124,17 +186,32 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
       "answer": 0.5,
       "unit": "g",
       "answerText": "0,5 g",
-      "explanation": "massa iodio = 2 × 25,0 / 100 = 0,5 g (es. 23, p. 67)."
+      "explanation": "massa iodio = 2 × 25,0 / 100 = 0,5 g (es. 23, p. 67).",
+      "sig": 1
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Per preparare 400 g di soluzione al 5,00% m/m, quanti grammi di acqua servono?",
-      "answer": 380,
-      "unit": "g",
-      "answerText": "380 g",
-      "explanation": "Soluto = 5,00 × 400 / 100 = 20,0 g; acqua = 400 − 20,0 = 380 g. Attenzione: il 5% si calcola sulla soluzione (400 g), non sulla sola acqua.",
-      "tolerance": 0.002
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa di soluto.",
+          "answer": 20,
+          "unit": "g",
+          "answerText": "20,0 g",
+          "tolerance": 0.001,
+          "explanation": "m soluto = % × m soluzione / 100 = 5,00 × 400 / 100 = 20,0 g."
+        },
+        {
+          "q": "Passo 2: calcola la massa di acqua.",
+          "answer": 380,
+          "unit": "g",
+          "answerText": "380 g",
+          "tolerance": 0.002,
+          "explanation": "m acqua = m soluzione − m soluto = 400 − 20,0 = 380 g."
+        }
+      ],
+      "explanation": "Soluto = 5,00 × 400 / 100 = 20,0 g; acqua = 400 − 20,0 = 380 g. Attenzione: il 5% si calcola sulla soluzione (400 g), non sulla sola acqua."
     },
 
     {
@@ -169,10 +246,11 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
     {
       "type": "numeric",
       "q": "Quanti mL di alcol ci sono in 750 mL di vino al 13% vol?",
-      "answer": 97.5,
+      "answer": 98,
       "unit": "mL",
-      "answerText": "97,5 mL (con 2 cifre significative: 98 mL)",
-      "explanation": "volume alcol = 13 × 750 / 100 = 97,5 mL; con le cifre significative del dato (13%) si scrive 98 mL."
+      "answerText": "98 mL",
+      "explanation": "volume alcol = 13 × 750 / 100 = 97,5 mL; con le cifre significative del dato (13%) si scrive 98 mL.",
+      "sig": 2
     },
 
     {
@@ -203,43 +281,115 @@ window.QUIZ_BANK["materia-cap2-problemi"] = {
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "A 250 g di soluzione al 10% m/m di cloruro di calcio si aggiungono 80 g di acqua. Qual è la nuova concentrazione?",
-      "answer": 7.6,
-      "unit": "% m/m",
-      "answerText": "7,6% m/m",
-      "explanation": "Soluto = 25 g (non cambia); nuova soluzione = 330 g; 25 / 330 × 100 = 7,6%: è meno concentrata (es. 33, p. 67).",
-      "tolerance": 0.01
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa di soluto (non cambia aggiungendo acqua).",
+          "answer": 25,
+          "unit": "g",
+          "answerText": "25 g",
+          "tolerance": 0.001,
+          "explanation": "m soluto = 10 × 250 / 100 = 25 g."
+        },
+        {
+          "q": "Passo 2: calcola la massa della nuova soluzione.",
+          "answer": 330,
+          "unit": "g",
+          "answerText": "330 g",
+          "tolerance": 0.001,
+          "explanation": "nuova soluzione = 250 + 80 = 330 g."
+        },
+        {
+          "q": "Passo 3: calcola la nuova percentuale in massa.",
+          "answer": 7.6,
+          "unit": "% m/m",
+          "answerText": "7,6% m/m",
+          "tolerance": 0.01,
+          "explanation": "% m/m = 25 / 330 × 100 = 7,6%: la soluzione è meno concentrata."
+        }
+      ],
+      "explanation": "Soluto = 25 g (non cambia); nuova soluzione = 330 g; 25 / 330 × 100 = 7,6%: è meno concentrata (es. 33, p. 67)."
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "A 200 g di soluzione al 15% m/m si aggiungono 50 g di acqua. Qual è la nuova concentrazione?",
-      "answer": 12,
-      "unit": "% m/m",
-      "answerText": "12% m/m",
-      "explanation": "Soluto = 30 g; nuova soluzione = 250 g; 30 / 250 × 100 = 12%.",
-      "tolerance": 0.01
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa di soluto (non cambia aggiungendo acqua).",
+          "answer": 30,
+          "unit": "g",
+          "answerText": "30 g",
+          "tolerance": 0.001,
+          "explanation": "m soluto = 15 × 200 / 100 = 30 g."
+        },
+        {
+          "q": "Passo 2: calcola la massa della nuova soluzione.",
+          "answer": 250,
+          "unit": "g",
+          "answerText": "250 g",
+          "tolerance": 0.001,
+          "explanation": "nuova soluzione = 200 + 50 = 250 g."
+        },
+        {
+          "q": "Passo 3: calcola la nuova percentuale in massa.",
+          "answer": 12,
+          "unit": "% m/m",
+          "answerText": "12% m/m",
+          "tolerance": 0.01,
+          "explanation": "% m/m = 30 / 250 × 100 = 12%."
+        }
+      ],
+      "explanation": "Soluto = 30 g; nuova soluzione = 250 g; 30 / 250 × 100 = 12%."
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Soluzione al 10% m/m di zucchero, densità 1,038 g/cm³. Quanti grammi di zucchero ci sono in 250,0 mL?",
-      "answer": 25.95,
-      "unit": "g",
-      "answerText": "25,95 g",
-      "explanation": "massa soluzione = d × V = 1,038 × 250,0 = 259,5 g; zucchero = 10% → 25,95 g (es. 26, p. 67). Senza la densità si sbaglia.",
-      "tolerance": 0.01
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa della soluzione con la densità.",
+          "answer": 259.5,
+          "unit": "g",
+          "answerText": "259,5 g",
+          "tolerance": 0.001,
+          "explanation": "1 mL = 1 cm³; m = d × V = 1,038 g/cm³ × 250,0 cm³ = 259,5 g."
+        },
+        {
+          "q": "Passo 2: calcola la massa di zucchero.",
+          "answer": 25.95,
+          "unit": "g",
+          "answerText": "25,95 g",
+          "tolerance": 0.01,
+          "explanation": "m zucchero = 10 × 259,5 / 100 = 25,95 g."
+        }
+      ],
+      "explanation": "massa soluzione = d × V = 1,038 × 250,0 = 259,5 g; zucchero = 10% → 25,95 g (es. 26, p. 67). Senza la densità si sbaglia."
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Soluzione al 20% m/m, densità 1,08 g/mL. Quanti grammi di soluto ci sono in 150 mL?",
-      "answer": 32.4,
-      "unit": "g",
-      "answerText": "32,4 g",
-      "explanation": "massa soluzione = 1,08 × 150 = 162 g; soluto = 20 × 162 / 100 = 32,4 g.",
-      "tolerance": 0.01
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa della soluzione con la densità.",
+          "answer": 162,
+          "unit": "g",
+          "answerText": "162 g",
+          "tolerance": 0.001,
+          "explanation": "m = d × V = 1,08 g/mL × 150 mL = 162 g."
+        },
+        {
+          "q": "Passo 2: calcola la massa di soluto.",
+          "answer": 32.4,
+          "unit": "g",
+          "answerText": "32,4 g",
+          "tolerance": 0.01,
+          "explanation": "m soluto = 20 × 162 / 100 = 32,4 g."
+        }
+      ],
+      "explanation": "massa soluzione = 1,08 × 150 = 162 g; soluto = 20 × 162 / 100 = 32,4 g."
     },
 
     {

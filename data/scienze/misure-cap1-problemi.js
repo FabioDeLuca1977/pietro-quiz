@@ -16,7 +16,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
   title:           "Cap. 1 — Problemi",
   description:     "Conversioni, densità, temperature, calore, errore % · risposta da scrivere",
   icon:            "🧮",
-  version:         1,
+  version:         2,
   timePerQuestion: 0,
 
   questions: [
@@ -118,18 +118,33 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Quanti centimetri sono 7,2 km?",
-      "answer": 720000.0,
-      "unit": "cm",
-      "answerText": "7,2 × 10⁵ cm",
+      "steps": [
+        {
+          "q": "Passo 1: converti 7,2 km in metri.",
+          "answer": 7200,
+          "unit": "m",
+          "answerText": "7,2 × 10³ m",
+          "tolerance": 0.001,
+          "explanation": "1 km = 10³ m: 7,2 km × (10³ m / 1 km) = 7,2 × 10³ m."
+        },
+        {
+          "q": "Passo 2: converti in centimetri il valore in metri.",
+          "answer": 720000,
+          "unit": "cm",
+          "answerText": "7,2 × 10⁵ cm",
+          "tolerance": 0.02,
+          "explanation": "1 m = 10² cm: 7,2 × 10³ m × (10² cm / 1 m) = 7,2 × 10⁵ cm."
+        }
+      ],
       "explanation": "1 km = 10³ m e 1 m = 10² cm, quindi 1 km = 10⁵ cm: 7,2 km × (10⁵ cm / 1 km) = 7,2 × 10⁵ cm."
     },
 
     {
       "type": "numeric",
       "q": "Quanti metri sono 450 nm?",
-      "answer": 4.5e-07,
+      "answer": 4.5e-7,
       "unit": "m",
       "answerText": "4,5 × 10⁻⁷ m",
       "explanation": "1 nm = 10⁻⁹ m: 450 nm = 450 × 10⁻⁹ m = 4,5 × 10⁻⁷ m."
@@ -138,7 +153,7 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
     {
       "type": "numeric",
       "q": "Un monopattino è lungo 1,08 m. A quanti nanometri corrisponde?",
-      "answer": 1080000000.0,
+      "answer": 1080000000,
       "unit": "nm",
       "answerText": "1,08 × 10⁹ nm",
       "explanation": "1 m = 10⁹ nm: 1,08 m × (1 nm / 10⁻⁹ m) = 1,08 × 10⁹ nm (Mettiti alla prova 2, p. 8)."
@@ -225,7 +240,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 0.862,
       "unit": "g/cm³",
       "answerText": "0,862 g/cm³",
-      "explanation": "d = m / V = 74,5 / 86,4 = 0,862 g/cm³, con 3 cifre significative (Mettiti alla prova 6, p. 20)."
+      "explanation": "d = m / V = 74,5 / 86,4 = 0,862 g/cm³, con 3 cifre significative (Mettiti alla prova 6, p. 20).",
+      "sig": 3
     },
 
     {
@@ -234,7 +250,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 222,
       "unit": "cm³",
       "answerText": "222 cm³",
-      "explanation": "V = m / d = 175 / 0,789 = 221,8… → 222 cm³ (come il problema B, p. 20)."
+      "explanation": "V = m / d = 175 / 0,789 = 221,8… → 222 cm³ (come il problema B, p. 20).",
+      "sig": 3
     },
 
     {
@@ -243,7 +260,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 4.01,
       "unit": "cm³",
       "answerText": "4,01 cm³",
-      "explanation": "V = m / d = 35,69 / 8,91 = 4,005… → 4,01 cm³ (Mettiti alla prova 7, p. 20)."
+      "explanation": "V = m / d = 35,69 / 8,91 = 4,005… → 4,01 cm³ (Mettiti alla prova 7, p. 20).",
+      "sig": 3
     },
 
     {
@@ -252,7 +270,8 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 5.9,
       "unit": "g",
       "answerText": "5,90 g",
-      "explanation": "m = d × V = 7,87 × 0,750 = 5,9025 → 5,90 g (Mettiti alla prova 8, p. 20)."
+      "explanation": "m = d × V = 7,87 × 0,750 = 5,9025 → 5,90 g (Mettiti alla prova 8, p. 20).",
+      "sig": 3
     },
 
     {
@@ -261,15 +280,40 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "answer": 28.4,
       "unit": "g",
       "answerText": "28,4 g",
-      "explanation": "m = d × V = 11,35 × 2,50 = 28,375 → 28,4 g (3 cifre significative, come 2,50)."
+      "explanation": "m = d × V = 11,35 × 2,50 = 28,375 → 28,4 g (3 cifre significative, come 2,50).",
+      "sig": 3
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Un cristallo di saccarosio di 4,364 mg occupa 2,64 mm³. Qual è la densità?",
-      "answer": 1.65,
-      "unit": "g/cm³",
-      "answerText": "1,65 g/cm³",
+      "steps": [
+        {
+          "q": "Passo 1: esprimi la massa 4,364 mg in grammi.",
+          "answer": 0.004364,
+          "unit": "g",
+          "answerText": "4,364 × 10⁻³ g",
+          "tolerance": 0.001,
+          "explanation": "1 g = 1000 mg: 4,364 mg × (1 g / 1000 mg) = 4,364 × 10⁻³ g."
+        },
+        {
+          "q": "Passo 2: esprimi il volume 2,64 mm³ in cm³.",
+          "answer": 0.00264,
+          "unit": "cm³",
+          "answerText": "2,64 × 10⁻³ cm³",
+          "tolerance": 0.001,
+          "explanation": "1 cm = 10 mm, quindi 1 cm³ = (10 mm)³ = 10³ mm³: 2,64 mm³ × (1 cm³ / 10³ mm³) = 2,64 × 10⁻³ cm³."
+        },
+        {
+          "q": "Passo 3: calcola la densità d = m / V.",
+          "answer": 1.65,
+          "unit": "g/cm³",
+          "answerText": "1,65 g/cm³",
+          "tolerance": 0.02,
+          "sig": 3,
+          "explanation": "d = 4,364 × 10⁻³ g / 2,64 × 10⁻³ cm³ = 1,65 g/cm³ (3 cifre significative, come il volume)."
+        }
+      ],
       "explanation": "4,364 mg = 4,364 × 10⁻³ g; 2,64 mm³ = 2,64 × 10⁻³ cm³; d = 4,364 / 2,64 = 1,65 g/cm³ (es. 37, p. 33)."
     },
 
@@ -310,72 +354,182 @@ window.QUIZ_BANK["misure-cap1-problemi"] = {
       "unit": "°F",
       "answerText": "97,9 °F",
       "explanation": "Da t(°C) = [t(°F) − 32] / 1,8 si ricava t(°F) = t(°C) × 1,8 + 32 = 36,6 × 1,8 + 32 = 97,9 °F (es. 42, p. 33).",
-      "tolerance": 0.005
+      "tolerance": 0.005,
+      "sig": 3
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Quanta energia serve per scaldare 200 g di acqua da 15 °C a 65 °C? (C = 4,18 J/g × K)",
-      "answer": 41.8,
-      "unit": "kJ",
-      "answerText": "41,8 kJ",
+      "steps": [
+        {
+          "q": "Passo 1: calcola la variazione di temperatura ΔT.",
+          "answer": 50,
+          "unit": "K",
+          "answerText": "50 K",
+          "tolerance": 0.001,
+          "explanation": "ΔT = T finale − T iniziale = 65 − 15 = 50 °C = 50 K (una variazione di 1 °C equivale a una di 1 K)."
+        },
+        {
+          "q": "Passo 2: calcola q = C × m × ΔT ed esprimilo in kJ.",
+          "answer": 41.8,
+          "unit": "kJ",
+          "answerText": "41,8 kJ",
+          "tolerance": 0.01,
+          "explanation": "q = 4,18 J/(g × K) × 200 g × 50 K = 41 800 J = 41,8 kJ."
+        }
+      ],
       "explanation": "ΔT = 65 − 15 = 50 K; q = C × m × ΔT = 4,18 × 200 × 50 = 41 800 J = 41,8 kJ."
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Quanto calore serve per portare 500 g di acqua da 20 °C a 100 °C? (C = 4,18 J/g × °C)",
-      "answer": 167,
-      "unit": "kJ",
-      "answerText": "167 kJ",
+      "steps": [
+        {
+          "q": "Passo 1: calcola la variazione di temperatura ΔT.",
+          "answer": 80,
+          "unit": "°C",
+          "answerText": "80 °C",
+          "tolerance": 0.001,
+          "explanation": "ΔT = 100 − 20 = 80 °C."
+        },
+        {
+          "q": "Passo 2: calcola q = C × m × ΔT ed esprimilo in kJ.",
+          "answer": 167,
+          "unit": "kJ",
+          "answerText": "167 kJ",
+          "tolerance": 0.02,
+          "explanation": "q = 4,18 J/(g × °C) × 500 g × 80 °C = 167 200 J = 167 kJ."
+        }
+      ],
       "explanation": "ΔT = 80 °C; q = 4,18 × 500 × 80 = 167 200 J = 167 kJ (es. 46, p. 33)."
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Quanta energia serve per portare 50,0 g di acqua da 20,0 °C a 60,0 °C? (C = 4,18 J/g × °C)",
-      "answer": 8.36,
-      "unit": "kJ",
-      "answerText": "8,36 kJ",
+      "steps": [
+        {
+          "q": "Passo 1: calcola la variazione di temperatura ΔT.",
+          "answer": 40,
+          "unit": "°C",
+          "answerText": "40,0 °C",
+          "tolerance": 0.001,
+          "explanation": "ΔT = 60,0 − 20,0 = 40,0 °C."
+        },
+        {
+          "q": "Passo 2: calcola q = C × m × ΔT ed esprimilo in kJ.",
+          "answer": 8.36,
+          "unit": "kJ",
+          "answerText": "8,36 kJ",
+          "tolerance": 0.02,
+          "sig": 3,
+          "explanation": "q = 4,18 J/(g × °C) × 50,0 g × 40,0 °C = 8360 J = 8,36 kJ."
+        }
+      ],
       "explanation": "ΔT = 40,0 °C; q = 4,18 × 50,0 × 40,0 = 8360 J = 8,36 kJ (Mettiti alla prova 15, p. 27)."
     },
 
     {
       "type": "numeric",
       "q": "Si forniscono 356 J a 5,00 g di acqua (C = 4,184 J/g × K). Di quanto aumenta la temperatura?",
-      "answer": 17.0,
+      "answer": 17,
       "unit": "K",
       "answerText": "17,0 K",
-      "explanation": "ΔT = q / (C × m) = 356 / (4,184 × 5,00) = 17,0 K (Mettiti alla prova 13, p. 27)."
+      "explanation": "ΔT = q / (C × m) = 356 / (4,184 × 5,00) = 17,0 K (Mettiti alla prova 13, p. 27).",
+      "sig": 3
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Si forniscono 5,00 kJ a 100,0 g di alluminio (C = 0,902 J/g × K). Di quanto aumenta la temperatura?",
-      "answer": 55.4,
-      "unit": "K",
-      "answerText": "55,4 K",
+      "steps": [
+        {
+          "q": "Passo 1: esprimi l'energia fornita in joule.",
+          "answer": 5000,
+          "unit": "J",
+          "answerText": "5,00 × 10³ J",
+          "tolerance": 0.001,
+          "explanation": "Il calore specifico è in J/g × K, quindi l'energia va in joule: 5,00 kJ × (1000 J / 1 kJ) = 5,00 × 10³ J."
+        },
+        {
+          "q": "Passo 2: calcola ΔT = q / (C × m).",
+          "answer": 55.4,
+          "unit": "K",
+          "answerText": "55,4 K",
+          "tolerance": 0.02,
+          "sig": 3,
+          "explanation": "ΔT = 5000 J / (0,902 J/(g × K) × 100,0 g) = 55,4 K."
+        }
+      ],
       "explanation": "ΔT = q / (C × m) = 5000 J / (0,902 × 100,0) = 55,4 K. Attenzione: 5,00 kJ = 5000 J."
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "0,250 L di acqua a 23,0 °C ricevono 50 450 J (C = 4,18 J/g × °C, densità 1 g/mL). Qual è la temperatura finale?",
-      "answer": 71.3,
-      "unit": "°C",
-      "answerText": "71,3 °C",
-      "explanation": "m = 250 g; ΔT = 50 450 / (4,18 × 250) = 48,3 °C; T finale = 23,0 + 48,3 = 71,3 °C (Mettiti alla prova 12, p. 27).",
-      "tolerance": 0.005
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa dell'acqua (densità 1 g/mL).",
+          "answer": 250,
+          "unit": "g",
+          "answerText": "250 g",
+          "tolerance": 0.001,
+          "explanation": "0,250 L = 250 mL; m = d × V = 1 g/mL × 250 mL = 250 g."
+        },
+        {
+          "q": "Passo 2: calcola l'aumento di temperatura ΔT = q / (C × m).",
+          "answer": 48.3,
+          "unit": "°C",
+          "answerText": "48,3 °C",
+          "tolerance": 0.005,
+          "explanation": "ΔT = 50 450 J / (4,18 J/(g × °C) × 250 g) = 48,3 °C."
+        },
+        {
+          "q": "Passo 3: calcola la temperatura finale.",
+          "answer": 71.3,
+          "unit": "°C",
+          "answerText": "71,3 °C",
+          "tolerance": 0.005,
+          "sig": 3,
+          "explanation": "T finale = T iniziale + ΔT = 23,0 + 48,3 = 71,3 °C."
+        }
+      ],
+      "explanation": "m = 250 g; ΔT = 50 450 / (4,18 × 250) = 48,3 °C; T finale = 23,0 + 48,3 = 71,3 °C (Mettiti alla prova 12, p. 27)."
     },
 
     {
-      "type": "numeric",
+      "type": "steps",
       "q": "Si forniscono 871 kJ a 5,4 L di acqua a 293 K (C = 4,18 kJ/kg × K, densità 1,00 g/mL). Qual è la temperatura finale?",
-      "answer": 332,
-      "unit": "K",
-      "answerText": "332 K",
-      "explanation": "m = 5,4 kg; ΔT = 871 / (4,18 × 5,4) = 38,6 K; T finale = 293 + 38,6 ≈ 332 K (es. 47, p. 33).",
-      "tolerance": 0.005
+      "steps": [
+        {
+          "q": "Passo 1: calcola la massa dell'acqua in kg (densità 1,00 g/mL).",
+          "answer": 5.4,
+          "unit": "kg",
+          "answerText": "5,4 kg",
+          "tolerance": 0.001,
+          "explanation": "5,4 L = 5400 mL; m = 1,00 g/mL × 5400 mL = 5400 g = 5,4 kg (C è in kJ/kg × K, quindi la massa va in kg)."
+        },
+        {
+          "q": "Passo 2: calcola l'aumento di temperatura ΔT = q / (C × m).",
+          "answer": 39,
+          "unit": "K",
+          "answerText": "39 K",
+          "tolerance": 0.02,
+          "explanation": "ΔT = 871 kJ / (4,18 kJ/(kg × K) × 5,4 kg) = 38,59… → 39 K (5,4 ha 2 cifre significative)."
+        },
+        {
+          "q": "Passo 3: calcola la temperatura finale.",
+          "answer": 332,
+          "unit": "K",
+          "answerText": "332 K",
+          "tolerance": 0.005,
+          "sig": 3,
+          "explanation": "T finale = 293 K + 39 K = 332 K (somma: si tengono le unità, come i dati)."
+        }
+      ],
+      "explanation": "m = 5,4 kg; ΔT = 871 / (4,18 × 5,4) = 39 K; T finale = 293 + 39 ≈ 332 K (es. 47, p. 33)."
     },
 
     {
