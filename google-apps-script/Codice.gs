@@ -23,23 +23,28 @@ const FOGLIO_UTENTI    = 'Utenti';
 const COL_UTENTI = ['nome', 'codice', 'attivo', 'invia risultati', 'ultimo accesso', 'note'];
 const COL_TENTATIVI = ['id', 'data', 'studente', 'materia', 'test', 'titolo', 'versione',
                        'completato', 'risposte date', 'domande', 'giuste', 'percentuale',
-                       'punti', 'secondi'];
+                       'punti', 'secondi', 'modalità'];
 const COL_RISPOSTE  = ['id tentativo', 'data', 'test', 'n', 'domanda', 'risposta data',
                        'risposta giusta', 'esatta'];
 
 // Il sito invia qui ogni tentativo (POST, testo JSON).
 function doPost(e) {
   const lock = LockService.getScriptLock();
-  lock.waitLock(20000);
+  let preso = false;
   try {
+    preso = lock.tryLock(20000);
+    if (!preso) return json({ ok: false, error: 'occupato' });   // il sito riproverà
     const d = JSON.parse(e.postData.contents);
     const props = PropertiesService.getScriptProperties();
     const token = props.getProperty('TOKEN_SITO');
     if (!token || d.token !== token) return json({ ok: false, error: 'token' });
 
     const ss = apri();
-    const u = utenti(ss).find(x => x.nome.toLowerCase() === String(d.student || '').trim().toLowerCase());
-    if (utenti(ss).length && !(u && u.attivo && u.invia)) return json({ ok: true, skipped: true });
+    // chi può scrivere nel foglio: si cerca per codice (o per nome, per i tentativi vecchi)
+    const us = utenti(ss), code = String(d.code || '').trim().toUpperCase();
+    const u = code ? us.find(x => x.codice === code)
+                   : us.find(x => x.nome.toLowerCase() === String(d.student || '').trim().toLowerCase());
+    if (us.length && !(u && u.attivo && u.invia)) return json({ ok: true, skipped: true });
     const tent = foglio(ss, FOGLIO_TENTATIVI, COL_TENTATIVI);
     // niente doppioni se il sito rimanda lo stesso tentativo
     if (tent.getLastRow() > 1 &&
@@ -47,20 +52,24 @@ function doPost(e) {
       return json({ ok: true, duplicate: true });
     }
     const data = new Date(d.ts);
-    tent.appendRow([d.id, data, d.student, d.subject, d.testId, d.testTitle, d.version,
-                    d.completed ? 'SI' : 'NO', d.answered, d.total, d.ok, d.pct, d.score, d.seconds]);
+    if (tent.getRange(1, 15).getValue() === '') tent.getRange(1, 15).setValue('modalità').setFontWeight('bold');
+    tent.appendRow([d.id, data, testo(u ? u.nome : d.student), d.subject, d.testId, testo(d.testTitle), d.version,
+                    d.completed ? 'SI' : 'NO', d.answered, d.total, d.ok, d.pct, d.score, d.seconds, d.mode || '']);
 
     const risp = foglio(ss, FOGLIO_RISPOSTE, COL_RISPOSTE);
     const righe = (d.answers || []).map((a, i) =>
-      [d.id, data, d.testId, i + 1, a.q, a.chosen, a.correct, a.ok ? 'SI' : 'NO']);
+      [d.id, data, d.testId, i + 1, testo(a.q), testo(a.chosen), testo(a.correct), a.ok ? 'SI' : 'NO']);
     if (righe.length) risp.getRange(risp.getLastRow() + 1, 1, righe.length, COL_RISPOSTE.length).setValues(righe);
     return json({ ok: true });
   } catch (err) {
     return json({ ok: false, error: String(err) });
   } finally {
-    lock.releaseLock();
+    if (preso) lock.releaseLock();
   }
 }
+
+// Il foglio non deve interpretare i testi: «3/4» resterebbe una data, «=…» una formula.
+function testo(v) { return "'" + String(v === undefined || v === null ? '' : v); }
 
 // papa.html legge da qui (GET con ?key=CHIAVE_PAPA).
 function doGet(e) {
@@ -97,6 +106,7 @@ function login(code) {
   if (fails > 30) return json({ ok: false, error: 'troppi' });       // troppi tentativi: pausa di 10 minuti
   const c = code.trim().toUpperCase();
   const ss = apri();
+  if (!ss.getSheetByName(FOGLIO_UTENTI)) return json({ ok: false, error: 'config' });   // non far uscire nessuno
   const u = c.length >= 4 ? utenti(ss).find(x => x.codice === c) : null;
   if (!u || !u.nome || !u.attivo) {
     cache.put('fails', String(fails + 1), 600);
@@ -111,7 +121,10 @@ function utenti(ss) {
   if (!sh || sh.getLastRow() < 2) return [];
   return sh.getRange(2, 1, sh.getLastRow() - 1, 4).getValues().map((r, i) => ({
     riga: i + 2, nome: String(r[0]).trim(), codice: String(r[1]).trim().toUpperCase(),
-    attivo: /^s[iì]$/i.test(String(r[2]).trim()), invia: /^s[iì]$/i.test(String(r[3]).trim()) }));
+    attivo: si(r[2]), invia: si(r[3]) }));
+}
+function si(v) {   // SI, sì, x, 1 oppure casella spuntata
+  return v === true || /^(s[iì]|x|1|true|vero)$/i.test(String(v).trim());
 }
 
 // Da eseguire una volta: crea la scheda Utenti con Pietro e 10 codici liberi.
