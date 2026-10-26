@@ -34,7 +34,8 @@ function doPost(e) {
   try {
     preso = lock.tryLock(20000);
     if (!preso) return json({ ok: false, error: 'occupato' });   // il sito riproverà
-    const d = JSON.parse(e.postData.contents);
+    let d;
+    try { d = JSON.parse(e.postData.contents); } catch (x) { return json({ ok: false, error: 'json' }); }
     const props = PropertiesService.getScriptProperties();
     const token = props.getProperty('TOKEN_SITO');
     if (!token || d.token !== token) return json({ ok: false, error: 'token' });
@@ -44,25 +45,29 @@ function doPost(e) {
     const us = utenti(ss), code = String(d.code || '').trim().toUpperCase();
     const u = code ? us.find(x => x.codice === code)
                    : us.find(x => x.nome.toLowerCase() === String(d.student || '').trim().toLowerCase());
-    if (us.length && !(u && u.attivo && u.invia)) return json({ ok: true, skipped: true });
+    if (!e.interno && us.length && !(u && u.attivo && u.invia)) return json({ ok: true, skipped: true });
     const tent = foglio(ss, FOGLIO_TENTATIVI, COL_TENTATIVI);
     // niente doppioni se il sito rimanda lo stesso tentativo
+    const data = new Date(d.ts);
+    const risp = foglio(ss, FOGLIO_RISPOSTE, COL_RISPOSTE);
+    const righe = (d.answers || []).map((a, i) =>
+      [d.id, data, d.testId, i + 1, testo(a.q), testo(a.chosen), testo(a.correct), a.ok ? 'SI' : 'NO']);
+    const giaRisposte = () => risp.getLastRow() > 1 &&
+      !!risp.getRange(2, 1, risp.getLastRow() - 1, 1).createTextFinder(String(d.id)).matchEntireCell(true).findNext();
     if (tent.getLastRow() > 1 &&
         tent.getRange(2, 1, tent.getLastRow() - 1, 1).createTextFinder(String(d.id)).matchEntireCell(true).findNext()) {
+      if (righe.length && !giaRisposte())
+        risp.getRange(risp.getLastRow() + 1, 1, righe.length, COL_RISPOSTE.length).setValues(righe);
       return json({ ok: true, duplicate: true });
     }
-    const data = new Date(d.ts);
     if (tent.getRange(1, 15).getValue() === '') tent.getRange(1, 15).setValue('modalità').setFontWeight('bold');
     tent.appendRow([d.id, data, testo(u ? u.nome : d.student), d.subject, d.testId, testo(d.testTitle), d.version,
                     d.completed ? 'SI' : 'NO', d.answered, d.total, d.ok, d.pct, d.score, d.seconds, d.mode || '']);
 
-    const risp = foglio(ss, FOGLIO_RISPOSTE, COL_RISPOSTE);
-    const righe = (d.answers || []).map((a, i) =>
-      [d.id, data, d.testId, i + 1, testo(a.q), testo(a.chosen), testo(a.correct), a.ok ? 'SI' : 'NO']);
     if (righe.length) risp.getRange(risp.getLastRow() + 1, 1, righe.length, COL_RISPOSTE.length).setValues(righe);
     return json({ ok: true });
   } catch (err) {
-    return json({ ok: false, error: String(err) });
+    return json({ ok: false, error: 'retry', dettaglio: String(err) });   // intoppo del foglio: il sito riproverà
   } finally {
     if (preso) lock.releaseLock();
   }
@@ -103,11 +108,11 @@ function configura() {
 function login(code) {
   const cache = CacheService.getScriptCache();
   const fails = Number(cache.get('fails') || 0);
-  if (fails > 200) return json({ ok: false, error: 'troppi' });       // troppi tentativi: pausa di 10 minuti
   const c = code.trim().toUpperCase();
   const ss = apri();
   if (!ss.getSheetByName(FOGLIO_UTENTI)) return json({ ok: false, error: 'config' });   // non far uscire nessuno
   const u = c.length >= 4 ? utenti(ss).find(x => x.codice === c) : null;
+  if (!(u && u.nome && u.attivo) && fails > 200) return json({ ok: false, error: 'troppi' });   // pausa solo per chi sbaglia
   if (!u || !u.nome || !u.attivo) {
     cache.put('fails', String(fails + 1), 600);
     return json({ ok: false, error: u ? 'disattivo' : 'codice' });
@@ -161,7 +166,7 @@ function prova() {
     id: 'prova-' + Date.now(), token: token, student: 'Prova', ts: new Date().toISOString(),
     completed: true, subject: 'prova', testId: 'prova', testTitle: 'Riga di prova (si può cancellare)',
     version: 1, answered: 1, total: 1, ok: 1, pct: 100, score: 100, seconds: 5,
-    answers: [{ q: 'Domanda di prova', chosen: 'A', correct: 'A', ok: true }] }) } });
+    answers: [{ q: 'Domanda di prova', chosen: 'A', correct: 'A', ok: true }] }) }, interno: true });
   Logger.log(r.getContent());
 }
 
