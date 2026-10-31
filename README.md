@@ -224,6 +224,14 @@ Punti in proporzione ai passi giusti. Per i passi con risultato esatto usare una
 
 ---
 
+## 🎬 Ripasso video
+
+`data/ripasso.js` elenca i video per materia; i file stanno in `video/<materia>/`. Formato verticale 1080×1920, mp4.
+Ogni voce ha `id`, `title`, `file`, `dur` (secondi), `pages` e, se esiste, `test` (il test proposto a fine video).
+Il video risulta visto oltre il 90% della durata: lo stato resta sul telefono (`pietroquiz:seen`).
+
+---
+
 ## 💾 Chiavi localStorage
 
 Tutte le chiavi iniziano con `pietroquiz:` — nessun conflitto con altri siti.
@@ -322,6 +330,7 @@ Ogni volta che aggiungi o modifichi un test:
 | Forma del numero | campi `sci` (notazione scientifica) e `plain` (numero per esteso) |
 | Miglioramenti | `papa.html` confronta le ultime due partite: recuperate, nuovi errori, ancora sbagliate |
 | Definizioni a memoria | `type:"define"`: risposta scritta con controllo dei concetti e riscrittura obbligatoria |
+| Sezioni | In alto **Esercizi** e **Ripasso**; nella materia il pulsante «Ripasso video» |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
 

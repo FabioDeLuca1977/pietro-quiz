@@ -21,6 +21,7 @@
      ═══════════════════════════════════════════════════════ -->
 <script src="data/config.js"></script>
 <script src="data/registry.js"></script>
+<script src="data/ripasso.js"></script>
 
 <!-- STORIA -->
 <script src="data/storia/civilta-mesopotamiche.js"></script>
@@ -437,6 +438,20 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .mode-sw button { flex:1; border:none; background:none; border-radius:24px; padding:9px 8px; font-weight:800; font-size:.86rem; color:var(--mu2); cursor:pointer; }
 .mode-sw button.on { background:#fff; color:#111; }
 .mode-note { font-size:.76rem; color:var(--mu); margin:7px 4px 0; line-height:1.4; }
+.sec-sw { display:grid; grid-template-columns:1fr 1fr; gap:6px; background:var(--card); border:1px solid var(--ln2); border-radius:18px; padding:5px; margin-bottom:14px; }
+.sec-sw button { border:none; background:none; color:var(--mu2); border-radius:14px; padding:12px 8px; min-height:46px; font:inherit; font-weight:800; font-size:.95rem; cursor:pointer; }
+.sec-sw button.on { background:#fff; color:#111; }
+.rip-item { display:flex; width:100%; align-items:center; gap:12px; text-align:left; background:var(--card); border:1px solid var(--ln2); border-radius:18px; padding:12px; margin-bottom:9px; color:#fff; font:inherit; cursor:pointer; }
+.rip-item:active { transform:scale(.98); }
+#rip-all[hidden] { display:none; }
+.rip-play { width:46px; height:46px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; background:var(--acc); font-size:1.05rem; }
+.rip-item.seen .rip-play { background:var(--ok); color:#06281a; font-weight:900; }
+.rip-txt { min-width:0; display:flex; flex-direction:column; gap:2px; }
+.rip-txt b { font-weight:800; font-size:.96rem; }
+.rip-txt span { font-size:.76rem; color:var(--mu2); font-weight:600; }
+#vplayer { display:block; width:100%; max-height:68svh; margin:12px auto 10px; background:#000; border-radius:16px; }
+.vid-title { font-weight:900; font-size:1.25rem; line-height:1.15; }
+.vid-sub { color:var(--mu2); font-size:.8rem; font-weight:600; margin-top:3px; }
 .actions2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
 .act { display:flex; flex-direction:column; align-items:flex-start; gap:3px; text-align:left; background:var(--card); border:1px solid var(--ln2);
   border-radius:20px; padding:14px; cursor:pointer; }
@@ -526,6 +541,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 
 <!-- ══ HOME ══ -->
 <div id="s-home" class="scr">
+  <div class="sec-sw"><button class="on" aria-pressed="true">📝 Esercizi</button><button aria-pressed="false" onclick="openRipasso()">🎬 Ripasso</button></div>
   <div class="subj-grid" id="subj-grid"></div>
 
   <section class="hero">
@@ -561,6 +577,20 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
     <div id="hist-list"></div>
   </div>
   <button class="who" id="who" onclick="logout()" hidden></button>
+</div>
+
+<!-- ══ RIPASSO VIDEO ══ -->
+<div id="s-rip" class="scr">
+  <div class="sec-sw"><button aria-pressed="false" onclick="goHome()">📝 Esercizi</button><button class="on" aria-pressed="true">🎬 Ripasso</button></div>
+  <button class="back" id="rip-all" onclick="openRipasso()" hidden>← Tutte le materie</button>
+  <div id="rip-list"></div>
+</div>
+<div id="s-vid" class="scr">
+  <button class="back" onclick="openRipasso(G.ripSubj)">← Ripasso</button>
+  <video id="vplayer" controls playsinline preload="metadata" ontimeupdate="videoTick()"></video>
+  <div class="vid-title" id="vid-title"></div>
+  <div class="vid-sub" id="vid-sub"></div>
+  <div class="actions2" id="vid-actions"></div>
 </div>
 
 <!-- ══ MATERIA = profilo ══ -->
@@ -1018,6 +1048,53 @@ function buildSubjects() {
   }).join('');
 }
 
+// ═══════════════════════════════════════════════════════
+//  RIPASSO: video per materia (dati in data/ripasso.js)
+// ═══════════════════════════════════════════════════════
+const LS_SEEN = 'pietroquiz:seen';
+function loadSeen() { try { return JSON.parse(localStorage.getItem(LS_SEEN)) || {}; } catch { return {}; } }
+function markSeen(id) { const s = loadSeen(); s[id] = 1; try { localStorage.setItem(LS_SEEN, JSON.stringify(s)); } catch {} }
+function reviewOf(subj) { return (window.REVIEW || []).find(g => g.subject === subj); }
+function reviewItem(id) {
+  for (const g of window.REVIEW || []) { const i = g.items.findIndex(x => x.id === id); if (i >= 0) return { g, i, it:g.items[i] }; }
+  return null;
+}
+function fmtDur(s) { return Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0'); }
+function openRipasso(subj) {
+  G.ripSubj = reviewOf(subj) ? subj : null;
+  const seen = loadSeen(), groups = (window.REVIEW || []).filter(g => !G.ripSubj || g.subject === G.ripSubj);
+  setColor(groups[0]?.color || DEF_ACC);
+  document.getElementById('rip-all').hidden = !G.ripSubj;
+  document.getElementById('rip-list').innerHTML = groups.map(g => {
+    const done = g.items.filter(x => seen[x.id]).length;
+    return `<div class="lbl">${g.icon} ${cap(g.subject)} <small>${done} visti su ${g.items.length}</small></div>` + g.items.map(x =>
+      `<button class="rip-item ${seen[x.id] ? 'seen' : ''}" style="--acc:${g.color}" onclick="openVideo('${x.id}')">
+        <span class="rip-play">${seen[x.id] ? '✓' : '▶'}</span>
+        <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')} · ${fmtDur(x.dur)}</span></span>
+      </button>`).join('');
+  }).join('') || '<div class="empty-box">Ancora nessun video.</div>';
+  showScr('s-rip');
+}
+function openVideo(id) {
+  const f = reviewItem(id); if (!f) return;
+  const v = document.getElementById('vplayer'), next = f.g.items[f.i + 1];
+  G.vidId = id;
+  setColor(f.g.color);
+  document.getElementById('vid-title').textContent = f.it.title;
+  document.getElementById('vid-sub').textContent = cap(f.g.subject) + (f.it.pages ? ' · ' + f.it.pages : '');
+  document.getElementById('vid-actions').innerHTML =
+    (next ? `<button class="act" onclick="openVideo('${next.id}')"><span class="ai">▶</span><b>Video dopo</b><span>${escHtml(next.title)}</span></button>` : '') +
+    (f.it.test && window.QUIZ_BANK?.[f.it.test] ? `<button class="act" onclick="startQuiz('${f.it.test}')"><span class="ai">📝</span><b>Fai gli esercizi</b><span>Mettiti alla prova</span></button>` : '');
+  showScr('s-vid');
+  v.src = f.it.file; v.load();
+  v.play()?.catch(() => {});
+}
+function videoTick() {
+  const v = document.getElementById('vplayer');
+  if (G.vidId && v.duration && v.currentTime / v.duration > 0.9) markSeen(G.vidId);
+}
+function stopVideo() { const v = document.getElementById('vplayer'); if (v && !v.paused) v.pause(); }
+
 function openSubj() { if (G.subj) selSubj(G.subj.subject); else goHome(); }
 
 function selSubj(subjId) {
@@ -1036,7 +1113,8 @@ function selSubj(subjId) {
   const nws = wrongList(subjId).length, nAct = activeTests(subjId).length;
   document.getElementById('subj-actions').innerHTML = !nAct ? '' :
     `<button class="act ${nws ? 'hot' : ''}" ${nws ? '' : 'disabled'} onclick="startReview('${subjId}')"><span class="ai">🔁</span><b>Errori di ${cap(subjId)}</b><span>${nws ? nws + ' da sistemare' : 'nessuno 🎉'}</span></button>` +
-    `<button class="act" onclick="startLampoMix('${subjId}')"><span class="ai">⚡</span><b>Lampo misto</b><span>10 domande da tutti i quiz</span></button>`;
+    `<button class="act" onclick="startLampoMix('${subjId}')"><span class="ai">⚡</span><b>Lampo misto</b><span>10 domande da tutti i quiz</span></button>` +
+    (reviewOf(subjId) ? `<button class="act" style="grid-column:1/-1" onclick="openRipasso('${subjId}')"><span class="ai">🎬</span><b>Ripasso video</b><span>${reviewOf(subjId).items.length} video di ${cap(subjId)}</span></button>` : '');
   renderModeSwitch();
   list.innerHTML = tests.length ? tests.map(t => testCard(t, G.subj, false)).join('')
     : `<div class="empty-box">Ancora niente qui…<br>papà sta preparando i quiz! ✏️</div>`;
@@ -1977,6 +2055,7 @@ function sendToDad() {
 //  NAVIGAZIONE
 // ═══════════════════════════════════════════════════════
 function showScr(id) {
+  if (id !== 's-vid') stopVideo();
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   document.getElementById(id).classList.add('on');
   document.body.classList.toggle('story', ['s-quiz','s-res','s-login'].includes(id));
@@ -2089,7 +2168,7 @@ function renderHist() {
 function clearHist() {
   if(!confirm('Cancellare lo storico e i record? Gli errori da ripassare restano.')) return;
   Object.keys(localStorage)
-    .filter(k => k.startsWith('pietroquiz:') && ![LS_OUTBOX, LS_USER, LS_CUR, LS_MODE, LS_INST, LS_WRONG, LS_RECOV].includes(k))
+    .filter(k => k.startsWith('pietroquiz:') && ![LS_OUTBOX, LS_USER, LS_CUR, LS_MODE, LS_INST, LS_WRONG, LS_RECOV, LS_SEEN].includes(k))
     .forEach(k => localStorage.removeItem(k));
   renderHome();
 }
