@@ -38,6 +38,10 @@
 <script src="data/matematica/razionali-cap2-giochi.js"></script>
 <script src="data/scienze/scienze-giochi.js"></script>
 <script src="data/storia/civilta-mesopotamiche-giochi.js"></script>
+<script src="data/fisica/matematica-per-cominciare.js"></script>
+<script src="data/fisica/grandezze-cap1-problemi.js"></script>
+<script src="data/fisica/grandezze-teoria.js"></script>
+<script src="data/fisica/fisica-giochi.js"></script>
 
 <!-- TECNOLOGIA -->
 
@@ -958,7 +962,7 @@ function testCard(t, subj, withSubj) {
   const best   = active ? getBest(subj.subject, t.id, data.version) : null;
   const qCount = data ? data.questions.length : t.questionCount;
   const tpqv   = data ? (data.timePerQuestion === 0 ? 0 : (data.timePerQuestion || 20)) : null;
-  const nWrite = data ? data.questions.filter(q => q.type === 'numeric' || q.type === 'fraction').length : 0;
+  const nWrite = data ? data.questions.filter(q => q.type === 'numeric' || q.type === 'fraction' || q.type === 'text').length : 0;
   return `<div class="test-item ${active ? '' : 'coming'}" style="--acc:${subj.subjectColor}" ${active ? `onclick="startQuiz('${t.id}')"` : ''}>
     <div class="ti-cover">
       <div class="ti-top">
@@ -1118,7 +1122,7 @@ function renderQ() {
       `<div class="num-box">
          <div class="num-row">
            <input class="num-in" id="num-in" type="text" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-                  placeholder="${isFracQ(q) ? 'scrivi la frazione' : 'scrivi il numero'}" onkeydown="if(event.key==='Enter')checkNum()"
+                  placeholder="${isFracQ(q) ? 'scrivi la frazione' : isTextQ(q) ? 'scrivi la risposta' : 'scrivi il numero'}" onkeydown="if(event.key==='Enter')checkNum()"
                   ${isFracQ(q) ? 'oninput="fracPreview(this.value)"' : ''}>
            ${q.unit ? `<span class="num-unit">${escHtml(q.unit)}</span>` : ''}
            <button class="num-go" id="num-go" onclick="checkNum()">OK</button>
@@ -1126,6 +1130,9 @@ function renderQ() {
          ${isFracQ(q) ? '<div class="num-prev" id="num-prev"></div>' : ''}
          <div class="num-hint">${isFracQ(q)
            ? 'Scrivi la frazione con la barra, per esempio 13/12 oppure -5/12. Un numero intero puoi scriverlo così com’è, per esempio -32.'
+           : isTextQ(q) ? 'Scrivi la parola o il termine del libro. Maiuscole e accenti non contano.'
+           : q.sci ? 'Scrivi in notazione scientifica, per esempio 2,5x10^-4.' + (q.sig ? ' Attenzione alle cifre significative.' : '')
+           : q.plain ? 'Scrivi il numero per esteso, senza potenze di 10. Usa la virgola per i decimali.'
            : 'Usa la virgola per i decimali. Per le potenze di 10 scrivi per esempio 2,5x10^-4 oppure 2,5e-4.' + (q.sig ? ' Attenzione alle cifre significative.' : '')}</div>
        </div>`;
     document.getElementById('num-in')?.focus({ preventScroll:true });   // sincrono: su iPhone apre la tastiera
@@ -1301,7 +1308,7 @@ function drawSteps(done) {
       <div class="num-row"><input class="num-in" id="num-in" type="text" enterkeyhint="done" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
         placeholder="scrivi il numero" onkeydown="if(event.key==='Enter')checkStep()">${p.unit ? `<span class="num-unit">${escHtml(p.unit)}</span>` : ''}
         <button class="num-go" id="num-go" onclick="checkStep()">OK</button></div>
-      <div class="num-hint">Passo ${st.k + 1} di ${q.steps.length}. Usa la virgola per i decimali.${p.sig ? ' Attenzione alle cifre significative.' : ''}</div></div>`; }
+      <div class="num-hint">Passo ${st.k + 1} di ${q.steps.length}. Usa la virgola per i decimali.${p.sci ? ' Scrivi in notazione scientifica, per esempio 2,5x10^-4.' : ''}${p.sig ? ' Attenzione alle cifre significative.' : ''}</div></div>`; }
   document.getElementById('opts').innerHTML = `<div class="game steps">${past}${cur}</div>`;
   document.getElementById('num-in')?.focus({ preventScroll:true });
 }
@@ -1344,7 +1351,8 @@ function finishSteps(timeout) {
   document.getElementById('btn-next').classList.add('on');
 }
 
-function isNumQ(q) { return q && (q.type === 'numeric' || q.type === 'fraction'); }
+function isNumQ(q) { return q && (q.type === 'numeric' || q.type === 'fraction' || q.type === 'text'); }
+function isTextQ(q) { return q && q.type === 'text'; }
 function isFracQ(q) { return q && q.type === 'fraction'; }
 
 const SUP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-','⁺':'+'};
@@ -1354,8 +1362,9 @@ function parseNum(raw) { return parseNumAll(raw)[0]; }
 function normUnit(u) {
   return String(u || '').toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c]).replace(/\s+/g, '');
 }
+const BARE_POW = /^([+\-−]?)10(?=[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺])/;   // «10⁻⁴» scritto con gli apici = 10^-4
 function parseNumAll(raw, unit) {
-  let s = String(raw||'').trim().toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c]);
+  let s = String(raw||'').trim().replace(BARE_POW, '$110^').toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c]);
   s = s.replace(/[−–]/g,'-').replace(/\s+/g,'').replace(/[()]/g,'');
   const u = normUnit(unit);
   const variants = s.includes(',')
@@ -1405,6 +1414,16 @@ function sameSig(v, a, n) {
   const r = x => Number(Number(x).toPrecision(n));
   return Math.abs(r(v) - r(a)) <= Math.abs(r(a)) * 1e-9;
 }
+// Campo «sci»: coefficiente tra 1 e 10 per una potenza di 10. Campo «plain»: numero per esteso.
+function isSciForm(raw) {
+  const s = String(raw || '').trim().replace(BARE_POW, '$110^').toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c]).replace(/[−–]/g, '-').replace(/\s+/g, '').replace(/[()]/g, '').replace(/^[+-]/, '');
+  if (/^10\^?[+-]?\d/.test(s) && !/^\d+[.,]/.test(s)) return /^10\^/.test(s);
+  const m = s.match(/^(\d+(?:[.,]\d*)?)(?:[x×*·]10\^?|e)[+-]?\d/);
+  if (!m) return false;
+  const c = parseFloat(m[1].replace(',', '.'));
+  return c >= 1 && c < 10;
+}
+function isPlainForm(raw) { return !/[x×*·^e⁰¹²³⁴⁵⁶⁷⁸⁹]/i.test(String(raw || '')); }
 // Valuta una risposta numerica (usata dalle domande «numeric» e dai passi dei problemi).
 function evalNumeric(q, raw) {
   if (/\d\s+\d+\s*\/\s*\d/.test(raw)) return { status:'mixed' };
@@ -1412,6 +1431,8 @@ function evalNumeric(q, raw) {
   if (!raw || isNaN(vals[0])) return { status:'invalid' };
   const tol  = (q.tolerance !== undefined) ? q.tolerance : 0.02;
   const near = vals.some(v => q.answer === 0 ? Math.abs(v) < 1e-9 : Math.abs(v - q.answer) <= Math.abs(q.answer) * tol);
+  if (near && q.sci && !isSciForm(raw)) return { status:'done', ok:false, note:'Il valore è giusto, ma va scritto in notazione scientifica: coefficiente tra 1 e 10 per una potenza di 10. ' };
+  if (near && q.plain && !isPlainForm(raw)) return { status:'done', ok:false, note:'Il valore è giusto, ma va scritto per esteso, senza potenze di 10. ' };
   if (!q.sig) return { status:'done', ok:near, note:'' };
   const dotDec = !raw.includes(',') && raw.includes('.') && sameSig(vals[0], q.answer, q.sig);   // il punto usato come virgola
   const r = sigRange(raw, dotDec), sigOk = !!r && r.min <= q.sig && q.sig <= r.max;
@@ -1426,8 +1447,15 @@ const MSG_BADNUM = 'Non riesco a leggere il numero: usa la virgola per i decimal
 
 function numText(q) {
   if (isFracQ(q)) return q.answerText || String(q.answer);
+  if (isTextQ(q)) return q.answerText || q.accept[0];
   return q.answerText || (String(q.answer).replace('.', ',') + (q.unit ? ' ' + q.unit : ''));
 }
+// Risposta a parole (type:"text"): vale se coincide con una voce di «accept».
+function normText(s) {
+  return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g, c => SUP[c]).replace(/[.,;:!?«»"']/g, ' ').replace(/\s+/g, ' ').trim();
+}
+function checkText(q, raw) { const t = normText(raw); return q.accept.some(a => normText(a) === t); }
 function escHtml(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 function checkNum() {
@@ -1441,6 +1469,9 @@ function checkNum() {
     if (!r) { numWarn('Scrivi una frazione con la barra, per esempio 3/4 oppure -5/12.'); return; }
     if (r.mixed) { numWarn('I numeri misti come «3 1/2» non valgono: scrivi la frazione, per esempio 7/2.'); return; }
     ok = r.ok; note = r.note;
+  } else if (isTextQ(q)) {
+    if (!raw) { numWarn('Scrivi la risposta.'); return; }
+    ok = checkText(q, raw);
   } else {
     const r = evalNumeric(q, raw);
     if (r.status === 'mixed') { numWarn(MSG_MIXED); return; }

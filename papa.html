@@ -28,6 +28,14 @@ th { color:var(--mu); font-weight:800; font-size:.75rem; text-transform:uppercas
 .p.hi { background:rgba(34,197,94,.16); color:var(--ok); } .p.md { background:rgba(245,166,35,.16); color:var(--mid); } .p.lo { background:rgba(239,68,68,.15); color:var(--ko); }
 .tag { font-size:.7rem; color:var(--mu); border:1px solid var(--ln); border-radius:20px; padding:1px 7px; margin-left:6px; white-space:nowrap; }
 .spark { display:inline-flex; align-items:flex-end; gap:2px; height:22px; vertical-align:middle; }
+.up { color:var(--ok); font-weight:800; } .down { color:var(--ko); font-weight:800; } .same { color:var(--mu); font-weight:800; }
+.gain { padding:10px 0; border-bottom:1px solid var(--ln); } .gain:last-child { border-bottom:0; }
+.gain summary { list-style:none; cursor:pointer; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.gain summary::-webkit-details-marker { display:none; }
+.gain .ttl { flex:1; min-width:170px; font-weight:800; font-size:.9rem; }
+.gain .nums { font-size:.8rem; color:var(--mu2); }
+.gain h4 { font-size:.8rem; margin:10px 0 2px; color:var(--mu2); }
+.gain li { font-size:.84rem; margin:3px 0 3px 18px; }
 .spark i { width:5px; border-radius:2px; background:var(--acc); opacity:.85; }
 .att { border-bottom:1px solid var(--ln); }
 .att summary { list-style:none; cursor:pointer; display:flex; gap:10px; align-items:center; padding:10px 4px; flex-wrap:wrap; }
@@ -50,7 +58,7 @@ input { width:100%; padding:11px 12px; border-radius:10px; border:1.5px solid va
 .sel { padding:8px 10px; border-radius:10px; background:#11111a; color:var(--tx); border:1.5px solid var(--ln); font-family:'Nunito',sans-serif; font-weight:700; }
 .empty { color:var(--mu); font-size:.9rem; padding:8px 0; }
 .small { color:var(--mu); font-size:.78rem; }
-@media(max-width:600px){ #t-tests td:nth-child(5), thead th:nth-child(5) { display:none; } #t-tests .tag { display:none; } th, td { padding:7px 4px; } .p { min-width:40px; padding:2px 6px; } }
+@media(max-width:600px){ #t-tests td:nth-child(6), thead th:nth-child(6) { display:none; } #t-tests .tag { display:none; } th, td { padding:7px 4px; } .p { min-width:40px; padding:2px 6px; } }
 </style>
 </head>
 <body>
@@ -88,9 +96,13 @@ input { width:100%; padding:11px 12px; border-radius:10px; border:1.5px solid va
 
     <h2>📊 Andamento per test</h2>
     <div class="card" style="overflow-x:auto"><table>
-      <thead><tr><th>Test</th><th>Tentativi</th><th>Migliore</th><th>Ultimo</th><th>Andamento</th></tr></thead>
+      <thead><tr><th>Test</th><th>Tentativi</th><th>Migliore</th><th>Ultimo</th><th>Variazione</th><th>Andamento</th></tr></thead>
       <tbody id="t-tests"></tbody>
     </table></div>
+
+    <h2>📈 Miglioramenti tra una partita e l'altra</h2>
+    <div class="small" style="margin-bottom:8px">Confronta le ultime due partite complete dello stesso test.</div>
+    <div class="card" id="gains"></div>
 
     <h2>🎯 Domande da ripassare</h2>
     <div class="card">
@@ -113,6 +125,7 @@ function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); i
 function pill(p) { const c = p >= 80 ? 'hi' : p >= 60 ? 'md' : 'lo'; return `<span class="p ${c}">${Math.round(p)}%</span>`; }
 function when(iso) { const d = new Date(iso); if (isNaN(d)) return '—'; return `${d.getDate()}/${d.getMonth()+1} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`; }
 function dur(s) { s = Math.round(s||0); const h = Math.floor(s/3600), m = Math.floor(s%3600/60); return h ? `${h} h ${m} min` : `${m} min`; }
+function delta(a, b) { const d = Math.round(Number(a) - Number(b)); return d > 0 ? `<span class="up">▲ +${d}</span>` : d < 0 ? `<span class="down">▼ ${d}</span>` : '<span class="same">= 0</span>'; }
 function yes(v) { return v === true || v === 'SI' || v === 'TRUE' || v === 'true'; }
 
 function boot() {
@@ -174,8 +187,10 @@ function render() {
       <td class="num">${done.length}${g.list.length > done.length ? ` <span class="small">(+${g.list.length - done.length} interrotti)</span>` : ''}</td>
       <td>${best !== null ? pill(best) : '—'}</td>
       <td>${last ? pill(Number(last.percentuale)) : '—'}</td>
+      <td class="num">${done.length > 1 ? delta(done[0].percentuale, done[1].percentuale) : '—'}</td>
       <td><span class="spark">${seq.map(t => `<i title="${esc(when(t.data))}: ${esc(t.percentuale)}%" style="height:${Math.max(3, Number(t.percentuale) * .22)}px"></i>`).join('')}</span></td></tr>`;
-  }).join('') : `<tr><td colspan="5" class="empty">Ancora nessun tentativo registrato.</td></tr>`;
+  }).join('') : `<tr><td colspan="6" class="empty">Ancora nessun tentativo registrato.</td></tr>`;
+  renderGains(tests, R);
 
   // menu domande da ripassare
   const sel = document.getElementById('miss-test'), prev = sel.value;
@@ -188,16 +203,39 @@ function render() {
   for (const a of R) (ansBy[a['id tentativo']] = ansBy[a['id tentativo']] || []).push(a);
   document.getElementById('atts').innerHTML = T.length ? T.slice(0, 40).map(t => {
     const wrong = (ansBy[t.id] || []).filter(a => !yes(a.esatta));
+    const older = T.find(x => x.test === t.test && yes(x.completato) && new Date(x.data) < new Date(t.data));
     return `<details class="att"><summary>
         <span class="when">${esc(when(t.data))}</span>
         <span class="ttl">${esc(t.titolo)}${yes(t.completato) ? '' : '<span class="tag">interrotto</span>'}</span>
         <span class="num small">${esc(t.giuste)}/${esc(t.domande)} · ${esc(dur(t.secondi))}</span>
-        ${pill(Number(t.percentuale))}
+        ${pill(Number(t.percentuale))}${older && yes(t.completato) ? ' ' + delta(t.percentuale, older.percentuale) : ''}
       </summary><div class="det">${wrong.length ? wrong.map(a => `<div class="wr"><div class="q">${esc(a.domanda)}</div>
         <div class="a">ha risposto <s>${esc(a['risposta data'])}</s> · giusta <b>${esc(a['risposta giusta'])}</b></div></div>`).join('')
         : '<div class="empty">Nessun errore 🎉</div>'}</div></details>`;
   }).join('') : '<div class="empty">Quando Pietro completa un quiz, compare qui.</div>';
   document.getElementById('dash-msg').textContent = 'Aggiornato alle ' + new Date().toLocaleTimeString('it-IT', { hour:'2-digit', minute:'2-digit' });
+}
+
+// Per ogni test: differenza fra le ultime due partite complete, domanda per domanda.
+function renderGains(tests, R) {
+  const ansBy = {};
+  for (const a of R) (ansBy[a['id tentativo']] = ansBy[a['id tentativo']] || []).push(a);
+  const rows = tests.map(([id, g]) => {
+    const done = g.list.filter(t => yes(t.completato));
+    if (done.length < 2) return '';
+    const [last, prev] = done;
+    const before = {}; for (const a of ansBy[prev.id] || []) before[a.domanda] = yes(a.esatta);
+    const now = ansBy[last.id] || [];
+    const fixed = now.filter(a => yes(a.esatta) && before[a.domanda] === false);
+    const lost  = now.filter(a => !yes(a.esatta) && before[a.domanda] === true);
+    const stuck = now.filter(a => !yes(a.esatta) && before[a.domanda] === false);
+    const list = (t, l) => l.length ? `<h4>${t}</h4><ul>${l.slice(0, 12).map(a => `<li>${esc(a.domanda)}</li>`).join('')}</ul>` : '';
+    return `<details class="gain"><summary><span class="ttl">${esc(g.titolo)}</span>
+        ${pill(Number(prev.percentuale))} → ${pill(Number(last.percentuale))} ${delta(last.percentuale, prev.percentuale)}
+        <span class="nums">✅ ${fixed.length} recuperate · ⚠️ ${lost.length} nuovi errori · 🔁 ${stuck.length} ancora sbagliate</span></summary>
+        ${list('Recuperate: prima sbagliate, ora giuste', fixed)}${list('Nuovi errori: prima giuste, ora sbagliate', lost)}${list('Ancora sbagliate', stuck)}</details>`;
+  }).filter(Boolean);
+  document.getElementById('gains').innerHTML = rows.length ? rows.join('') : '<div class="empty">Serve almeno un test completato due volte.</div>';
 }
 
 function renderMiss() {

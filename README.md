@@ -20,6 +20,11 @@ pietro-quiz/
         ├── misure-cap1-problemi.js   ✅ Cap. 1 problemi (risposta da scrivere)
         ├── materia-cap2.js           ✅ Cap. 2 Trasformazioni fisiche (teoria)
         └── materia-cap2-problemi.js  ✅ Cap. 2 concentrazioni (risposta da scrivere)
+    └── fisica/
+        ├── matematica-per-cominciare.js ✅ Unità 0 (risposta da scrivere)
+        ├── grandezze-cap1-problemi.js   ✅ Cap. 1 (risposta da scrivere)
+        ├── grandezze-teoria.js          ✅ Regole (risposta a parole)
+        └── fisica-giochi.js             ✅ ordina e classifica
 
 Materie già presenti nel menu, ancora senza test: storia, tecnologia,
 musica, italiano, inglese, spagnolo.
@@ -129,6 +134,16 @@ Lo studente scrive `13/12`, `-5/12`, `−(5/12)`, `5/-12` o un intero. Se il val
 
 Tutti i testi (domande, opzioni, spiegazioni) sono testo semplice: il motore li
 mostra così come sono, quindi `<` e `>` si possono usare liberamente.
+
+### Risposte a parole e forma del numero — novità v1.7
+
+```js
+{ type:"text", q:"Come si chiama l'unità della massa nel SI?", accept:["kilogrammo","chilogrammo","kg"], answerText:"kilogrammo", explanation:"… (p. 25)" }
+{ type:"numeric", q:"Scrivi 7450 in notazione scientifica.", answer:7450, sci:true, tolerance:0.0001, answerText:"7,45·10³", explanation:"…" }
+{ type:"numeric", q:"Scrivi 0,2·10⁻³ in forma decimale.", answer:0.0002, plain:true, tolerance:0.0001, explanation:"…" }
+```
+`accept` elenca le risposte valide: maiuscole, accenti e punteggiatura non contano. `sci` vuole il coefficiente tra 1 e 10 per una
+potenza di 10; `plain` vuole il numero per esteso. Se il valore è giusto ma la forma no, la risposta è sbagliata con l'avviso.
 
 ### Giochi: «metti in ordine» (`type: "order"`) e «classifica» (`type: "classify"`) — novità v1.5
 
@@ -293,6 +308,9 @@ Ogni volta che aggiungi o modifichi un test:
 | Quiz lampo | 10 domande da un test (⚡ 10 sulla card) o miste da tutti i test di una materia (interleaving) |
 | Invio affidabile | Un tentativo esce dalla coda solo quando lo script risponde ok; un quiz chiuso a metà diventa «interrotto» |
 | App sul telefono | `manifest.webmanifest` + `icons/`: da Safari → Condividi → «Aggiungi alla schermata Home» |
+| Risposta a parole | `type:"text"`, con le risposte valide in `accept` |
+| Forma del numero | campi `sci` (notazione scientifica) e `plain` (numero per esteso) |
+| Miglioramenti | `papa.html` confronta le ultime due partite: recuperate, nuovi errori, ancora sbagliate |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
 

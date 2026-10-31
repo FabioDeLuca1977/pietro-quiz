@@ -141,6 +141,46 @@ window.QUIZ_REGISTRY = [
       }
     ]
   },
+  // ── FISICA ─────────────────────────────
+  {
+    subject:     "fisica",
+    subjectIcon: "🧲",
+    subjectColor:"#ea580c",
+    tests: [
+      {
+        id:            "matematica-per-cominciare",
+        title:         "Unità 0 — La matematica per cominciare: scrivi i risultati",
+        description:   "Proporzioni, percentuali, potenze di 10, formule, proporzionalità · risposta da scrivere",
+        icon:          "🧮",
+        questionCount: 48,
+        enabled:       true
+      },
+      {
+        id:            "grandezze-cap1-problemi",
+        title:         "Cap. 1 — Le grandezze fisiche: scrivi i risultati",
+        description:   "Conversioni, notazione scientifica, ordini di grandezza, area, volume, densità · risposta da scrivere",
+        icon:          "📏",
+        questionCount: 80,
+        enabled:       true
+      },
+      {
+        id:            "grandezze-teoria",
+        title:         "Unità 0 e Cap. 1 — Regole: scrivi la parola giusta",
+        description:   "Definizioni, unità del SI, prefissi, proporzionalità · risposta a parole",
+        icon:          "✏️",
+        questionCount: 47,
+        enabled:       true
+      },
+      {
+        id:            "fisica-giochi",
+        title:         "Unità 0 e Cap. 1 — Gioca: ordina e classifica",
+        description:   "Prefissi, grandezze fondamentali e derivate, unità del SI, proporzionalità",
+        icon:          "🧩",
+        questionCount: 10,
+        enabled:       true
+      }
+    ]
+  },
   // ── TECNOLOGIA ─────────────────────────────
   {
     subject:     "tecnologia",
