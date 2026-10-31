@@ -4,7 +4,7 @@
 //
 //  Risposta da scrivere (numeri e problemi a passi), senza timer.
 //  Quelli con «p. N, n. M» vengono dal libro; dove il libro non stampa il risultato
-//  il calcolo è nostro. Esclusi: p. 41 n. 24 righe 1-2 e p. 42 n. 31-33 (esponenti
+//  il calcolo è nostro. Esclusi: p. 41 n. 24 riga 2 e p. 42 n. 31-33 (esponenti
 //  non leggibili nelle foto).
 //  Fonte: foto del libro di fisica, ottobre 2026.
 // ============================================================
@@ -61,6 +61,7 @@ window.QUIZ_BANK["grandezze-cap1-problemi"] = {
     { type:"numeric", plain:true, q:"Scrivi 0,2·10⁻³ in forma decimale.", answer:2e-4, tolerance:0.0001, answerText:"0,0002", explanation:"p. 41, n. 23." },
     { type:"numeric", plain:true, q:"Scrivi 22·10⁻⁸ in forma decimale.", answer:2.2e-7, tolerance:0.0001, answerText:"0,00000022", explanation:"p. 41, n. 23." },
     { type:"numeric", plain:true, q:"Scrivi 4,8·10⁻⁶ in forma decimale.", answer:4.8e-6, tolerance:0.0001, answerText:"0,0000048", explanation:"p. 41, n. 23." },
+    { type:"numeric", q:"Calcola (4·10²) : (1,2·10²) con due cifre decimali.", answer:3.33, tolerance:0.002, answerText:"3,33·10⁰, cioè 3,33", explanation:"Si dividono i coefficienti e si sottraggono gli esponenti: 2 − 2 = 0 (p. 41, n. 24)." },
     { type:"numeric", sci:true, q:"Calcola (5,02·10¹⁰) : (1,0·10⁻¹⁰) in notazione scientifica.", answer:5.02e20, tolerance:0.002, answerText:"5,02·10²⁰", explanation:"Si dividono i coefficienti e si sottraggono gli esponenti: 10 − (−10) = 20 (p. 41, n. 24)." },
     { type:"numeric", sci:true, q:"Calcola (9,7·10⁸) · (9·10¹²) in notazione scientifica.", answer:8.73e21, tolerance:0.002, answerText:"8,73·10²¹", explanation:"87,3·10²⁰ = 8,73·10²¹ (p. 41, n. 24)." },
     { type:"numeric", sci:true, q:"Calcola (8·10⁻³) · (5,6·10⁻¹⁷) in notazione scientifica.", answer:4.48e-19, tolerance:0.002, answerText:"4,48·10⁻¹⁹", explanation:"44,8·10⁻²⁰ = 4,48·10⁻¹⁹ (p. 41, n. 25)." },

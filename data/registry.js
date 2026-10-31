@@ -160,7 +160,7 @@ window.QUIZ_REGISTRY = [
         title:         "Cap. 1 — Le grandezze fisiche: scrivi i risultati",
         description:   "Conversioni, notazione scientifica, ordini di grandezza, area, volume, densità · risposta da scrivere",
         icon:          "📏",
-        questionCount: 80,
+        questionCount: 81,
         enabled:       true
       },
       {
