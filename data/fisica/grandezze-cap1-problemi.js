@@ -146,7 +146,7 @@ window.QUIZ_BANK["grandezze-cap1-problemi"] = {
     { type:"numeric", q:"Converti 5700 dm³ in m³.", answer:5.7, unit:"m³", tolerance:0.001, answerText:"5,7 m³", explanation:"1 dm³ = 10⁻³ m³ (p. 44, n. 57)." },
     { type:"numeric", q:"Converti 0,001 km³ in m³.", answer:1e6, unit:"m³", tolerance:0.001, answerText:"10⁶ m³", explanation:"1 km³ = 10⁹ m³ (p. 44, n. 57)." },
     { type:"numeric", q:"Un areometro misura la densità dell'alcol: 0,79 g/cm³. Converti nelle unità del SI.", answer:790, unit:"kg/m³", tolerance:0.001, explanation:"1 g/cm³ = 1000 kg/m³ (p. 44, n. 59)." },
-    { type:"numeric", q:"37 milioni di auto, ognuna 4,0 m × 1,8 m. Quale superficie occupano in km²?", answer:270, unit:"km²", tolerance:0.01, explanation:"7,2 m² · 37·10⁶ = 2,7·10⁸ m² = 270 km² (p. 33, Prova tu)." },
+    { type:"numeric", q:"37 milioni di auto, ognuna 4,0 m × 1,8 m. Quale superficie occupano in km²?", answer:270, unit:"km²", tolerance:0.02, explanation:"7,2 m² · 37·10⁶ = 2,7·10⁸ m² = 270 km²: il libro arrotonda 266 a 270 (p. 33, Prova tu)." },
     { type:"steps", q:"Un corpo ha densità 1060 kg/m³ e volume 5,2 L.",
       steps:[ {q:"Scrivi il volume in m³.", answer:5.2e-3, unit:"m³", answerText:"5,2·10⁻³ m³", tolerance:0.001, explanation:"1 L = 10⁻³ m³."},
               {q:"Calcola la massa.", answer:5.5, unit:"kg", answerText:"5,5 kg", tolerance:0.01, explanation:"m = dV = 1060 · 5,2·10⁻³ kg."} ],
