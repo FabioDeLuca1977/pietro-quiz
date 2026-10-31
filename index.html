@@ -42,6 +42,7 @@
 <script src="data/fisica/grandezze-cap1-problemi.js"></script>
 <script src="data/fisica/grandezze-teoria.js"></script>
 <script src="data/fisica/fisica-giochi.js"></script>
+<script src="data/fisica/fisica-definizioni.js"></script>
 
 <!-- TECNOLOGIA -->
 
@@ -310,6 +311,9 @@ body.story .logo { display:none; }
 .num-unit { font-weight:900; font-size:1.05rem; }
 .num-go { padding:16px 20px; background:#111; color:#fff; border:none; border-radius:20px; font-weight:900; font-size:1rem; cursor:pointer; }
 .num-go:disabled { opacity:.35; }
+.def-in { width:100%; min-height:130px; padding:12px; border-radius:14px; border:2px solid rgba(255,255,255,.35); background:rgba(0,0,0,.25); color:#fff; font:inherit; font-size:16px; line-height:1.4; resize:vertical; }
+.def-in.correct { border-color:#22c55e; } .def-in.wrong { border-color:#ff4d6d; }
+.def-go { width:100%; margin-top:8px; }
 .num-hint { font-size:.76rem; opacity:.85; line-height:1.45; }
 .num-prev { display:flex; align-items:center; gap:10px; font-weight:900; font-size:1.6rem; }
 .num-prev:empty { display:none; }
@@ -962,7 +966,7 @@ function testCard(t, subj, withSubj) {
   const best   = active ? getBest(subj.subject, t.id, data.version) : null;
   const qCount = data ? data.questions.length : t.questionCount;
   const tpqv   = data ? (data.timePerQuestion === 0 ? 0 : (data.timePerQuestion || 20)) : null;
-  const nWrite = data ? data.questions.filter(q => q.type === 'numeric' || q.type === 'fraction' || q.type === 'text').length : 0;
+  const nWrite = data ? data.questions.filter(q => q.type === 'numeric' || q.type === 'fraction' || q.type === 'text' || q.type === 'define').length : 0;
   return `<div class="test-item ${active ? '' : 'coming'}" style="--acc:${subj.subjectColor}" ${active ? `onclick="startQuiz('${t.id}')"` : ''}>
     <div class="ti-cover">
       <div class="ti-top">
@@ -1115,6 +1119,7 @@ function renderQ() {
   if (isStepsQ(q)) renderSteps(q);
   else if (isOrderQ(q)) renderOrder(q);
   else if (isClassQ(q)) renderClass(q);
+  else if (isDefineQ(q)) renderDefine(q);
   else if (isNumQ(q)) {
     // Risposta da scrivere: niente opzioni, casella + unità + conferma
     G._opts = null; G._corrOrig = null;
@@ -1150,6 +1155,7 @@ function renderQ() {
 
   hideFB();
   document.getElementById('btn-next').classList.remove('on');
+  document.getElementById('btn-next').textContent = 'Avanti →'; G.defRetry = false; G.defTry = 0;
   document.getElementById('btn-txt').classList.toggle('on', isReading());
 
   // Timer: timePerQuestion 0 → nessun timer (modalità reading)
@@ -1157,6 +1163,7 @@ function renderQ() {
   G.tTot = 0;
   if (t > 0 && (isOrderQ(q) || isClassQ(q))) t = Math.max(t, 60);   // i giochi hanno bisogno di più tempo
   if (t > 0 && isStepsQ(q)) t = Math.max(t, 40 * q.steps.length);
+  if (t > 0 && isDefineQ(q)) t = Math.max(t, 120);
   if (t > 0) {
     document.getElementById('tmr-c').classList.remove('off');
     startTmr(t);
@@ -1349,6 +1356,80 @@ function finishSteps(timeout) {
     document.getElementById('fb-main').textContent = `${nOk} passi su ${q.steps.length} giusti · +${pts} punti`;
   document.getElementById('slive').textContent = `⭐ ${G.score}`;
   document.getElementById('btn-next').classList.add('on');
+}
+
+// ═══════════════════════════════════════════════════════
+//  DEFINIZIONI A MEMORIA  (type:"define")
+//  Campi: keys (gruppi di parole o radici: serve una voce per gruppo), answerText.
+//  Il punteggio vale al primo tentativo; se manca un concetto si legge la
+//  definizione e poi la si riscrive a memoria finché è completa.
+// ═══════════════════════════════════════════════════════
+function isDefineQ(q) { return q && q.type === 'define'; }
+function renderDefine(q) {
+  G._opts = null; G._corrOrig = null; G.defTry = 0; G.defRetry = false;
+  document.getElementById('opts').innerHTML =
+    '<div class="num-box"><textarea class="def-in" id="def-in" autocomplete="off" autocapitalize="sentences" placeholder="Scrivi la definizione a memoria"></textarea>' +
+    '<button class="num-go def-go" id="def-go" onclick="checkDefine()">Controlla</button>' +
+    '<div class="num-hint" id="def-hint">Scrivila con le parole del libro: tutti i concetti devono esserci.</div></div>';
+  document.getElementById('def-in').focus({ preventScroll:true });
+}
+function nearWord(a, b) {                                   // al massimo una lettera diversa, mancante o in più
+  if (Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, d = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++d > 1) return false;
+    if (a.length > b.length) i++; else if (b.length > a.length) j++; else { i++; j++; }
+  }
+  return d + (a.length - i) + (b.length - j) <= 1;
+}
+function defText(s) { return normText(s).replace(/\^/g, '').replace(/[=+\-−*\/()·:%]/g, ' ').replace(/\s+/g, ' ').trim(); }
+function hasKey(text, key) {
+  const k = defText(key);
+  if ((' ' + text).includes(' ' + k)) return true;
+  return k.length >= 6 && !k.includes(' ') && text.split(' ').some(w => nearWord(w.slice(0, k.length), k) || nearWord(w.slice(0, k.length + 1), k));
+}
+function defMissing(q, raw) { const t = defText(raw); return q.keys.filter(g => !g.some(k => hasKey(t, k))).length; }
+function checkDefine() {
+  if (Date.now() < (G.lockUntil || 0)) return;
+  const q = G.qs[G.idx], el = document.getElementById('def-in');
+  if (!el || el.disabled) return;
+  const raw = el.value.trim();
+  if (!raw) { document.getElementById('def-hint').textContent = 'Scrivi la definizione.'; return; }
+  const miss = defMissing(q, raw), ok = !miss, first = ++G.defTry === 1;
+  el.disabled = true; el.classList.add(ok ? 'correct' : 'wrong');
+  document.getElementById('def-go').disabled = true;
+  stopTmr();
+  const next = document.getElementById('btn-next'), body = (ok ? '' : 'Mancano ' + miss + (miss === 1 ? ' concetto' : ' concetti') + '. ') + 'Definizione: ' + q.answerText + ' ' + (q.explanation || '');
+  if (first) {
+    const pts = ok ? PTS.mid : 0;
+    G.score += pts;
+    G.ans.push({ q:q.q, ok, chosen:raw, correct:q.answerText, exp:q.explanation || '' });
+    showFB(ok, pts, body);
+    document.getElementById('slive').textContent = `⭐ ${G.score}`;
+  } else {
+    const last = G.ans[G.ans.length - 1];
+    if (ok) last.chosen += ' | riscritta completa al tentativo ' + G.defTry;
+    const fb = document.getElementById('fb');
+    fb.className = 'fb on ' + (ok ? 'ok' : 'ko');
+    document.getElementById('fb-ico').textContent = ok ? '✅' : '❌';
+    document.getElementById('fb-main').textContent = ok ? 'Ora è completa!' : 'Non ancora';
+    document.getElementById('fb-exp').innerHTML = mathify(ok ? '' : body);
+    document.getElementById('sheet').classList.add('on'); document.body.classList.add('sheet-open');
+  }
+  G.defRetry = !ok;
+  next.textContent = ok ? 'Avanti →' : 'Riscrivila a memoria →';
+  next.classList.add('on');
+}
+function retryDefine() {
+  G.defRetry = false; hideFB();
+  document.getElementById('opts').classList.remove('done');
+  const next = document.getElementById('btn-next'); next.classList.remove('on'); next.textContent = 'Avanti →';
+  const el = document.getElementById('def-in'), go = document.getElementById('def-go');
+  el.value = ''; el.disabled = false; el.classList.remove('wrong');
+  go.disabled = false;
+  document.getElementById('def-hint').textContent = 'Riscrivila da solo, senza guardare: serve completa per andare avanti.';
+  el.focus({ preventScroll:true });
 }
 
 function isNumQ(q) { return q && (q.type === 'numeric' || q.type === 'fraction' || q.type === 'text'); }
@@ -1558,6 +1639,7 @@ function closeSheet() {
 
 function nextQ() {
   if (!document.getElementById('btn-next').classList.contains('on')) return;   // niente doppio «Avanti»
+  if (G.defRetry) { retryDefine(); return; }
   G.idx++; G.idx>=G.qs.length ? showRes() : renderQ(); }
 
 // ═══════════════════════════════════════════════════════
@@ -1595,6 +1677,11 @@ function timeUp() {
   const q=G.qs[G.idx];
   if (isOrderQ(q) || isClassQ(q)) { confirmGame(true); return; }
   if (isStepsQ(q)) { finishSteps(true); return; }
+  if (isDefineQ(q)) {
+    const el = document.getElementById('def-in');
+    if (el && !el.value.trim()) el.value = '—';
+    G.lockUntil = 0; checkDefine(); return;
+  }
   if (isNumQ(q) && document.getElementById('num-in')?.value.trim()) {   // vale quello che ha scritto…
     G.lockUntil = 0; checkNum();
     if (document.getElementById('btn-next').classList.contains('on')) return;   // …se si riesce a leggere

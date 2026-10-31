@@ -24,6 +24,7 @@ pietro-quiz/
         ├── matematica-per-cominciare.js ✅ Unità 0 (risposta da scrivere)
         ├── grandezze-cap1-problemi.js   ✅ Cap. 1 (risposta da scrivere)
         ├── grandezze-teoria.js          ✅ Regole (risposta a parole)
+        ├── fisica-definizioni.js        ✅ definizioni da ripetere a memoria
         └── fisica-giochi.js             ✅ ordina e classifica
 
 Materie già presenti nel menu, ancora senza test: storia, tecnologia,
@@ -144,6 +145,15 @@ mostra così come sono, quindi `<` e `>` si possono usare liberamente.
 ```
 `accept` elenca le risposte valide: maiuscole, accenti e punteggiatura non contano. `sci` vuole il coefficiente tra 1 e 10 per una
 potenza di 10; `plain` vuole il numero per esteso. Se il valore è giusto ma la forma no, la risposta è sbagliata con l'avviso.
+
+### Definizioni a memoria (`type:"define"`) — novità v1.8
+
+```js
+{ type:"define", q:"Che cos'è la densità?", keys:[["rapporto"],["massa"],["volume"]], answerText:"Il rapporto tra massa e volume.", explanation:"p. 34." }
+```
+`keys` contiene gruppi di parole o radici: serve almeno una voce per gruppo; una lettera sbagliata è tollerata nelle parole lunghe.
+Il punteggio vale al primo tentativo. Se manca un concetto si legge la definizione e la si riscrive a memoria finché è completa.
+Il controllo guarda i concetti, non l'ordine delle parole.
 
 ### Giochi: «metti in ordine» (`type: "order"`) e «classifica» (`type: "classify"`) — novità v1.5
 
@@ -311,6 +321,7 @@ Ogni volta che aggiungi o modifichi un test:
 | Risposta a parole | `type:"text"`, con le risposte valide in `accept` |
 | Forma del numero | campi `sci` (notazione scientifica) e `plain` (numero per esteso) |
 | Miglioramenti | `papa.html` confronta le ultime due partite: recuperate, nuovi errori, ancora sbagliate |
+| Definizioni a memoria | `type:"define"`: risposta scritta con controllo dei concetti e riscrittura obbligatoria |
 | Riepilogo | Revisione tutte le risposte a fine quiz |
 | Colore UI | Si adatta automaticamente alla materia |
 

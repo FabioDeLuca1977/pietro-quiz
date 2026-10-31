@@ -172,6 +172,14 @@ window.QUIZ_REGISTRY = [
         enabled:       true
       },
       {
+        id:            "fisica-definizioni",
+        title:         "Unità 0 e Cap. 1 — Definizioni: ripetile a memoria",
+        description:   "40 definizioni da scrivere: se manca un concetto, la leggi e la riscrivi a memoria",
+        icon:          "🧠",
+        questionCount: 40,
+        enabled:       true
+      },
+      {
         id:            "fisica-giochi",
         title:         "Unità 0 e Cap. 1 — Gioca: ordina e classifica",
         description:   "Prefissi, grandezze fondamentali e derivate, unità del SI, proporzionalità",
