@@ -166,6 +166,13 @@ window.REVIEW = [
         "dur": 55,
         "pages": "Cap. 2",
         "test": "razionali-cap2"
+      },
+      {
+        "id": "mat-11",
+        "title": "Gli assiomi di geometria",
+        "file": "video/matematica/11-gli-assiomi.mp4",
+        "dur": 271,
+        "pages": "Cap. G1"
       }
     ]
   },
