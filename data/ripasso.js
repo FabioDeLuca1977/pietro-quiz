@@ -1,5 +1,6 @@
 // ============================================================
 //  data/ripasso.js  —  video della sezione Ripasso
+//  topic = argomento sotto cui il video compare in elenco
 //  test = il quiz proposto a fine video (facoltativo)
 // ============================================================
 window.REVIEW = [
@@ -10,6 +11,7 @@ window.REVIEW = [
     "items": [
       {
         "id": "fis-1",
+        "topic": "Unità 0 · La matematica per cominciare",
         "title": "Proporzioni e percentuali",
         "file": "video/fisica/01-proporzioni-percentuali.mp4",
         "dur": 73,
@@ -18,6 +20,7 @@ window.REVIEW = [
       },
       {
         "id": "fis-2",
+        "topic": "Unità 0 · La matematica per cominciare",
         "title": "Le potenze di 10",
         "file": "video/fisica/02-potenze-di-10.mp4",
         "dur": 71,
@@ -25,23 +28,8 @@ window.REVIEW = [
         "test": "matematica-per-cominciare"
       },
       {
-        "id": "fis-3",
-        "title": "La notazione scientifica",
-        "file": "video/fisica/03-notazione-scientifica.mp4",
-        "dur": 65,
-        "pages": "p. 27 e 41",
-        "test": "grandezze-cap1-problemi"
-      },
-      {
-        "id": "fis-4",
-        "title": "Approssimare e ordine di grandezza",
-        "file": "video/fisica/04-approssimare-ordine-grandezza.mp4",
-        "dur": 79,
-        "pages": "p. 27–28",
-        "test": "grandezze-cap1-problemi"
-      },
-      {
         "id": "fis-5",
+        "topic": "Unità 0 · La matematica per cominciare",
         "title": "Equazioni e formule inverse",
         "file": "video/fisica/05-equazioni-formule.mp4",
         "dur": 77,
@@ -50,6 +38,7 @@ window.REVIEW = [
       },
       {
         "id": "fis-6",
+        "topic": "Unità 0 · La matematica per cominciare",
         "title": "Grafici e proporzionalità",
         "file": "video/fisica/06-grafici-proporzionalita.mp4",
         "dur": 73,
@@ -58,6 +47,7 @@ window.REVIEW = [
       },
       {
         "id": "fis-7",
+        "topic": "Unità 1 · Le grandezze fisiche",
         "title": "Grandezze, misura e SI",
         "file": "video/fisica/07-grandezze-misura.mp4",
         "dur": 72,
@@ -65,7 +55,26 @@ window.REVIEW = [
         "test": "grandezze-teoria"
       },
       {
+        "id": "fis-3",
+        "topic": "Unità 1 · Le grandezze fisiche",
+        "title": "La notazione scientifica",
+        "file": "video/fisica/03-notazione-scientifica.mp4",
+        "dur": 65,
+        "pages": "p. 27 e 41",
+        "test": "grandezze-cap1-problemi"
+      },
+      {
+        "id": "fis-4",
+        "topic": "Unità 1 · Le grandezze fisiche",
+        "title": "Approssimare e ordine di grandezza",
+        "file": "video/fisica/04-approssimare-ordine-grandezza.mp4",
+        "dur": 79,
+        "pages": "p. 27–28",
+        "test": "grandezze-cap1-problemi"
+      },
+      {
         "id": "fis-8",
+        "topic": "Unità 1 · Le grandezze fisiche",
         "title": "Secondo, metro e massa",
         "file": "video/fisica/08-secondo-metro-massa.mp4",
         "dur": 67,
@@ -74,6 +83,7 @@ window.REVIEW = [
       },
       {
         "id": "fis-9",
+        "topic": "Unità 1 · Le grandezze fisiche",
         "title": "Area, volume e densità",
         "file": "video/fisica/09-area-volume-densita.mp4",
         "dur": 72,
@@ -89,6 +99,7 @@ window.REVIEW = [
     "items": [
       {
         "id": "mat-1",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Che cos'è una frazione",
         "file": "video/matematica/01-che-cos-e-una-frazione.mp4",
         "dur": 60,
@@ -97,6 +108,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-2",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Frazioni equivalenti",
         "file": "video/matematica/02-frazioni-equivalenti.mp4",
         "dur": 72,
@@ -105,6 +117,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-3",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Proprietà invariantiva",
         "file": "video/matematica/03-proprieta-invariantiva.mp4",
         "dur": 48,
@@ -113,6 +126,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-4",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Dimostrazione 1",
         "file": "video/matematica/04-dimostrazione-1.mp4",
         "dur": 37,
@@ -121,6 +135,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-5",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Dimostrazione 2",
         "file": "video/matematica/05-dimostrazione-2.mp4",
         "dur": 43,
@@ -129,6 +144,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-6",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Semplificare e denominatore comune",
         "file": "video/matematica/06-semplificare-e-denominatore-comune.mp4",
         "dur": 57,
@@ -137,6 +153,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-7",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Numeri razionali",
         "file": "video/matematica/07-numeri-razionali.mp4",
         "dur": 52,
@@ -145,6 +162,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-8",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Retta e confronto",
         "file": "video/matematica/08-retta-e-confronto.mp4",
         "dur": 58,
@@ -153,6 +171,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-9",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Le quattro operazioni",
         "file": "video/matematica/09-le-quattro-operazioni.mp4",
         "dur": 67,
@@ -161,6 +180,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-10",
+        "topic": "Numeri razionali · cap. 2",
         "title": "Le potenze",
         "file": "video/matematica/10-le-potenze.mp4",
         "dur": 55,
@@ -169,6 +189,7 @@ window.REVIEW = [
       },
       {
         "id": "mat-11",
+        "topic": "Geometria euclidea · cap. G1",
         "title": "Gli assiomi di geometria",
         "file": "video/matematica/11-gli-assiomi.mp4",
         "dur": 271,
@@ -183,6 +204,7 @@ window.REVIEW = [
     "items": [
       {
         "id": "inf-1",
+        "topic": "Modulo A1 · Informatica e computer",
         "title": "Informatica e computer",
         "file": "video/informatica/01-informatica-e-computer.mp4",
         "dur": 54,
@@ -190,6 +212,7 @@ window.REVIEW = [
       },
       {
         "id": "inf-2",
+        "topic": "Modulo A1 · Informatica e computer",
         "title": "Il computer",
         "file": "video/informatica/02-il-computer.mp4",
         "dur": 60,
@@ -197,6 +220,7 @@ window.REVIEW = [
       },
       {
         "id": "inf-3",
+        "topic": "Modulo A1 · Informatica e computer",
         "title": "Le aree dell'informatica",
         "file": "video/informatica/03-le-aree-dell-informatica.mp4",
         "dur": 63,
@@ -204,6 +228,7 @@ window.REVIEW = [
       },
       {
         "id": "inf-4",
+        "topic": "Modulo A1 · Informatica e computer",
         "title": "Dato e informazione",
         "file": "video/informatica/04-dato-e-informazione.mp4",
         "dur": 61,

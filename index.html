@@ -443,6 +443,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .sec-sw button.on { background:#fff; color:#111; }
 .rip-item { display:flex; width:100%; align-items:center; gap:12px; text-align:left; background:var(--card); border:1px solid var(--ln2); border-radius:18px; padding:12px; margin-bottom:9px; color:#fff; font:inherit; cursor:pointer; }
 .rip-item:active { transform:scale(.98); }
+.rip-topic { margin:14px 2px 8px; padding-left:10px; border-left:4px solid var(--acc); font-size:.82rem; font-weight:800; color:var(--mu2); letter-spacing:.02em; }
 #rip-all[hidden] { display:none; }
 .rip-play { width:46px; height:46px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; background:var(--acc); font-size:1.05rem; }
 .rip-item.seen .rip-play { background:var(--ok); color:#06281a; font-weight:900; }
@@ -1067,7 +1068,8 @@ function openRipasso(subj) {
   document.getElementById('rip-all').hidden = !G.ripSubj;
   document.getElementById('rip-list').innerHTML = groups.map(g => {
     const done = g.items.filter(x => seen[x.id]).length;
-    return `<div class="lbl">${g.icon} ${cap(g.subject)} <small>${done} visti su ${g.items.length}</small></div>` + g.items.map(x =>
+    return `<div class="lbl">${g.icon} ${cap(g.subject)} <small>${done} visti su ${g.items.length}</small></div>` + g.items.map((x, i) =>
+      (x.topic && x.topic !== g.items[i - 1]?.topic ? `<div class="rip-topic" style="--acc:${g.color}">${escHtml(x.topic)}</div>` : '') +
       `<button class="rip-item ${seen[x.id] ? 'seen' : ''}" style="--acc:${g.color}" onclick="openVideo('${x.id}')">
         <span class="rip-play">${seen[x.id] ? '✓' : '▶'}</span>
         <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')} · ${fmtDur(x.dur)}</span></span>
