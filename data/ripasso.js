@@ -193,7 +193,8 @@ window.REVIEW = [
         "title": "Gli assiomi di geometria",
         "file": "video/matematica/11-gli-assiomi.mp4",
         "dur": 269,
-        "pages": "Cap. G1"
+        "pages": "Cap. G1",
+        "test": "assiomi-g1"
       }
     ]
   },

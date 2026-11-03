@@ -138,6 +138,22 @@ window.QUIZ_REGISTRY = [
         icon:          "🧩",
         questionCount: 12,
         enabled:       true
+      },
+      {
+        id:            "assiomi-g1",
+        title:         "Cap. G1 — Gli assiomi: ripasso e domande",
+        description:   "Prima leggi la scheda dei 10 assiomi, poi 20 domande · puoi tornare alla scheda",
+        icon:          "📏",
+        questionCount: 20,
+        enabled:       true
+      },
+      {
+        id:            "assiomi-g1-enunciati",
+        title:         "Cap. G1 — Gli assiomi: enunciali a memoria",
+        description:   "14 enunciati da scrivere: se manca un concetto, lo leggi e lo riscrivi a memoria",
+        icon:          "🧠",
+        questionCount: 14,
+        enabled:       true
       }
     ]
   },
