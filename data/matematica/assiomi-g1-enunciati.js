@@ -48,8 +48,8 @@ window.QUIZ_BANK["assiomi-g1-enunciati"] = {
       answerText:"A. Ogni figura è congruente a se stessa. B. Se F₁ è congruente a F₂, allora F₂ è congruente a F₁. C. Se F₁ è congruente a F₂ e F₂ è congruente a F₃, allora F₁ è congruente a F₃.",
       explanation:"Assioma 5: proprietà riflessiva, simmetrica e transitiva. Scrivi F1, F2, F3 con i numeri." },
 
-    { type:"define", q:"Enuncia l'assioma 6.", keys:[["tutti"],["punti"],["congruent"],["rette"]],
-      answerText:"Tutti i punti sono congruenti tra loro, così come le rette.", explanation:"Assioma 6." },
+    { type:"define", q:"Enuncia l'assioma 6.", keys:[["tutti"],["punti"],["congruent"],["piani"],["rette"],["semipian"],["semirett"]],
+      answerText:"Tutti i punti sono congruenti tra loro, così come i piani, le rette, i semipiani e le semirette.", explanation:"Assioma 6 (piani, semipiani e semirette dagli appunti di un compagno)." },
 
     { type:"define", q:"Enuncia l'assioma 7A (trasporto del segmento).", keys:[["segmento"],["semirett"],["origine"],["uno e un solo","un solo"],["congruent"]],
       answerText:"Dato un segmento AB e una semiretta di origine O, esiste uno e un solo punto P sulla semiretta tale che OP sia congruente ad AB.", explanation:"Assioma 7A." },
