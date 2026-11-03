@@ -192,7 +192,7 @@ window.REVIEW = [
         "topic": "Geometria euclidea · cap. G1",
         "title": "Gli assiomi di geometria",
         "file": "video/matematica/11-gli-assiomi.mp4",
-        "dur": 271,
+        "dur": 269,
         "pages": "Cap. G1"
       }
     ]
