@@ -201,7 +201,8 @@ window.REVIEW = [
         "topic": "Misura degli angoli",
         "title": "Gradi, primi e secondi",
         "lesson": "gradi-primi-secondi",
-        "pages": "Spiegazione a slide"
+        "pages": "Spiegazione a slide",
+        "test": "gradi-1"
       }
     ]
   },

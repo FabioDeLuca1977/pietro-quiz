@@ -40,6 +40,7 @@
 <script src="data/matematica/assiomi-g1.js"></script>
 <script src="data/matematica/assiomi-g1-enunciati.js"></script>
 <script src="data/matematica/lezione-gradi-primi-secondi.js"></script>
+<script src="data/matematica/gradi-esercizi.js"></script>
 <script src="data/scienze/scienze-giochi.js"></script>
 <script src="data/storia/civilta-mesopotamiche-giochi.js"></script>
 <script src="data/fisica/matematica-per-cominciare.js"></script>
@@ -1163,7 +1164,8 @@ function openLesson(id) {
        <h2 class="ls-t">${s.t}</h2>${s.h}
        ${i === n - 1 ? `<div class="ls-end">
          <button class="btn btn-o" onclick="document.getElementById('les-sc').scrollTo({top:0})">↑ Dall'inizio</button>
-         <button class="btn btn-f" onclick="closeLesson()">✓ Ho finito</button></div>` : ''}
+         <button class="btn btn-f" onclick="closeLesson()">✓ Ho finito</button>
+         ${f.it.test && window.QUIZ_BANK?.[f.it.test] ? `<button class="btn btn-f" style="grid-column:1/-1" onclick="closeLesson(true);startQuiz('${f.it.test}')">📝 Fai gli esercizi</button>` : ''}</div>` : ''}
      </section>`).join('');
   sc.scrollTop = 0;
   G.lesObs?.disconnect();
@@ -1178,11 +1180,11 @@ function openLesson(id) {
   document.getElementById('les').classList.add('on');
   document.body.style.overflow = 'hidden';
 }
-function closeLesson() {
+function closeLesson(stay) {
   G.lesObs?.disconnect();
   document.getElementById('les').classList.remove('on');
   document.body.style.overflow = '';
-  openRipasso(G.ripSubj);
+  if (!stay) openRipasso(G.ripSubj);
 }
 
 function openSubj() { if (G.subj) selSubj(G.subj.subject); else goHome(); }
@@ -1228,11 +1230,12 @@ function startQuiz(testId) {
   setColor(G.subj?.subjectColor || DEF_ACC);
 
   G.replay = () => startQuiz(testId);
-  runQuiz(G.testData.questions.map(q => tag(q, G.testData)));
+  runQuiz(G.testData.questions.map(q => tag(q, G.testData)), G.testData.ordered);
 }
 
-function runQuiz(list) {
-  G.qs    = shuffle([...list]);
+// ordered: true = domande nell'ordine del file (dalle facili alle difficili)
+function runQuiz(list, ordered) {
+  G.qs    = ordered ? [...list] : shuffle([...list]);
   G.idx   = 0; G.score = 0; G.ans = []; G.combo = 0;
   document.getElementById('combo').classList.remove('on');
   G.t0    = Date.now(); G.sent = false; G.shareFile = null;
@@ -1614,7 +1617,8 @@ function normUnit(u) {
 const BARE_POW = /^([+\-−]?)10(?=[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺])/;   // «10⁻⁴» scritto con gli apici = 10^-4
 function parseNumAll(raw, unit) {
   let s = String(raw||'').trim().replace(BARE_POW, '$110^').toLowerCase().replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, c => SUP[c]);
-  s = s.replace(/[−–]/g,'-').replace(/\s+/g,'').replace(/[()]/g,'');
+  s = s.replace(/[−–]/g,'-').replace(/\s+/g,'').replace(/[()]/g,'')
+       .replace(/['’‘`´]/g,'′').replace(/′′/g,'″').replace(/["“”]/g,'″');   // primi e secondi scritti con apostrofi e virgolette
   const u = normUnit(unit);
   const variants = s.includes(',')
     ? [s.replace(/\.(?=\d{3}(\D|$))/g,'').replace(/,/g,'.')]

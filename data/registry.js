@@ -154,6 +154,30 @@ window.QUIZ_REGISTRY = [
         icon:          "🧠",
         questionCount: 14,
         enabled:       true
+      },
+      {
+        id:            "gradi-1",
+        title:         "Gradi, primi e secondi — Livello 1",
+        description:   "Le basi e le conversioni facili, nei due versi · 12 esercizi",
+        icon:          "🟢",
+        questionCount: 12,
+        enabled:       true
+      },
+      {
+        id:            "gradi-2",
+        title:         "Gradi, primi e secondi — Livello 2",
+        description:   "Con i secondi: da gradi con la virgola a ° ′ ″ e ritorno · 11 esercizi",
+        icon:          "🟡",
+        questionCount: 11,
+        enabled:       true
+      },
+      {
+        id:            "gradi-3",
+        title:         "Gradi, primi e secondi — Livello 3",
+        description:   "Le operazioni con riporti e prestiti · 7 esercizi",
+        icon:          "🔴",
+        questionCount: 7,
+        enabled:       true
       }
     ]
   },
