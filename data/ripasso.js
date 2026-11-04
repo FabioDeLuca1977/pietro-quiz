@@ -197,6 +197,15 @@ window.REVIEW = [
         "test": "assiomi-g1"
       },
       {
+        "id": "mat-13",
+        "topic": "Misura degli angoli",
+        "title": "Gradi, primi e secondi (video)",
+        "file": "video/matematica/12-gradi-primi-secondi.mp4",
+        "dur": 229,
+        "pages": "Misura degli angoli",
+        "test": "gradi-1"
+      },
+      {
         "id": "mat-12",
         "topic": "Misura degli angoli",
         "title": "Gradi, primi e secondi",
