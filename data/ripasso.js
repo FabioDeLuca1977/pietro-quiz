@@ -195,6 +195,13 @@ window.REVIEW = [
         "dur": 275,
         "pages": "Cap. G1",
         "test": "assiomi-g1"
+      },
+      {
+        "id": "mat-12",
+        "topic": "Misura degli angoli",
+        "title": "Gradi, primi e secondi",
+        "lesson": "gradi-primi-secondi",
+        "pages": "Spiegazione a slide"
       }
     ]
   },
