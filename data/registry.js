@@ -108,6 +108,14 @@ window.QUIZ_REGISTRY = [
     subjectColor:"#7c3aed",
     tests: [
       {
+        id:            "diagnosi-basi",
+        title:         "Ripasso totale — Dove mi inceppo?",
+        description:   "32 domande da inizio anno: alla fine la mappa delle basi da rifare",
+        icon:          "🧭",
+        questionCount: 32,
+        enabled:       true
+      },
+      {
         id:            "razionali-cap2",
         title:         "Cap. 2 — Numeri razionali e reali: teoria",
         description:   "Frazioni, Q, operazioni, potenze, decimali, proporzioni, reali, approssimazioni",

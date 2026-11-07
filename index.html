@@ -41,6 +41,7 @@
 <script src="data/matematica/assiomi-g1-enunciati.js"></script>
 <script src="data/matematica/lezione-gradi-primi-secondi.js"></script>
 <script src="data/matematica/gradi-esercizi.js"></script>
+<script src="data/matematica/diagnosi-basi.js"></script>
 <script src="data/scienze/scienze-giochi.js"></script>
 <script src="data/storia/civilta-mesopotamiche-giochi.js"></script>
 <script src="data/fisica/matematica-per-cominciare.js"></script>
@@ -515,6 +516,21 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .share-ov img { max-width:min(80vw, 380px); max-height:70svh; border-radius:18px; }
 .share-ov p { font-weight:700; text-align:center; }
 
+/* Mappa del test diagnostico (risultati) */
+.dg { background:rgba(10,10,15,.55); border:1px solid var(--ln2); border-radius:var(--r); padding:14px; margin:14px 0; text-align:left; }
+.dg-h { font-weight:900; font-size:1.05rem; }
+.dg-sub { font-size:.84rem; color:var(--mu2); margin:4px 0 10px; line-height:1.4; }
+.dg-sub b { color:#fff; }
+.dg-r { border-left:4px solid var(--ok); background:rgba(255,255,255,.04); border-radius:10px; padding:9px 11px; margin-top:7px; }
+.dg-r.mid { border-left-color:var(--gold); }
+.dg-r.ko { border-left-color:var(--ko); }
+.dg-t { display:flex; justify-content:space-between; gap:8px; font-weight:800; font-size:.9rem; }
+.dg-t b { font-family:var(--f-m); }
+.dg-from { font-size:.72rem; color:var(--mu); margin-top:1px; }
+.dg-links { display:flex; flex-direction:column; gap:5px; margin-top:7px; }
+.dg-go { text-align:left; background:var(--card2); border:1px solid var(--ln2); border-radius:10px; padding:7px 10px; font-size:.8rem; font-weight:700; cursor:pointer; }
+.dg-none { font-size:.78rem; color:var(--mu2); }
+
 /* Spiegazione a slide verticali (dati in window.LESSONS): una slide per schermata, si scorre in su */
 .les { position:fixed; inset:0; z-index:80; background:var(--grad); display:none; }
 .les.on { display:block; }
@@ -736,6 +752,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
       <div class="stat"><div class="sv" id="r-ko"></div><div class="sl">sbagliate</div></div>
       <div class="stat"><div class="sv" id="r-pts"></div><div class="sl">punti</div></div>
     </div>
+    <div id="r-diag"></div>
     <div class="btn-row">
       <button class="btn btn-s" onclick="shareCard()">📸 <span>Condividi la storia</span></button>
       <button class="btn btn-w" id="btn-wa" onclick="sendToDad()">📤 Manda a papà</button>
@@ -1994,6 +2011,27 @@ async function shareCard() {
   document.getElementById('share-ov').classList.add('on');
 }
 
+// Test diagnostico (testData.diag): per ogni anello quante giuste, da dove ripartire e cosa rifare.
+// Le domande restano in ordine (ordered), quindi G.ans[i] è la risposta a G.qs[i].
+function diagMap() {
+  const D = G.testData.diag; if (!D) return '';
+  const rows = D.anelli.map(an => {
+    const idx = G.qs.map((q, i) => q.a === an.id ? i : -1).filter(i => i >= 0);
+    const ok = idx.filter(i => G.ans[i]?.ok).length, n = idx.length;
+    return { an, ok, n, st: ok === n ? 'ok' : ok * 2 >= n ? 'mid' : 'ko' };
+  }).filter(r => r.n);
+  const first = rows.find(r => r.st !== 'ok');
+  const link = x => {
+    if (x.rip) { const f = reviewItem(x.rip); return f ? `<button class="dg-go" onclick="openItem('${x.rip}')">${f.it.lesson ? '📖' : '🎬'} ${escHtml(f.it.title)}</button>` : ''; }
+    const d = window.QUIZ_BANK?.[x.quiz]; return d ? `<button class="dg-go" onclick="startQuiz('${x.quiz}')">📝 ${escHtml(d.title)}</button>` : '';
+  };
+  return `<div class="dg"><div class="dg-h">🧭 La mappa delle tue basi</div>
+    <div class="dg-sub">${first ? `Riparti da qui: <b>${escHtml(first.an.nome)}</b>. Gli anelli sono in ordine: ognuno serve per quelli dopo.` : 'Tutte le basi reggono! 🎉'}</div>`
+    + rows.map(r => `<div class="dg-r ${r.st}"><div class="dg-t"><span>${r.st === 'ok' ? '✅' : r.st === 'mid' ? '🟡' : '❌'} ${escHtml(r.an.nome)}</span><b>${r.ok}/${r.n}</b></div>
+      <div class="dg-from">${escHtml(r.an.da)}</div>
+      ${r.st === 'ok' ? '' : `<div class="dg-links">${r.an.ripassa.map(link).join('') || '<span class="dg-none">Nell\'app non c\'è ancora: avvisa papà, la prepara.</span>'}</div>`}</div>`).join('')
+    + '</div>';
+}
 function showRes() {
   stopTmr(); closeText();
   const tot=G.qs.length, ok=G.ans.filter(a=>a.ok).length, pct=Math.round(ok/tot*100);
@@ -2010,6 +2048,7 @@ function showRes() {
   animateRing(pct);
   if (pct >= 80) setTimeout(confetti, 350);
 
+  document.getElementById('r-diag').innerHTML = diagMap();
   document.getElementById('review').innerHTML = G.ans.map((a,i) => `
     <div class="rv ${a.ok?'ok':'ko'}">
       <div class="rv-q">${i+1}. ${mathify(a.q)}</div>
