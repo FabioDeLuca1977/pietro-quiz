@@ -1147,8 +1147,8 @@ function openRipasso(subj) {
     return `<div class="lbl">${g.icon} ${cap(g.subject)} <small>${done} visti su ${g.items.length}</small></div>` + g.items.map((x, i) =>
       (x.topic && x.topic !== g.items[i - 1]?.topic ? `<div class="rip-topic" style="--acc:${g.color}">${escHtml(x.topic)}</div>` : '') +
       `<button class="rip-item ${seen[x.id] ? 'seen' : ''}" style="--acc:${g.color}" onclick="openItem('${x.id}')">
-        <span class="rip-play">${seen[x.id] ? '✓' : x.lesson ? '📖' : '▶'}</span>
-        <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')} · ${x.lesson ? (window.LESSONS?.[x.lesson]?.slides.length || 0) + ' slide' : fmtDur(x.dur)}</span></span>
+        <span class="rip-play">${seen[x.id] ? '✓' : x.lesson ? '📖' : x.pdf ? '📄' : '▶'}</span>
+        <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')} · ${x.lesson ? (window.LESSONS?.[x.lesson]?.slides.length || 0) + ' slide' : x.pdf ? x.pdfPages + ' pagine' : fmtDur(x.dur)}</span></span>
       </button>`).join('');
   }).join('') || '<div class="empty-box">Ancora nessun video.</div>';
   showScr('s-rip');
@@ -1161,7 +1161,7 @@ function openVideo(id) {
   document.getElementById('vid-title').textContent = f.it.title;
   document.getElementById('vid-sub').textContent = cap(f.g.subject) + (f.it.pages ? ' · ' + f.it.pages : '');
   document.getElementById('vid-actions').innerHTML =
-    (next ? `<button class="act" onclick="openItem('${next.id}')"><span class="ai">${next.lesson ? '📖' : '▶'}</span><b>${next.lesson ? 'Spiegazione dopo' : 'Video dopo'}</b><span>${escHtml(next.title)}</span></button>` : '') +
+    (next ? `<button class="act" onclick="openItem('${next.id}')"><span class="ai">${next.lesson ? '📖' : next.pdf ? '📄' : '▶'}</span><b>${next.lesson ? 'Spiegazione dopo' : next.pdf ? 'PDF da stampare' : 'Video dopo'}</b><span>${escHtml(next.title)}</span></button>` : '') +
     (f.it.test && window.QUIZ_BANK?.[f.it.test] ? `<button class="act" onclick="startQuiz('${f.it.test}')"><span class="ai">📝</span><b>Fai gli esercizi</b><span>Mettiti alla prova</span></button>` : '');
   showScr('s-vid');
   v.src = f.it.file; v.load();
@@ -1174,7 +1174,10 @@ function videoTick() {
 function stopVideo() { const v = document.getElementById('vplayer'); if (v && !v.paused) v.pause(); }
 
 // Spiegazione a slide verticali: voce del ripasso con "lesson" al posto di "file"
-function openItem(id) { const f = reviewItem(id); if (!f) return; f.it.lesson ? openLesson(id) : openVideo(id); }
+// voce "pdf": un documento da leggere o stampare, aperto nel visore del telefono
+function openItem(id) { const f = reviewItem(id); if (!f) return;
+  if (f.it.pdf) { markSeen(id); window.open(f.it.pdf, '_blank'); openRipasso(G.ripSubj); return; }
+  f.it.lesson ? openLesson(id) : openVideo(id); }
 function openLesson(id) {
   const f = reviewItem(id), L = window.LESSONS?.[f?.it.lesson]; if (!L) return;
   stopVideo();

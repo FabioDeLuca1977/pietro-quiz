@@ -312,6 +312,14 @@ window.REVIEW = [
         "test": "razionali-cap2"
       },
       {
+        "id": "pdf-1",
+        "topic": "Geometria e gradi · da stampare",
+        "title": "PDF da stampare: assiomi, criteri, gradi",
+        "pdf": "stampa/geometria-assiomi-criteri-gradi.pdf",
+        "pdfPages": 9,
+        "pages": "Riassunto con i disegni"
+      },
+      {
         "id": "vid-p07",
         "topic": "Geometria euclidea · cap. G1",
         "title": "Perché gli assiomi (video)",
