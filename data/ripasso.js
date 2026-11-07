@@ -98,6 +98,20 @@ window.REVIEW = [
     "color": "#7c3aed",
     "items": [
       {
+        "id": "int-0",
+        "topic": "Inizia da qui",
+        "title": "Perché studio matematica?",
+        "lesson": "intro-matematica",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
+        "id": "int-1",
+        "topic": "Basi delle medie",
+        "title": "Perché le regole dei segni",
+        "lesson": "intro-segni",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "bas-1",
         "topic": "Basi delle medie",
         "title": "Le regole dei segni",
@@ -106,12 +120,40 @@ window.REVIEW = [
         "test": "segni-1"
       },
       {
+        "id": "int-2",
+        "topic": "Basi delle medie",
+        "title": "Perché MCD e mcm",
+        "lesson": "intro-mcd",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "bas-3",
         "topic": "Basi delle medie",
         "title": "MCD e mcm",
         "lesson": "mcd-mcm",
         "pages": "Spiegazione a slide",
         "test": "mcm-1"
+      },
+      {
+        "id": "int-3",
+        "topic": "Numeri razionali · cap. 2",
+        "title": "Perché le frazioni",
+        "lesson": "intro-frazioni",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
+        "id": "int-4",
+        "topic": "Numeri razionali · cap. 2",
+        "title": "Perché le potenze",
+        "lesson": "intro-potenze",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
+        "id": "int-5",
+        "topic": "Numeri razionali · cap. 2",
+        "title": "Perché decimali, proporzioni e percentuali",
+        "lesson": "intro-decimali",
+        "pages": "Introduzione · perché ti serve"
       },
       {
         "id": "mat-1",
@@ -204,6 +246,13 @@ window.REVIEW = [
         "test": "razionali-cap2"
       },
       {
+        "id": "int-6",
+        "topic": "Geometria euclidea · cap. G1",
+        "title": "Perché gli assiomi",
+        "lesson": "intro-assiomi",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "mat-11",
         "topic": "Geometria euclidea · cap. G1",
         "title": "Gli assiomi di geometria",
@@ -211,6 +260,13 @@ window.REVIEW = [
         "dur": 275,
         "pages": "Cap. G1",
         "test": "assiomi-g1"
+      },
+      {
+        "id": "int-7",
+        "topic": "Misura degli angoli",
+        "title": "Perché gradi, primi e secondi",
+        "lesson": "intro-gradi",
+        "pages": "Introduzione · perché ti serve"
       },
       {
         "id": "mat-13",
