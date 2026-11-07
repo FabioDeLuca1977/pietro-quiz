@@ -98,10 +98,26 @@ window.REVIEW = [
     "color": "#7c3aed",
     "items": [
       {
+        "id": "vid-p01",
+        "topic": "Inizia da qui",
+        "title": "Perché studio matematica? (video)",
+        "file": "video/matematica/perche-matematica.mp4",
+        "dur": 80,
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "int-0",
         "topic": "Inizia da qui",
         "title": "Perché studio matematica?",
         "lesson": "intro-matematica",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
+        "id": "vid-p02",
+        "topic": "Basi delle medie",
+        "title": "Perché le regole dei segni (video)",
+        "file": "video/matematica/perche-segni.mp4",
+        "dur": 57,
         "pages": "Introduzione · perché ti serve"
       },
       {
@@ -129,6 +145,14 @@ window.REVIEW = [
         "test": "segni-1"
       },
       {
+        "id": "vid-p03",
+        "topic": "Basi delle medie",
+        "title": "Perché MCD e mcm (video)",
+        "file": "video/matematica/perche-mcd-mcm.mp4",
+        "dur": 70,
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "int-2",
         "topic": "Basi delle medie",
         "title": "Perché MCD e mcm",
@@ -153,6 +177,14 @@ window.REVIEW = [
         "test": "mcm-1"
       },
       {
+        "id": "vid-p04",
+        "topic": "Numeri razionali · cap. 2",
+        "title": "Perché le frazioni (video)",
+        "file": "video/matematica/perche-frazioni.mp4",
+        "dur": 49,
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "int-3",
         "topic": "Numeri razionali · cap. 2",
         "title": "Perché le frazioni",
@@ -160,10 +192,26 @@ window.REVIEW = [
         "pages": "Introduzione · perché ti serve"
       },
       {
+        "id": "vid-p05",
+        "topic": "Numeri razionali · cap. 2",
+        "title": "Perché le potenze (video)",
+        "file": "video/matematica/perche-potenze.mp4",
+        "dur": 53,
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "int-4",
         "topic": "Numeri razionali · cap. 2",
         "title": "Perché le potenze",
         "lesson": "intro-potenze",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
+        "id": "vid-p06",
+        "topic": "Numeri razionali · cap. 2",
+        "title": "Perché decimali, proporzioni e percentuali (video)",
+        "file": "video/matematica/perche-percentuali.mp4",
+        "dur": 53,
         "pages": "Introduzione · perché ti serve"
       },
       {
@@ -264,6 +312,14 @@ window.REVIEW = [
         "test": "razionali-cap2"
       },
       {
+        "id": "vid-p07",
+        "topic": "Geometria euclidea · cap. G1",
+        "title": "Perché gli assiomi (video)",
+        "file": "video/matematica/perche-assiomi.mp4",
+        "dur": 46,
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "int-6",
         "topic": "Geometria euclidea · cap. G1",
         "title": "Perché gli assiomi",
@@ -295,12 +351,29 @@ window.REVIEW = [
         "test": "bma-1"
       },
       {
+        "id": "cri-2",
+        "topic": "Geometria euclidea · criteri di congruenza",
+        "title": "Primo e secondo criterio (video)",
+        "file": "video/matematica/13-criteri-di-congruenza.mp4",
+        "dur": 237,
+        "pages": "Geometria euclidea",
+        "test": "criteri-1"
+      },
+      {
         "id": "cri-1",
         "topic": "Geometria euclidea · criteri di congruenza",
         "title": "Primo e secondo criterio di congruenza",
         "lesson": "criteri-congruenza",
         "pages": "Spiegazione a slide",
         "test": "criteri-1"
+      },
+      {
+        "id": "vid-p08",
+        "topic": "Misura degli angoli",
+        "title": "Perché gradi, primi e secondi (video)",
+        "file": "video/matematica/perche-gradi.mp4",
+        "dur": 48,
+        "pages": "Introduzione · perché ti serve"
       },
       {
         "id": "int-7",
