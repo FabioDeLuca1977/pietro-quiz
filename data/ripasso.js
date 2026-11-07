@@ -280,6 +280,21 @@ window.REVIEW = [
         "test": "assiomi-g1"
       },
       {
+        "id": "int-8",
+        "topic": "Geometria euclidea · criteri di congruenza",
+        "title": "Perché i criteri di congruenza",
+        "lesson": "intro-criteri",
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
+        "id": "cri-1",
+        "topic": "Geometria euclidea · criteri di congruenza",
+        "title": "Primo e secondo criterio di congruenza",
+        "lesson": "criteri-congruenza",
+        "pages": "Spiegazione a slide",
+        "test": "criteri-1"
+      },
+      {
         "id": "int-7",
         "topic": "Misura degli angoli",
         "title": "Perché gradi, primi e secondi",

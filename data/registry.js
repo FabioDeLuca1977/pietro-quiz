@@ -115,6 +115,9 @@ window.QUIZ_REGISTRY = [
         questionCount: 32,
         enabled:       true
       },
+      { id:"criteri-1", title:"Criteri di congruenza — Livello 1", description:"Le parole della geometria · 11 esercizi", icon:"🟢", questionCount:11, enabled:true },
+      { id:"criteri-2", title:"Criteri di congruenza — Livello 2", description:"Quale criterio? Che cosa manca? · 11 esercizi", icon:"🟡", questionCount:11, enabled:true },
+      { id:"criteri-3", title:"Criteri di congruenza — Livello 3", description:"Le dimostrazioni passo per passo · 9 esercizi", icon:"🔴", questionCount:9, enabled:true },
       { id:"segni-1", title:"Regole dei segni — Livello 1", description:"Valore assoluto, addizione, parentesi · 11 esercizi", icon:"🟢", questionCount:11, enabled:true },
       { id:"segni-2", title:"Regole dei segni — Livello 2", description:"Per, diviso e potenze con i segni · 11 esercizi", icon:"🟡", questionCount:11, enabled:true },
       { id:"segni-3", title:"Regole dei segni — Livello 3", description:"Espressioni con i segni · 8 esercizi", icon:"🔴", questionCount:8, enabled:true },
