@@ -112,6 +112,15 @@ window.REVIEW = [
         "pages": "Introduzione · perché ti serve"
       },
       {
+        "id": "bas-2",
+        "topic": "Basi delle medie",
+        "title": "Le regole dei segni (video)",
+        "file": "video/matematica/00a-regole-dei-segni.mp4",
+        "dur": 155,
+        "pages": "Basi delle medie",
+        "test": "segni-1"
+      },
+      {
         "id": "bas-1",
         "topic": "Basi delle medie",
         "title": "Le regole dei segni",
@@ -125,6 +134,15 @@ window.REVIEW = [
         "title": "Perché MCD e mcm",
         "lesson": "intro-mcd",
         "pages": "Introduzione · perché ti serve"
+      },
+      {
+        "id": "bas-4",
+        "topic": "Basi delle medie",
+        "title": "MCD e mcm (video)",
+        "file": "video/matematica/00b-mcd-mcm.mp4",
+        "dur": 155,
+        "pages": "Basi delle medie",
+        "test": "mcm-1"
       },
       {
         "id": "bas-3",
