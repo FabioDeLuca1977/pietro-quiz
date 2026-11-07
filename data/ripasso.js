@@ -98,6 +98,22 @@ window.REVIEW = [
     "color": "#7c3aed",
     "items": [
       {
+        "id": "bas-1",
+        "topic": "Basi delle medie",
+        "title": "Le regole dei segni",
+        "lesson": "segni",
+        "pages": "Spiegazione a slide",
+        "test": "segni-1"
+      },
+      {
+        "id": "bas-3",
+        "topic": "Basi delle medie",
+        "title": "MCD e mcm",
+        "lesson": "mcd-mcm",
+        "pages": "Spiegazione a slide",
+        "test": "mcm-1"
+      },
+      {
         "id": "mat-1",
         "topic": "Numeri razionali · cap. 2",
         "title": "Che cos'è una frazione",

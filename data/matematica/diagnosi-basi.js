@@ -17,11 +17,11 @@ window.QUIZ_BANK["diagnosi-basi"] = {
 
   diag: { anelli: [
     { id:"segni",   nome:"Numeri interi e segni", da:"medie",
-      ripassa:[] },
+      ripassa:[ {rip:"bas-2"}, {rip:"bas-1"}, {quiz:"segni-1"} ] },
     { id:"potenze", nome:"Le potenze", da:"medie e cap. 2",
-      ripassa:[ {rip:"mat-10"}, {quiz:"razionali-cap2-calcoli"} ] },
+      ripassa:[ {rip:"mat-10"}, {quiz:"segni-2"}, {quiz:"razionali-cap2-calcoli"} ] },
     { id:"mcm",     nome:"MCD, mcm e fattori primi", da:"medie e cap. 2",
-      ripassa:[ {rip:"mat-6"} ] },
+      ripassa:[ {rip:"bas-4"}, {rip:"bas-3"}, {quiz:"mcm-1"}, {rip:"mat-6"} ] },
     { id:"frazioni", nome:"Frazioni: significato, equivalenti, semplificare, confrontare", da:"cap. 2",
       ripassa:[ {rip:"mat-1"}, {rip:"mat-2"}, {rip:"mat-6"}, {rip:"mat-8"}, {quiz:"razionali-cap2"} ] },
     { id:"operazioni", nome:"Operazioni e potenze con le frazioni", da:"cap. 2",

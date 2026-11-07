@@ -115,6 +115,12 @@ window.QUIZ_REGISTRY = [
         questionCount: 32,
         enabled:       true
       },
+      { id:"segni-1", title:"Regole dei segni — Livello 1", description:"Valore assoluto, addizione, parentesi · 11 esercizi", icon:"🟢", questionCount:11, enabled:true },
+      { id:"segni-2", title:"Regole dei segni — Livello 2", description:"Per, diviso e potenze con i segni · 11 esercizi", icon:"🟡", questionCount:11, enabled:true },
+      { id:"segni-3", title:"Regole dei segni — Livello 3", description:"Espressioni con i segni · 8 esercizi", icon:"🔴", questionCount:8, enabled:true },
+      { id:"mcm-1", title:"MCD e mcm — Livello 1", description:"Divisori, primi, criteri, scomposizione · 9 esercizi", icon:"🟢", questionCount:9, enabled:true },
+      { id:"mcm-2", title:"MCD e mcm — Livello 2", description:"Calcolare MCD e mcm · 11 esercizi", icon:"🟡", questionCount:11, enabled:true },
+      { id:"mcm-3", title:"MCD e mcm — Livello 3", description:"Semplificare, denominatore comune, problemi · 9 esercizi", icon:"🔴", questionCount:9, enabled:true },
       {
         id:            "razionali-cap2",
         title:         "Cap. 2 — Numeri razionali e reali: teoria",
