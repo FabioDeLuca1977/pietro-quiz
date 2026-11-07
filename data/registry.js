@@ -115,6 +115,7 @@ window.QUIZ_REGISTRY = [
         questionCount: 32,
         enabled:       true
       },
+      { id:"bma-1", title:"Bisettrice, mediana, altezza", description:"Definizioni precise e disegni · 9 esercizi", icon:"📐", questionCount:9, enabled:true },
       { id:"criteri-1", title:"Criteri di congruenza — Livello 1", description:"Le parole della geometria · 11 esercizi", icon:"🟢", questionCount:11, enabled:true },
       { id:"criteri-2", title:"Criteri di congruenza — Livello 2", description:"Quale criterio? Che cosa manca? · 11 esercizi", icon:"🟡", questionCount:11, enabled:true },
       { id:"criteri-3", title:"Criteri di congruenza — Livello 3", description:"Le dimostrazioni passo per passo · 9 esercizi", icon:"🔴", questionCount:9, enabled:true },

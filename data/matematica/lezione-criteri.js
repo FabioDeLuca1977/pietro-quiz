@@ -72,6 +72,73 @@ const F_FIUME = (() => { const T = [60, 34], A = [60, 136], Cc = [180, 136], D =
     + CG.ticks(A, Cc, 1, CG.G) + CG.ticks(Cc, D, 1, CG.G) + sq(A, 16, -16) + sq(D, -16, 16)
     + CG.lab(A, 'A', [60, 60]) + CG.lab(Cc, 'C', [180, 60]) + CG.lab(D, 'D', [300, 60]) + CG.lab(E, 'E', [300, 136]) + CG.lab([60, 40], 'T', [140, 40]), 360, 285, 270); })();
 
+// bisettrice, mediana, altezza nel triangolo ABC (stesso triangolo delle altre slide)
+const SQ = (h, dx, dy, col) => `<path d="M${h[0] + dx} ${h[1]} L${h[0] + dx} ${h[1] + dy} L${h[0]} ${h[1] + dy}" fill="none" stroke="${col}" stroke-width="3"/>`;
+const F_BIS = (() => { const T = CG.T1, D = [170.9, 130.1];
+  // un archetto per ciascuna metà, con una tacchetta in mezzo: le due metà sono congruenti
+  const mid = (p, q, r) => { const u = v => { const l = Math.hypot(v[0] - T.A[0], v[1] - T.A[1]); return [(v[0] - T.A[0]) / l, (v[1] - T.A[1]) / l]; };
+    const a = u(p), b = u(q), m = [a[0] + b[0], a[1] + b[1]], l = Math.hypot(...m), d = [m[0] / l, m[1] / l];
+    return CG.seg([T.A[0] + d[0] * (r - 9), T.A[1] + d[1] * (r - 9)], [T.A[0] + d[0] * (r + 9), T.A[1] + d[1] * (r + 9)], CG.C, 4); };
+  return CG.svg(CG.tri(T, ['A', 'B', 'C']) + CG.seg(T.A, D, CG.Y, 5) + CG.arcs(T.A, T.B, D, 1, CG.C, 48) + CG.arcs(T.A, D, T.C, 1, CG.C, 48)
+    + mid(T.B, D, 48) + mid(D, T.C, 48), 300, 270, 190); })();
+const F_MED = (() => { const T = CG.T1, M = [145, 230];
+  return CG.svg(CG.tri(T, ['A', 'B', 'C']) + CG.seg(T.C, M, CG.Y, 5) + CG.ticks(T.A, M, 1, CG.G) + CG.ticks(M, T.B, 1, CG.G)
+    + `<circle cx="145" cy="230" r="6" fill="${CG.G}"/>` + CG.lab(M, 'M', [145, 150], CG.G), 300, 270, 190); })();
+const F_ALT = (() => { const T = CG.T1, H = [95, 230];
+  return CG.svg(CG.tri(T, ['A', 'B', 'C']) + CG.seg(T.C, H, CG.Y, 5) + SQ(H, 16, -16, CG.C) + CG.lab(H, 'H', [95, 150], CG.C), 300, 270, 190); })();
+// triangolo ottusangolo: l'altezza da C cade fuori, sul prolungamento di AB
+const F_ALT_FUORI = (() => { const A = [30, 230], B = [170, 230], C = [260, 60], H = [260, 230];
+  return CG.svg(CG.tri({ A, B, C }, ['A', 'B', 'C']) + CG.seg(B, H, CG.W, 3, '8 8') + CG.seg(C, H, CG.Y, 5) + SQ(H, -16, -16, CG.C) + CG.lab(H, 'H', [230, 150], CG.C), 300, 270, 200); })();
+const F_TRE = CG.svg(CG.tri(CG.T1, ['A', 'B', 'C']) + CG.seg(CG.T1.A, [170.9, 130.1], CG.Y, 4) + CG.seg(CG.T1.C, [145, 230], CG.G, 4) + CG.seg(CG.T1.C, [95, 230], CG.C, 4)
+  + SQ([95, 230], 14, -14, CG.C), 300, 270, 190);
+
+// ── Bisettrice, mediana, altezza (dal quaderno di Pietro) ────────
+window.LESSONS["bisettrice-mediana-altezza"] = {
+  title: "Bisettrice, mediana, altezza",
+  slides: [
+    { k:"Spiegazione", t:"Bisettrice, mediana, altezza",
+      h:`${F_TRE}
+         <p class="ls-big">Tre segmenti speciali che partono da un <b>vertice</b> del triangolo.</p>
+         <p>Per ognuno: che cosa vuol dire la parola, la definizione precisa e un disegno.</p>
+         <p class="ls-hint">Scorri verso l'alto ↑</p>` },
+    { k:"Le parole", t:"Prima, le parole",
+      h:`<div class="ls-calc">
+           <div><span><b>Bisettrice</b>: dal latino <i>bis</i> «due» e <i>secare</i> «tagliare»: che taglia in due</span><b>✂️</b></div>
+           <div><span><b>Mediana</b>: da «medio», «che sta in mezzo»: arriva al punto di mezzo</span><b>½</b></div>
+           <div><span><b>Perpendicolare</b>: che forma un angolo retto (90°)</span><b>⊥</b></div>
+           <div><span><b>Punto medio</b>: il punto che divide un segmento in due parti congruenti</span><b>M</b></div>
+           <div><span><b>Triangolo rettangolo</b>: ha un angolo retto</span><b>90°</b></div>
+         </div>` },
+    { k:"Bisettrice", t:"La bisettrice",
+      h:`${F_BIS}
+         <div class="ls-res" style="font-size:1rem;text-align:left;font-family:inherit">La <b>bisettrice</b> di un angolo è la semiretta, con origine nel vertice, che divide l'angolo in <b>due angoli congruenti</b>.</div>
+         <p class="ls-note">📓 Sul quaderno: «semiretta che divide un angolo in 2 angoli uguali». È giusta: in geometria al posto di «uguali» si dice «congruenti». Nel triangolo si prende il pezzo che va dal vertice al lato opposto.</p>` },
+    { k:"Mediana", t:"La mediana",
+      h:`${F_MED}
+         <div class="ls-res" style="font-size:1rem;text-align:left;font-family:inherit">La <b>mediana</b> è il segmento che unisce un vertice con il <b>punto medio del lato opposto</b>.</div>
+         <p class="ls-note">📓 Sul quaderno: «crea 2 segmenti congruenti». È vero, ma è la <b>conseguenza</b>: divide il lato opposto in due parti congruenti (AM ≅ MB). La definizione dice da dove parte e dove arriva.</p>` },
+    { k:"Altezza", t:"L'altezza",
+      h:`${F_ALT}
+         <div class="ls-res" style="font-size:1rem;text-align:left;font-family:inherit">L'<b>altezza</b> è il segmento che parte da un vertice ed è <b>perpendicolare</b> al lato opposto (o al suo prolungamento).</div>
+         <p class="ls-note">📓 Sul quaderno: «crea 2 triangoli rettangoli». È vero quando l'altezza cade <b>dentro</b> il lato, come qui (AHC e BHC hanno l'angolo retto in H).</p>` },
+    { k:"Attenzione", t:"L'altezza può cadere fuori",
+      h:`${F_ALT_FUORI}
+         <p>Se il triangolo ha un angolo <b>ottuso</b> (più di 90°), alcune altezze cadono <b>fuori</b>: sul prolungamento del lato.</p>
+         <div class="ls-warn">⚠️ Qui l'altezza CH non divide il triangolo in due triangoli rettangoli. Per questo la definizione dice «perpendicolare al lato opposto <b>o al suo prolungamento</b>».</div>` },
+    { k:"Per non confonderle", t:"Che cosa divide in due ciascuna",
+      h:`<div class="ls-rule ls-rule-col">
+           <div>✂️ <b>Bisettrice</b>: divide in due l'<b>angolo</b></div>
+           <div>½ <b>Mediana</b>: divide in due il <b>lato opposto</b></div>
+           <div>⊥ <b>Altezza</b>: forma <b>angoli retti</b> con il lato opposto</div>
+         </div>
+         <p class="ls-note">Ogni triangolo ha 3 bisettrici, 3 mediane e 3 altezze, una per vertice. In generale sono tre segmenti diversi.</p>` },
+    { k:"Con i criteri", t:"Dove le ritrovi",
+      h:`${F_KITE1}
+         <p>Nell'esempio 1 dei criteri, AC è la <b>bisettrice</b> dell'angolo in A: per questo BÂC ≅ CÂD.</p>
+         <div class="ls-why">👉 Bisettrici, mediane e altezze danno le coppie di elementi congruenti che servono per usare i criteri.</div>` }
+  ]
+};
+
 // ── Perché i criteri di congruenza ───────────────────────────────
 window.LESSONS["intro-criteri"] = {
   title: "Perché i criteri di congruenza",
@@ -115,7 +182,7 @@ window.LESSONS["criteri-congruenza"] = {
   slides: [
     { k:"Spiegazione", t:"Primo e secondo criterio di congruenza",
       h:`<p class="ls-big">Quando due <b>triangoli</b> sono congruenti? Bastano <b>3 elementi</b>, scelti bene.</p>
-         <div class="ls-warn">✍️ Il prof li ha spiegati in classe ma non abbiamo i suoi appunti: questa spiegazione è nostra, come nei libri di liceo. Se a scuola le parole o la dimostrazione sono diverse, valgono quelle del prof.</div>
+         <div class="ls-warn">📓 Sul quaderno ci sono i nomi: 1° criterio «lato, angolo, lato», 2° criterio «angolo, lato, angolo». Gli enunciati completi e le dimostrazioni sono nostri, come nei libri di liceo: se a scuola sono diversi, valgono quelli del prof.</div>
          <p class="ls-hint">Scorri verso l'alto ↑</p>` },
     { k:"Le parole 1/5", t:"Congruente",
       h:`<p><b>Congruente</b> vuol dire <b>che combacia perfettamente</b>: due figure congruenti, messe una sopra l'altra, coincidono in ogni punto.</p>

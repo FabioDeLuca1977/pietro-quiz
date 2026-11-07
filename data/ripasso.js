@@ -287,6 +287,14 @@ window.REVIEW = [
         "pages": "Introduzione · perché ti serve"
       },
       {
+        "id": "bma-1",
+        "topic": "Geometria euclidea · criteri di congruenza",
+        "title": "Bisettrice, mediana, altezza",
+        "lesson": "bisettrice-mediana-altezza",
+        "pages": "Spiegazione a slide · dal quaderno",
+        "test": "bma-1"
+      },
+      {
         "id": "cri-1",
         "topic": "Geometria euclidea · criteri di congruenza",
         "title": "Primo e secondo criterio di congruenza",

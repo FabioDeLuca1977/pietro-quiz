@@ -7,6 +7,31 @@
 
 window.QUIZ_BANK = window.QUIZ_BANK || {};
 
+// ── Bisettrice, mediana, altezza (dal quaderno di Pietro) ────────
+window.QUIZ_BANK["bma-1"] = {
+  id:"bma-1", subject:"matematica", icon:"📐", version:1, timePerQuestion:0, ordered:true,
+  title:"Bisettrice, mediana, altezza",
+  description:"Definizioni precise, parole e il caso dell'altezza che cade fuori",
+  questions: [
+    { q:"Che cos'è la bisettrice di un angolo?", options:["La semiretta, con origine nel vertice, che divide l'angolo in due angoli congruenti","Il segmento che va al punto medio del lato opposto","Il segmento perpendicolare al lato opposto","Una retta parallela a un lato"], answer:0,
+      explanation:"Bisettrice: dal latino bis «due» e secare «tagliare». Divide in due l'angolo." },
+    { q:"Che cos'è la mediana di un triangolo?", options:["Il segmento che unisce un vertice con il punto medio del lato opposto","La semiretta che divide un angolo a metà","Il segmento perpendicolare al lato opposto","Il lato più lungo"], answer:0,
+      explanation:"Divide in due il lato opposto: AM ≅ MB. Sul quaderno c'è la conseguenza: «crea 2 segmenti congruenti»." },
+    { q:"Che cos'è l'altezza di un triangolo?", options:["Il segmento che parte da un vertice ed è perpendicolare al lato opposto (o al suo prolungamento)","Il segmento che va al punto medio del lato opposto","La semiretta che divide un angolo a metà","Il lato verticale del disegno"], answer:0,
+      explanation:"Perpendicolare vuol dire che forma un angolo retto (90°)." },
+    { q:"Che cosa vuol dire «perpendicolare»?", options:["Che forma un angolo retto (90°)","Che è parallelo","Che è lungo la metà","Che passa per il punto medio"], answer:0, explanation:"Il simbolo è ⊥." },
+    { q:"Che cos'è il punto medio di un segmento?", options:["Il punto che lo divide in due parti congruenti","Uno degli estremi","Il punto più in alto","Il vertice dell'angolo retto"], answer:0, explanation:"Per esempio M punto medio di AB: AM ≅ MB." },
+    { type:"classify", q:"Che cosa divide in due, o che cosa forma?", categories:["Bisettrice","Mediana","Altezza"],
+      items:[ {t:"Divide in due l'angolo", c:0}, {t:"Divide in due il lato opposto", c:1}, {t:"Forma angoli retti con il lato opposto", c:2} ],
+      explanation:"Bisettrice → angolo; mediana → lato; altezza → angolo retto." },
+    { q:"L'altezza divide sempre il triangolo in due triangoli rettangoli?", options:["No: se il triangolo ha un angolo ottuso, alcune altezze cadono fuori, sul prolungamento del lato","Sì, sempre","Sì, ma solo la mediana no","No, mai"], answer:0,
+      explanation:"Per questo la definizione dice «perpendicolare al lato opposto o al suo prolungamento»." },
+    { q:"Quante mediane ha un triangolo?", options:["3, una per vertice","1","2","6"], answer:0, explanation:"Lo stesso vale per le bisettrici e per le altezze." },
+    { q:"Nell'esempio 1 dei criteri, perché BÂC ≅ CÂD?", options:["Perché AC è la bisettrice dell'angolo in A","Perché AC è un'altezza","Perché AB ≅ AD","Perché AC è in comune"], answer:0,
+      explanation:"La bisettrice divide l'angolo in due angoli congruenti: è una coppia di elementi da usare nel criterio." }
+  ]
+};
+
 // ── LIVELLO 1: le parole ─────────────────────────────────────────
 window.QUIZ_BANK["criteri-1"] = {
   id:"criteri-1", subject:"matematica", icon:"🟢", version:1, timePerQuestion:0, ordered:true,
