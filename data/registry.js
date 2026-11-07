@@ -110,9 +110,9 @@ window.QUIZ_REGISTRY = [
       {
         id:            "diagnosi-basi",
         title:         "Ripasso totale — Dove mi inceppo?",
-        description:   "32 domande da inizio anno: alla fine la mappa delle basi da rifare",
+        description:   "38 domande da inizio anno: alla fine la mappa delle basi da rifare",
         icon:          "🧭",
-        questionCount: 32,
+        questionCount: 38,
         enabled:       true
       },
       { id:"bma-1", title:"Bisettrice, mediana, altezza", description:"Definizioni precise e disegni · 9 esercizi", icon:"📐", questionCount:9, enabled:true },

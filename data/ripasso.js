@@ -336,6 +336,14 @@ window.REVIEW = [
         "test": "assiomi-g1"
       },
       {
+        "id": "vid-p09",
+        "topic": "Geometria euclidea · criteri di congruenza",
+        "title": "Perché i criteri di congruenza (video)",
+        "file": "video/matematica/perche-criteri.mp4",
+        "dur": 81,
+        "pages": "Introduzione · perché ti serve"
+      },
+      {
         "id": "int-8",
         "topic": "Geometria euclidea · criteri di congruenza",
         "title": "Perché i criteri di congruenza",

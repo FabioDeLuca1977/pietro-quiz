@@ -11,7 +11,7 @@
 window.QUIZ_BANK = window.QUIZ_BANK || {};
 
 window.QUIZ_BANK["diagnosi-basi"] = {
-  id:"diagnosi-basi", subject:"matematica", icon:"🧭", version:1, timePerQuestion:0, ordered:true,
+  id:"diagnosi-basi", subject:"matematica", icon:"🧭", version:2, timePerQuestion:0, ordered:true,
   title:"Ripasso totale — Dove mi inceppo?",
   description:"Test diagnostico da inizio anno: alla fine ti dice quali basi rifare",
 
@@ -30,6 +30,10 @@ window.QUIZ_BANK["diagnosi-basi"] = {
       ripassa:[ {rip:"mat-7"}, {quiz:"razionali-cap2-decimali"} ] },
     { id:"assiomi", nome:"Gli assiomi", da:"il prof (fuori dal libro)",
       ripassa:[ {rip:"mat-11"}, {quiz:"assiomi-g1"} ] },
+    { id:"bma",     nome:"Bisettrice, mediana, altezza", da:"il prof (quaderno di Pietro)",
+      ripassa:[ {rip:"bma-1"}, {quiz:"bma-1"} ] },
+    { id:"criteri", nome:"Primo e secondo criterio di congruenza", da:"il prof (fuori dal libro)",
+      ripassa:[ {rip:"vid-p09"}, {rip:"cri-2"}, {rip:"cri-1"}, {quiz:"criteri-1"} ] },
     { id:"gradi",   nome:"Gradi, primi e secondi", da:"il prof (fuori dal libro)",
       ripassa:[ {rip:"mat-13"}, {rip:"mat-12"}, {quiz:"gradi-1"} ] }
   ]},
@@ -105,6 +109,22 @@ window.QUIZ_BANK["diagnosi-basi"] = {
       explanation:"Assioma 4: il segmento che unisce punti di semipiani diversi interseca la retta r." },
     { a:"assiomi", q:"F₁ è congruente a F₂ e F₂ è congruente a F₃. Allora…", options:["F₁ è congruente a F₃","F₁ non è congruente a F₃","Non si può dire","F₃ è congruente solo a se stessa"], answer:0,
       explanation:"Assioma 5C: è la proprietà transitiva della congruenza." },
+
+    // ── Bisettrice, mediana, altezza ──
+    { a:"bma", q:"Che cos'è la mediana di un triangolo?", options:["Il segmento che unisce un vertice con il punto medio del lato opposto","La semiretta che divide un angolo in due angoli congruenti","Il segmento perpendicolare al lato opposto","Il lato più lungo"], answer:0,
+      explanation:"Divide in due il lato opposto. La semiretta che divide l'angolo è la bisettrice." },
+    { a:"bma", q:"Che cos'è l'altezza di un triangolo?", options:["Il segmento da un vertice perpendicolare al lato opposto (o al suo prolungamento)","Il segmento da un vertice al punto medio del lato opposto","La semiretta che divide un angolo a metà","Il segmento più alto del disegno"], answer:0,
+      explanation:"Perpendicolare = forma un angolo retto. Nel triangolo con un angolo ottuso alcune altezze cadono fuori." },
+    { a:"bma", q:"Che cosa divide in due la bisettrice?", options:["Un angolo","Il lato opposto","Il triangolo in due triangoli rettangoli","Il perimetro"], answer:0,
+      explanation:"Bisettrice: dal latino bis «due» e secare «tagliare»: divide l'angolo in due angoli congruenti." },
+
+    // ── Criteri di congruenza ──
+    { a:"criteri", q:"Che cosa dice il primo criterio di congruenza?", options:["Due triangoli sono congruenti se hanno ordinatamente congruenti due lati e l'angolo tra essi compreso","Due triangoli sono congruenti se hanno tre angoli congruenti","Due triangoli sono congruenti se hanno due lati congruenti","Due triangoli sono congruenti se hanno un lato in comune"], answer:0,
+      explanation:"LAL: lato, angolo, lato. L'angolo sta in mezzo ai due lati." },
+    { a:"criteri", q:"AB ≅ A′B′, Â ≅ Â′, B̂ ≅ B̂′. Quale criterio?", options:["2° criterio (ALA)","1° criterio (LAL)","Non basta: nessuno dei due","Non serve un criterio"], answer:0,
+      explanation:"Un lato e i due angoli adiacenti a esso, ai suoi estremi A e B." },
+    { a:"criteri", q:"AB ≅ A′B′, BC ≅ B′C′, Â ≅ Â′. Si può usare il 1° criterio?", options:["No: Â non è compreso tra AB e BC","Sì, sempre","Sì, perché ci sono due lati","No, serve il 2° criterio"], answer:0,
+      explanation:"L'angolo compreso tra AB e BC è B̂. Con un angolo non compreso i triangoli possono essere diversi." },
 
     // ── Gradi, primi e secondi ──
     { a:"gradi", q:"Quanto fa 0,5° in primi?", options:["30′","50′","5′","60′"], answer:0,
