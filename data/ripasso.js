@@ -335,15 +335,6 @@ window.REVIEW = [
         "pages": "Introduzione · perché ti serve"
       },
       {
-        "id": "mat-11",
-        "topic": "Geometria euclidea · cap. G1",
-        "title": "Gli assiomi di geometria",
-        "file": "video/matematica/11-gli-assiomi.mp4",
-        "dur": 275,
-        "pages": "Cap. G1",
-        "test": "assiomi-g1"
-      },
-      {
         "id": "ass-2",
         "topic": "Geometria euclidea · cap. G1",
         "title": "Gli assiomi con i disegni (video)",
