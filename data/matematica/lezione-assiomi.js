@@ -30,10 +30,10 @@ window.LESSONS = window.LESSONS || {};
   const A_2A = svg(seg([15, 60], [405, 60]) + dot([130, 60]) + dot([290, 60]) + tx(130, 38, 'A') + tx(290, 38, 'B') + tx(395, 95, 'r', { i: 1 }), 420, 110);
   const A_2B = svg(seg([20, 150], [400, 20], B) + dot([110, 119]) + dot([300, 54]) + tx(100, 155, 'A') + tx(300, 95, 'B') + tx(250, 160, 'una e una sola retta', { fs: 20, w: 600, c: B }), 420, 170);
   const A_2C = svg(seg([15, 110], [405, 110]) + dot([210, 40], R) + tx(232, 35, 'P', { c: R }) + tx(395, 145, 'r', { i: 1 }) + tx(210, 80, 'P non sta su r', { fs: 18, w: 600, c: R }), 420, 150);
-  const A_3A = svg(seg([15, 70], [465, 70]) + dot([40, 70]) + dot([440, 70]) + dot([240, 70], B) + dot([140, 70], G) + dot([90, 70], Y, 5) + dot([65, 70], Y, 4)
-    + tx(40, 45, 'A') + tx(440, 45, 'B') + tx(240, 45, 'C', { c: B }) + tx(140, 45, 'D', { c: G }) + tx(240, 110, 'C tra A e B, D tra A e C, … : infiniti punti', { fs: 18, w: 600 }), 480, 120);
+  const A_3A = svg(seg([15, 70], [465, 70]) + dot([60, 70]) + dot([420, 70]) + dot([240, 70], B)
+    + tx(60, 45, 'A') + tx(420, 45, 'B') + tx(240, 45, 'C', { c: B }) + tx(240, 110, 'A precede C e C precede B', { fs: 18, w: 600 }), 480, 120);
   const A_3B = svg(arrow([240, 60], [470, 60]) + arrow([240, 60], [10, 60]) + dot([100, 60]) + dot([240, 60], B) + dot([380, 60])
-    + tx(100, 38, 'A') + tx(240, 38, 'P', { c: B }) + tx(380, 38, 'B') + tx(240, 105, 'la retta non ha né inizio né fine', { fs: 18, w: 600 }), 480, 120);
+    + tx(100, 38, 'A') + tx(240, 38, 'P', { c: B }) + tx(380, 38, 'B') + tx(240, 105, 'A precede P e P precede B', { fs: 18, w: 600 }), 480, 120);
   const A_4 = svg(`<rect x="10" y="10" width="420" height="135" fill="${B}26"/><rect x="10" y="145" width="420" height="135" fill="${G}26"/>`
     + seg([10, 145], [430, 145]) + tx(415, 135, 'r', { i: 1 }) + tx(40, 50, 'α', { c: B, fs: 34 }) + tx(40, 260, 'β', { c: G, fs: 34 })
     + seg([120, 60], [280, 240], R) + dot([120, 60]) + dot([280, 240]) + dot([195.6, 145], R, 7) + tx(100, 60, 'A') + tx(302, 250, 'B')
@@ -85,9 +85,10 @@ window.LESSONS = window.LESSONS || {};
         h:`${A_2C}${ax('Data una retta nel piano, esiste <b>almeno 1 punto</b> del piano che non appartiene a essa.')}` },
       { k:"Assioma 3A", t:"Tra due punti ce n'è sempre un altro",
         h:`${A_3A}${ax('Dati due punti distinti A e B tali che A precede B, ci sarà sempre un punto C tale che <b>A precede C e C precede B</b>.')}
-           <p class="ls-note">Ripetendo la regola (D tra A e C, e così via), tra due punti ce ne sono <b>infiniti</b>. 📓 Sul quaderno c'è «C precede A»: è sbagliato, C sta tra A e B.</p>` },
-      { k:"Assioma 3B", t:"La retta non ha inizio né fine",
-        h:`${A_3B}${ax('Data una retta e preso un punto P sulla retta, ci saranno sempre A e B tali che <b>A precede P e P precede B</b>.')}` },
+           <p class="ls-note"><b>Conseguenza</b> (non fa parte dell'assioma): se ripeti la regola fra A e C, poi ancora, e così via, trovi che tra due punti ce ne sono <b>infiniti</b>. 📓 Sul quaderno c'è «C precede A»: è sbagliato, C sta tra A e B.</p>` },
+      { k:"Assioma 3B", t:"Prima e dopo ogni punto",
+        h:`${A_3B}${ax('Data una retta e preso un punto P sulla retta, ci saranno sempre A e B tali che <b>A precede P e P precede B</b>.')}
+           <p class="ls-note"><b>Conseguenza</b>: la retta non ha né inizio né fine. Per questo si disegna con le frecce: continua da entrambe le parti.</p>` },
       { k:"Assioma 4", t:"Una retta divide il piano in due",
         h:`${A_4}${ax('Una retta r divide i punti del piano che non le appartengono in due sottoinsiemi <b>disgiunti e convessi</b> α e β, <i>detti semipiani di origine r</i>. Se A appartiene ad α e B a β, il segmento <i>AB interseca la retta r</i>.')}
            <p class="ls-note"><b>Disgiunti</b>: senza punti in comune. <b>Convesso</b>: il segmento tra due suoi punti resta tutto dentro (il tratteggio). 🌊 Come le due rive di un fiume.</p>` },
