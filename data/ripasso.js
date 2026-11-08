@@ -348,7 +348,7 @@ window.REVIEW = [
         "topic": "Geometria euclidea · cap. G1",
         "title": "Gli assiomi con i disegni (video)",
         "file": "video/matematica/14-assiomi-con-disegni.mp4",
-        "dur": 186,
+        "dur": 191,
         "pages": "Un disegno per assioma",
         "test": "assiomi-g1"
       },
