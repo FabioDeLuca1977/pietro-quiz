@@ -42,7 +42,10 @@ const CG = (() => {
 const F_TRI = CG.svg(CG.tri(CG.T1, ['A', 'B', 'C']), 300, 270, 190);
 const F_COMPRESO = CG.svg(CG.tri(CG.T1, ['A', 'B', 'C'], { AB: [1, CG.Y], AC: [1, CG.Y] }, { A: [1, CG.C] }) + CG.seg(CG.T1.B, CG.T1.C, CG.R, 6), 300, 270, 190);
 const F_CONGR = CG.pair({ AB: [1, CG.Y], BC: [2, CG.Y], AC: [3, CG.Y] }, { A: [1, CG.C], B: [2, CG.C], C: [3, CG.C] });
-const F_LAL = CG.pair({ AB: [1, CG.Y], AC: [2, CG.Y] }, { A: [1, CG.C] });
+// 1° criterio come sul quaderno del prof: l'angolo nel vertice in alto (A), una tacchetta su AB e due su AC
+const LT1 = { A: [95, 45], B: [30, 230], C: [260, 230] }, LT2 = { A: [445, 45], B: [380, 230], C: [610, 230] };
+const F_LAL = CG.svg(CG.tri(LT1, ['A', 'B', 'C'], { AB: [1, CG.Y], AC: [2, CG.Y] }, { A: [1, CG.C] })
+  + CG.tri(LT2, ['A′', 'B′', 'C′'], { AB: [1, CG.Y], AC: [2, CG.Y] }, { A: [1, CG.C] }), 650, 270);
 const F_ALA = CG.pair({ AB: [1, CG.Y] }, { A: [1, CG.C], B: [2, CG.C] });
 // LLA: AB in comune, BC ≅ BD, angolo in A in comune, ma ABC ≠ ABD
 const F_LLA = (() => { const A = [45, 220], B = [165, 60], Cp = [82.5, 220], D = [247.5, 220];

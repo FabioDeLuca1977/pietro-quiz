@@ -227,13 +227,15 @@ window.ANIMS = window.ANIMS || {};
       if (s >= 3) o += tx(240, 40, '6 elementi → ne bastano 3', { c: G, fs: 20, o: p });
       return o; } });
   // ── 1° criterio ───────────────────────────────────────────────
-  C.push({ key: 'LAL', title: '1° criterio (LAL)', h: 260,
+  // come sul quaderno del prof: l'angolo nel vertice in alto (A)
+  const L1 = [[80, 62], [25, 215], [182, 215]], L2 = L1.map(q => [q[0] + OFF, q[1]]);
+  C.push({ key: 'LAL', title: '1° criterio (LAL)', h: 280,
     enunc: 'Due triangoli sono congruenti se hanno ordinatamente congruenti <b>due lati</b> e <b>l\'angolo tra essi compreso</b>.',
     steps: ['So che AB ≅ A′B′ (una tacchetta).', '…che AC ≅ A′C′ (due tacchette).', '…e che Â ≅ Â′: è l\'angolo compreso, quello che sta in mezzo ai due lati.', 'Sovrappongo: porto A su A′ e il lato AB sul lato A′B′. Poiché AB ≅ A′B′, B cade su B′ (assioma 7A).', 'Poiché Â ≅ Â′, il lato AC va sulla semiretta A′C′ (assioma 7B); poiché AC ≅ A′C′, C cade su C′ (assioma 7A).', 'Per B′ e C′ passa una sola retta (assioma 2B): anche BC combacia con B′C′. I triangoli sono congruenti: 1° criterio, lato-angolo-lato.'],
-    draw: (s, p) => { let o = triD(T1, N1) + triD(T2, N2);
-      [T1, T2].forEach(T => { o += ticksK(T[0], T[1], 1, Y, s === 0 ? p : 1); if (s >= 1) o += ticksK(T[0], T[2], 2, Y, s === 1 ? p : 1); if (s >= 2) o += arcV(T[0], T[1], T[2], 1, B, s === 2 ? p : 1); });
-      if (s >= 3) { const t = s === 3 ? p : 1, G3 = mv(T1, t); o += seg(G3[0], G3[1], G, 5, .9); if (s >= 4) o += seg(G3[0], LP(G3[0], G3[2], s === 4 ? p : 1), G, 5, .9); if (s >= 5) o += seg(G3[1], LP(G3[1], G3[2], p), G, 5, .9); }
-      if (s >= 5) o += tx(240, 40, 'ABC ≅ A′B′C′ (LAL)', { c: G, fs: 20, o: p });
+    draw: (s, p) => { let o = triD(L1, N1) + triD(L2, N2);
+      [L1, L2].forEach(T => { o += ticksK(T[0], T[1], 1, Y, s === 0 ? p : 1); if (s >= 1) o += ticksK(T[0], T[2], 2, Y, s === 1 ? p : 1); if (s >= 2) o += arcV(T[0], T[1], T[2], 1, B, s === 2 ? p : 1); });
+      if (s >= 3) { const t = s === 3 ? p : 1, G3 = mv(L1, t); o += seg(G3[0], G3[1], G, 5, .9); if (s >= 4) o += seg(G3[0], LP(G3[0], G3[2], s === 4 ? p : 1), G, 5, .9); if (s >= 5) o += seg(G3[1], LP(G3[1], G3[2], p), G, 5, .9); }
+      if (s >= 5) o += tx(240, 272, 'ABC ≅ A′B′C′ (LAL)', { c: G, fs: 20, o: p });
       return o; } });
   // ── Angolo non compreso ───────────────────────────────────────
   C.push({ key: 'Non compreso', title: 'Attenzione: angolo non compreso', h: 260,
