@@ -55,7 +55,7 @@ window.ANIMS = window.ANIMS || {};
       return o + dot(PA, Y, 8) + tx(PA[0] - 6, PA[1] + 32, 'A', { c: Y }) + dot(PB, Y, 8) + tx(PB[0] + 4, PB[1] - 18, 'B', { c: Y }); } });
   // ── 2C ────────────────────────────────────────────────────────
   A.push({ key: '2C', title: 'Assioma 2C', h: 190,
-    enunc: 'Data una retta nel piano, esiste <b>almeno 1 punto</b> del piano che non appartiene a essa.',
+    enunc: 'Data una retta nel piano, esiste <b>almeno 1 punto</b> nel piano che non appartiene a essa.',
     steps: ['Una retta r nel piano.', 'Fuori dalla retta c\'è sempre almeno un punto P che non le appartiene: il piano non è fatto di una retta sola.'],
     draw: (s, p) => { const t = s === 0 ? p : 1;
       let o = seg(LP([240, 140], [15, 140], t), LP([240, 140], [465, 140], t)) + tx(455, 175, 'r', { i: 1, o: t });

@@ -32,7 +32,7 @@ window.QUIZ_BANK["assiomi-g1-enunciati"] = {
       answerText:"Dati due punti distinti, esiste una e una sola retta a cui appartengono entrambi.", explanation:"Assioma 2B: le parole «una e una sola» sono obbligatorie." },
 
     { type:"define", q:"Enuncia l'assioma 2C (punti fuori dalla retta).", keys:[["retta"],["almeno"],["punto"],["non appart"]],
-      answerText:"Data una retta nel piano, esiste almeno 1 punto del piano che non appartiene a essa.", explanation:"Assioma 2C." },
+      answerText:"Data una retta nel piano, esiste almeno 1 punto nel piano che non appartiene a essa.", explanation:"Assioma 2C." },
 
     { type:"define", q:"Enuncia l'assioma 3A (punto tra A e B).", keys:[["a precede b"],["sempre"],["a precede c"],["c precede b"]],
       answerText:"Dati due punti distinti A e B tali che A precede B, ci sarà sempre un punto C tale che A precede C e C precede B.", explanation:"Assioma 3A, di ordine. C sta tra A e B." },

@@ -26,7 +26,7 @@ window.QUIZ_BANK["assiomi-g1"] = {
     paras: [
       "<b>Che cos'è un assioma?</b> È una proprietà che accettiamo come vera senza dimostrarla. Dagli assiomi si ricavano i teoremi.",
       "<b>Assioma 1.</b> Ogni piano è un insieme di punti; ogni retta è un sottoinsieme del piano.<br>👉 Il piano è fatto di punti, la retta è una parte del piano.",
-      "<b>Assioma 2 (di appartenenza).</b><br><b>A.</b> A ogni retta appartengono almeno 2 punti distinti.<br><b>B.</b> Dati due punti distinti, esiste <i>una e una sola retta a cui appartengono entrambi</i>.<br><b>C.</b> Data una retta nel piano, esiste almeno 1 punto del piano che non appartiene a essa.",
+      "<b>Assioma 2 (di appartenenza).</b><br><b>A.</b> A ogni retta appartengono almeno 2 punti distinti.<br><b>B.</b> Dati due punti distinti, esiste <i>una e una sola retta a cui appartengono entrambi</i>.<br><b>C.</b> Data una retta nel piano, esiste almeno 1 punto nel piano che non appartiene a essa.",
       "<b>Assioma 3 (di ordine).</b><br><b>A.</b> Dati due punti distinti A e B tali che A precede B, ci sarà sempre un punto C tale che A precede C e C precede <i>B</i>. <i>(Sul quaderno c'è «C precede A»: è sbagliato, C sta tra A e B. Anche gli appunti di un compagno dicono «C precede B».)</i><br><b>B.</b> Data una retta e preso un punto P sulla retta, ci saranno sempre A e B tali che A precede P e P precede B.<br>👉 Tra due punti ce n'è sempre un altro, quindi ce ne sono infiniti; la retta non ha inizio né fine.",
       "<b>Assioma 4.</b> Consideriamo una retta r nel piano: l'insieme dei punti del piano che non appartengono a r resta diviso da r in due sottoinsiemi disgiunti e convessi α e β, <i>detti semipiani di origine r</i>. Se A appartiene ad α e B appartiene a β, allora il segmento <i>AB interseca la retta r</i>.",
       "<b>Assioma 5.</b><br><b>A.</b> Ogni figura è congruente a se stessa.<br><b>B.</b> Se la figura F₁ è congruente alla figura F₂, <i>allora</i> la figura F₂ è congruente alla figura F₁.<br><b>C.</b> Se F₁ è congruente a F₂ <i>e F₂ è congruente</i> a F₃, <i>allora</i> F₁ è congruente a F₃.<br>👉 Sono le proprietà riflessiva, simmetrica e transitiva della congruenza.",
@@ -62,8 +62,8 @@ window.QUIZ_BANK["assiomi-g1"] = {
 
     { q:"Data una retta nel piano, che cosa garantisce l'assioma 2C?",
       options:["Che c'è almeno un punto del piano fuori dalla retta","Che la retta contiene tutti i punti del piano","Che la retta ha esattamente due punti","Che per ogni punto passa una sola retta"],
-      answer:0, ev:"esiste almeno 1 punto del piano che non appartiene a essa",
-      explanation:"Assioma 2C: data una retta nel piano, esiste almeno 1 punto del piano che non appartiene a essa." },
+      answer:0, ev:"esiste almeno 1 punto nel piano che non appartiene a essa",
+      explanation:"Assioma 2C: data una retta nel piano, esiste almeno 1 punto nel piano che non appartiene a essa." },
 
     { q:"A precede B. Che cosa dice l'assioma 3A?",
       options:["C'è sempre un punto C tale che A precede C e C precede B","C'è sempre un punto C che precede A","C coincide sempre con A oppure con B","Non c'è nessun punto tra A e B"],

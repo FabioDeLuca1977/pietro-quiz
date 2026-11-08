@@ -88,7 +88,7 @@ window.LESSONS = window.LESSONS || {};
         h:`${A_2B}${ax('Dati due punti distinti, esiste <i><b>una e una sola</b> retta a cui appartengono entrambi</i>.')}
            <p class="ls-note">🪵 Al falegname bastano due segni e un righello per un taglio dritto.</p>` },
       { k:"Assioma 2C", t:"Fuori dalla retta c'è un punto",
-        h:`${A_2C}${ax('Data una retta nel piano, esiste <b>almeno 1 punto</b> del piano che non appartiene a essa.')}` },
+        h:`${A_2C}${ax('Data una retta nel piano, esiste <b>almeno 1 punto</b> nel piano che non appartiene a essa.')}` },
       { k:"Assioma 3A", t:"Tra due punti ce n'è sempre un altro",
         h:`${A_3A}${ax('Dati due punti distinti A e B tali che A precede B, ci sarà sempre un punto C tale che <b>A precede C e C precede B</b>.')}
            <p class="ls-note"><b>Conseguenza</b> (non fa parte dell'assioma): se ripeti la regola fra A e C, poi ancora, e così via, trovi che tra due punti ce ne sono <b>infiniti</b>. 📓 Sul quaderno c'è «C precede A»: è sbagliato, C sta tra A e B.</p>` },
