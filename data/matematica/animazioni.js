@@ -203,4 +203,88 @@ window.ANIMS = window.ANIMS || {};
       return o; } });
 
   window.ANIMS['assiomi'] = { title: 'Gli assiomi animati', items: A };
+
+  // ════════════════════════════════════════════════════════════
+  //  CRITERI DI CONGRUENZA (spiegazione nostra, come nelle slide e nel PDF)
+  // ════════════════════════════════════════════════════════════
+  const deg = (v, q) => Math.atan2(-(q[1] - v[1]), q[0] - v[0]) * 180 / Math.PI;
+  // k archetti nell'angolo in v tra le direzioni verso p e q
+  const arcV = (v, p, q, k, c = B, o = 1, r0 = 26) => { let a1 = deg(v, p), d = ((deg(v, q) - a1) % 360 + 360) % 360; if (d > 180) { a1 = deg(v, q); d = 360 - d; }
+    let s = ''; for (let i = 0; i < k; i++) s += arc(v, r0 + i * 7, a1, a1 + d, c, 0, o); return s; };
+  const ticksK = (p, q, k, c = Y, o = 1) => { const m = LP(p, q, .5), L = Math.hypot(q[0] - p[0], q[1] - p[1]), d = [(q[0] - p[0]) / L, (q[1] - p[1]) / L], n = [-d[1], d[0]]; let s = '';
+    for (let i = 0; i < k; i++) { const c0 = [m[0] + d[0] * (i - (k - 1) / 2) * 8, m[1] + d[1] * (i - (k - 1) / 2) * 8]; s += seg([c0[0] - n[0] * 9, c0[1] - n[1] * 9], [c0[0] + n[0] * 9, c0[1] + n[1] * 9], c, 3.5, o); } return s; };
+  const lab = (P, t, g, c = K, o = 1) => { const L = Math.hypot(P[0] - g[0], P[1] - g[1]) || 1; return tx(P[0] + (P[0] - g[0]) / L * 20, P[1] + (P[1] - g[1]) / L * 20 + 7, t, { c, fs: 20, o }); };
+  const triD = (T, n, c = K, o = 1, dash = '', w = 4) => { const g = [(T[0][0] + T[1][0] + T[2][0]) / 3, (T[0][1] + T[1][1] + T[2][1]) / 3];
+    return seg(T[0], T[1], c, w, o, dash) + seg(T[1], T[2], c, w, o, dash) + seg(T[2], T[0], c, w, o, dash) + (n ? n.map((x, i) => lab(T[i], x, g, c === K ? K : c, o)).join('') : ''); };
+  const OFF = 258, T1 = [[25, 215], [182, 215], [72, 70]], T2 = T1.map(q => [q[0] + OFF, q[1]]);
+  const N1 = ['A', 'B', 'C'], N2 = ['A′', 'B′', 'C′'];
+  const mv = (T, t) => T.map(q => [q[0] + OFF * t, q[1]]);
+  const C = [];
+  // ── Che cosa vuol dire congruenti ─────────────────────────────
+  C.push({ key: 'Congruenti', title: 'Triangoli congruenti', h: 260,
+    enunc: 'Due triangoli sono <b>congruenti</b> se si possono sovrapporre con un movimento rigido (spostare, girare, ribaltare senza deformare). Allora hanno tutti e <b>6</b> gli elementi congruenti a coppie.',
+    steps: ['Due triangoli: ABC e A′B′C′.', 'Sono congruenti se, spostandone uno senza deformarlo, combacia perfettamente con l\'altro.', 'Allora combaciano tutti e 6 gli elementi, a coppie: 3 lati e 3 angoli. Stesse tacchette = lati congruenti, stessi archetti = angoli congruenti.', 'I criteri servono a non controllare tutti e 6 gli elementi: ne bastano 3, scelti bene.'],
+    draw: (s, p) => { let o = triD(T1, N1) + triD(T2, N2);
+      if (s === 1) o += triD(mv(T1, p), null, G, .9, '8 6');
+      if (s >= 2) [T1, T2].forEach(T => { o += ticksK(T[0], T[1], 1) + ticksK(T[1], T[2], 2) + ticksK(T[2], T[0], 3) + arcV(T[0], T[1], T[2], 1) + arcV(T[1], T[2], T[0], 2) + arcV(T[2], T[0], T[1], 3); });
+      if (s >= 3) o += tx(240, 40, '6 elementi → ne bastano 3', { c: G, fs: 20, o: p });
+      return o; } });
+  // ── 1° criterio ───────────────────────────────────────────────
+  C.push({ key: 'LAL', title: '1° criterio (LAL)', h: 260,
+    enunc: 'Due triangoli sono congruenti se hanno ordinatamente congruenti <b>due lati</b> e <b>l\'angolo tra essi compreso</b>.',
+    steps: ['So che AB ≅ A′B′ (una tacchetta).', '…che AC ≅ A′C′ (due tacchette).', '…e che Â ≅ Â′: è l\'angolo compreso, quello che sta in mezzo ai due lati.', 'Sovrappongo: porto A su A′ e il lato AB sul lato A′B′. Poiché AB ≅ A′B′, B cade su B′ (assioma 7A).', 'Poiché Â ≅ Â′, il lato AC va sulla semiretta A′C′ (assioma 7B); poiché AC ≅ A′C′, C cade su C′ (assioma 7A).', 'Per B′ e C′ passa una sola retta (assioma 2B): anche BC combacia con B′C′. I triangoli sono congruenti: 1° criterio, lato-angolo-lato.'],
+    draw: (s, p) => { let o = triD(T1, N1) + triD(T2, N2);
+      [T1, T2].forEach(T => { o += ticksK(T[0], T[1], 1, Y, s === 0 ? p : 1); if (s >= 1) o += ticksK(T[0], T[2], 2, Y, s === 1 ? p : 1); if (s >= 2) o += arcV(T[0], T[1], T[2], 1, B, s === 2 ? p : 1); });
+      if (s >= 3) { const t = s === 3 ? p : 1, G3 = mv(T1, t); o += seg(G3[0], G3[1], G, 5, .9); if (s >= 4) o += seg(G3[0], LP(G3[0], G3[2], s === 4 ? p : 1), G, 5, .9); if (s >= 5) o += seg(G3[1], LP(G3[1], G3[2], p), G, 5, .9); }
+      if (s >= 5) o += tx(240, 40, 'ABC ≅ A′B′C′ (LAL)', { c: G, fs: 20, o: p });
+      return o; } });
+  // ── Angolo non compreso ───────────────────────────────────────
+  C.push({ key: 'Non compreso', title: 'Attenzione: angolo non compreso', h: 260,
+    enunc: 'Con due lati e un angolo <b>non compreso</b> il 1° criterio <b>non vale</b>.',
+    steps: ['I triangoli ABC e ABD hanno il lato AB in comune.', 'Hanno anche BC ≅ BD (stesse tacchette).', 'E hanno lo stesso angolo in A. Quindi: due lati e un angolo congruenti…', '…ma NON sono congruenti: ABD è molto più grande di ABC. Il motivo: l\'angolo in A non sta tra i lati AB e BC, non è compreso.'],
+    draw: (s, p) => { const PA = [60, 225], PB = [190, 50], PC = [100.5, 225], PD = [279.5, 225]; let o = seg(PA, [460, 225], K, 3) + seg(PA, PB) + dot(PA, K, 5) + dot(PB, K, 5) + tx(48, 252, 'A') + tx(198, 38, 'B');
+      if (s >= 1) { const t = s === 1 ? p : 1; o += seg(PB, LP(PB, PC, t), Y) + seg(PB, LP(PB, PD, t), Y) + ticksK(PB, PC, 2, Y, t) + ticksK(PB, PD, 2, Y, t) + tx(100, 252, 'C', { o: t }) + tx(282, 252, 'D', { o: t }); }
+      if (s >= 2) o += arcV(PA, PB, PD, 1, B, s === 2 ? p : 1, 34);
+      if (s >= 3) o += `<polygon points="${[PA, PB, PC].map(q => q.join(',')).join(' ')}" fill="${B}" opacity="${.3 * p}"/><polygon points="${[PA, PB, PD].map(q => q.join(',')).join(' ')}" fill="${R}" opacity="${.18 * p}"/>`
+        + tx(370, 120, 'ABC ≠ ABD', { c: R, fs: 22, o: p }) + tx(370, 150, 'l\'angolo non è compreso', { c: R, fs: 15, w: 700, o: p });
+      return o; } });
+  // ── 2° criterio ───────────────────────────────────────────────
+  C.push({ key: 'ALA', title: '2° criterio (ALA)', h: 260,
+    enunc: 'Due triangoli sono congruenti se hanno ordinatamente congruenti <b>un lato</b> e <b>i due angoli adiacenti</b> a esso.',
+    steps: ['So che AB ≅ A′B′ (una tacchetta).', '…e che gli angoli alle due punte del lato sono congruenti: Â ≅ Â′ e B̂ ≅ B̂′. Si chiamano angoli adiacenti al lato.', 'Dalle due punte del lato partono due semirette con quegli angoli: si incontrano in un punto solo, il terzo vertice C′.', 'Quindi il triangolo può venire in un modo solo: ABC ≅ A′B′C′, 2° criterio, angolo-lato-angolo.'],
+    draw: (s, p) => { let o = triD(T1, N1) + seg(T2[0], T2[1]) + lab(T2[0], 'A′', [351, 167]) + lab(T2[1], 'B′', [351, 167]);
+      [T1, T2].forEach(T => { o += ticksK(T[0], T[1], 1, Y, s === 0 ? p : 1); if (s >= 1) o += arcV(T[0], T[1], T[2], 1, B, s === 1 ? p : 1) + arcV(T[1], T[2], T[0], 2, B, s === 1 ? p : 1); });
+      const t2 = s >= 2 ? (s === 2 ? p : 1) : (s === 1 ? .25 * p : 0);
+      if (t2) o += seg(T2[0], LP(T2[0], T2[2], t2), G, 4) + seg(T2[1], LP(T2[1], T2[2], t2), G, 4);
+      if (s >= 2 && t2 > .98) o += dot(T2[2], G, 7) + lab(T2[2], 'C′', [351, 167], G);
+      if (s >= 3) o += triD(mv(T1, p), null, Y, .85, '8 6') + tx(240, 40, 'ABC ≅ A′B′C′ (ALA)', { c: G, fs: 20, o: p });
+      return o; } });
+  // ── Dimostrazione del 2° criterio ─────────────────────────────
+  C.push({ key: 'Dim. ALA', title: 'Dimostrazione del 2° criterio', h: 260,
+    enunc: '<b>Ipotesi:</b> AB ≅ A′B′, Â ≅ Â′, B̂ ≅ B̂′. <b>Tesi:</b> ABC ≅ A′B′C′. Si dimostra <b>per assurdo</b>: si suppone il contrario e si arriva a una cosa impossibile.',
+    steps: ['Ipotesi: AB ≅ A′B′, Â ≅ Â′, B̂ ≅ B̂′. Basta dimostrare che AC ≅ A′C′: poi uso il 1° criterio.', 'Per assurdo suppongo che AC NON sia congruente ad A′C′. Allora sulla semiretta A′C′ c\'è un punto D, diverso da C′, con A′D ≅ AC (assioma 7A).', 'ABC e A′B′D hanno AB ≅ A′B′, Â ≅ Â′, AC ≅ A′D: per il 1° criterio sono congruenti. Quindi l\'angolo A′B̂′D ≅ AB̂C.', 'Ma per ipotesi AB̂C ≅ A′B̂′C′. Allora A′B̂′D ≅ A′B̂′C′, dalla stessa parte: per l\'assioma 7B la semiretta è una sola, quindi B′D coincide con B′C′.', 'Allora D sta sia su A′C′ sia su B′C′: D = C′. Ma avevo detto D diverso da C′: assurdo! Quindi AC ≅ A′C′ e, per il 1° criterio, ABC ≅ A′B′C′.'],
+    draw: (s, p) => { let o = triD(T1, N1) + triD(T2, N2);
+      [T1, T2].forEach(T => { o += ticksK(T[0], T[1], 1) + arcV(T[0], T[1], T[2], 1) + arcV(T[1], T[2], T[0], 2); });
+      const D0 = LP(T2[0], T2[2], .6);
+      if (s >= 1 && s <= 3) { const t = s === 1 ? p : 1; o += ticksK(T1[0], T1[2], 2, G, t) + ticksK(T2[0], D0, 2, G, t) + dot(D0, G, 7, t) + tx(D0[0] - 22, D0[1] + 6, 'D', { c: G, o: t }); }
+      if (s === 2) o += seg(T2[1], LP(T2[1], D0, p), G, 3, 1, '8 6') + arcV(T2[1], T2[0], D0, 1, G, p, 44);
+      if (s === 3) { const D = LP(D0, T2[2], p); o += seg(T2[1], D, G, 3, 1, '8 6') + arcV(T2[1], T2[0], D, 1, G, 1, 44); }
+      if (s >= 4) { const D = LP(D0, T2[2], cl(p * 1.5)); o += dot(D, R, 9) + tx(T2[2][0] + 62, T2[2][1] + 14, p > .66 ? 'D = C′' : '', { c: R, fs: 18 }) + tx(240, 40, p > .5 ? 'assurdo ⇒ AC ≅ A′C′ ⇒ ABC ≅ A′B′C′' : '', { c: G, fs: 17 }); }
+      return o; } });
+  // ── Esempio: la larghezza del fiume ───────────────────────────
+  C.push({ key: 'Fiume', title: 'Esempio: quanto è largo il fiume', h: 300,
+    enunc: 'Un\'applicazione del <b>2° criterio (ALA)</b>: misurare una distanza che non si può raggiungere.',
+    steps: ['Voglio sapere quanto è largo il fiume senza attraversarlo. Mi metto in A, davanti all\'albero T sull\'altra riva.', 'Cammino lungo la riva contando i passi fino a C, e altrettanti fino a D: AC ≅ CD.', 'Da D vado ad angolo retto, finché vedo C e l\'albero T allineati: lì mi fermo, in E.', 'I triangoli TAC ed EDC hanno AC ≅ CD, gli angoli retti in A e in D, e gli angoli in C opposti al vertice (congruenti). Un lato e i due angoli adiacenti: 2° criterio.', 'Quindi DE ≅ AT: misurando DE, che è sulla mia riva, so quanto è largo il fiume.'],
+    draw: (s, p) => { const Tt = [70, 40], Aa = [70, 150], Cc = [220, 150], Dd = [370, 150], Ee = [370, 260];
+      const sq = (q, dx, dy) => `<path d="M${q[0] + dx} ${q[1]} L${q[0] + dx} ${q[1] + dy} L${q[0]} ${q[1] + dy}" fill="none" stroke="${B}" stroke-width="3"/>`;
+      let o = `<rect x="10" y="62" width="460" height="70" fill="${B}" opacity=".18"/>` + tx(430, 103, 'fiume', { c: B, fs: 16, w: 700 }) + dot(Tt, G, 11) + tx(48, 46, 'T', { c: G })
+        + seg([10, 150], [470, 150], K, 2, .5) + dot(Aa, K, 6) + tx(58, 178, 'A') + seg(Tt, Aa, Y, 3, .8, '6 6') + sq(Aa, 14, -14);
+      if (s >= 1) { const t = s === 1 ? p : 1; o += seg(Aa, LP(Aa, Dd, t), K, 4) + (t > .5 ? dot(Cc, K, 6) + tx(220, 178, 'C') + ticksK(Aa, Cc, 1, Y) : '') + (t > .98 ? dot(Dd, K, 6) + tx(388, 145, 'D') + ticksK(Cc, Dd, 1, Y) : ''); }
+      if (s >= 2) { const t = s === 2 ? p : 1, E = LP(Dd, Ee, t); o += seg(Dd, E, K, 4) + sq(Dd, -14, 14) + seg(Tt, LP(Tt, Ee, t), K, 2, .7, '4 7') + (t > .98 ? dot(Ee, K, 6) + tx(390, 270, 'E') : ''); }
+      if (s >= 3) o += `<polygon points="${[Tt, Aa, Cc].map(q => q.join(',')).join(' ')}" fill="${G}" opacity="${.22 * (s === 3 ? p : 1)}"/><polygon points="${[Ee, Dd, Cc].map(q => q.join(',')).join(' ')}" fill="${G}" opacity="${.22 * (s === 3 ? p : 1)}"/>`
+        + arcV(Cc, Aa, Tt, 1, R, s === 3 ? p : 1, 26) + arcV(Cc, Dd, Ee, 1, R, s === 3 ? p : 1, 26);
+      if (s >= 4) o += seg(Tt, Aa, Y, 6, p) + seg(Dd, Ee, Y, 6, p) + tx(300, 235, 'DE ≅ AT', { c: Y, fs: 20, o: p });
+      return o; } });
+
+  window.ANIMS['criteri'] = { title: 'I criteri animati', items: C };
 })();

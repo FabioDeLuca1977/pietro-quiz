@@ -418,6 +418,14 @@ window.REVIEW = [
         "test": "criteri-1"
       },
       {
+        "id": "cri-4",
+        "topic": "Geometria euclidea · criteri di congruenza",
+        "title": "I criteri animati, passo per passo",
+        "anim": "criteri",
+        "pages": "Tocca «Avanti» e guarda",
+        "test": "criteri-1"
+      },
+      {
         "id": "cri-3",
         "topic": "Geometria euclidea · criteri di congruenza",
         "title": "I criteri in parole semplici (video)",

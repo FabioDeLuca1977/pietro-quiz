@@ -1354,7 +1354,7 @@ function animShow() {
   document.getElementById('anm-en').innerHTML = `<span style="display:block;font-size:.7rem;font-weight:800;letter-spacing:.04em;opacity:.7;margin-bottom:4px">📌 DA STUDIARE A MEMORIA</span>${it.enunc}`;
   document.getElementById('anm-semp').innerHTML = window.semplice ? window.semplice(it.key) : '';
   document.getElementById('anm-prev').disabled = A_.ai === 0 && A_.si === 0;
-  document.getElementById('anm-next').textContent = last ? '✓ Ho finito' : A_.si === it.steps.length - 1 ? 'Assioma dopo →' : 'Avanti →';
+  document.getElementById('anm-next').textContent = last ? '✓ Ho finito' : A_.si === it.steps.length - 1 ? 'Il prossimo →' : 'Avanti →';
   const t = A_.f.it.test && window.QUIZ_BANK?.[A_.f.it.test];
   document.getElementById('anm-end').innerHTML = last && t ? `<button class="btn btn-f" style="width:100%" onclick="closeAnim(true);startQuiz('${A_.f.it.test}')">📝 Fai gli esercizi</button>` : '';
   cancelAnimationFrame(A_.raf); A_.p = 0; const t0 = performance.now();
