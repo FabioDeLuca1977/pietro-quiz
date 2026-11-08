@@ -4,7 +4,7 @@
 //
 //  type:"define": Pietro scrive l'enunciato; il motore controlla le parole chiave.
 //  answerText = enunciato del prof; le parti che sul quaderno mancano sono
-//  completate con l'enunciato usuale (stesse parole della scheda assiomi-g1).
+//  completate con le parole del libro, cap. G1 (stesse parole della scheda assiomi-g1).
 //  Fonte: quaderno di Pietro (foto, 2 novembre 2026).
 // ============================================================
 
@@ -29,7 +29,7 @@ window.QUIZ_BANK["assiomi-g1-enunciati"] = {
       answerText:"A ogni retta appartengono almeno 2 punti distinti.", explanation:"Assioma 2A, di appartenenza." },
 
     { type:"define", q:"Enuncia l'assioma 2B (rette per due punti).", keys:[["due punti","2 punti"],["distint"],["una e una sola"],["retta"]],
-      answerText:"Dati due punti distinti, esiste una e una sola retta che li contiene.", explanation:"Assioma 2B: le parole «una e una sola» sono obbligatorie." },
+      answerText:"Dati due punti distinti, esiste una e una sola retta a cui appartengono entrambi.", explanation:"Assioma 2B: le parole «una e una sola» sono obbligatorie." },
 
     { type:"define", q:"Enuncia l'assioma 2C (punti fuori dalla retta).", keys:[["retta"],["almeno"],["punto"],["non appart"]],
       answerText:"Data una retta nel piano, esiste almeno 1 punto del piano che non appartiene a essa.", explanation:"Assioma 2C." },
@@ -51,11 +51,11 @@ window.QUIZ_BANK["assiomi-g1-enunciati"] = {
     { type:"define", q:"Enuncia l'assioma 6.", keys:[["tutti"],["punti"],["congruent"],["piani"],["rette"],["semipian"],["semirett"]],
       answerText:"Tutti i punti sono congruenti tra loro, così come i piani, le rette, i semipiani e le semirette.", explanation:"Assioma 6 (piani, semipiani e semirette dagli appunti di un compagno)." },
 
-    { type:"define", q:"Enuncia l'assioma 7A (trasporto del segmento).", keys:[["segmento"],["semirett"],["origine"],["uno e un solo","un solo"],["congruent"]],
-      answerText:"Dato un segmento AB e una semiretta di origine O, esiste uno e un solo punto P sulla semiretta tale che OP sia congruente ad AB.", explanation:"Assioma 7A." },
+    { type:"define", q:"Enuncia l'assioma 7A (trasporto del segmento).", keys:[["segmento"],["semirett"],["origine"],["uno e un solo","un solo","unico"],["congruent","≅"]],
+      answerText:"Dato un segmento AB e una semiretta di origine O, sulla semiretta esiste, ed è unico, il punto P tale che OP ≅ AB.", explanation:"Assioma 7A." },
 
-    { type:"define", q:"Enuncia l'assioma 7B (trasporto dell'angolo).", keys:[["angolo"],["semirett"],["origine"],["una e una sola","una sola","solo una"],["congruent"]],
-      answerText:"Dato un angolo AÔB e una semiretta di origine O₁, esiste una e una sola semiretta di origine O₁ tale che i due angoli siano congruenti.",
+    { type:"define", q:"Enuncia l'assioma 7B (trasporto dell'angolo).", keys:[["angolo"],["semirett"],["origine"],["una e una sola","una sola","solo una","unica"],["congruent"]],
+      answerText:"Dato un angolo AÔB e una semiretta di origine O₁, in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁ tale che i due angoli siano congruenti.",
       explanation:"Assioma 7B." },
 
     { type:"define", q:"Enuncia l'assioma 8.", keys:[["somm"],["differenz"],["multipl"],["sottomultipl"],["segment"],["congruent"]],

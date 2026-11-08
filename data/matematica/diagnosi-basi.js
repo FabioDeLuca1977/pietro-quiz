@@ -104,7 +104,7 @@ window.QUIZ_BANK["diagnosi-basi"] = {
 
     // ── Assiomi ──
     { a:"assiomi", q:"Quante rette passano per due punti distinti?", options:["Una e una sola","Almeno due","Nessuna","Infinite"], answer:0,
-      explanation:"Assioma 2B: dati due punti distinti, esiste una e una sola retta che li contiene." },
+      explanation:"Assioma 2B: dati due punti distinti, esiste una e una sola retta a cui appartengono entrambi." },
     { a:"assiomi", q:"A sta nel semipiano α, B nel semipiano β. Che cosa fa il segmento AB?", options:["Interseca la retta r","Sta tutto in α","È parallelo a r","Non esiste"], answer:0,
       explanation:"Assioma 4: il segmento che unisce punti di semipiani diversi interseca la retta r." },
     { a:"assiomi", q:"F₁ è congruente a F₂ e F₂ è congruente a F₃. Allora…", options:["F₁ è congruente a F₃","F₁ non è congruente a F₃","Non si può dire","F₃ è congruente solo a se stessa"], answer:0,

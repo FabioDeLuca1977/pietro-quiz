@@ -45,7 +45,7 @@ window.ANIMS = window.ANIMS || {};
       return o; } });
   // ── 2B ────────────────────────────────────────────────────────
   A.push({ key: '2B', title: 'Assioma 2B', h: 240,
-    enunc: 'Dati due punti distinti, esiste <i><b>una e una sola</b> retta che li contiene</i>.',
+    enunc: 'Dati due punti distinti, esiste <i><b>una e una sola</b> retta a cui appartengono entrambi</i>.',
     steps: ['Prendi due punti diversi, A e B.', 'Per il solo punto A passano infinite rette: eccone alcune.', 'Ma una sola di loro passa anche per B: è la retta AB. Per due punti passa una retta, e una sola.'],
     draw: (s, p) => { const PA = [140, 170], PB = [340, 90]; let o = '';
       if (s >= 1) [0, 50, 80, 115, 150].forEach((a, i) => { const q1 = pol(PA, 330, a), q2 = pol(PA, -330, a);
@@ -122,7 +122,7 @@ window.ANIMS = window.ANIMS || {};
       return o; } });
   // ── 7A ────────────────────────────────────────────────────────
   A.push({ key: '7A', title: 'Assioma 7A', h: 230,
-    enunc: 'Dato un segmento AB e una semiretta di origine O, <i>esiste <b>uno e un solo</b> punto P sulla semiretta tale che OP sia congruente ad AB</i>.',
+    enunc: 'Dato un segmento AB e una semiretta di origine O, <i>sulla semiretta esiste, ed è <b>unico</b>, il punto P tale che OP ≅ AB</i>.',
     steps: ['Hai un segmento AB e una semiretta che parte da O e va verso destra.', 'Apri il compasso quanto AB: la sua apertura è la lunghezza di AB.', 'Punta il compasso in O e fai l\'arco: taglia la semiretta in un solo punto, P.', 'OP ≅ AB. Il punto è uno solo, perché la semiretta va in una sola direzione e la lunghezza è fissata.'],
     draw: (s, p) => { const O = [50, 165], Lg = 180;
       let o = seg([60, 50], [240, 50]) + dot([60, 50]) + dot([240, 50]) + tx(60, 30, 'A') + tx(240, 30, 'B') + ray(O, [465, 165]) + dot(O) + tx(50, 205, 'O');
@@ -134,9 +134,9 @@ window.ANIMS = window.ANIMS || {};
       return o; } });
   // ── 7B ────────────────────────────────────────────────────────
   A.push({ key: '7B', title: 'Assioma 7B', h: 330,
-    enunc: 'Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti. <br><small style="opacity:.75">Precisazione dei libri (non serve impararla): la copia è una sola da ciascuna parte della retta che contiene la semiretta.</small>',
+    enunc: 'Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁</i> tale che i due angoli siano congruenti.',
     sliders: [{ id: 'a', label: 'Apertura', min: 20, max: 70, step: 1, value: 40, fmt: v => v + '°' }],
-    steps: ['Questa è la semiretta s: parte dal punto O₁ e va avanti per sempre verso destra.', 'A sinistra c\'è l\'angolo da copiare, AÔB, con il vertice in O. È in un altro posto del piano: non tocca s.', 'Sposto l\'angolo, senza deformarlo, finché O va su O₁ e il lato OA si appoggia su s.', 'C\'è una e una sola semiretta, O₁B₁, che forma con s un angolo uguale ad AÔB: la copia è una sola. (I libri precisano: una per ciascuna parte della retta di s.)'],
+    steps: ['Questa è la semiretta s: parte dal punto O₁ e va avanti per sempre verso destra.', 'A sinistra c\'è l\'angolo da copiare, AÔB, con il vertice in O. È in un altro posto del piano: non tocca s.', 'Sposto l\'angolo, senza deformarlo, finché O va su O₁ e il lato OA si appoggia su s.', 'C\'è una e una sola semiretta, O₁B₁, che forma con s un angolo uguale ad AÔB: la copia è una sola. (Il libro precisa: in un semipiano fissato; qui quello sopra s.)'],
     draw: (s, p, v) => { const a = v.a, O = [40, 200], O1 = [250, 200], Lg = 120;
       let o = '';
       o += seg([215, 30], [215, 320], D, 2, 1, '5 6') + tx(110, 40, 'angolo da copiare', { fs: 14, w: 700, c: 'rgba(255,255,255,.7)', o: s >= 1 ? 1 : .3 }) + tx(345, 40, 'la copia', { fs: 14, w: 700, c: 'rgba(255,255,255,.7)' });

@@ -2,7 +2,7 @@
 //  data/matematica/lezione-assiomi.js  (v1)
 //  Gli assiomi della geometria euclidea a slide, con un disegno per ognuno.
 //  Testo degli assiomi: quello dettato dal prof (quaderno di Pietro); in corsivo
-//  le parti completate da noi con l'enunciato usuale, come nel PDF da stampare.
+//  le parti mancanti sul quaderno, completate con le parole del libro (cap. G1).
 //  Disegni: gli stessi del PDF, ricolorati per lo sfondo scuro dell'app.
 // ============================================================
 
@@ -77,7 +77,7 @@ window.LESSONS = window.LESSONS || {};
         h:`${A_4}
            <p class="ls-big">Un <b>assioma</b> è una proprietà che accettiamo come vera <b>senza dimostrarla</b>.</p>
            <p>Per ogni assioma: l'enunciato dettato dal prof e un disegno che lo fa vedere.</p>
-           <p class="ls-note">In <i>corsivo</i> le parti che il prof ha detto in classe ma che sul quaderno mancano: le abbiamo completate con l'enunciato usuale.</p>
+           <p class="ls-note">In <i>corsivo</i> le parti che il prof ha detto in classe ma che sul quaderno mancano: le abbiamo completate con le parole del libro (capitolo G1, dove gli assiomi si chiamano «postulati»).</p>
            <p class="ls-hint">Scorri verso l'alto ↑</p>` },
       { k:"Assioma 1", t:"Piano, punti e rette",
         h:`${ax('Ogni <b>piano</b> è un insieme di punti; ogni <b>retta</b> è un sottoinsieme del piano.')}
@@ -85,7 +85,7 @@ window.LESSONS = window.LESSONS || {};
       { k:"Assioma 2A", t:"Ogni retta ha almeno due punti",
         h:`${A_2A}${ax('A ogni retta appartengono <b>almeno 2 punti distinti</b>.')}` },
       { k:"Assioma 2B", t:"Per due punti, una sola retta",
-        h:`${A_2B}${ax('Dati due punti distinti, esiste <i><b>una e una sola</b> retta che li contiene</i>.')}
+        h:`${A_2B}${ax('Dati due punti distinti, esiste <i><b>una e una sola</b> retta a cui appartengono entrambi</i>.')}
            <p class="ls-note">🪵 Al falegname bastano due segni e un righello per un taglio dritto.</p>` },
       { k:"Assioma 2C", t:"Fuori dalla retta c'è un punto",
         h:`${A_2C}${ax('Data una retta nel piano, esiste <b>almeno 1 punto</b> del piano che non appartiene a essa.')}` },
@@ -105,11 +105,10 @@ window.LESSONS = window.LESSONS || {};
         h:`${ax('Tutti i punti sono congruenti tra loro, così come <i>i piani,</i> le rette, <i>i semipiani e le semirette</i>.')}
            <p class="ls-note">I <b>segmenti</b> e gli <b>angoli</b> invece no: possono essere diversi. 📓 Piani, semipiani e semirette vengono dagli appunti di un compagno.</p>` },
       { k:"Assioma 7A", t:"Copiare un segmento",
-        h:`${A_7A}${ax('Dato un segmento AB e una semiretta di origine O, <i>esiste <b>uno e un solo</b> punto P sulla semiretta tale che OP sia congruente ad AB</i>.')}
+        h:`${A_7A}${ax('Dato un segmento AB e una semiretta di origine O, <i>sulla semiretta esiste, ed è <b>unico</b>, il punto P tale che OP ≅ AB</i>.')}
            <p class="ls-note">È quello che fa il compasso: prende la misura e la riporta.</p>` },
       { k:"Assioma 7B", t:"Copiare un angolo",
-        h:`${A_7B}${ax('Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti.')}
-           <p class="ls-note">Precisazione dei libri (non serve impararla): la copia è una sola da ciascuna parte della retta che contiene la semiretta.</p>` },
+        h:`${A_7B}${ax('Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁</i> tale che i due angoli siano congruenti.')}` },
       { k:"Assioma 8", t:"Operazioni con i segmenti",
         h:`${A_8}${ax('Somme, differenze, multipli e sottomultipli di <b>segmenti</b> congruenti saranno a loro volta congruenti.')}
            <p class="ls-note">🧱 Due file di 10 mattonelle uguali sono lunghe uguali.</p>` },

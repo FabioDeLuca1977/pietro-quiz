@@ -5,7 +5,7 @@
 //  type:"reading": prima la scheda di ripasso, poi 20 domande.
 //  Ogni domanda ha ev = la frase della scheda da rileggere.
 //  Fonte: quaderno di Pietro (foto, 2 novembre 2026). In corsivo le parti che il prof
-//  ha detto ma che sul quaderno mancano, ricostruite con l'enunciato usuale.
+//  ha detto ma che sul quaderno mancano, completate con le parole del libro (cap. G1).
 // ============================================================
 
 window.QUIZ_BANK = window.QUIZ_BANK || {};
@@ -22,16 +22,16 @@ window.QUIZ_BANK["assiomi-g1"] = {
   timePerQuestion: 0,
 
   reading: {
-    photo: "Gli assiomi dettati dal prof. In corsivo le parti che il prof ha detto in classe ma che sul quaderno mancano.",
+    photo: "Gli assiomi dettati dal prof. In corsivo le parti che il prof ha detto in classe ma che sul quaderno mancano: le abbiamo completate con le parole del libro (cap. G1, dove gli assiomi si chiamano «postulati»).",
     paras: [
       "<b>Che cos'è un assioma?</b> È una proprietà che accettiamo come vera senza dimostrarla. Dagli assiomi si ricavano i teoremi.",
       "<b>Assioma 1.</b> Ogni piano è un insieme di punti; ogni retta è un sottoinsieme del piano.<br>👉 Il piano è fatto di punti, la retta è una parte del piano.",
-      "<b>Assioma 2 (di appartenenza).</b><br><b>A.</b> A ogni retta appartengono almeno 2 punti distinti.<br><b>B.</b> Dati due punti distinti, esiste <i>una e una sola retta che li contiene</i>.<br><b>C.</b> Data una retta nel piano, esiste almeno 1 punto del piano che non appartiene a essa.",
+      "<b>Assioma 2 (di appartenenza).</b><br><b>A.</b> A ogni retta appartengono almeno 2 punti distinti.<br><b>B.</b> Dati due punti distinti, esiste <i>una e una sola retta a cui appartengono entrambi</i>.<br><b>C.</b> Data una retta nel piano, esiste almeno 1 punto del piano che non appartiene a essa.",
       "<b>Assioma 3 (di ordine).</b><br><b>A.</b> Dati due punti distinti A e B tali che A precede B, ci sarà sempre un punto C tale che A precede C e C precede <i>B</i>. <i>(Sul quaderno c'è «C precede A»: è sbagliato, C sta tra A e B. Anche gli appunti di un compagno dicono «C precede B».)</i><br><b>B.</b> Data una retta e preso un punto P sulla retta, ci saranno sempre A e B tali che A precede P e P precede B.<br>👉 Tra due punti ce n'è sempre un altro, quindi ce ne sono infiniti; la retta non ha inizio né fine.",
       "<b>Assioma 4.</b> Consideriamo una retta r nel piano: l'insieme dei punti del piano che non appartengono a r resta diviso da r in due sottoinsiemi disgiunti e convessi α e β, <i>detti semipiani di origine r</i>. Se A appartiene ad α e B appartiene a β, allora il segmento <i>AB interseca la retta r</i>.",
       "<b>Assioma 5.</b><br><b>A.</b> Ogni figura è congruente a se stessa.<br><b>B.</b> Se la figura F₁ è congruente alla figura F₂, <i>allora</i> la figura F₂ è congruente alla figura F₁.<br><b>C.</b> Se F₁ è congruente a F₂ <i>e F₂ è congruente</i> a F₃, <i>allora</i> F₁ è congruente a F₃.<br>👉 Sono le proprietà riflessiva, simmetrica e transitiva della congruenza.",
       "<b>Assioma 6.</b> Tutti i punti sono congruenti tra loro, così come <i>i piani,</i> le rette, <i>i semipiani e le semirette</i>.<br>👉 Un punto vale l'altro, una retta vale l'altra: si possono sempre sovrapporre. <i>(Piani, semipiani e semirette sono negli appunti di un compagno.)</i>",
-      "<b>Assioma 7.</b><br><b>A.</b> Dato un segmento AB e una semiretta di origine O, <i>esiste uno e un solo punto P sulla semiretta tale che OP sia congruente ad AB</i>.<br><b>B.</b> Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti. <i>(Precisazione dei libri (non serve impararla): la copia è una sola da ciascuna parte della retta che contiene la semiretta.)</i><br>👉 Un segmento o un angolo si copia su una semiretta, in un solo modo.",
+      "<b>Assioma 7.</b><br><b>A.</b> Dato un segmento AB e una semiretta di origine O, <i>sulla semiretta esiste, ed è unico, il punto P tale che OP ≅ AB</i>.<br><b>B.</b> Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁</i> tale che i due angoli siano congruenti.<br>👉 Un segmento o un angolo si copia su una semiretta, in un solo modo.",
       "<b>Assioma 8.</b> Somme, differenze, multipli e sottomultipli di segmenti congruenti saranno a loro volta congruenti.",
       "<b>Assioma 9.</b> Comunque fissati un segmento non nullo u come unità di misura e un numero reale positivo k, esiste un segmento la cui misura rispetto a u è il numero k.",
       "<b>Assioma 10.</b> Somme, differenze, multipli e sottomultipli di angoli congruenti saranno a loro volta congruenti.<br>👉 Come l'8, ma con gli angoli."
@@ -57,8 +57,8 @@ window.QUIZ_BANK["assiomi-g1"] = {
 
     { q:"Quante rette passano per due punti distinti?",
       options:["Nessuna","Una e una sola","Almeno due","Infinite"],
-      answer:1, ev:"una e una sola retta che li contiene",
-      explanation:"Assioma 2B: dati due punti distinti, esiste una e una sola retta che li contiene. All'interrogazione di' proprio «una e una sola»." },
+      answer:1, ev:"una e una sola retta a cui appartengono entrambi",
+      explanation:"Assioma 2B: dati due punti distinti, esiste una e una sola retta a cui appartengono entrambi. All'interrogazione di' proprio «una e una sola»." },
 
     { q:"Data una retta nel piano, che cosa garantisce l'assioma 2C?",
       options:["Che c'è almeno un punto del piano fuori dalla retta","Che la retta contiene tutti i punti del piano","Che la retta ha esattamente due punti","Che per ogni punto passa una sola retta"],
@@ -114,13 +114,13 @@ window.QUIZ_BANK["assiomi-g1"] = {
 
     { q:"Dato un segmento AB e una semiretta di origine O, quanti punti P ci sono sulla semiretta con OP congruente ad AB?",
       options:["Uno e un solo","Due","Infiniti","Nessuno, se la semiretta è più corta di AB"],
-      answer:0, ev:"esiste uno e un solo punto P sulla semiretta tale che OP sia congruente ad AB",
+      answer:0, ev:"sulla semiretta esiste, ed è unico, il punto P tale che OP ≅ AB",
       explanation:"Assioma 7A. La semiretta non finisce mai, quindi il punto P c'è sempre, ed è uno solo." },
 
     { q:"Dato un angolo AÔB e una semiretta di origine O₁, quante semirette di origine O₁ formano un angolo congruente ad AÔB?",
       options:["Una e una sola","Infinite","Nessuna","Dipende da quanto è lunga la semiretta"],
-      answer:0, ev:"esiste una e una sola semiretta di origine O₁",
-      explanation:"Assioma 7B: l'angolo si copia sulla semiretta in un solo modo. (I libri precisano: uno da ciascuna parte della retta.)" },
+      answer:0, ev:"in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁",
+      explanation:"Assioma 7B: l'angolo si copia sulla semiretta in un solo modo. (Il libro: in un semipiano fissato.)" },
 
     { q:"AB è congruente a CD. Il doppio di AB è congruente al doppio di CD?",
       options:["Sì, per l'assioma 8","No, mai","Solo se AB e CD stanno sulla stessa retta","Sì, ma per l'assioma 6"],
