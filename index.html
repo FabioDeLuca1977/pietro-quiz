@@ -575,6 +575,10 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .les-bar b { flex:1; min-width:0; font-size:.9rem; font-weight:800; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .les-n { font-family:var(--f-m); font-size:.74rem; background:rgba(255,255,255,.12); padding:4px 10px; border-radius:20px; }
 .les-x { background:rgba(255,255,255,.12); border:none; width:34px; height:34px; border-radius:50%; font-size:1rem; cursor:pointer; }
+/* «Chiedi al prof»: apre ChatGPT con la domanda già scritta */
+.ask { display:inline-flex; align-items:center; gap:6px; margin-top:8px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; border-radius:20px; padding:7px 13px; font-size:.8rem; font-weight:800; cursor:pointer; }
+.ask:active { transform:scale(.96); }
+.les-ask { background:rgba(255,255,255,.12); border:none; border-radius:20px; padding:7px 11px; font-size:.76rem; font-weight:800; cursor:pointer; white-space:nowrap; }
 .les-dots { position:absolute; right:7px; top:50%; transform:translateY(-50%); z-index:2; display:flex; flex-direction:column; gap:5px; }
 .les-dots i { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.3); transition:height .2s; }
 .les-dots i.on { background:#fff; height:14px; border-radius:3px; }
@@ -700,6 +704,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
   <div class="les-bar">
     <button class="les-x" onclick="closeLesson()" aria-label="Chiudi la spiegazione">✕</button>
     <b id="les-title"></b>
+    <button class="les-ask" onclick="askSlide()" aria-label="Chiedi al prof questa slide">🎓 Chiedi</button>
     <span class="les-n" id="les-n"></span>
   </div>
   <div class="les-dots" id="les-dots" aria-hidden="true"></div>
@@ -1230,10 +1235,12 @@ function openLesson(id) {
          ${f.it.test && window.QUIZ_BANK?.[f.it.test] ? `<button class="btn btn-f" style="grid-column:1/-1" onclick="closeLesson(true);startQuiz('${f.it.test}')">📝 Fai gli esercizi</button>` : ''}</div>` : ''}
      </section>`).join('');
   sc.scrollTop = 0;
+  G.lesId = id; G.lesIdx = 0;
   G.lesObs?.disconnect();
   G.lesObs = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     const i = +e.target.dataset.i;
+    G.lesIdx = i;
     document.getElementById('les-n').textContent = (i + 1) + ' / ' + n;
     document.querySelectorAll('#les-dots i').forEach((d, j) => d.classList.toggle('on', j === i));
     if (i === n - 1) markSeen(id);
@@ -1241,6 +1248,36 @@ function openLesson(id) {
   sc.querySelectorAll('.ls-slide').forEach(s => G.lesObs.observe(s));
   document.getElementById('les').classList.add('on');
   document.body.style.overflow = 'hidden';
+}
+// ═══════════════════════════════════════════════════════
+//  «CHIEDI AL PROF»: apre ChatGPT (chatgpt.com/?q=…) con la domanda già scritta.
+//  Nel testo non c'è il nome dello studente; la risposta giusta resta quella dell'app.
+// ═══════════════════════════════════════════════════════
+const PROF_HEAD = 'Sei un professore di liceo scientifico gentile e paziente. Sono uno studente di prima liceo. '
+  + 'Spiegami in italiano semplice, a piccoli passi, con un esempio facile; non darmi solo la soluzione. '
+  + 'Alla fine fammi UNA domanda simile per vedere se ho capito, e aspetta la mia risposta.';
+const plain = s => { const d = document.createElement('div');
+  d.innerHTML = String(s ?? '').replace(/<br\s*\/?>|<\/(p|div|li|span)>/gi, m => /span/i.test(m) ? m + ' ' : '\n');
+  return (d.textContent || '').replace(/[ \t]+/g, ' ').replace(/ *\n[\s]*/g, '\n').trim(); };
+function openProf(text) {
+  const q = text.length > 1800 ? text.slice(0, 1800) + '…' : text;   // link non troppo lungo
+  window.open('https://chatgpt.com/?q=' + encodeURIComponent(q), '_blank');
+}
+function askAnswer(i) {
+  const a = G.ans[i]; if (!a) return;
+  const subj = cap(G.testData?.subject || ''), title = G.testData?.title || '';
+  let t = `${PROF_HEAD}\n\nMateria: ${subj} — ${title}\nDomanda: ${plain(a.q)}\n`;
+  t += a.chosen && a.chosen !== '—' ? `Io ho risposto: ${plain(a.chosen)}\n` : 'Non ho fatto in tempo a rispondere.\n';
+  t += `La risposta giusta è: ${plain(a.correct)}\n`;
+  if (a.exp) t += `Spiegazione del quiz: ${plain(a.exp)}\n`;
+  t += `\nPerché la mia risposta è sbagliata e come si arriva a quella giusta? Se ti sembra che la risposta del quiz sia sbagliata, dimmelo, perché la controllo con il mio professore.`;
+  openProf(t);
+}
+function askSlide() {
+  const f = reviewItem(G.lesId), L = window.LESSONS?.[f?.it.lesson]; if (!L) return;
+  const s = L.slides[G.lesIdx || 0], sec = document.querySelector(`#les-sc .ls-slide[data-i="${G.lesIdx || 0}"]`);
+  const body = plain(sec ? [...sec.children].filter(e => !e.matches('svg, .ls-end, .ls-k, .ls-t')).map(e => e.outerHTML).join('\n') : s.h);
+  openProf(`${PROF_HEAD}\n\nSto studiando: ${cap(f.g.subject)} — ${L.title}\nSlide: ${plain(s.t)}\nTesto della slide:\n${body}\n\nNon l'ho capita bene: me la spieghi in un altro modo? Se la slide ha un disegno, io non te lo posso mostrare: descrivimi tu come farlo.`);
 }
 function closeLesson(stay) {
   G.lesObs?.disconnect();
@@ -2102,6 +2139,7 @@ function showRes() {
                :`<span class="rv-ko">❌ ${mathify(a.chosen)}</span> <span class="rv-ok">→ ✅ ${mathify(a.correct)}</span>`}
       </div>
       ${a.exp?`<div class="rv-exp">${mathify(a.exp)}</div>`:''}
+      ${a.ok?'':`<button class="ask" onclick="askAnswer(${i})">🎓 Chiedi al prof</button>`}
     </div>`).join('');
 
   // salva sessione + aggiorna best (chiave versionata)
@@ -2303,6 +2341,7 @@ function showDebrief() {
           ${chosenRow}
           ${correctRow}
           ${expRow}
+          ${a.ok ? '' : `<button class="ask" style="align-self:flex-start" onclick="askAnswer(${i})">🎓 Chiedi al prof</button>`}
         </div>
       </div>`;
   }).join('');
