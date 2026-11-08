@@ -450,9 +450,39 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .mode-sw button { flex:1; border:none; background:none; border-radius:24px; padding:9px 8px; font-weight:800; font-size:.86rem; color:var(--mu2); cursor:pointer; }
 .mode-sw button.on { background:#fff; color:#111; }
 .mode-note { font-size:.76rem; color:var(--mu); margin:7px 4px 0; line-height:1.4; }
-.sec-sw { display:grid; grid-template-columns:1fr 1fr; gap:6px; background:var(--card); border:1px solid var(--ln2); border-radius:18px; padding:5px; margin-bottom:14px; }
-.sec-sw button { border:none; background:none; color:var(--mu2); border-radius:14px; padding:12px 8px; min-height:46px; font:inherit; font-weight:800; font-size:.95rem; cursor:pointer; }
+.sec-sw { display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:6px; background:var(--card); border:1px solid var(--ln2); border-radius:18px; padding:5px; margin-bottom:14px; }
+.sec-sw button { border:none; background:none; color:var(--mu2); border-radius:14px; padding:12px 4px; min-height:46px; font:inherit; font-weight:800; font-size:.88rem; cursor:pointer; white-space:nowrap; }
 .sec-sw button.on { background:#fff; color:#111; }
+/* ── Progressi ── */
+.pg-week { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+.pg-cal { background:var(--card); border-radius:var(--r); padding:14px 16px; }
+.pg-cal-g { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; margin:8px auto 0; max-width:250px; }
+.pg-cal-g span { font-size:.66rem; color:var(--mu); text-align:center; font-weight:700; }
+.pg-cal-g i { aspect-ratio:1; border-radius:6px; background:var(--card2); display:block; }
+.pg-cal-g i.l1 { background:color-mix(in srgb, var(--ok) 35%, var(--card2)); }
+.pg-cal-g i.l2 { background:color-mix(in srgb, var(--ok) 65%, var(--card2)); }
+.pg-cal-g i.l3 { background:var(--ok); }
+.pg-cal-g i.today { outline:2px solid #fff; outline-offset:1px; }
+.pg-cal-g i.fut { background:none; border:1px dashed var(--ln2); }
+.pg-leg { display:flex; gap:6px; align-items:center; justify-content:flex-end; font-size:.7rem; color:var(--mu); margin-top:8px; }
+.pg-leg i { width:12px; height:12px; border-radius:3px; display:inline-block; }
+.pg-subj { background:var(--card); border-radius:var(--r); margin-top:10px; border:1px solid var(--ln); }
+.pg-subj summary { list-style:none; display:flex; align-items:center; gap:12px; padding:14px 16px; cursor:pointer; }
+.pg-subj summary::-webkit-details-marker { display:none; }
+.pg-ring { width:48px; height:48px; flex:none; border-radius:50%; padding:4px; background:conic-gradient(var(--acc) calc(var(--p) * 1%), var(--card2) 0); }
+.pg-ring span { width:100%; height:100%; border-radius:50%; display:grid; place-items:center; font-size:1.25rem; background:var(--card); }
+.pg-sn { flex:1; min-width:0; } .pg-sn b { display:block; font-size:1rem; } .pg-sn span { font-size:.76rem; color:var(--mu2); font-weight:600; }
+.pg-pct { font-weight:900; font-size:1.15rem; } .pg-pct.none { color:var(--mu); font-size:.85rem; font-weight:700; }
+.pg-body { padding:0 16px 14px; }
+.pg-t { display:block; width:100%; text-align:left; background:none; border:none; border-top:1px solid var(--ln); padding:10px 0; cursor:pointer; }
+.pg-t .pg-tt { display:flex; justify-content:space-between; gap:10px; font-size:.86rem; font-weight:700; }
+.pg-t .pg-tt b { flex:none; } .pg-t .pg-tm { font-size:.72rem; color:var(--mu); font-weight:600; margin-top:3px; }
+.pg-bar { display:block; height:6px; border-radius:3px; background:var(--card2); margin-top:6px; overflow:hidden; }
+.pg-bar i { display:block; height:100%; border-radius:3px; }
+.pg-hi { background:var(--ok); } .pg-mi { background:var(--gold); } .pg-lo { background:var(--ko); }
+.pg-sub { font-size:.74rem; color:var(--mu); font-weight:800; text-transform:uppercase; letter-spacing:.04em; margin:14px 0 4px; }
+.pg-rip { display:flex; justify-content:space-between; gap:10px; font-size:.8rem; padding:5px 0; color:var(--mu2); font-weight:600; }
+.pg-note { font-size:.74rem; color:var(--mu); text-align:center; margin:18px 8px 6px; line-height:1.5; }
 .rip-item { display:flex; width:100%; align-items:center; gap:12px; text-align:left; background:var(--card); border:1px solid var(--ln2); border-radius:18px; padding:12px; margin-bottom:9px; color:#fff; font:inherit; cursor:pointer; }
 .rip-item:active { transform:scale(.98); }
 .rip-topic { margin:14px 2px 8px; padding-left:10px; border-left:4px solid var(--acc); font-size:.82rem; font-weight:800; color:var(--mu2); letter-spacing:.02em; }
@@ -609,7 +639,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 
 <!-- ══ HOME ══ -->
 <div id="s-home" class="scr">
-  <div class="sec-sw"><button class="on" aria-pressed="true">📝 Esercizi</button><button aria-pressed="false" onclick="openRipasso()">🎬 Ripasso</button></div>
+  <div class="sec-sw"><button class="on" aria-pressed="true">📝 Esercizi</button><button aria-pressed="false" onclick="openRipasso()">🎬 Ripasso</button><button aria-pressed="false" onclick="openProg()">📊 Progressi</button></div>
   <div class="subj-grid" id="subj-grid"></div>
 
   <section class="hero">
@@ -649,9 +679,15 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 
 <!-- ══ RIPASSO VIDEO ══ -->
 <div id="s-rip" class="scr">
-  <div class="sec-sw"><button aria-pressed="false" onclick="goHome()">📝 Esercizi</button><button class="on" aria-pressed="true">🎬 Ripasso</button></div>
+  <div class="sec-sw"><button aria-pressed="false" onclick="goHome()">📝 Esercizi</button><button class="on" aria-pressed="true">🎬 Ripasso</button><button aria-pressed="false" onclick="openProg()">📊 Progressi</button></div>
   <button class="back" id="rip-all" onclick="openRipasso()" hidden>← Tutte le materie</button>
   <div id="rip-list"></div>
+</div>
+
+<!-- ══ PROGRESSI ══ -->
+<div id="s-prog" class="scr">
+  <div class="sec-sw"><button aria-pressed="false" onclick="goHome()">📝 Esercizi</button><button aria-pressed="false" onclick="openRipasso()">🎬 Ripasso</button><button class="on" aria-pressed="true">📊 Progressi</button></div>
+  <div id="prog"></div>
 </div>
 <div id="s-vid" class="scr">
   <button class="back" onclick="openRipasso(G.ripSubj)">← Ripasso</button>
@@ -1029,9 +1065,7 @@ function renderHome() {
   // Statistiche dallo storico locale
   const ss = loadSess();
   const days = new Set(ss.map(r => new Date(r.date).toDateString()));
-  let streak = 0; const c = new Date();
-  if (!days.has(c.toDateString())) c.setDate(c.getDate() - 1);   // la serie resta viva fino a stasera
-  while (days.has(c.toDateString())) { streak++; c.setDate(c.getDate() - 1); }
+  const streak = streakOf(ss);
   document.getElementById('k-streak').textContent = streak;
   document.getElementById('c-streak').textContent = `🔥 ${streak}`;
   document.getElementById('k-done').textContent = recoveredCount();
@@ -2308,6 +2342,95 @@ function renderHist() {
       <span class="hr-pct ${cls}">${r.pct}%</span>
     </div>`;
   }).join('');
+}
+function streakOf(ss) {
+  const days = new Set(ss.map(r => new Date(r.date).toDateString()));
+  let streak = 0; const c = new Date();
+  if (!days.has(c.toDateString())) c.setDate(c.getDate() - 1);   // la serie resta viva fino a stasera
+  while (days.has(c.toDateString())) { streak++; c.setDate(c.getDate() - 1); }
+  return streak;
+}
+
+// ═══════════════════════════════════════════════════════
+//  PROGRESSI: tutto calcolato dai dati salvati su questo telefono
+//  (storico dei quiz, record, errori da sistemare, ripasso visto)
+// ═══════════════════════════════════════════════════════
+const pctCls = p => p >= 80 ? 'pg-hi' : p >= 50 ? 'pg-mi' : 'pg-lo';
+const fmtDay = d => d.toLocaleDateString('it-IT', { day:'numeric', month:'short' });
+function progData() {
+  const ss = loadSess(), seen = loadSeen(), wrong = Object.values(loadWrong());
+  const wk = ss.filter(r => Date.now() - new Date(r.date) < 7 * 864e5);
+  const subjects = (window.QUIZ_REGISTRY || []).map(s => {
+    const tests = (s.tests || []).filter(t => t.enabled && window.QUIZ_BANK?.[t.id] && window.QUIZ_BANK[t.id].type !== 'reading').map(t => {
+      const d = window.QUIZ_BANK[t.id], tries = ss.filter(r => r.testId === t.id);
+      return { id:t.id, title:shortTitle(d.title), best:getBest(s.subject, t.id, d.version), tries:tries.length,
+               last:tries[0] ? new Date(tries[0].date) : null, errs:wrong.filter(e => e.tid === t.id).length };
+    });
+    const rv = reviewOf(s.subject), topics = [];
+    (rv?.items || []).forEach(x => { const k = x.topic || 'Altro'; let tp = topics.find(y => y.k === k); if (!tp) topics.push(tp = { k, n:0, seen:0 }); tp.n++; if (seen[x.id]) tp.seen++; });
+    return { s, pr:subjProgress(s), tests, topics, errs:wrong.filter(e => e.subj === s.subject).length };
+  }).filter(x => x.tests.length || x.topics.length)
+    .sort((a, b) => b.tests.filter(t => t.tries).length - a.tests.filter(t => t.tries).length);   // prima le materie già iniziate
+  return { ss, wk, subjects, streak:streakOf(ss) };
+}
+function openProg() {
+  const P = progData(), el = document.getElementById('prog');
+  setColor(DEF_ACC);
+  const wOk = P.wk.reduce((n, r) => n + (r.ok || 0), 0), wTot = P.wk.reduce((n, r) => n + (r.tot || 0), 0);
+  // calendario: le ultime 4 settimane, da lunedì a domenica
+  const perDay = {}; P.ss.forEach(r => { const k = new Date(r.date).toDateString(); perDay[k] = (perDay[k] || 0) + 1; });
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const start = new Date(today); start.setDate(start.getDate() - ((today.getDay() + 6) % 7) - 21);
+  let cal = ['L','M','M','G','V','S','D'].map(x => `<span>${x}</span>`).join('');
+  for (let i = 0; i < 28; i++) {
+    const d = new Date(start); d.setDate(start.getDate() + i);
+    const n = perDay[d.toDateString()] || 0, fut = d > today;
+    cal += `<i class="${fut ? 'fut' : n >= 3 ? 'l3' : n === 2 ? 'l2' : n ? 'l1' : ''} ${+d === +today ? 'today' : ''}" title="${fmtDay(d)}: ${n} quiz"></i>`;
+  }
+  // da rinforzare: i quiz già provati con più errori aperti o il record più basso
+  const weak = P.subjects.flatMap(x => x.tests.map(t => ({ ...t, s:x.s }))).filter(t => t.tries && (t.errs || (t.best ?? 0) < 80))
+    .sort((a, b) => (b.errs - a.errs) || ((a.best ?? 0) - (b.best ?? 0))).slice(0, 3);
+  el.innerHTML = `
+    <div class="lbl">Questa settimana <small>ultimi 7 giorni</small></div>
+    <div class="kpis">
+      <div class="kpi fire"><b>${P.streak}</b><span>giorni di fila 🔥</span></div>
+      <div class="kpi"><b>${P.wk.length}</b><span>quiz fatti</span></div>
+      <div class="kpi"><b>${wTot ? Math.round(wOk / wTot * 100) + '%' : '—'}</b><span>${wTot ? `giuste: ${wOk} su ${wTot}` : 'risposte giuste'}</span></div>
+    </div>
+    <div class="lbl">Quando hai studiato <small>4 settimane</small></div>
+    <div class="pg-cal"><div class="pg-cal-g">${cal}</div>
+      <div class="pg-leg">meno <i style="background:var(--card2)"></i><i class="l1" style="background:color-mix(in srgb, var(--ok) 35%, var(--card2))"></i><i style="background:color-mix(in srgb, var(--ok) 65%, var(--card2))"></i><i style="background:var(--ok)"></i> 3+ quiz</div></div>
+    ${weak.length ? `<div class="lbl">Da rinforzare</div><div class="actions2">${weak.map((t, i) =>
+      `<button class="act ${t.errs ? 'hot' : ''}" ${i === 2 && weak.length === 3 ? 'style="grid-column:1/-1"' : ''} onclick="startQuiz('${t.id}')"><span class="ai">${t.s.subjectIcon}</span><b>${escHtml(t.title)}</b><span>record ${t.best ?? 0}%${t.errs ? ` · ${t.errs} errori da sistemare` : ''}</span></button>`).join('')}</div>` : ''}
+    <div class="lbl">Materie e argomenti <small>tocca per aprire</small></div>
+    ${P.subjects.map(x => {
+      const done = x.tests.filter(t => t.tries).length;
+      return `<details class="pg-subj" style="--acc:${x.s.subjectColor}" ${done ? 'open' : ''}>
+        <summary><span class="pg-ring" style="--p:${x.pr.pct || 0}"><span>${x.s.subjectIcon}</span></span>
+          <span class="pg-sn"><b>${cap(x.s.subject)}</b><span>${x.tests.length ? `${done} quiz fatti su ${x.tests.length}` : 'solo ripasso'}${x.errs ? ` · ${x.errs} errori aperti` : ''}</span></span>
+          <span class="pg-pct ${x.pr.tried ? '' : 'none'}">${x.pr.tried ? x.pr.pct + '%' : 'da iniziare'}</span></summary>
+        <div class="pg-body">
+          ${x.tests.map(t => `<button class="pg-t" onclick="startQuiz('${t.id}')">
+            <span class="pg-tt"><span>${escHtml(t.title)}</span><b>${t.best != null ? t.best + '%' : '—'}</b></span>
+            <span class="pg-bar"><i class="${pctCls(t.best || 0)}" style="width:${t.best || 0}%"></i></span>
+            <span class="pg-tm" style="display:block">${t.tries ? `${t.tries} ${t.tries === 1 ? 'volta' : 'volte'} · ultima il ${fmtDay(t.last)}` : 'mai fatto'}${t.errs ? ` · ${t.errs} da sistemare` : ''}</span>
+          </button>`).join('')}
+          ${x.topics.length ? `<div class="pg-sub">Ripasso visto</div>` + x.topics.map(tp => `<div class="pg-rip"><span>${escHtml(tp.k)}</span><b>${tp.seen === tp.n ? '✅' : ''} ${tp.seen}/${tp.n}</b></div>`).join('') : ''}
+        </div></details>`; }).join('') || '<div class="empty-box">Ancora nessun quiz disponibile.</div>'}
+    <div class="actions2"><button class="act" style="grid-column:1/-1" onclick="sendProg()"><span class="ai">📤</span><b>Manda i progressi a papà</b><span>riepilogo su WhatsApp</span></button></div>
+    <div class="pg-note">Il record è il risultato migliore di ogni quiz; la percentuale della materia è la media dei record (i quiz non fatti contano 0). Lo storico tiene gli ultimi 80 quiz ed è salvato su questo telefono.</div>`;
+  showScr('s-prog');
+}
+function sendProg() {
+  const P = progData();
+  const wOk = P.wk.reduce((n, r) => n + (r.ok || 0), 0), wTot = P.wk.reduce((n, r) => n + (r.tot || 0), 0);
+  let t = `📊 Progressi di ${studentName()} — ${fmtDay(new Date())}\n🔥 ${P.streak} ${P.streak === 1 ? 'giorno' : 'giorni'} di fila · ultimi 7 giorni: ${P.wk.length} quiz` + (wTot ? `, ${wOk}/${wTot} giuste (${Math.round(wOk / wTot * 100)}%)` : '') + '\n';
+  P.subjects.filter(x => x.tests.length).forEach(x => {
+    const done = x.tests.filter(t => t.tries);
+    t += `\n${x.s.subjectIcon} ${cap(x.s.subject)}: ${done.length}/${x.tests.length} quiz fatti` + (x.pr.tried ? `, media record ${x.pr.pct}%` : '') + (x.errs ? `, ${x.errs} errori aperti` : '') + '\n';
+    done.filter(q => (q.best ?? 0) < 80).forEach(q => { t += `   • da rinforzare: ${q.title} (${q.best ?? 0}%)\n`; });
+  });
+  window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
 }
 function clearHist() {
   if(!confirm('Cancellare lo storico e i record? Gli errori da ripassare restano.')) return;
