@@ -49,6 +49,7 @@
 <script src="data/matematica/semplici.js"></script>
 <script src="data/matematica/lezione-criteri.js"></script>
 <script src="data/matematica/lezione-assiomi.js"></script>
+<script src="data/matematica/animazioni.js"></script>
 <script src="data/matematica/criteri-esercizi.js"></script>
 <script src="data/scienze/scienze-giochi.js"></script>
 <script src="data/storia/civilta-mesopotamiche-giochi.js"></script>
@@ -580,6 +581,19 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .ask { display:inline-flex; align-items:center; gap:6px; margin-top:8px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; border-radius:20px; padding:7px 13px; font-size:.8rem; font-weight:800; cursor:pointer; }
 .ask:active { transform:scale(.96); }
 .les-ask { background:rgba(255,255,255,.12); border:none; border-radius:20px; padding:7px 11px; font-size:.76rem; font-weight:800; cursor:pointer; white-space:nowrap; }
+/* Animazioni passo per passo (data/matematica/animazioni.js) */
+.anm { position:fixed; inset:0; z-index:80; background:var(--grad); display:none; overflow-y:auto; }
+.anm.on { display:block; }
+.anm-in { max-width:560px; margin:0 auto; padding:calc(env(safe-area-inset-top) + 64px) 16px calc(env(safe-area-inset-bottom) + 24px); display:flex; flex-direction:column; gap:12px; }
+.anm-chips { display:flex; gap:6px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; }
+.anm-chips button { flex:none; border:1px solid rgba(255,255,255,.25); background:none; color:#fff; border-radius:16px; padding:6px 11px; font-size:.78rem; font-weight:800; cursor:pointer; }
+.anm-chips button.on { background:#fff; color:#111; }
+.anm-svg { background:rgba(0,0,0,.25); border-radius:16px; padding:6px; }
+.anm-svg svg { display:block; width:100%; height:auto; }
+.anm-dots { display:flex; gap:6px; } .anm-dots i { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.3); } .anm-dots i.on { background:#fff; }
+.anm-cap { font-size:1.02rem; line-height:1.45; font-weight:600; min-height:4.4em; }
+.anm-sl { display:flex; align-items:center; gap:10px; font-size:.84rem; } .anm-sl input { flex:1; } .anm-sl b { min-width:58px; text-align:right; }
+.anm-nav { display:grid; grid-template-columns:1fr 1.4fr; gap:10px; }
 .les-dots { position:absolute; right:7px; top:50%; transform:translateY(-50%); z-index:2; display:flex; flex-direction:column; gap:5px; }
 .les-dots i { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.3); transition:height .2s; }
 .les-dots i.on { background:#fff; height:14px; border-radius:3px; }
@@ -710,6 +724,24 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
   </div>
   <div class="les-dots" id="les-dots" aria-hidden="true"></div>
   <div class="les-sc" id="les-sc"></div>
+</div>
+<div class="anm" id="anm" role="dialog" aria-modal="true" aria-labelledby="anm-title">
+  <div class="les-bar">
+    <button class="les-x" onclick="closeAnim()" aria-label="Chiudi l'animazione">✕</button>
+    <b id="anm-title"></b>
+    <button class="les-ask" onclick="askAnim()" aria-label="Chiedi al prof questo passo">🎓 Chiedi</button>
+  </div>
+  <div class="anm-in">
+    <div class="anm-chips" id="anm-chips"></div>
+    <div class="anm-svg" id="anm-svg"></div>
+    <div class="anm-dots" id="anm-dots"></div>
+    <div class="anm-cap" id="anm-cap" aria-live="polite"></div>
+    <div id="anm-sl"></div>
+    <div class="anm-nav"><button class="btn btn-o" id="anm-prev" onclick="animGo(-1)">← Indietro</button><button class="btn btn-f" id="anm-next" onclick="animGo(1)">Avanti →</button></div>
+    <div class="ls-res" style="font-size:.92rem;text-align:left;font-family:inherit;font-weight:600" id="anm-en"></div>
+    <div id="anm-semp"></div>
+    <div id="anm-end"></div>
+  </div>
 </div>
 
 <!-- ══ MATERIA = profilo ══ -->
@@ -1188,8 +1220,8 @@ function openRipasso(subj) {
     return `<div class="lbl">${g.icon} ${cap(g.subject)} <small>${done} visti su ${g.items.length}</small></div>` + g.items.map((x, i) =>
       (x.topic && x.topic !== g.items[i - 1]?.topic ? `<div class="rip-topic" style="--acc:${g.color}">${escHtml(x.topic)}</div>` : '') +
       `<button class="rip-item ${seen[x.id] ? 'seen' : ''}" style="--acc:${g.color}" onclick="openItem('${x.id}')">
-        <span class="rip-play">${seen[x.id] ? '✓' : x.lesson ? '📖' : x.pdf ? '📄' : '▶'}</span>
-        <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')} · ${x.lesson ? (window.LESSONS?.[x.lesson]?.slides.length || 0) + ' slide' : x.pdf ? x.pdfPages + ' pagine' : fmtDur(x.dur)}</span></span>
+        <span class="rip-play">${seen[x.id] ? '✓' : x.anim ? '✨' : x.lesson ? '📖' : x.pdf ? '📄' : '▶'}</span>
+        <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')} · ${x.anim ? (window.ANIMS?.[x.anim]?.items.length || 0) + ' animazioni' : x.lesson ? (window.LESSONS?.[x.lesson]?.slides.length || 0) + ' slide' : x.pdf ? x.pdfPages + ' pagine' : fmtDur(x.dur)}</span></span>
       </button>`).join('');
   }).join('') || '<div class="empty-box">Ancora nessun video.</div>';
   showScr('s-rip');
@@ -1202,7 +1234,7 @@ function openVideo(id) {
   document.getElementById('vid-title').textContent = f.it.title;
   document.getElementById('vid-sub').textContent = cap(f.g.subject) + (f.it.pages ? ' · ' + f.it.pages : '');
   document.getElementById('vid-actions').innerHTML =
-    (next ? `<button class="act" onclick="openItem('${next.id}')"><span class="ai">${next.lesson ? '📖' : next.pdf ? '📄' : '▶'}</span><b>${next.lesson ? 'Spiegazione dopo' : next.pdf ? 'PDF da stampare' : 'Video dopo'}</b><span>${escHtml(next.title)}</span></button>` : '') +
+    (next ? `<button class="act" onclick="openItem('${next.id}')"><span class="ai">${next.anim ? '✨' : next.lesson ? '📖' : next.pdf ? '📄' : '▶'}</span><b>${next.anim ? 'Animazioni' : next.lesson ? 'Spiegazione dopo' : next.pdf ? 'PDF da stampare' : 'Video dopo'}</b><span>${escHtml(next.title)}</span></button>` : '') +
     (f.it.test && window.QUIZ_BANK?.[f.it.test] ? `<button class="act" onclick="startQuiz('${f.it.test}')"><span class="ai">📝</span><b>Fai gli esercizi</b><span>Mettiti alla prova</span></button>` : '');
   showScr('s-vid');
   v.src = f.it.file; v.load();
@@ -1218,6 +1250,7 @@ function stopVideo() { const v = document.getElementById('vplayer'); if (v && !v
 // voce "pdf": un documento da leggere o stampare, aperto nel visore del telefono
 function openItem(id) { const f = reviewItem(id); if (!f) return;
   if (f.it.pdf) { markSeen(id); window.open(f.it.pdf, '_blank'); openRipasso(G.ripSubj); return; }
+  if (f.it.anim) { openAnim(id); return; }
   f.it.lesson ? openLesson(id) : openVideo(id); }
 function openLesson(id) {
   const f = reviewItem(id), L = window.LESSONS?.[f?.it.lesson]; if (!L) return;
@@ -1279,6 +1312,64 @@ function askSlide() {
   const s = L.slides[G.lesIdx || 0], sec = document.querySelector(`#les-sc .ls-slide[data-i="${G.lesIdx || 0}"]`);
   const body = plain(sec ? [...sec.children].filter(e => !e.matches('svg, .ls-end, .ls-k, .ls-t')).map(e => e.outerHTML).join('\n') : s.h);
   openProf(`${PROF_HEAD}\n\nSto studiando: ${cap(f.g.subject)} — ${L.title}\nSlide: ${plain(s.t)}\nTesto della slide:\n${body}\n\nNon l'ho capita bene: me la spieghi in un altro modo? Se la slide ha un disegno, io non te lo posso mostrare: descrivimi tu come farlo.`);
+}
+// ═══════════════════════════════════════════════════════
+//  ANIMAZIONI PASSO PER PASSO: voce del ripasso con "anim" (data/matematica/animazioni.js).
+//  Ogni passo si anima da solo (p da 0 a 1); «Avanti» passa al passo dopo
+//  e, finito un assioma, al successivo.
+// ═══════════════════════════════════════════════════════
+const A_ = { };
+function openAnim(id) {
+  const f = reviewItem(id), set = window.ANIMS?.[f?.it.anim]; if (!set) return;
+  stopVideo(); setColor(f.g.color);
+  Object.assign(A_, { id, set, f, ai:0, si:0, p:1, vals:{} });
+  document.getElementById('anm-title').textContent = set.title;
+  document.getElementById('anm-chips').innerHTML = set.items.map((x, i) => `<button onclick="animJump(${i})">${escHtml(x.key)}</button>`).join('');
+  document.getElementById('anm').classList.add('on'); document.getElementById('anm').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  animShow();
+}
+function animItem() { return A_.set.items[A_.ai]; }
+function animJump(i) { A_.ai = i; A_.si = 0; animShow(); }
+function animGo(d) {
+  const it = animItem(), n = A_.set.items.length;
+  if (d > 0) { if (A_.si < it.steps.length - 1) A_.si++; else if (A_.ai < n - 1) { A_.ai++; A_.si = 0; } else { markSeen(A_.id); closeAnim(); return; } }
+  else { if (A_.si > 0) A_.si--; else if (A_.ai > 0) { A_.ai--; A_.si = animItem().steps.length - 1; } }
+  animShow();
+}
+function animDraw() {
+  const it = animItem(), e = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  document.getElementById('anm-svg').innerHTML = `<svg viewBox="0 0 480 ${it.h}" role="img" aria-label="${escHtml(it.title)}, passo ${A_.si + 1}">${it.draw(A_.si, e(A_.p), A_.vals)}</svg>`;
+  (it.sliders || []).forEach(s => { const o = document.getElementById('anm-o-' + s.id); if (o) o.textContent = s.fmt(A_.vals[s.id]); });
+}
+function animShow() {
+  const it = animItem(), n = A_.set.items.length, last = A_.ai === n - 1 && A_.si === it.steps.length - 1;
+  (it.sliders || []).forEach(s => { if (A_.vals[s.id] == null) A_.vals[s.id] = s.value; });
+  document.querySelectorAll('#anm-chips button').forEach((b, i) => b.classList.toggle('on', i === A_.ai));
+  document.querySelector('#anm-chips button.on')?.scrollIntoView({ block:'nearest', inline:'center' });
+  document.getElementById('anm-dots').innerHTML = it.steps.map((_, i) => `<i class="${i === A_.si ? 'on' : ''}"></i>`).join('');
+  document.getElementById('anm-cap').innerHTML = `<b>${escHtml(it.title)}</b> · passo ${A_.si + 1} di ${it.steps.length}<br>${escHtml(it.steps[A_.si])}`;
+  document.getElementById('anm-sl').innerHTML = (it.sliders || []).map(s => `<label class="anm-sl"><span>${escHtml(s.label)}</span>
+    <input type="range" min="${s.min}" max="${s.max}" step="${s.step}" value="${A_.vals[s.id]}" oninput="A_.vals['${s.id}']=+this.value;A_.p=1;animDraw()"><b id="anm-o-${s.id}"></b></label>`).join('');
+  document.getElementById('anm-en').innerHTML = `<span style="display:block;font-size:.7rem;font-weight:800;letter-spacing:.04em;opacity:.7;margin-bottom:4px">📌 DA STUDIARE A MEMORIA</span>${it.enunc}`;
+  document.getElementById('anm-semp').innerHTML = window.semplice ? window.semplice(it.key) : '';
+  document.getElementById('anm-prev').disabled = A_.ai === 0 && A_.si === 0;
+  document.getElementById('anm-next').textContent = last ? '✓ Ho finito' : A_.si === it.steps.length - 1 ? 'Assioma dopo →' : 'Avanti →';
+  const t = A_.f.it.test && window.QUIZ_BANK?.[A_.f.it.test];
+  document.getElementById('anm-end').innerHTML = last && t ? `<button class="btn btn-f" style="width:100%" onclick="closeAnim(true);startQuiz('${A_.f.it.test}')">📝 Fai gli esercizi</button>` : '';
+  cancelAnimationFrame(A_.raf); A_.p = 0; const t0 = performance.now();
+  const run = now => { A_.p = Math.min(1, (now - t0) / 1300); animDraw(); if (A_.p < 1) A_.raf = requestAnimationFrame(run); };
+  A_.raf = requestAnimationFrame(run);
+}
+function closeAnim(stay) {
+  cancelAnimationFrame(A_.raf);
+  document.getElementById('anm').classList.remove('on');
+  document.body.style.overflow = '';
+  if (!stay) openRipasso(G.ripSubj);
+}
+function askAnim() {
+  const it = animItem(); if (!it) return;
+  openProf(`${PROF_HEAD}\n\nSto studiando: Matematica — ${it.title}\nEnunciato: ${plain(it.enunc)}\nSpiegazione che sto guardando: ${it.steps[A_.si]}\n\nNon l'ho capito bene: me lo spieghi in un altro modo, con un esempio concreto? Io non ti posso mostrare il disegno: se serve, descrivimi tu come farlo.`);
 }
 function closeLesson(stay) {
   G.lesObs?.disconnect();

@@ -361,6 +361,14 @@ window.REVIEW = [
         "test": "assiomi-g1"
       },
       {
+        "id": "ass-4",
+        "topic": "Geometria euclidea · cap. G1",
+        "title": "Gli assiomi animati, passo per passo",
+        "anim": "assiomi",
+        "pages": "Tocca «Avanti» e guarda",
+        "test": "assiomi-g1"
+      },
+      {
         "id": "ass-3",
         "topic": "Geometria euclidea · cap. G1",
         "title": "Gli assiomi in parole semplici (video)",
