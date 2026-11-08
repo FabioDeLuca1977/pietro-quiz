@@ -309,6 +309,11 @@ window.LESSONS["criteri-congruenza"] = {
            <div>1️⃣ <b>LAL</b>: due lati e l'angolo <b>compreso</b></div>
            <div>2️⃣ <b>ALA</b>: un lato e i due angoli <b>adiacenti</b></div>
            <div>⚠️ Con l'angolo <b>non compreso</b> non vale</div>
-         </div>` }
+         </div>` + (window.semplice ? window.semplice('SIGLE') : '') }
   ]
 };
+// sotto ogni enunciato, la spiegazione «in parole semplici» (data/matematica/semplici.js)
+for (const s of window.LESSONS["criteri-congruenza"].slides) {
+  const key = { "Primo criterio":"LAL", "Secondo criterio":"ALA" }[s.k];
+  if (key && window.conSemplice) s.h = window.conSemplice(s.h, key);
+}

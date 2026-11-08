@@ -117,4 +117,9 @@ window.LESSONS = window.LESSONS || {};
            <p>Poi fai il quiz sugli assiomi.</p>` },
     ],
   };
+  // sotto ogni enunciato, la spiegazione «in parole semplici» (data/matematica/semplici.js)
+  for (const s of window.LESSONS["assiomi-disegni"].slides) {
+    const m = s.k.match(/^Assioma (\w+)$/);
+    if (m && window.conSemplice) s.h = window.conSemplice(s.h, m[1]);
+  }
 })();

@@ -316,7 +316,7 @@ window.REVIEW = [
         "topic": "Geometria e gradi · da stampare",
         "title": "PDF da stampare: assiomi, criteri, gradi",
         "pdf": "stampa/geometria-assiomi-criteri-gradi.pdf",
-        "pdfPages": 11,
+        "pdfPages": 12,
         "pages": "Riassunto con i disegni"
       },
       {
