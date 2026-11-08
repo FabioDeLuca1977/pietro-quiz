@@ -361,6 +361,15 @@ window.REVIEW = [
         "test": "assiomi-g1"
       },
       {
+        "id": "ass-3",
+        "topic": "Geometria euclidea · cap. G1",
+        "title": "Gli assiomi in parole semplici (video)",
+        "file": "video/matematica/15-assiomi-parole-semplici.mp4",
+        "dur": 159,
+        "pages": "Enunciato da studiare + spiegazione per capire",
+        "test": "assiomi-g1"
+      },
+      {
         "id": "vid-p09",
         "topic": "Geometria euclidea · criteri di congruenza",
         "title": "Perché i criteri di congruenza (video)",
