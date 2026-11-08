@@ -410,6 +410,15 @@ window.REVIEW = [
         "test": "criteri-1"
       },
       {
+        "id": "cri-3",
+        "topic": "Geometria euclidea · criteri di congruenza",
+        "title": "I criteri in parole semplici (video)",
+        "file": "video/matematica/16-criteri-parole-semplici.mp4",
+        "dur": 80,
+        "pages": "Enunciato da studiare + spiegazione per capire",
+        "test": "criteri-1"
+      },
+      {
         "id": "vid-p08",
         "topic": "Misura degli angoli",
         "title": "Perché gradi, primi e secondi (video)",
