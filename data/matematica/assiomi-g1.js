@@ -31,7 +31,7 @@ window.QUIZ_BANK["assiomi-g1"] = {
       "<b>Assioma 4.</b> Consideriamo una retta r nel piano: l'insieme dei punti del piano che non appartengono a r resta diviso da r in due sottoinsiemi disgiunti e convessi α e β, <i>detti semipiani di origine r</i>. Se A appartiene ad α e B appartiene a β, allora il segmento <i>AB interseca la retta r</i>.",
       "<b>Assioma 5.</b><br><b>A.</b> Ogni figura è congruente a se stessa.<br><b>B.</b> Se la figura F₁ è congruente alla figura F₂, <i>allora</i> la figura F₂ è congruente alla figura F₁.<br><b>C.</b> Se F₁ è congruente a F₂ <i>e F₂ è congruente</i> a F₃, <i>allora</i> F₁ è congruente a F₃.<br>👉 Sono le proprietà riflessiva, simmetrica e transitiva della congruenza.",
       "<b>Assioma 6.</b> Tutti i punti sono congruenti tra loro, così come <i>i piani,</i> le rette, <i>i semipiani e le semirette</i>.<br>👉 Un punto vale l'altro, una retta vale l'altra: si possono sempre sovrapporre. <i>(Piani, semipiani e semirette sono negli appunti di un compagno.)</i>",
-      "<b>Assioma 7.</b><br><b>A.</b> Dato un segmento AB e una semiretta di origine O, <i>sulla semiretta esiste, ed è unico, il punto P tale che OP ≅ AB</i>.<br><b>B.</b> Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁</i> tale che i due angoli siano congruenti.<br>👉 Un segmento o un angolo si copia su una semiretta, in un solo modo.",
+      "<b>Assioma 7.</b><br><b>A.</b> Dato un segmento AB e una semiretta di origine O, <i>sulla semiretta esiste, ed è unico, il punto P tale che OP ≅ AB</i>.<br><b>B.</b> Dato un angolo AÔB e una semiretta con origine O₁, <i>in un semipiano fissato esiste, ed è unico, l'angolo con vertice O₁, un lato coincidente con la semiretta e l'altro appartenente al semipiano,</i> tale che i due angoli siano congruenti.<br>👉 Un segmento o un angolo si copia su una semiretta, in un solo modo.",
       "<b>Assioma 8.</b> Somme, differenze, multipli e sottomultipli di segmenti congruenti saranno a loro volta congruenti.",
       "<b>Assioma 9.</b> Comunque fissati un segmento non nullo u come unità di misura e un numero reale positivo k, esiste un segmento la cui misura rispetto a u è il numero k.",
       "<b>Assioma 10.</b> Somme, differenze, multipli e sottomultipli di angoli congruenti saranno a loro volta congruenti.<br>👉 Come l'8, ma con gli angoli."
@@ -117,10 +117,10 @@ window.QUIZ_BANK["assiomi-g1"] = {
       answer:0, ev:"sulla semiretta esiste, ed è unico, il punto P tale che OP ≅ AB",
       explanation:"Assioma 7A. La semiretta non finisce mai, quindi il punto P c'è sempre, ed è uno solo." },
 
-    { q:"Dato un angolo AÔB e una semiretta di origine O₁, quante semirette di origine O₁ formano un angolo congruente ad AÔB?",
-      options:["Una e una sola","Infinite","Nessuna","Dipende da quanto è lunga la semiretta"],
-      answer:0, ev:"in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁",
-      explanation:"Assioma 7B: l'angolo si copia sulla semiretta in un solo modo. (Il libro: in un semipiano fissato.)" },
+    { q:"Dato un angolo AÔB e una semiretta con origine O₁, in un semipiano fissato quanti angoli congruenti ad AÔB hanno vertice O₁ e un lato sulla semiretta?",
+      options:["Uno e uno solo","Infiniti","Nessuno","Dipende da quanto è lunga la semiretta"],
+      answer:0, ev:"in un semipiano fissato esiste, ed è unico, l'angolo con vertice O₁",
+      explanation:"Assioma 7B: l'angolo si copia sulla semiretta in un solo modo, una volta scelto il semipiano." },
 
     { q:"AB è congruente a CD. Il doppio di AB è congruente al doppio di CD?",
       options:["Sì, per l'assioma 8","No, mai","Solo se AB e CD stanno sulla stessa retta","Sì, ma per l'assioma 6"],

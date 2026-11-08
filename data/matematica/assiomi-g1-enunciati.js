@@ -54,8 +54,8 @@ window.QUIZ_BANK["assiomi-g1-enunciati"] = {
     { type:"define", q:"Enuncia l'assioma 7A (trasporto del segmento).", keys:[["segmento"],["semirett"],["origine"],["uno e un solo","un solo","unico"],["congruent","≅"]],
       answerText:"Dato un segmento AB e una semiretta di origine O, sulla semiretta esiste, ed è unico, il punto P tale che OP ≅ AB.", explanation:"Assioma 7A." },
 
-    { type:"define", q:"Enuncia l'assioma 7B (trasporto dell'angolo).", keys:[["angolo"],["semirett"],["origine"],["una e una sola","una sola","solo una","unica"],["congruent"]],
-      answerText:"Dato un angolo AÔB e una semiretta di origine O₁, in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁ tale che i due angoli siano congruenti.",
+    { type:"define", q:"Enuncia l'assioma 7B (trasporto dell'angolo).", keys:[["angolo"],["semirett"],["origine"],["una e una sola","una sola","solo una","unica","uno e uno solo","uno solo","unico"],["congruent"]],
+      answerText:"Dato un angolo AÔB e una semiretta con origine O₁, in un semipiano fissato esiste, ed è unico, l'angolo con vertice O₁, un lato coincidente con la semiretta e l'altro appartenente al semipiano, tale che i due angoli siano congruenti.",
       explanation:"Assioma 7B." },
 
     { type:"define", q:"Enuncia l'assioma 8.", keys:[["somm"],["differenz"],["multipl"],["sottomultipl"],["segment"],["congruent"]],

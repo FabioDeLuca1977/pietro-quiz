@@ -134,9 +134,9 @@ window.ANIMS = window.ANIMS || {};
       return o; } });
   // ── 7B ────────────────────────────────────────────────────────
   A.push({ key: '7B', title: 'Assioma 7B', h: 330,
-    enunc: 'Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁</i> tale che i due angoli siano congruenti.',
+    enunc: 'Dato un angolo AÔB e una semiretta con origine O₁, <i>in un semipiano fissato esiste, ed è unico, l\'angolo con vertice O₁, un lato coincidente con la semiretta e l\'altro appartenente al semipiano,</i> tale che i due angoli siano congruenti.',
     sliders: [{ id: 'a', label: 'Apertura', min: 20, max: 70, step: 1, value: 40, fmt: v => v + '°' }],
-    steps: ['Questa è la semiretta s: parte dal punto O₁ e va avanti per sempre verso destra.', 'A sinistra c\'è l\'angolo da copiare, AÔB, con il vertice in O. È in un altro posto del piano: non tocca s.', 'Sposto l\'angolo, senza deformarlo, finché O va su O₁ e il lato OA si appoggia su s.', 'C\'è una e una sola semiretta, O₁B₁, che forma con s un angolo uguale ad AÔB: la copia è una sola. (Il libro precisa: in un semipiano fissato; qui quello sopra s.)'],
+    steps: ['Questa è la semiretta s: parte dal punto O₁ e va avanti per sempre verso destra.', 'A sinistra c\'è l\'angolo da copiare, AÔB, con il vertice in O. È in un altro posto del piano: non tocca s.', 'Sposto l\'angolo, senza deformarlo, finché O va su O₁ e il lato OA si appoggia su s.', 'Nel semipiano fissato (quello colorato, sopra s) c\'è uno e un solo angolo con vertice O₁, un lato su s e l\'altro, O₁B₁, nel semipiano: è uguale ad AÔB. La copia è una sola.'],
     draw: (s, p, v) => { const a = v.a, O = [40, 200], O1 = [250, 200], Lg = 120;
       let o = '';
       o += seg([215, 30], [215, 320], D, 2, 1, '5 6') + tx(110, 40, 'angolo da copiare', { fs: 14, w: 700, c: 'rgba(255,255,255,.7)', o: s >= 1 ? 1 : .3 }) + tx(345, 40, 'la copia', { fs: 14, w: 700, c: 'rgba(255,255,255,.7)' });
@@ -144,7 +144,8 @@ window.ANIMS = window.ANIMS || {};
         + tx(34, 228, 'O', { o: og }) + tx(O[0] + Lg, 228, 'A', { o: og }) + tx(pol(O, Lg + 16, a)[0], pol(O, Lg + 16, a)[1], 'B', { o: og });
       o += ray(O1, [468, 200], '#ff8a5c', 5) + dot(O1, '#ff8a5c', 7) + tx(242, 230, 'O₁', { c: '#ff8a5c' }) + tx(440, 188, 's', { c: '#ff8a5c', i: 1 });
       if (s === 2) { const G2 = [Lr(O[0], O1[0], p), 200]; o += seg(G2, pol(G2, Lg, a), G, 3, 1, '7 6') + arc(G2, 34, 0, a, B, 0, .8); }
-      if (s >= 3) { const t = s === 3 ? p : 1; o += seg(O1, LP(O1, pol(O1, Lg, a), t), G, 4) + arc(O1, 34, 0, a, B, 1, t) + tx(pol(O1, Lg + 18, a)[0], pol(O1, Lg + 18, a)[1], 'B₁', { c: G, o: t }); }
+      if (s >= 3) { const t = s === 3 ? p : 1; o = `<rect x="219" y="50" width="260" height="150" fill="${G}" opacity="${.14 * t}"/>` + o
+        + tx(435, 75, 'semipiano', { fs: 13, w: 700, c: G, o: t }) + tx(435, 92, 'fissato', { fs: 13, w: 700, c: G, o: t }); o += seg(O1, LP(O1, pol(O1, Lg, a), t), G, 4) + arc(O1, 34, 0, a, B, 1, t) + tx(pol(O1, Lg + 18, a)[0], pol(O1, Lg + 18, a)[1], 'B₁', { c: G, o: t }); }
       return o; } });
   // ── 8 ─────────────────────────────────────────────────────────
   A.push({ key: '8', title: 'Assioma 8', h: 220,

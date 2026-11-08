@@ -49,6 +49,7 @@ window.LESSONS = window.LESSONS || {};
   const A_7B = (() => { const O = [40, 200], O1 = [262, 200];
     return svg(tx(110, 30, 'angolo da copiare', { fs: 15, w: 700 }) + tx(360, 30, 'la copia', { fs: 15, w: 700 })
         + seg([222, 45], [222, 235], K, 2, '6 6')
+        + `<rect x="226" y="45" width="240" height="155" fill="${G}22"/>` + tx(418, 140, 'semipiano', { fs: 13, w: 700, c: G }) + tx(418, 157, 'fissato', { fs: 13, w: 700, c: G })
         + seg(O, pol(O, 140, 0)) + seg(O, pol(O, 140, 40)) + arc(O, 42, 0, 40, B, 1) + dot(O) + tx(32, 232, 'O') + tx(180, 232, 'A') + tx(158, 92, 'B')
         + seg(O1, [400, 200], R, 5) + head(O1, [462, 200], R) + seg([400, 200], [462, 200], R, 5) + dot(O1, R, 7) + tx(258, 232, 'O₁', { c: R }) + tx(445, 188, 's', { c: R, i: 1 })
         + seg(O1, pol(O1, 140, 40), G) + arc(O1, 42, 0, 40, B, 1) + tx(380, 92, 'B₁', { c: G })
@@ -108,7 +109,7 @@ window.LESSONS = window.LESSONS || {};
         h:`${A_7A}${ax('Dato un segmento AB e una semiretta di origine O, <i>sulla semiretta esiste, ed è <b>unico</b>, il punto P tale che OP ≅ AB</i>.')}
            <p class="ls-note">È quello che fa il compasso: prende la misura e la riporta.</p>` },
       { k:"Assioma 7B", t:"Copiare un angolo",
-        h:`${A_7B}${ax('Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in un semipiano fissato esiste, ed è unica, la semiretta di origine O₁</i> tale che i due angoli siano congruenti.')}` },
+        h:`${A_7B}${ax('Dato un angolo AÔB e una semiretta con origine O₁, <i>in un semipiano fissato esiste, ed è unico, l\'angolo con vertice O₁, un lato coincidente con la semiretta e l\'altro appartenente al semipiano,</i> tale che i due angoli siano congruenti.')}` },
       { k:"Assioma 8", t:"Operazioni con i segmenti",
         h:`${A_8}${ax('Somme, differenze, multipli e sottomultipli di <b>segmenti</b> congruenti saranno a loro volta congruenti.')}
            <p class="ls-note">🧱 Due file di 10 mattonelle uguali sono lunghe uguali.</p>` },
