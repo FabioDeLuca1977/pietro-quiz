@@ -43,22 +43,28 @@ window.LESSONS = window.LESSONS || {};
     return svg(t(20, 0, B) + t(200, 1, G) + t(380, 0, Y) + tx(70, 115, 'F₁') + tx(265, 115, 'F₂') + tx(430, 115, 'F₃')
       + tx(260, 172, 'F₁ ≅ F₂ e F₂ ≅ F₃ ⇒ F₁ ≅ F₃', { fs: 20, w: 700 }), 520, 200); })();
   const A_7A = svg(seg([60, 45], [240, 45]) + dot([60, 45]) + dot([240, 45]) + ticks([60, 45], [240, 45], 1, Y) + tx(60, 25, 'A') + tx(240, 25, 'B')
-    + arrow([50, 140], [445, 140]) + dot([50, 140]) + dot([230, 140], R) + ticks([50, 140], [230, 140], 1, Y) + tx(50, 178, 'O') + tx(230, 178, 'P', { c: R })
-    + tx(345, 95, 'un solo P con OP ≅ AB', { fs: 18, w: 600, c: R }), 460, 190);
-  const A_7B = (() => { const O = [40, 150], O1 = [270, 150];
-    return svg(seg(O, pol(O, 150, 0)) + seg(O, pol(O, 150, 40)) + arc(O, 45, 0, 40, B, 1) + tx(30, 185, 'O') + tx(200, 180, 'A') + tx(165, 45, 'B')
-      + seg([240, 150], [460, 150]) + dot(O1) + tx(262, 185, 'O₁') + tx(450, 135, 's', { i: 1 })
-      + seg(O1, pol(O1, 150, 40), G) + arc(O1, 45, 0, 40, B, 1) + seg(O1, pol(O1, 150, -40), G, 4, '9 7') + arc(O1, 45, -40, 0, B, 1)
-      + tx(380, 40, 'una sola sopra', { fs: 17, w: 600, c: G }) + tx(380, 275, 'una sola sotto', { fs: 17, w: 600, c: G }), 470, 300); })();
+      + `<path d="M${pol([50, 140], 180, 9).join(' ')} A180 180 0 0 1 ${pol([50, 140], 180, -9).join(' ')}" fill="none" stroke="${R}" stroke-width="3" stroke-dasharray="6 6"/>`
+      + arrow([50, 140], [445, 140]) + dot([50, 140]) + dot([230, 140], R) + ticks([50, 140], [230, 140], 1, Y) + tx(50, 178, 'O') + tx(204, 178, 'P', { c: R })
+      + tx(360, 100, 'compasso: OP ≅ AB', { fs: 18, w: 600, c: R }) + tx(360, 178, 'semiretta di origine O', { fs: 16, w: 600 }), 460, 200);
+  const A_7B = (() => { const O = [40, 160], O1 = [270, 160];
+    return svg(seg(O, pol(O, 150, 0)) + seg(O, pol(O, 150, 40)) + arc(O, 45, 0, 40, B, 1) + tx(30, 195, 'O') + tx(195, 192, 'A') + tx(165, 55, 'B')
+        + `<rect x="235" y="8" width="230" height="152" fill="${B}22"/><rect x="235" y="160" width="230" height="152" fill="${G}22"/>`
+        + seg([235, 160], O1, K, 3, '7 6') + seg(O1, [462, 160]) + dot(O1) + tx(256, 195, 'O₁') + tx(452, 150, 's', { i: 1 })
+        + seg(O1, pol(O1, 150, 40), G) + arc(O1, 42, 0, 40, B, 1) + tx(405, 50, 'B₁', { c: G, fs: 22 })
+        + seg(O1, pol(O1, 150, -40), G) + arc(O1, 62, -40, 0, B, 1) + tx(405, 284, 'B₂', { c: G, fs: 22 })
+        + tx(350, 28, 'semipiano sopra: una sola copia', { fs: 14, w: 700, c: B }) + tx(350, 305, 'semipiano sotto: una sola copia', { fs: 14, w: 700, c: G }), 470, 320); })();
   const A_8 = svg(seg([30, 40], [130, 40]) + ticks([30, 40], [130, 40], 1, Y) + tx(30, 22, 'A', { fs: 20 }) + tx(130, 22, 'B', { fs: 20 })
     + seg([30, 105], [130, 105]) + ticks([30, 105], [130, 105], 1, Y) + tx(30, 87, 'C', { fs: 20 }) + tx(130, 87, 'D', { fs: 20 })
     + arrow([155, 72], [205, 72], B)
     + seg([230, 40], [430, 40]) + dot([330, 40], K, 5) + ticks([230, 40], [330, 40], 1, Y) + ticks([330, 40], [430, 40], 1, Y) + tx(330, 22, 'AB + AB', { fs: 18, w: 600 })
     + seg([230, 105], [430, 105]) + dot([330, 105], K, 5) + ticks([230, 105], [330, 105], 1, Y) + ticks([330, 105], [430, 105], 1, Y) + tx(330, 87, 'CD + CD', { fs: 18, w: 600 })
     + tx(330, 140, 'anche i doppi sono congruenti', { fs: 17, w: 600, c: B }), 460, 150);
-  const A_9 = svg(`<rect x="40" y="40" width="120" height="120" fill="none" stroke="${K}" stroke-width="4"/>` + seg([40, 160], [160, 40], R) + tx(100, 185, 'u') + tx(128, 128, '√2', { c: R })
-    + seg([220, 110], [390, 110], R) + tx(305, 92, '√2 · u ≈ 1,414 u', { fs: 18, w: 700, c: R }) + seg([220, 165], [340, 165]) + tx(280, 195, 'u', { fs: 22 })
-    + seg([220, 95], [220, 180], K, 2, '4 5'), 420, 230);
+  const A_9 = svg(tx(240, 24, 'ogni numero positivo k ha il suo punto, a distanza k da 0', { fs: 16, w: 700, c: B })
+      + `<rect x="40" y="90" width="120" height="120" fill="none" stroke="${K}" stroke-width="3"/>` + tx(100, 82, 'lato = u = 1', { fs: 15, w: 600 })
+      + seg([40, 210], [160, 90], R) + tx(82, 142, '√2', { c: R, fs: 22 })
+      + `<path d="M160 90 A169.7 169.7 0 0 1 209.7 210" fill="none" stroke="${R}" stroke-width="3" stroke-dasharray="6 6"/>`
+      + arrow([20, 210], [472, 210]) + [40, 160, 280, 400].map((x, i) => seg([x, 201], [x, 219], K, 3) + tx(x, 242, String(i), { fs: 20 })).join('')
+      + dot([100, 210], B) + tx(100, 264, '0,5', { c: B, fs: 17 }) + dot([209.7, 210], R, 7) + tx(222, 264, '√2 ≈ 1,41', { c: R, fs: 17 }), 480, 270);
   const A_10 = (() => { const two = v => seg(v, pol(v, 160, 0)) + seg(v, pol(v, 160, 28)) + seg(v, pol(v, 160, 56)) + arc(v, 55, 0, 28, B, 1) + arc(v, 55, 28, 56, B, 1);
     return svg(two([30, 200]) + two([270, 200]) + tx(110, 228, 'α + α', { fs: 20, w: 700 }) + tx(350, 228, 'β + β', { fs: 20, w: 700 })
       + tx(240, 30, 'se α ≅ β, allora α + α ≅ β + β', { fs: 18, w: 700, c: B }), 480, 240); })();

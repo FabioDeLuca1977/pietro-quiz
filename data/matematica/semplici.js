@@ -17,7 +17,7 @@ window.SEMPLICI = {
   "7A": "Con il compasso copi un segmento su una semiretta, partendo dall'inizio: la punta cade in un punto solo.",
   "7B": "Un angolo si può copiare su una semiretta: viene una copia sola da una parte e una sola dall'altra.",
   "8":  "Se due segmenti sono uguali e fai su tutti e due la stessa cosa (li sommi, li raddoppi, li dimezzi), ottieni ancora segmenti uguali.",
-  "9":  "Scegli un'unità, per esempio 1 cm. Per ogni numero positivo (3, 0,5, ¾, perfino √2) esiste un segmento lungo esattamente quel numero di unità. √2 è la diagonale del quadrato di lato 1: sulla retta non ci sono buchi.",
+  "9":  "Pensa a un righello infinito in cui u è il centimetro. Per ogni numero positivo k (3, 0,5, ¾, perfino √2) sul righello c'è un punto a distanza k da 0: il segmento da 0 a quel punto è lungo proprio k. √2 si trova con il compasso: è la diagonale del quadrato di lato 1, «girata» sul righello. Quindi sul righello non ci sono buchi.",
   "10": "È l'assioma 8 con gli angoli: se due angoli sono uguali e fai su tutti e due la stessa cosa, ottieni ancora angoli uguali.",
   "LAL": "Due bastoncini uniti da una cerniera: se sai quanto sono lunghi e quanto è aperta la cerniera, il terzo lato è obbligato. Il triangolo viene in un modo solo. L'angolo deve stare in mezzo ai due lati.",
   "ALA": "Hai un lato. Dalle sue due punte fai partire due righe con quegli angoli: si incontrano in un punto solo, il terzo vertice. Il triangolo viene in un modo solo. Gli angoli devono stare alle due punte del lato.",
