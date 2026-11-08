@@ -15,7 +15,7 @@ window.SEMPLICI = {
   "5":  "A: ogni figura combacia con se stessa. B: se la prima combacia con la seconda, anche la seconda combacia con la prima. C: se due figure combaciano con una terza, combaciano anche tra loro.",
   "6":  "Un punto vale l'altro, una retta vale l'altra: non hanno una misura. I segmenti e gli angoli invece no: uno può essere più lungo o più largo dell'altro.",
   "7A": "Con il compasso copi un segmento su una semiretta, partendo dall'inizio: la punta cade in un punto solo.",
-  "7B": "Un angolo si può copiare su una semiretta: viene una copia sola da una parte e una sola dall'altra.",
+  "7B": "Un angolo si può copiare su una semiretta, partendo dal suo inizio: c'è una sola semiretta che forma con lei un angolo uguale.",
   "8":  "Se due segmenti sono uguali e fai su tutti e due la stessa cosa (li sommi, li raddoppi, li dimezzi), ottieni ancora segmenti uguali.",
   "9":  "Pensa a un righello infinito in cui u è il centimetro. Per ogni numero positivo k (3, 0,5, ¾, perfino √2) sul righello c'è un punto a distanza k da 0: il segmento da 0 a quel punto è lungo proprio k. √2 si trova con il compasso: è la diagonale del quadrato di lato 1, «girata» sul righello. Quindi sul righello non ci sono buchi.",
   "10": "È l'assioma 8 con gli angoli: se due angoli sono uguali e fai su tutti e due la stessa cosa, ottieni ancora angoli uguali.",

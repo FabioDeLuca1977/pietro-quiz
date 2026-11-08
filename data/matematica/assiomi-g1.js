@@ -31,10 +31,10 @@ window.QUIZ_BANK["assiomi-g1"] = {
       "<b>Assioma 4.</b> Consideriamo una retta r nel piano: l'insieme dei punti del piano che non appartengono a r resta diviso da r in due sottoinsiemi disgiunti e convessi α e β, <i>detti semipiani di origine r</i>. Se A appartiene ad α e B appartiene a β, allora il segmento <i>AB interseca la retta r</i>.",
       "<b>Assioma 5.</b><br><b>A.</b> Ogni figura è congruente a se stessa.<br><b>B.</b> Se la figura F₁ è congruente alla figura F₂, <i>allora</i> la figura F₂ è congruente alla figura F₁.<br><b>C.</b> Se F₁ è congruente a F₂ <i>e F₂ è congruente</i> a F₃, <i>allora</i> F₁ è congruente a F₃.<br>👉 Sono le proprietà riflessiva, simmetrica e transitiva della congruenza.",
       "<b>Assioma 6.</b> Tutti i punti sono congruenti tra loro, così come <i>i piani,</i> le rette, <i>i semipiani e le semirette</i>.<br>👉 Un punto vale l'altro, una retta vale l'altra: si possono sempre sovrapporre. <i>(Piani, semipiani e semirette sono negli appunti di un compagno.)</i>",
-      "<b>Assioma 7.</b><br><b>A.</b> Dato un segmento AB e una semiretta di origine O, <i>esiste uno e un solo punto P sulla semiretta tale che OP sia congruente ad AB</i>.<br><b>B.</b> Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in ciascuno dei due semipiani individuati dalla retta che contiene la semiretta esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti.<br>👉 Un segmento o un angolo si copia su una semiretta, in un solo modo.",
-      "<b>Assioma 8.</b> Somma, differenza, multiplo e sottomultiplo di segmenti congruenti sono a loro volta congruenti.",
+      "<b>Assioma 7.</b><br><b>A.</b> Dato un segmento AB e una semiretta di origine O, <i>esiste uno e un solo punto P sulla semiretta tale che OP sia congruente ad AB</i>.<br><b>B.</b> Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti. <i>(Precisazione dei libri (non serve impararla): la copia è una sola da ciascuna parte della retta che contiene la semiretta.)</i><br>👉 Un segmento o un angolo si copia su una semiretta, in un solo modo.",
+      "<b>Assioma 8.</b> Somme, differenze, multipli e sottomultipli di segmenti congruenti saranno a loro volta congruenti.",
       "<b>Assioma 9.</b> Comunque fissati un segmento non nullo u come unità di misura e un numero reale positivo k, esiste un segmento la cui misura rispetto a u è il numero k.",
-      "<b>Assioma 10.</b> Somma, differenza, multipli e sottomultipli di <i>angoli</i> congruenti sono congruenti.<br>👉 Come l'8, ma con gli angoli. <i>(Sul quaderno c'è «segmenti», ma così sarebbe uguale all'8: da verificare con un compagno.)</i>"
+      "<b>Assioma 10.</b> Somme, differenze, multipli e sottomultipli di angoli congruenti saranno a loro volta congruenti.<br>👉 Come l'8, ma con gli angoli."
     ]
   },
 
@@ -118,19 +118,19 @@ window.QUIZ_BANK["assiomi-g1"] = {
       explanation:"Assioma 7A. La semiretta non finisce mai, quindi il punto P c'è sempre, ed è uno solo." },
 
     { q:"Dato un angolo AÔB e una semiretta di origine O₁, quante semirette di origine O₁ formano un angolo congruente ad AÔB?",
-      options:["Una e una sola in ciascuno dei due semipiani","Una sola in tutto il piano","Infinite","Nessuna"],
-      answer:0, ev:"in ciascuno dei due semipiani individuati dalla retta che contiene la semiretta",
-      explanation:"Assioma 7B: la retta che contiene la semiretta divide il piano in due semipiani, e in ciascuno ce n'è una e una sola." },
+      options:["Una e una sola","Infinite","Nessuna","Dipende da quanto è lunga la semiretta"],
+      answer:0, ev:"esiste una e una sola semiretta di origine O₁",
+      explanation:"Assioma 7B: l'angolo si copia sulla semiretta in un solo modo. (I libri precisano: uno da ciascuna parte della retta.)" },
 
     { q:"AB è congruente a CD. Il doppio di AB è congruente al doppio di CD?",
       options:["Sì, per l'assioma 8","No, mai","Solo se AB e CD stanno sulla stessa retta","Sì, ma per l'assioma 6"],
-      answer:0, ev:"Somma, differenza, multiplo e sottomultiplo di segmenti congruenti sono a loro volta congruenti",
+      answer:0, ev:"Somme, differenze, multipli e sottomultipli di segmenti congruenti saranno a loro volta congruenti",
       explanation:"Assioma 8: il doppio è un multiplo, e multipli di segmenti congruenti sono congruenti." },
 
     { q:"Che differenza c'è tra l'assioma 8 e l'assioma 10?",
       options:["L'8 parla di segmenti, il 10 di angoli","L'8 parla di rette, il 10 di punti","L'8 parla di somme, il 10 di differenze","Nessuna, dicono la stessa cosa"],
       answer:0, ev:"Come l'8, ma con gli angoli",
-      explanation:"Somma, differenza, multipli e sottomultipli: nell'8 di segmenti congruenti, nel 10 di angoli congruenti." },
+      explanation:"Somme, differenze, multipli e sottomultipli: nell'8 di segmenti congruenti, nel 10 di angoli congruenti." },
 
     { q:"Esiste un segmento che misura √2 rispetto all'unità u?",
       options:["Sì, perché √2 è un numero reale positivo","No, perché √2 è irrazionale","Solo se u è lungo √2","Solo se √2 è un numero intero"],

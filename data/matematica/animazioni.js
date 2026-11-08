@@ -134,24 +134,21 @@ window.ANIMS = window.ANIMS || {};
       return o; } });
   // ── 7B ────────────────────────────────────────────────────────
   A.push({ key: '7B', title: 'Assioma 7B', h: 330,
-    enunc: 'Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in ciascuno dei due semipiani individuati dalla retta che contiene la semiretta esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti.',
+    enunc: 'Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti. <br><small style="opacity:.75">Precisazione dei libri (non serve impararla): la copia è una sola da ciascuna parte della retta che contiene la semiretta.</small>',
     sliders: [{ id: 'a', label: 'Apertura', min: 20, max: 70, step: 1, value: 40, fmt: v => v + '°' }],
-    steps: ['Questa è la semiretta s: parte dal punto O₁ e va avanti per sempre verso destra.', 'A sinistra c\'è l\'angolo da copiare, AÔB, con il vertice in O. È in un altro posto del piano: non tocca s.', 'Sposto l\'angolo, senza deformarlo, finché O va su O₁ e il lato OA si appoggia su s.', 'La retta di s divide il piano in due semipiani. Nel semipiano sopra c\'è una sola semiretta, O₁B₁, che forma con s un angolo uguale.', 'Anche nel semipiano sotto ce n\'è una sola: O₁B₂. Una e una sola copia da ciascuna parte.'],
+    steps: ['Questa è la semiretta s: parte dal punto O₁ e va avanti per sempre verso destra.', 'A sinistra c\'è l\'angolo da copiare, AÔB, con il vertice in O. È in un altro posto del piano: non tocca s.', 'Sposto l\'angolo, senza deformarlo, finché O va su O₁ e il lato OA si appoggia su s.', 'C\'è una e una sola semiretta, O₁B₁, che forma con s un angolo uguale ad AÔB: la copia è una sola. (I libri precisano: una per ciascuna parte della retta di s.)'],
     draw: (s, p, v) => { const a = v.a, O = [40, 200], O1 = [250, 200], Lg = 120;
       let o = '';
-      if (s >= 3) o += `<rect x="225" y="20" width="250" height="180" fill="${G}" opacity=".14"/>` + tx(465, 40, 'semipiano sopra', { a: 'end', c: G, fs: 14, w: 700 });
-      if (s >= 4) o += `<rect x="225" y="200" width="250" height="125" fill="#b48cff" opacity=".16"/>` + tx(465, 318, 'semipiano sotto', { a: 'end', c: '#b48cff', fs: 14, w: 700 });
-      o += seg([215, 30], [215, 320], D, 2, 1, '5 6') + tx(110, 40, 'angolo da copiare', { fs: 14, w: 700, c: 'rgba(255,255,255,.7)', o: s >= 1 ? 1 : .3 });
+      o += seg([215, 30], [215, 320], D, 2, 1, '5 6') + tx(110, 40, 'angolo da copiare', { fs: 14, w: 700, c: 'rgba(255,255,255,.7)', o: s >= 1 ? 1 : .3 }) + tx(345, 40, 'la copia', { fs: 14, w: 700, c: 'rgba(255,255,255,.7)' });
       const og = s >= 1 ? 1 : .2; o += seg(O, pol(O, Lg, 0), K, 4, og) + seg(O, pol(O, Lg, a), K, 4, og) + arc(O, 34, 0, a, B, 0, og) + dot(O, K, 5, og)
         + tx(34, 228, 'O', { o: og }) + tx(O[0] + Lg, 228, 'A', { o: og }) + tx(pol(O, Lg + 16, a)[0], pol(O, Lg + 16, a)[1], 'B', { o: og });
       o += ray(O1, [468, 200], '#ff8a5c', 5) + dot(O1, '#ff8a5c', 7) + tx(242, 230, 'O₁', { c: '#ff8a5c' }) + tx(440, 188, 's', { c: '#ff8a5c', i: 1 });
       if (s === 2) { const G2 = [Lr(O[0], O1[0], p), 200]; o += seg(G2, pol(G2, Lg, a), G, 3, 1, '7 6') + arc(G2, 34, 0, a, B, 0, .8); }
       if (s >= 3) { const t = s === 3 ? p : 1; o += seg(O1, LP(O1, pol(O1, Lg, a), t), G, 4) + arc(O1, 34, 0, a, B, 1, t) + tx(pol(O1, Lg + 18, a)[0], pol(O1, Lg + 18, a)[1], 'B₁', { c: G, o: t }); }
-      if (s >= 4) { const t = p; o += seg(O1, LP(O1, pol(O1, Lg * .85, -a), t), '#b48cff', 4) + arc(O1, 50, -a, 0, B, 1, t) + tx(pol(O1, Lg * .85 + 20, -a)[0], pol(O1, Lg * .85 + 20, -a)[1] + 8, 'B₂', { c: '#b48cff', o: t }); }
       return o; } });
   // ── 8 ─────────────────────────────────────────────────────────
   A.push({ key: '8', title: 'Assioma 8', h: 220,
-    enunc: 'Somma, differenza, multiplo e sottomultiplo di <b>segmenti</b> congruenti sono a loro volta congruenti.',
+    enunc: 'Somme, differenze, multipli e sottomultipli di <b>segmenti</b> congruenti saranno a loro volta congruenti.',
     steps: ['AB ≅ CD: i due segmenti sono lunghi uguali (stessa tacchetta).', 'Raddoppio tutti e due: AB + AB e CD + CD.', 'Anche i doppi sono congruenti: si sovrappongono perfettamente. Vale anche per somma, differenza e sottomultiplo (per esempio la metà).'],
     draw: (s, p) => { let o = seg([40, 60], [160, 60]) + tick([40, 60], [160, 60]) + tx(40, 38, 'A', { fs: 18 }) + tx(160, 38, 'B', { fs: 18 })
         + seg([40, 140], [160, 140]) + tick([40, 140], [160, 140]) + tx(40, 118, 'C', { fs: 18 }) + tx(160, 118, 'D', { fs: 18 });
@@ -193,7 +190,7 @@ window.ANIMS = window.ANIMS || {};
       return o; } });
   // ── 10 ────────────────────────────────────────────────────────
   A.push({ key: '10', title: 'Assioma 10', h: 250,
-    enunc: 'Somma, differenza, multipli e sottomultipli di <i>angoli</i> congruenti sono congruenti.',
+    enunc: 'Somme, differenze, multipli e sottomultipli di <b>angoli</b> congruenti saranno a loro volta congruenti.',
     steps: ['α ≅ β: due angoli con la stessa apertura (stesso archetto).', 'Raddoppio tutti e due: α + α e β + β.', 'Anche i doppi sono congruenti: si sovrappongono. Vale anche per somma, differenza e sottomultipli. È l\'assioma 8, ma con gli angoli.'],
     draw: (s, p) => { const a = 28, O1 = [30, 210], O2 = [265, 210], Lg = 160; let o = '';
       [[O1, 'α'], [O2, 'β']].forEach(([O, n]) => { o += seg(O, pol(O, Lg, 0)) + seg(O, pol(O, Lg, a)) + arc(O, 55, 0, a, B, 1) + tx(pol(O, 80, a / 2)[0] + 6, pol(O, 80, a / 2)[1] + 6, n, { c: B, fs: 18 });

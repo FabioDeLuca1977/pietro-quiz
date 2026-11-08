@@ -46,13 +46,13 @@ window.LESSONS = window.LESSONS || {};
       + `<path d="M${pol([50, 140], 180, 9).join(' ')} A180 180 0 0 1 ${pol([50, 140], 180, -9).join(' ')}" fill="none" stroke="${R}" stroke-width="3" stroke-dasharray="6 6"/>`
       + arrow([50, 140], [445, 140]) + dot([50, 140]) + dot([230, 140], R) + ticks([50, 140], [230, 140], 1, Y) + tx(50, 178, 'O') + tx(204, 178, 'P', { c: R })
       + tx(360, 100, 'compasso: OP ≅ AB', { fs: 18, w: 600, c: R }) + tx(360, 178, 'semiretta di origine O', { fs: 16, w: 600 }), 460, 200);
-  const A_7B = (() => { const O = [40, 160], O1 = [270, 160];
-    return svg(seg(O, pol(O, 150, 0)) + seg(O, pol(O, 150, 40)) + arc(O, 45, 0, 40, B, 1) + tx(30, 195, 'O') + tx(195, 192, 'A') + tx(165, 55, 'B')
-        + `<rect x="235" y="8" width="230" height="152" fill="${B}22"/><rect x="235" y="160" width="230" height="152" fill="${G}22"/>`
-        + seg([235, 160], O1, K, 3, '7 6') + seg(O1, [462, 160]) + dot(O1) + tx(256, 195, 'O₁') + tx(452, 150, 's', { i: 1 })
-        + seg(O1, pol(O1, 150, 40), G) + arc(O1, 42, 0, 40, B, 1) + tx(405, 50, 'B₁', { c: G, fs: 22 })
-        + seg(O1, pol(O1, 150, -40), G) + arc(O1, 62, -40, 0, B, 1) + tx(405, 284, 'B₂', { c: G, fs: 22 })
-        + tx(350, 28, 'semipiano sopra: una sola copia', { fs: 14, w: 700, c: B }) + tx(350, 305, 'semipiano sotto: una sola copia', { fs: 14, w: 700, c: G }), 470, 320); })();
+  const A_7B = (() => { const O = [40, 200], O1 = [262, 200];
+    return svg(tx(110, 30, 'angolo da copiare', { fs: 15, w: 700 }) + tx(360, 30, 'la copia', { fs: 15, w: 700 })
+        + seg([222, 45], [222, 235], K, 2, '6 6')
+        + seg(O, pol(O, 140, 0)) + seg(O, pol(O, 140, 40)) + arc(O, 42, 0, 40, B, 1) + dot(O) + tx(32, 232, 'O') + tx(180, 232, 'A') + tx(158, 92, 'B')
+        + seg(O1, [400, 200], R, 5) + head(O1, [462, 200], R) + seg([400, 200], [462, 200], R, 5) + dot(O1, R, 7) + tx(258, 232, 'O₁', { c: R }) + tx(445, 188, 's', { c: R, i: 1 })
+        + seg(O1, pol(O1, 140, 40), G) + arc(O1, 42, 0, 40, B, 1) + tx(380, 92, 'B₁', { c: G })
+        + tx(360, 245, 'una e una sola copia', { fs: 14, w: 700, c: G }), 470, 250); })();
   const A_8 = svg(seg([30, 40], [130, 40]) + ticks([30, 40], [130, 40], 1, Y) + tx(30, 22, 'A', { fs: 20 }) + tx(130, 22, 'B', { fs: 20 })
     + seg([30, 105], [130, 105]) + ticks([30, 105], [130, 105], 1, Y) + tx(30, 87, 'C', { fs: 20 }) + tx(130, 87, 'D', { fs: 20 })
     + arrow([155, 72], [205, 72], B)
@@ -108,16 +108,17 @@ window.LESSONS = window.LESSONS || {};
         h:`${A_7A}${ax('Dato un segmento AB e una semiretta di origine O, <i>esiste <b>uno e un solo</b> punto P sulla semiretta tale che OP sia congruente ad AB</i>.')}
            <p class="ls-note">È quello che fa il compasso: prende la misura e la riporta.</p>` },
       { k:"Assioma 7B", t:"Copiare un angolo",
-        h:`${A_7B}${ax('Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>in ciascuno dei due semipiani individuati dalla retta che contiene la semiretta esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti.')}` },
+        h:`${A_7B}${ax('Dato un angolo AÔB e una semiretta <i>di origine</i> O₁, <i>esiste una e una sola semiretta di origine O₁</i> tale che i due angoli siano congruenti.')}
+           <p class="ls-note">Precisazione dei libri (non serve impararla): la copia è una sola da ciascuna parte della retta che contiene la semiretta.</p>` },
       { k:"Assioma 8", t:"Operazioni con i segmenti",
-        h:`${A_8}${ax('Somma, differenza, multiplo e sottomultiplo di <b>segmenti</b> congruenti sono a loro volta congruenti.')}
+        h:`${A_8}${ax('Somme, differenze, multipli e sottomultipli di <b>segmenti</b> congruenti saranno a loro volta congruenti.')}
            <p class="ls-note">🧱 Due file di 10 mattonelle uguali sono lunghe uguali.</p>` },
       { k:"Assioma 9", t:"Ogni numero è una lunghezza",
         h:`${A_9}${ax('Comunque fissati un segmento non nullo <b>u</b> come unità di misura e un numero reale positivo <b>k</b>, esiste un segmento la cui misura rispetto a u è il numero k.')}
            <p class="ls-note">Vale anche per i numeri irrazionali: la diagonale del quadrato di lato u misura √2 ≈ 1,414.</p>` },
       { k:"Assioma 10", t:"Operazioni con gli angoli",
-        h:`${A_10}${ax('Somma, differenza, multipli e sottomultipli di <i>angoli</i> congruenti sono congruenti.')}
-           <p class="ls-note">📓 Sul quaderno c'è «segmenti», ma così sarebbe uguale all'8: gli assiomi vanno a coppie, come il 7A (segmenti) e il 7B (angoli).</p>` },
+        h:`${A_10}${ax('Somme, differenze, multipli e sottomultipli di <b>angoli</b> congruenti saranno a loro volta congruenti.')}
+           <p class="ls-note">È l'assioma 8, ma con gli angoli.</p>` },
       { k:"Alla fine", t:"Adesso mettiti alla prova",
         h:`<p class="ls-big">Prova a ridisegnare ogni assioma a memoria e a dire l'enunciato ad alta voce.</p>
            <p>Poi fai il quiz sugli assiomi.</p>` },

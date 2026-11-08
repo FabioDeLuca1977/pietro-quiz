@@ -54,18 +54,18 @@ window.QUIZ_BANK["assiomi-g1-enunciati"] = {
     { type:"define", q:"Enuncia l'assioma 7A (trasporto del segmento).", keys:[["segmento"],["semirett"],["origine"],["uno e un solo","un solo"],["congruent"]],
       answerText:"Dato un segmento AB e una semiretta di origine O, esiste uno e un solo punto P sulla semiretta tale che OP sia congruente ad AB.", explanation:"Assioma 7A." },
 
-    { type:"define", q:"Enuncia l'assioma 7B (trasporto dell'angolo).", keys:[["angolo"],["semirett"],["ciascuno","ognuno"],["semipian"],["una e una sola","una sola"],["congruent"]],
-      answerText:"Dato un angolo AÔB e una semiretta di origine O₁, in ciascuno dei due semipiani individuati dalla retta che contiene la semiretta esiste una e una sola semiretta di origine O₁ tale che i due angoli siano congruenti.",
+    { type:"define", q:"Enuncia l'assioma 7B (trasporto dell'angolo).", keys:[["angolo"],["semirett"],["origine"],["una e una sola","una sola","solo una"],["congruent"]],
+      answerText:"Dato un angolo AÔB e una semiretta di origine O₁, esiste una e una sola semiretta di origine O₁ tale che i due angoli siano congruenti.",
       explanation:"Assioma 7B." },
 
-    { type:"define", q:"Enuncia l'assioma 8.", keys:[["somma"],["differenza"],["multipl"],["sottomultipl"],["segment"],["congruent"]],
-      answerText:"Somma, differenza, multiplo e sottomultiplo di segmenti congruenti sono a loro volta congruenti.", explanation:"Assioma 8." },
+    { type:"define", q:"Enuncia l'assioma 8.", keys:[["somm"],["differenz"],["multipl"],["sottomultipl"],["segment"],["congruent"]],
+      answerText:"Somme, differenze, multipli e sottomultipli di segmenti congruenti saranno a loro volta congruenti.", explanation:"Assioma 8." },
 
     { type:"define", q:"Enuncia l'assioma 9 (la misura).", keys:[["segmento"],["non nullo"],["unita di misura"],["reale"],["positivo"],["misura"]],
       answerText:"Comunque fissati un segmento non nullo u come unità di misura e un numero reale positivo k, esiste un segmento la cui misura rispetto a u è il numero k.", explanation:"Assioma 9." },
 
-    { type:"define", q:"Enuncia l'assioma 10.", keys:[["somma"],["differenza"],["multipl"],["sottomultipl"],["angol"],["congruent"]],
-      answerText:"Somma, differenza, multipli e sottomultipli di angoli congruenti sono congruenti.", explanation:"Assioma 10: come l'8, ma con gli angoli." }
+    { type:"define", q:"Enuncia l'assioma 10.", keys:[["somm"],["differenz"],["multipl"],["sottomultipl"],["angol"],["congruent"]],
+      answerText:"Somme, differenze, multipli e sottomultipli di angoli congruenti saranno a loro volta congruenti.", explanation:"Assioma 10: come l'8, ma con gli angoli." }
 
   ]
 };
