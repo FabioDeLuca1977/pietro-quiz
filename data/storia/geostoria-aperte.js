@@ -13,7 +13,7 @@ window.QUIZ_BANK["geostoria-aperte"] = {
   id:              "geostoria-aperte",
   subject:         "storia",
   title:           "Domande aperte — come la verifica scritta",
-  description:     "14 domande da svolgere per iscritto: 5–6 frasi ciascuna, le corregge papà",
+  description:     "17 domande da svolgere per iscritto: 5–6 frasi ciascuna, le corregge papà",
   icon:            "✍️",
   version:         1,
   timePerQuestion: 0,
@@ -74,7 +74,19 @@ window.QUIZ_BANK["geostoria-aperte"] = {
 
     { "type": "open", "q": "Popolazione · Le migrazioni: quali sono i grandi flussi di oggi, le cause e i problemi dei migranti?",
       "answerText": "Migrazioni interne (nello stesso Stato) e internazionali. Quattro grandi flussi: dall'America Latina a quella anglosassone; dall'Africa e dall'Est Europa verso l'Europa occidentale; dall'Asia meridionale al Golfo Persico; da Cina, Indonesia e Filippine verso Corea del Sud, Giappone e Australia (o USA). Cause: economiche (disoccupazione, povertà), politiche (guerre, persecuzioni, instabilità), calamità naturali. Problemi: viaggi costosi e pericolosi, trafficanti e sfruttatori, integrazione e lingua; il migrante mantiene legami con il Paese d'origine e manda le rimesse (pp. 121–123).",
-      "explanation": "Dispensa, slide 14–17; libro pp. 121–123." }
+      "explanation": "Dispensa, slide 14–17; libro pp. 121–123." },
+
+    { "type": "open", "q": "Egizi · Che cosa fece il faraone Amenofi IV (Akhenaton)? Perché, e come finì la sua riforma?",
+      "answerText": "Nel Nuovo regno era cresciuto il potere dei sacerdoti di Amon. Amenofi IV (al potere intorno al 1350 a.C., con la moglie Nefertiti) fondò una religione monoteista basata sul culto di Aton, il disco solare, anche per togliere potere alla casta sacerdotale: cambiò nome in Akhenaton («amato da Aton»), soppresse il culto di Amon, confiscò i beni dei sacerdoti, fondò una nuova capitale, Akhetaton, e fece una politica pacifista. Dopo la sua morte i sacerdoti, manipolando il giovane figlio Tutankhaton, fecero annullare le riforme: tornò il culto di Amon, la capitale tornò a Tebe e il faraone si chiamò Tutankhamon (p. 74).",
+      "explanation": "Dispensa «L'Antico Egitto», slide 13–14; libro p. 74." },
+
+    { "type": "open", "q": "Ebrei e Fenici · Confronta i due popoli: dove vivevano, come erano organizzati e che cosa hanno lasciato a noi.",
+      "answerText": "Entrambi popoli semitici dell'antica Palestina, che si sviluppano dopo l'arrivo dei popoli del mare (circa 1200 a.C.). Gli Ebrei nella parte interna e meridionale (terra di Canaan, Gerusalemme), i Fenici sulla costa nord (odierno Libano: Tiro, Sidone, Biblo). Gli Ebrei: clan e patriarchi, poi 12 tribù con i giudici, poi la monarchia (David, Salomone), poi due regni. I Fenici: città-Stato indipendenti, prima con re poi guidate dall'aristocrazia mercantile; mercanti, navigatori e colonie (Cartagine). Eredità: dagli Ebrei il monoteismo (da cui cristianesimo e islamismo); dai Fenici l'alfabeto (un segno = un suono), da cui viene anche il nostro (pp. 85, 87–97).",
+      "explanation": "Dispensa «Le civiltà dell'antica Palestina»; libro pp. 85–97." },
+
+    { "type": "open", "q": "Popolazione · Le città di oggi: perché nei Paesi poveri crescono le baraccopoli, mentre nei Paesi ricchi molti vanno a vivere in centri più piccoli?",
+      "answerText": "Nei Paesi poveri molte persone si spostano dalle campagne alle città per cercare lavoro; ma se mancano le strutture per accoglierle si formano quartieri periferici con abitazioni improvvisate, le baraccopoli (bidonvilles, favelas, slums…): più di un miliardo di persone, senza acqua, fognature, elettricità e scuole. Oltre due terzi della popolazione urbana vive nei Paesi poveri. Nei Paesi ricchi invece molti si spostano dalle città verso centri più piccoli o zone residenziali, da cui vanno al lavoro ma dove si vive meglio, con meno affollamento e più verde; le industrie escono dalle città, che conservano funzioni amministrative e commerciali (Milano: da circa 1,7 milioni negli anni Settanta a circa 1,39 oggi) (pp. 119–120).",
+      "explanation": "Dispensa «La demografia», slide 13; libro pp. 119–120." }
 
   ]
 };

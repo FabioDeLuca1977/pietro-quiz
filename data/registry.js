@@ -36,51 +36,11 @@ window.QUIZ_REGISTRY = [
     subjectColor:"#dc2626",
     tests: [
       {
-        id:            "geostoria-aperte",
-        title:         "Domande aperte — come la verifica scritta",
-        description:   "14 domande da svolgere per iscritto (5–6 frasi ciascuna): le corregge papà",
-        icon:          "✍️",
-        questionCount: 14,
-        enabled:       true
-      },
-      {
-        id:            "geostoria-verifica-10nov",
-        title:         "Verifica — Egizi, Ebrei, Fenici, demografia",
-        description:   "Per la verifica del 10 novembre · crocette, date e 4 domande aperte che corregge papà",
+        id:            "geostoria-unico",
+        title:         "Verifica di geostoria — test unico",
+        description:   "Egizi, Ebrei, Fenici, popolazione · crocette, date, cartine, giochi e 4 domande aperte (ogni volta diverse)",
         icon:          "📜",
-        questionCount: 38,
-        enabled:       true
-      },
-      {
-        id:            "geostoria-trascina",
-        title:         "Trascina al posto giusto",
-        description:   "Sposta con il dito popoli, città, classi sociali ed eventi su cartine e linee del tempo",
-        icon:          "✋",
-        questionCount: 8,
-        enabled:       true
-      },
-      {
-        id:            "geostoria-allenamento",
-        title:         "Allenamento a crocette — Egizi, Ebrei, Fenici, demografia",
-        description:   "51 domande a scelta multipla, anche dalle slide del prof",
-        icon:          "🎯",
-        questionCount: 51,
-        enabled:       true
-      },
-      {
-        id:            "geostoria-cartine",
-        title:         "Cartine — dove stanno popoli e città",
-        description:   "Egizi, Ebrei, Fenici: trova il numero giusto sulla cartina",
-        icon:          "🗺️",
-        questionCount: 22,
-        enabled:       true
-      },
-      {
-        id:            "geostoria-giochi",
-        title:         "Gioca — ordina e classifica",
-        description:   "Egizi, Ebrei, Fenici, demografia: linee del tempo e caratteristiche",
-        icon:          "🧩",
-        questionCount: 10,
+        questionCount: 31,
         enabled:       true
       },
       {

@@ -202,6 +202,52 @@ window.QUIZ_BANK["geostoria-trascina"] = {
         { "t": "Alfabeto latino", "z": 2 }
       ],
       "explanation": "I Greci derivarono dal fenicio il loro alfabeto e aggiunsero le vocali; l'alfabeto fenicio fu adattato anche dagli Etruschi alla propria lingua e da lì passò nell'alfabeto latino, fino al nostro (p. 96)."
+    },
+
+    {
+      "type": "place",
+      "q": "Gli Stati di oggi: trascina il nome di ogni Stato sul suo numero. Dove vivevano Egizi, Fenici, Mesopotamici, Ittiti?",
+      "img": "img/storia/stati-vicino-oriente.svg",
+      "zones": [
+        { "x": 26.4, "y": 53.4, "side": "r", "name": "1" },
+        { "x": 49.6, "y": 28.2, "side": "l", "name": "2" },
+        { "x": 60, "y": 23.6, "side": "b", "name": "3" },
+        { "x": 76.1, "y": 30.8, "side": "b", "name": "4" },
+        { "x": 44.6, "y": 10.5, "side": "r", "name": "5" },
+        { "x": 28.6, "y": 85.9, "side": "r", "name": "6" }
+      ],
+      "items": [
+        { "t": "Egitto", "z": 0 },
+        { "t": "Libano", "z": 1 },
+        { "t": "Siria", "z": 2 },
+        { "t": "Iraq", "z": 3 },
+        { "t": "Turchia", "z": 4 },
+        { "t": "Sudan", "z": 5 }
+      ],
+      "explanation": "1 Egitto: gli Egizi lungo il Nilo. 2 Libano: i Fenici, sulla costa dell'odierno Libano (p. 94 e dispensa del prof). 3 Siria: gli Egizi del Nuovo regno vi estendono il loro potere (p. 74). 4 Iraq: la Mesopotamia di Sumeri, Babilonesi e Assiri, «oggi in gran parte Iraq» (cap. 2, p. 36). 5 Turchia: l'Anatolia di Ittiti e Lici (l'Anatolia è la parte asiatica della Turchia). 6 Sudan: la Nubia, «l'attuale Sudan» (p. 64). Confini da Natural Earth."
+    },
+
+    {
+      "type": "place",
+      "q": "Le colonie dei Fenici negli Stati di oggi: trascina il nome di ogni Stato sul suo numero.",
+      "img": "img/storia/stati-mediterraneo.svg",
+      "zones": [
+        { "x": 15.3, "y": 35.5, "side": "r", "name": "1" },
+        { "x": 9, "y": 78.3, "side": "r", "name": "2" },
+        { "x": 41.6, "y": 67.2, "side": "r", "name": "3" },
+        { "x": 48.2, "y": 21.7, "side": "r", "name": "4" },
+        { "x": 90, "y": 63.8, "side": "t", "name": "5" },
+        { "x": 95.7, "y": 70, "side": "l", "name": "6" }
+      ],
+      "items": [
+        { "t": "Spagna", "z": 0 },
+        { "t": "Marocco", "z": 1 },
+        { "t": "Tunisia", "z": 2 },
+        { "t": "Italia", "z": 3 },
+        { "t": "Cipro", "z": 4 },
+        { "t": "Libano", "z": 5 }
+      ],
+      "explanation": "1 Spagna: Cadice. 2 Marocco: Tangeri. 3 Tunisia: Utica e Cartagine, «nell'attuale Tunisia». 4 Italia: Palermo e Mozia in Sicilia, Cagliari e Nora in Sardegna. 5 Cipro, raggiunta dai Fenici. 6 Libano: Tiro e le altre città fenicie (p. 95 e p. 94). Confini da Natural Earth."
     }
 
   ]
