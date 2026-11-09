@@ -364,7 +364,7 @@ window.REVIEW = [
         "topic": "Geometria euclidea · cap. G1",
         "title": "Gli assiomi in parole semplici (video)",
         "file": "video/matematica/15-assiomi-parole-semplici.mp4",
-        "dur": 169,
+        "dur": 217,
         "pages": "Enunciato da studiare + spiegazione per capire",
         "test": "assiomi-g1"
       },
