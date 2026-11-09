@@ -36,6 +36,14 @@ window.QUIZ_REGISTRY = [
     subjectColor:"#dc2626",
     tests: [
       {
+        id:            "geostoria-verifica-10nov",
+        title:         "Verifica — Egizi, Ebrei, Fenici, demografia",
+        description:   "Per la verifica del 10 novembre · crocette, date e 4 domande aperte che corregge papà",
+        icon:          "📜",
+        questionCount: 38,
+        enabled:       true
+      },
+      {
         id:            "civilta-mesopotamiche",
         title:         "Cap. 2 — Le civiltà mesopotamiche",
         description:   "Sumeri, Accadi, Babilonesi, Hittiti, Assiri, Persiani · con date da scrivere",

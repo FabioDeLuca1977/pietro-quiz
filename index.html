@@ -25,6 +25,7 @@
 
 <!-- STORIA -->
 <script src="data/storia/civilta-mesopotamiche.js"></script>
+<script src="data/storia/geostoria-verifica-10nov.js"></script>
 <!-- <script src="data/storia/prima-guerra.js"></script>  -->
 <!-- <script src="data/storia/seconda-guerra.js"></script> -->
 
@@ -1056,14 +1057,14 @@ function startCustom(meta, questions, replay) {
 function shortTitle(t) { return t.replace(/^Cap\. \d+ — /, ''); }
 function startLampo(testId) {
   const d = window.QUIZ_BANK[testId];
-  const qs = shuffle(d.questions.map(q => tag(q, d))).slice(0, 10);
+  const qs = shuffle(d.questions.filter(q => q.type !== 'open').map(q => tag(q, d))).slice(0, 10);
   startCustom({ id:testId + '-lampo', subject:d.subject, title:'⚡ ' + shortTitle(d.title), tpq:d.timePerQuestion ?? 25 }, qs, () => startLampo(testId));
 }
 function startLampoMix(subj) {
   const tests = activeTests(subj);
   if (!tests.length) return;
   // 10 domande pescate a rotazione dai vari test (interleaving)
-  const pools = shuffle(tests.map(d => shuffle(d.questions.map(q => tag(q, d)))));
+  const pools = shuffle(tests.map(d => shuffle(d.questions.filter(q => q.type !== 'open').map(q => tag(q, d)))));
   const qs = []; let i = 0, games = 0;
   while (qs.length < 10 && pools.some(p => p.length)) {
     const p = pools[i++ % pools.length]; if (!p.length) continue;
@@ -1146,7 +1147,7 @@ function testCard(t, subj, withSubj) {
   const best   = active ? getBest(subj.subject, t.id, data.version) : null;
   const qCount = data ? data.questions.length : t.questionCount;
   const tpqv   = data ? (data.timePerQuestion === 0 ? 0 : (data.timePerQuestion || 20)) : null;
-  const nWrite = data ? data.questions.filter(q => q.type === 'numeric' || q.type === 'fraction' || q.type === 'text' || q.type === 'define').length : 0;
+  const nWrite = data ? data.questions.filter(q => q.type === 'numeric' || q.type === 'fraction' || q.type === 'text' || q.type === 'define' || q.type === 'open').length : 0;
   return `<div class="test-item ${active ? '' : 'coming'}" style="--acc:${subj.subjectColor}" ${active ? `onclick="startQuiz('${t.id}')"` : ''}>
     <div class="ti-cover">
       <div class="ti-top">
@@ -1482,6 +1483,7 @@ function renderQ() {
   else if (isOrderQ(q)) renderOrder(q);
   else if (isClassQ(q)) renderClass(q);
   else if (isDefineQ(q)) renderDefine(q);
+  else if (isOpenQ(q)) renderOpen(q);
   else if (isNumQ(q)) {
     // Risposta da scrivere: niente opzioni, casella + unità + conferma
     G._opts = null; G._corrOrig = null;
@@ -1521,7 +1523,7 @@ function renderQ() {
   document.getElementById('btn-txt').classList.toggle('on', isReading());
 
   // Timer: timePerQuestion 0 → nessun timer (modalità reading)
-  let t = tpq();
+  let t = isOpenQ(q) ? 0 : tpq();   // la domanda aperta non ha il timer
   G.tTot = 0;
   if (t > 0 && (isOrderQ(q) || isClassQ(q))) t = Math.max(t, 60);   // i giochi hanno bisogno di più tempo
   if (t > 0 && isStepsQ(q)) t = Math.max(t, 40 * q.steps.length);
@@ -1792,6 +1794,42 @@ function retryDefine() {
   go.disabled = false;
   document.getElementById('def-hint').textContent = 'Riscrivila da solo, senza guardare: serve completa per andare avanti.';
   el.focus({ preventScroll:true });
+}
+
+// ═══════════════════════════════════════════════════════
+//  DOMANDA APERTA  (type:"open")
+//  Campi: answerText = la traccia di correzione (i punti del libro che la risposta
+//  deve toccare). Nessun voto automatico: la risposta va al foglio con «DA VALUTARE»
+//  e la valuta papà; non conta nella percentuale del test.
+// ═══════════════════════════════════════════════════════
+const OPEN_TAG = 'DA VALUTARE';
+function isOpenQ(q) { return q && q.type === 'open'; }
+function isOpenAns(a) { return a && (a.open || String(a.correct || '').startsWith(OPEN_TAG)); }
+function renderOpen(q) {
+  G._opts = null; G._corrOrig = null;
+  document.getElementById('opts').innerHTML =
+    '<div class="num-box"><textarea class="def-in" id="open-in" autocomplete="off" autocapitalize="sentences" placeholder="Scrivi la risposta con frasi complete" style="min-height:220px"></textarea>' +
+    '<button class="num-go def-go" id="open-go" onclick="submitOpen()">Consegna la risposta</button>' +
+    '<div class="num-hint" id="open-hint">Domanda aperta: niente voto automatico, la risposta arriva a papà che la corregge. Scrivi come all’interrogazione.</div></div>';
+  document.getElementById('open-in').focus({ preventScroll:true });
+}
+function submitOpen() {
+  if (Date.now() < (G.lockUntil || 0)) return;
+  const q = G.qs[G.idx], el = document.getElementById('open-in');
+  if (!el || el.disabled) return;
+  const raw = el.value.trim();
+  if (raw.length < 20) { document.getElementById('open-hint').textContent = 'Scrivi almeno qualche frase: è come un’interrogazione.'; return; }
+  el.disabled = true; document.getElementById('open-go').disabled = true;
+  G.ans.push({ q:q.q, ok:false, open:true, chosen:raw, correct:OPEN_TAG + ' · traccia: ' + q.answerText, exp:q.explanation || '' });
+  const fb = document.getElementById('fb');
+  fb.className = 'fb on ok';
+  document.getElementById('fb-ico').textContent = '📝';
+  document.getElementById('fb-main').textContent = 'Risposta consegnata';
+  document.getElementById('fb-exp').innerHTML = mathify('Confrontala con la traccia: ' + q.answerText);
+  document.getElementById('opts').classList.add('done');
+  document.getElementById('sheet').classList.add('on'); document.body.classList.add('sheet-open');
+  saveCurrent();
+  document.getElementById('btn-next').classList.add('on');
 }
 
 function isNumQ(q) { return q && (q.type === 'numeric' || q.type === 'fraction' || q.type === 'text'); }
@@ -2208,7 +2246,7 @@ function diagMap() {
 }
 function showRes() {
   stopTmr(); closeText();
-  const tot=G.qs.length, ok=G.ans.filter(a=>a.ok).length, pct=Math.round(ok/tot*100);
+  const tot=G.qs.filter(q=>!isOpenQ(q)).length || 1, ok=G.ans.filter(a=>a.ok).length, pct=Math.round(ok/tot*100);
   const [head,stars] = pct===100?['Perfetto, tutte giuste! 🏆','⭐⭐⭐']:pct>=90?['Fantastico! 🏆','⭐⭐⭐']:pct>=70?['Molto bene! 🎉','⭐⭐']:pct>=50?['Ci sei quasi 💪','⭐']:['Ripassa e riprova 📚',''];
 
   document.getElementById('r-head').textContent  = head;
@@ -2223,7 +2261,12 @@ function showRes() {
   if (pct >= 80) setTimeout(confetti, 350);
 
   document.getElementById('r-diag').innerHTML = diagMap();
-  document.getElementById('review').innerHTML = G.ans.map((a,i) => `
+  document.getElementById('review').innerHTML = G.ans.map((a,i) => isOpenAns(a) ? `
+    <div class="rv">
+      <div class="rv-q">${i+1}. ${mathify(a.q)}</div>
+      <div class="rv-a"><span>📝 Da valutare: ${escHtml(a.chosen)}</span></div>
+      <div class="rv-exp">Traccia: ${mathify(a.correct.replace(/^DA VALUTARE · traccia: /, ''))}</div>
+    </div>` : `
     <div class="rv ${a.ok?'ok':'ko'}">
       <div class="rv-q">${i+1}. ${mathify(a.q)}</div>
       <div class="rv-a">
@@ -2277,7 +2320,7 @@ function buildItem(completed) {
     answered:  G.ans.length,
     total:     G.qs.length,
     ok,
-    pct:       Math.round(ok / G.qs.length * 100),
+    pct:       Math.round(ok / (G.qs.filter(q => !isOpenQ(q)).length || 1) * 100),
     score:     G.score,
     seconds:   Math.round((Date.now() - (G.t0||Date.now())) / 1000),
     answers:   G.ans.map(a => ({ q:txt(a.q), chosen:txt(a.chosen), correct:txt(a.correct), ok:!!a.ok }))
@@ -2389,7 +2432,7 @@ function setColor(c) {
 function showDebrief() {
   const tot = G.ans.length;
   const ok  = G.ans.filter(a=>a.ok).length;
-  const ko  = G.ans.filter(a=>!a.ok && a.chosen !== '—').length;
+  const ko  = G.ans.filter(a=>!a.ok && a.chosen !== '—' && !isOpenAns(a)).length;
   const skip= G.ans.filter(a=>a.chosen === '—').length;
 
   document.getElementById('db-meta').textContent =
@@ -2398,8 +2441,8 @@ function showDebrief() {
     `✅ ${ok}  ❌ ${ko}${skip ? `  ⏱ ${skip}` : ''}  su ${tot}`;
 
   document.getElementById('db-cards').innerHTML = G.ans.map((a, i) => {
-    const type   = a.ok ? 'ok' : a.chosen === '—' ? 'skip' : 'ko';
-    const label  = a.ok ? '✅ Esatta' : a.chosen === '—' ? '⏱ Tempo' : '❌ Errata';
+    const type   = a.ok ? 'ok' : isOpenAns(a) ? 'skip' : a.chosen === '—' ? 'skip' : 'ko';
+    const label  = a.ok ? '✅ Esatta' : isOpenAns(a) ? '📝 Da valutare' : a.chosen === '—' ? '⏱ Tempo' : '❌ Errata';
 
     // Riga risposta data (solo se sbagliata o scaduta)
     const chosenRow = (!a.ok && a.chosen !== '—') ? `
