@@ -24,6 +24,14 @@ window.REVIEW = [
         "pdf": "stampa/geostoria-mappe-da-stampare.pdf",
         "pdfPages": 5,
         "pages": "Una mappa per argomento"
+      },
+      {
+        "id": "sto-pdf-3",
+        "topic": "Verifica di geostoria · Egizi, Ebrei, Fenici, demografia",
+        "title": "Box di ripasso da ritagliare",
+        "pdf": "stampa/geostoria-box-da-ritagliare.pdf",
+        "pdfPages": 4,
+        "pages": "32 box: concetti, date, parole"
       }
     ]
   },

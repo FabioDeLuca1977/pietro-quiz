@@ -26,6 +26,9 @@
 <!-- STORIA -->
 <script src="data/storia/civilta-mesopotamiche.js"></script>
 <script src="data/storia/geostoria-verifica-10nov.js"></script>
+<script src="data/storia/geostoria-allenamento.js"></script>
+<script src="data/storia/geostoria-cartine.js"></script>
+<script src="data/storia/geostoria-giochi.js"></script>
 <!-- <script src="data/storia/prima-guerra.js"></script>  -->
 <!-- <script src="data/storia/seconda-guerra.js"></script> -->
 
@@ -281,6 +284,7 @@ body.story .logo { display:none; }
 .q-card { padding:7svh 2px 22px; }
 @media (max-height:700px){ .q-card { padding-top:3svh; } }
 .q-tag { font-size:.85rem; font-weight:700; opacity:.85; margin-bottom:8px; letter-spacing:.3px; text-transform:uppercase; }
+.q-img { display:block; width:100%; max-height:40vh; object-fit:contain; margin-top:14px; border-radius:14px; background:#fff; }
 .q-text { font-weight:900; font-size:1.65rem; line-height:1.18; letter-spacing:-.6px; text-shadow:0 2px 14px rgba(0,0,0,.18); }
 @media (max-height:700px){ .q-text { font-size:1.4rem; } }
 .q-card.enter { animation:storyin .45s cubic-bezier(.2,.9,.3,1); }
@@ -1465,7 +1469,7 @@ function renderQ() {
   document.getElementById('q-num').textContent  = `${G.idx+1} / ${tot}`;
   document.getElementById('prog').style.width   = `${(G.idx/tot)*100}%`;
   document.getElementById('slive').textContent  = `⭐ ${G.score}`;
-  document.getElementById('q-text').innerHTML   = mathify(q.q);
+  document.getElementById('q-text').innerHTML   = mathify(q.q) + (q.img ? '<img class="q-img" src="' + escHtml(q.img) + '" alt="' + escHtml(q.imgAlt || 'cartina') + '">' : '');   // img: cartina o figura sotto la domanda
   document.getElementById('q-tag').textContent  = `Domanda ${G.idx+1}`;
   document.getElementById('q-av').textContent   = G.subj?.subjectIcon || '❓';
   document.getElementById('q-title').textContent = G.testData.title.replace(/^Cap\. \d+ — /, '');

@@ -44,6 +44,30 @@ window.QUIZ_REGISTRY = [
         enabled:       true
       },
       {
+        id:            "geostoria-allenamento",
+        title:         "Allenamento a crocette — Egizi, Ebrei, Fenici, demografia",
+        description:   "43 domande a scelta multipla, diverse da quelle della verifica",
+        icon:          "🎯",
+        questionCount: 43,
+        enabled:       true
+      },
+      {
+        id:            "geostoria-cartine",
+        title:         "Cartine — dove stanno popoli e città",
+        description:   "Egizi, Ebrei, Fenici: trova il numero giusto sulla cartina",
+        icon:          "🗺️",
+        questionCount: 22,
+        enabled:       true
+      },
+      {
+        id:            "geostoria-giochi",
+        title:         "Gioca — ordina e classifica",
+        description:   "Egizi, Ebrei, Fenici, demografia: linee del tempo e caratteristiche",
+        icon:          "🧩",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
         id:            "civilta-mesopotamiche",
         title:         "Cap. 2 — Le civiltà mesopotamiche",
         description:   "Sumeri, Accadi, Babilonesi, Hittiti, Assiri, Persiani · con date da scrivere",

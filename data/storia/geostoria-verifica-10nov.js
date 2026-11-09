@@ -224,7 +224,7 @@ window.QUIZ_BANK["geostoria-verifica-10nov"] = {
     },
     {
       "q": "Verso quale Paese va il flusso migratorio che parte dall'America centrale?",
-      "options": ["Gli Stati Uniti, il Paese con il maggior numero di immigrati al mondo", "Il Canada", "La Spagna", "Il Brasile"],
+      "options": ["Gli Stati Uniti, il Paese con il maggior numero di immigrati al mondo", "L'Australia", "La Spagna", "Il Brasile"],
       "answer": 0,
       "explanation": "Gli Stati Uniti hanno oltre 40 milioni di stranieri (p. 121)."
     },
@@ -245,8 +245,8 @@ window.QUIZ_BANK["geostoria-verifica-10nov"] = {
     {
       "type": "open",
       "q": "Domanda aperta · Ebrei. Che cosa rende la religione degli Ebrei diversa da quella degli altri popoli antichi?",
-      "answerText": "Monoteismo: un dio solo e unico, creatore, fuori dallo spazio e dal tempo, non raffigurabile, il nome non si pronuncia (tetragramma YHWH). Gli altri popoli avevano un dio «nazionale» (Marduk, Assur, Amon-Ra) ma adoravano anche altri dèi. Alleanza di Dio con Abramo e con tutto il popolo: obbedienza e fedeltà in cambio della terra di Canaan → popolo «eletto». Dall'ebraismo nascono cristianesimo e islamismo; l'identità resta anche senza Stato e senza tempio (pp. 92–93).",
-      "explanation": "pp. 92–93"
+      "answerText": "Monoteismo: un dio solo e unico, creatore, fuori dallo spazio e dal tempo, non raffigurabile, il nome non si pronuncia (tetragramma YHWH). Gli altri popoli avevano un dio «nazionale» (Marduk, Assur, Amon-Ra) ma adoravano anche altri dèi. Alleanza di Dio con Abramo e con tutto il popolo: obbedienza e fedeltà in cambio della terra di Canaan → popolo «eletto». Dall'ebraismo nascono cristianesimo e islamismo; l'identità resta anche senza Stato e senza tempio (pp. 88, 92–93).",
+      "explanation": "pp. 88, 92–93"
     },
     {
       "type": "open",
