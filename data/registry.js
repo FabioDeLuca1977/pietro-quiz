@@ -36,6 +36,14 @@ window.QUIZ_REGISTRY = [
     subjectColor:"#dc2626",
     tests: [
       {
+        id:            "geostoria-aperte",
+        title:         "Domande aperte — come la verifica scritta",
+        description:   "14 domande da svolgere per iscritto (5–6 frasi ciascuna): le corregge papà",
+        icon:          "✍️",
+        questionCount: 14,
+        enabled:       true
+      },
+      {
         id:            "geostoria-verifica-10nov",
         title:         "Verifica — Egizi, Ebrei, Fenici, demografia",
         description:   "Per la verifica del 10 novembre · crocette, date e 4 domande aperte che corregge papà",

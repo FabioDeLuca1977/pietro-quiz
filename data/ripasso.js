@@ -32,6 +32,14 @@ window.REVIEW = [
         "pdf": "stampa/geostoria-box-da-ritagliare.pdf",
         "pdfPages": 4,
         "pages": "32 box: concetti, date, parole"
+      },
+      {
+        "id": "sto-pdf-4",
+        "topic": "Verifica di geostoria · Egizi, Ebrei, Fenici, demografia",
+        "title": "Domande aperte con la traccia (verifica scritta)",
+        "pdf": "stampa/geostoria-domande-aperte-traccia.pdf",
+        "pdfPages": 3,
+        "pages": "14 domande, metodo e tracce"
       }
     ]
   },
