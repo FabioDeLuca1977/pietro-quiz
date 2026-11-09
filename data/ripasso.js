@@ -39,7 +39,7 @@ window.REVIEW = [
         "title": "Domande aperte con la traccia (verifica scritta)",
         "pdf": "stampa/geostoria-domande-aperte-traccia.pdf",
         "pdfPages": 3,
-        "pages": "14 domande, metodo e tracce"
+        "pages": "17 domande, metodo e tracce"
       }
     ]
   },
