@@ -29,6 +29,7 @@
 <script src="data/storia/geostoria-allenamento.js"></script>
 <script src="data/storia/geostoria-cartine.js"></script>
 <script src="data/storia/geostoria-giochi.js"></script>
+<script src="data/storia/geostoria-trascina.js"></script>
 <!-- <script src="data/storia/prima-guerra.js"></script>  -->
 <!-- <script src="data/storia/seconda-guerra.js"></script> -->
 
@@ -542,6 +543,26 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .g-pill.right { outline:2px solid var(--ok); outline-offset:2px; }
 .g-go { margin-top:4px; padding:15px; border:none; border-radius:18px; background:#111; color:#fff; font-weight:900; font-size:1rem; cursor:pointer; }
 .g-go:disabled { opacity:.4; cursor:default; }
+/* GIOCO «TRASCINA AL POSTO GIUSTO» */
+.pl-board { position:relative; width:100%; border-radius:16px; overflow:hidden; background:#fbf8f2; touch-action:none; user-select:none; -webkit-user-select:none; }
+.pl-board > img { display:block; width:100%; pointer-events:none; }
+.pl-txt { position:absolute; transform:translate(-50%,-50%); color:#1F2A44; font-weight:800; white-space:nowrap; pointer-events:none; }
+.pl-zone { position:absolute; transform:translate(-50%,-50%); border:2.5px dashed #A8461A; border-radius:12px; background:rgba(255,255,255,.72);
+  display:flex; align-items:center; justify-content:center; text-align:center; color:#1F2A44; font-weight:800; font-size:.78rem; line-height:1.15; padding:3px 5px; cursor:pointer; }
+.pl-zone.dot { width:34px; height:34px; border-radius:50%; padding:0; background:rgba(255,255,255,.25); }
+.pl-zone.hot { background:#ffd23f; border-style:solid; }
+.pl-zone.ok { border:3px solid #0b9a5e; background:rgba(214,255,233,.92); }
+.pl-zone.ko { border:3px solid #e0244a; background:rgba(255,222,229,.95); }
+.pl-tag { position:absolute; transform:translate(-50%,-50%); background:#1F2A44; color:#fff; font-weight:800; font-size:.74rem; line-height:1.15;
+  padding:4px 8px; border-radius:10px; white-space:nowrap; box-shadow:0 2px 8px rgba(0,0,0,.25); cursor:grab; touch-action:none; z-index:2; }
+.pl-tag.ok { background:#0b9a5e; } .pl-tag.ko { background:#e0244a; }
+.pl-zone .pl-in { display:block; }
+.pl-pool { display:flex; flex-wrap:wrap; gap:8px; }
+.pl-pool .g-chip { width:auto; touch-action:none; cursor:grab; }
+.pl-pool .g-chip.sel { background:#fff; color:#111; outline:3px solid #ffd23f; }
+.pl-ghost { position:fixed; left:0; top:0; z-index:9999; pointer-events:none; transform:translate(-50%,-50%) scale(1.06); background:#fff; color:#111;
+  font-weight:800; padding:10px 14px; border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,.35); white-space:nowrap; }
+.pl-fix { font-size:.8rem; opacity:.9; }
 .num-hint.warn { color:#fff; background:rgba(255,77,109,.85); padding:8px 10px; border-radius:12px; font-weight:700; }
 
 /* Problemi a passi */
@@ -1073,7 +1094,7 @@ function startLampoMix(subj) {
   while (qs.length < 10 && pools.some(p => p.length)) {
     const p = pools[i++ % pools.length]; if (!p.length) continue;
     const q = p.pop();
-    if (q.type === 'order' || q.type === 'classify') { if (games >= 2) continue; games++; }   // al massimo 2 giochi
+    if (q.type === 'order' || q.type === 'classify' || q.type === 'place') { if (games >= 2) continue; games++; }   // al massimo 2 giochi
     qs.push(q);
   }
   startCustom({ id:'lampo-' + (subj || 'misto'), subject:subj || 'misto',
@@ -1469,7 +1490,7 @@ function renderQ() {
   document.getElementById('q-num').textContent  = `${G.idx+1} / ${tot}`;
   document.getElementById('prog').style.width   = `${(G.idx/tot)*100}%`;
   document.getElementById('slive').textContent  = `⭐ ${G.score}`;
-  document.getElementById('q-text').innerHTML   = mathify(q.q) + (q.img ? '<img class="q-img" src="' + escHtml(q.img) + '" alt="' + escHtml(q.imgAlt || 'cartina') + '">' : '');   // img: cartina o figura sotto la domanda
+  document.getElementById('q-text').innerHTML   = mathify(q.q) + (q.img && !isPlaceQ(q) ? '<img class="q-img" src="' + escHtml(q.img) + '" alt="' + escHtml(q.imgAlt || 'cartina') + '">' : '');   // img: cartina o figura sotto la domanda
   document.getElementById('q-tag').textContent  = `Domanda ${G.idx+1}`;
   document.getElementById('q-av').textContent   = G.subj?.subjectIcon || '❓';
   document.getElementById('q-title').textContent = G.testData.title.replace(/^Cap\. \d+ — /, '');
@@ -1486,6 +1507,7 @@ function renderQ() {
   if (isStepsQ(q)) renderSteps(q);
   else if (isOrderQ(q)) renderOrder(q);
   else if (isClassQ(q)) renderClass(q);
+  else if (isPlaceQ(q)) renderPlace(q);
   else if (isDefineQ(q)) renderDefine(q);
   else if (isOpenQ(q)) renderOpen(q);
   else if (isNumQ(q)) {
@@ -1529,7 +1551,7 @@ function renderQ() {
   // Timer: timePerQuestion 0 → nessun timer (modalità reading)
   let t = isOpenQ(q) ? 0 : tpq();   // la domanda aperta non ha il timer
   G.tTot = 0;
-  if (t > 0 && (isOrderQ(q) || isClassQ(q))) t = Math.max(t, 60);   // i giochi hanno bisogno di più tempo
+  if (t > 0 && isGameQ(q)) t = Math.max(t, 60);   // i giochi hanno bisogno di più tempo
   if (t > 0 && isStepsQ(q)) t = Math.max(t, 40 * q.steps.length);
   if (t > 0 && isDefineQ(q)) t = Math.max(t, 120);
   if (t > 0) {
@@ -1591,6 +1613,91 @@ function orderKeep(seq) {
   return keep;
 }
 function isClassQ(q) { return q && q.type === 'classify'; }
+// type:"place" → trascina ogni etichetta al posto giusto (o tocca l'etichetta e poi il posto).
+//   img (facoltativa): l'immagine di sfondo; ratio: altezza/larghezza del riquadro se non c'è img.
+//   zones: [{x, y (in % del riquadro), w, h (in %; senza w/h la zona è un cerchio), side:"l"|"r"|"t"|"b" dove
+//          mettere l'etichetta di una zona-cerchio, name: come la zona compare nel resoconto}]
+//   texts: [{x, y, t, size}] scritte fisse; items: [{t:"etichetta", z:indice_zona_giusta}]
+function isPlaceQ(q) { return q && q.type === 'place'; }
+function isGameQ(q) { return isOrderQ(q) || isClassQ(q) || isPlaceQ(q); }
+function renderPlace(q) {
+  G._opts = null; G._corrOrig = null;
+  G.plc = { pool: shuffle(q.items.map((_, i) => i)), at: {}, sel: null };
+  drawPlace(false);
+}
+const PL_SIDE = { l:[-1, 0], r:[1, 0], t:[0, -1], b:[0, 1] };
+function plZoneName(q, zi) { const z = q.zones[zi]; return z.name || String(zi + 1); }
+function drawPlace(done) {
+  const q = G.qs[G.idx], c = G.plc;
+  const all = c.pool.length === 0;
+  const board = (q.img ? `<img src="${escHtml(q.img)}" alt="${escHtml(q.imgAlt || 'figura')}">` : `<div style="padding-top:${(q.ratio || .6) * 100}%"></div>`)
+    + (q.texts || []).map(t => `<div class="pl-txt" style="left:${t.x}%;top:${t.y}%;font-size:${t.size || .9}rem">${escHtml(t.t)}</div>`).join('')
+    + q.zones.map((z, zi) => {
+        const it = c.at[zi], st = done ? (it !== undefined && q.items[it].z === zi ? 'ok' : 'ko') : '';
+        const dot = !(z.w && z.h);
+        const box = `<div class="pl-zone ${dot ? 'dot' : ''} ${st}" data-z="${zi}" style="left:${z.x}%;top:${z.y}%;${dot ? '' : `width:${z.w}%;height:${z.h}%`}" onclick="plZone(${zi})">${!dot && it !== undefined ? `<span class="pl-in" onpointerdown="plDown(event,'z',${zi})">${escHtml(q.items[it].t)}</span>` : ''}</div>`;
+        if (!dot || it === undefined) return box;
+        const [sx, sy] = PL_SIDE[z.side || 'b'];
+        return box + `<div class="pl-tag ${st}" style="left:calc(${z.x}% + ${sx * 30}px);top:calc(${z.y}% + ${sy * 30}px);${sx < 0 ? 'transform:translate(-100%,-50%)' : sx > 0 ? 'transform:translate(0,-50%)' : ''}" onpointerdown="plDown(event,'z',${zi})">${escHtml(q.items[it].t)}</div>`;
+      }).join('');
+  const fix = done ? q.zones.map((z, zi) => { const it = c.at[zi]; return it !== undefined && q.items[it].z === zi ? '' : `<div>${escHtml(plZoneName(q, zi))} → ${escHtml(q.items.find(x => x.z === zi)?.t || '—')}</div>`; }).join('') : '';
+  document.getElementById('opts').innerHTML = `<div class="game">
+    <div class="pl-board" id="pl-board">${board}</div>
+    ${done ? (fix ? `<div class="pl-fix"><b>Al posto giusto:</b>${fix}</div>` : '')
+      : `<div class="g-lab">${all ? 'Tutto sistemato: controlla e conferma' : 'Trascina ogni etichetta al suo posto (oppure toccala e poi tocca il posto)'}</div>
+      <div class="pl-pool">${c.pool.map(i => `<button class="g-chip ${c.sel === i ? 'sel' : ''}" onpointerdown="plDown(event,'p',${i})">${escHtml(q.items[i].t)}</button>`).join('')}</div>
+      <button class="g-go" ${all ? '' : 'disabled'} onclick="confirmGame(false)">Conferma</button>`}
+  </div>`;
+}
+function plPut(item, zi) {                       // mette l'etichetta nella zona; chi c'era torna giù
+  const c = G.plc;
+  for (const k in c.at) if (c.at[k] === item) delete c.at[k];
+  c.pool = c.pool.filter(i => i !== item);
+  if (c.at[zi] !== undefined) c.pool.push(c.at[zi]);
+  c.at[zi] = item; c.sel = null;
+}
+function plZone(zi) {
+  if (Date.now() < (G.lockUntil || 0) || !G.plc || G.plc.sel === null || document.getElementById('btn-next').classList.contains('on')) return;
+  plPut(G.plc.sel, zi); drawPlace(false);
+}
+function plNearest(x, y) {                       // la zona più vicina al dito, se abbastanza vicina
+  let best = null, bd = Infinity;
+  document.querySelectorAll('#pl-board .pl-zone').forEach(el => {
+    const r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const inside = x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+    const d = inside ? 0 : Math.hypot(x - cx, y - cy);
+    if (d < bd) { bd = d; best = +el.dataset.z; }
+  });
+  return bd <= 48 ? best : null;
+}
+function plDown(e, from, k) {
+  if (Date.now() < (G.lockUntil || 0) || document.getElementById('btn-next').classList.contains('on')) return;
+  e.preventDefault(); e.stopPropagation();
+  const c = G.plc, q = G.qs[G.idx], item = from === 'p' ? k : c.at[k];
+  if (item === undefined) return;
+  const x0 = e.clientX, y0 = e.clientY;
+  let ghost = null, hot = null;
+  const move = ev => {
+    if (!ghost && Math.hypot(ev.clientX - x0, ev.clientY - y0) < 8) return;
+    if (!ghost) { ghost = document.createElement('div'); ghost.className = 'pl-ghost'; ghost.textContent = q.items[item].t; document.body.appendChild(ghost); }
+    ghost.style.left = ev.clientX + 'px'; ghost.style.top = ev.clientY + 'px';
+    const z = plNearest(ev.clientX, ev.clientY);
+    if (z !== hot) { document.querySelectorAll('#pl-board .pl-zone.hot').forEach(el => el.classList.remove('hot'));
+      if (z !== null) document.querySelector(`#pl-board .pl-zone[data-z="${z}"]`)?.classList.add('hot'); hot = z; }
+  };
+  const up = ev => {
+    window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
+    if (ghost) {                                  // trascinata: va nella zona sotto il dito, se c'è
+      ghost.remove();
+      const z = plNearest(ev.clientX, ev.clientY);
+      if (z !== null) plPut(item, z);
+      else if (from === 'z') { delete c.at[k]; c.pool.push(item); }
+    } else if (from === 'z') { delete c.at[k]; c.pool.push(item); c.sel = null; }   // tocco su un'etichetta già messa: torna giù
+    else c.sel = c.sel === item ? null : item;                                       // tocco: la scelgo, poi tocco il posto
+    drawPlace(false);
+  };
+  window.addEventListener('pointermove', move); window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+}
 function renderOrder(q) {
   G._opts = null; G._corrOrig = null;
   let pool = shuffle(q.items.map((t, i) => ({ t, i })));
@@ -1641,6 +1748,14 @@ function confirmGame(timeout) {
     chosen = seq.map(x => x.t).join(' → ');
     correct = q.items.join(' → ');
     drawOrder(true);
+  } else if (isPlaceQ(q)) {
+    const c = G.plc, at = {};
+    for (const zi in c.at) at[c.at[zi]] = +zi;
+    ok = q.items.every((x, i) => at[i] === x.z);
+    part = q.items.filter((x, i) => at[i] === x.z).length / q.items.length;
+    chosen = q.items.map((x, i) => `${x.t}: ${at[i] !== undefined ? plZoneName(q, at[i]) : '—'}`).join('; ');
+    correct = q.items.map(x => `${x.t}: ${plZoneName(q, x.z)}`).join('; ');
+    drawPlace(true);
   } else {
     const c = G.cls;
     ok = q.items.every((x, i) => c.sel[i] === x.c);
@@ -2080,7 +2195,7 @@ function updTmr()  {
 }
 function timeUp() {
   const q=G.qs[G.idx];
-  if (isOrderQ(q) || isClassQ(q)) { confirmGame(true); return; }
+  if (isGameQ(q)) { confirmGame(true); return; }
   if (isStepsQ(q)) { finishSteps(true); return; }
   if (isDefineQ(q)) {
     const el = document.getElementById('def-in');

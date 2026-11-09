@@ -44,6 +44,14 @@ window.QUIZ_REGISTRY = [
         enabled:       true
       },
       {
+        id:            "geostoria-trascina",
+        title:         "Trascina al posto giusto",
+        description:   "Sposta con il dito popoli, città, classi sociali ed eventi su cartine e linee del tempo",
+        icon:          "✋",
+        questionCount: 8,
+        enabled:       true
+      },
+      {
         id:            "geostoria-allenamento",
         title:         "Allenamento a crocette — Egizi, Ebrei, Fenici, demografia",
         description:   "43 domande a scelta multipla, diverse da quelle della verifica",
