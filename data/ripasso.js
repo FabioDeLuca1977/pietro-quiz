@@ -5,6 +5,29 @@
 // ============================================================
 window.REVIEW = [
   {
+    "subject": "storia",
+    "icon": "🏛️",
+    "color": "#dc2626",
+    "items": [
+      {
+        "id": "sto-pdf-1",
+        "topic": "Verifica di geostoria · Egizi, Ebrei, Fenici, demografia",
+        "title": "Presentazione di ripasso (da sfogliare)",
+        "pdf": "stampa/geostoria-ripasso-presentazione.pdf",
+        "pdfPages": 32,
+        "pages": "Libro pp. 64–77, 84–97, 110–123"
+      },
+      {
+        "id": "sto-pdf-2",
+        "topic": "Verifica di geostoria · Egizi, Ebrei, Fenici, demografia",
+        "title": "Indice e mappe da stampare",
+        "pdf": "stampa/geostoria-mappe-da-stampare.pdf",
+        "pdfPages": 5,
+        "pages": "Una mappa per argomento"
+      }
+    ]
+  },
+  {
     "subject": "fisica",
     "icon": "🧲",
     "color": "#ea580c",
