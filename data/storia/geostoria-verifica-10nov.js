@@ -218,9 +218,9 @@ window.QUIZ_BANK["geostoria-verifica-10nov"] = {
     },
     {
       "q": "Che cos'è una megalopoli?",
-      "options": ["Una struttura urbana continua che si forma quando le agglomerazioni di reti diverse si sovrappongono", "Una metropoli che ha inglobato i comuni vicini", "Una rete di città medie in cui nessuna prevale", "Una città con più di un milione di abitanti"],
+      "options": ["Un insieme di metropoli vicine che formano un'area urbana continua di centinaia di km²", "Una metropoli che ha inglobato i comuni vicini", "Una rete di città medie in cui nessuna prevale", "Una città con più di un milione di abitanti"],
       "answer": 0,
-      "explanation": "Esempi: tra Boston e Washington, tra Rio de Janeiro e Brasilia, la costa orientale del Giappone (p. 119). Quella che ingloba i comuni vicini è un'agglomerazione."
+      "explanation": "Così la dispensa del prof; il libro dice che si forma quando le agglomerazioni di reti diverse si sovrappongono. Esempi: Boston–Washington, Rio de Janeiro–Brasilia, la costa orientale del Giappone (p. 119). Quella che ingloba i comuni vicini è un'agglomerazione."
     },
     {
       "q": "Verso quale Paese va il flusso migratorio che parte dall'America centrale?",

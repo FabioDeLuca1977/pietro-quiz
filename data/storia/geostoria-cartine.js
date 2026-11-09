@@ -95,11 +95,11 @@ window.QUIZ_BANK["geostoria-cartine"] = {
       "explanation": "Il Basso Egitto è il delta, a nord, vicino al Mediterraneo (p. 65)."
     },
     {
-      "q": "Quale numero indica Tebe, città d'origine dei faraoni del Medio regno e capitale nel Nuovo regno?",
+      "q": "Quale numero indica Tebe, capitale nel Medio regno e nel Nuovo regno?",
       "img": "img/storia/egitto.svg",
       "options": ["4", "2", "3", "5"],
       "answer": 0,
-      "explanation": "Tebe (l'attuale Luxor), nel medio corso del Nilo, meno esposta di Menfi alle invasioni (pp. 72–73)."
+      "explanation": "Tebe (l'attuale Luxor): capitale del Medio regno secondo la dispensa del prof (il libro dice che la XI dinastia era originaria di Tebe) e del Nuovo regno, meno esposta di Menfi alle invasioni (pp. 72–73)."
     },
     {
       "q": "Quale numero indica Akhetaton, la nuova capitale fondata da Akhenaton?",

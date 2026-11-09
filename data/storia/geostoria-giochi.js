@@ -35,7 +35,7 @@ window.QUIZ_BANK["geostoria-giochi"] = {
       "type": "order",
       "q": "Ebrei: metti in ordine cronologico, secondo il libro e la tradizione biblica.",
       "items": ["Abramo guida gli Ebrei verso Canaan", "Per una carestia gli Ebrei vanno in Egitto", "Mosè e l'Esodo", "L'età dei Giudici", "Il regno di David", "L'esilio babilonese", "Ciro permette il ritorno"],
-      "explanation": "Circa 1900 (p. 87); circa 1700 (p. 88); XIII secolo (p. 88); XI secolo (p. 89); 1000–960 circa (p. 90); 586 (p. 92); 539 a.C. (p. 92)."
+      "explanation": "Circa 1900 (p. 87); circa 1700 (p. 88); intorno al 1200 per il prof, XIII secolo per il libro (p. 88); XI secolo (p. 89); 1000–960 circa (p. 90); 586 (p. 92); 539 a.C. (p. 92)."
     },
     {
       "type": "order",

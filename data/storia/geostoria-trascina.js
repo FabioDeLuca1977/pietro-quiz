@@ -137,7 +137,7 @@ window.QUIZ_BANK["geostoria-trascina"] = {
       "img": "img/storia/tempo-ebrei.svg",
       "zones": [
         { "x": 66.7, "y": 10, "w": 60, "h": 12, "name": "circa 1900" },
-        { "x": 66.7, "y": 26, "w": 60, "h": 12, "name": "XIII sec." },
+        { "x": 66.7, "y": 26, "w": 60, "h": 12, "name": "circa 1200" },
         { "x": 66.7, "y": 42, "w": 60, "h": 12, "name": "XI sec." },
         { "x": 66.7, "y": 58, "w": 60, "h": 12, "name": "1000–960" },
         { "x": 66.7, "y": 74, "w": 60, "h": 12, "name": "586" },
@@ -151,7 +151,7 @@ window.QUIZ_BANK["geostoria-trascina"] = {
         { "t": "Esilio babilonese", "z": 4 },
         { "t": "Ciro: il ritorno", "z": 5 }
       ],
-      "explanation": "Secondo la tradizione biblica circa 1900 (p. 87) e XIII secolo (p. 88); XI secolo (p. 89); 1000–960 circa (p. 90); 586 e 539 (p. 92)."
+      "explanation": "Secondo la tradizione biblica circa 1900 (p. 87); l'Esodo intorno al 1200 secondo la dispensa del prof (il libro: XIII secolo, p. 88); XI secolo (p. 89); 1000–960 circa (p. 90); 586 e 539 (p. 92)."
     },
 
     {

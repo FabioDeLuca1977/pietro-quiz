@@ -2,7 +2,7 @@
 //  data/storia/geostoria-allenamento.js  (v1)
 //  Allenamento a crocette: Egizi, Ebrei, Fenici, demografia
 //
-//  43 domande a scelta multipla (4 risposte), diverse da quelle del test
+//  51 domande a scelta multipla (4 risposte), le ultime 8 dalle slide del prof, diverse da quelle del test
 //  «Verifica». Solo dal libro, pagina nella spiegazione.
 // ============================================================
 
@@ -13,7 +13,7 @@ window.QUIZ_BANK["geostoria-allenamento"] = {
   id:              "geostoria-allenamento",
   subject:         "storia",
   title:           "Allenamento a crocette — Egizi, Ebrei, Fenici, demografia",
-  description:     "43 domande a scelta multipla, diverse da quelle della verifica",
+  description:     "51 domande a scelta multipla, anche dalle slide del prof",
   icon:            "🎯",
   version:         1,
   timePerQuestion: 25,
@@ -156,7 +156,33 @@ window.QUIZ_BANK["geostoria-allenamento"] = {
       "explanation": "La media mondiale è circa 50 ab./km² (p. 116)." },
     { "q": "Che cosa sono le rimesse dei migranti?",
       "options": ["Il denaro e i beni che i migranti mandano alle famiglie nel Paese d'origine", "I migranti rimandati indietro alla frontiera", "Le tasse pagate dagli stranieri", "I documenti per entrare in un Paese"], "answer": 0,
-      "explanation": "Per alcuni Stati poveri sono una parte importante del PIL (p. 122)." }
+      "explanation": "Per alcuni Stati poveri sono una parte importante del PIL (p. 122)." },
+
+    // ── DALLE SLIDE DEL PROF (dispense Remoli) ─────────────────────────────
+    { "q": "Secondo la dispensa del prof, quando ci fu il primo periodo intermedio della storia egizia?",
+      "options": ["Dal 2200 al 2050 a.C.", "Dal 1750 al 1550 a.C.", "Dal 3100 al 2700 a.C.", "Dal 1550 al 1070 a.C."], "answer": 0,
+      "explanation": "Dispensa «L'Antico Egitto»: 2200–2050 primo periodo intermedio, 1750–1550 secondo periodo intermedio." },
+    { "q": "Secondo la dispensa del prof, qual era la capitale del Medio regno?",
+      "options": ["Tebe (Luxor)", "Menfi", "Avaris", "Sais"], "answer": 0,
+      "explanation": "Dispensa «L'Antico Egitto». Menfi era la capitale dell'Antico regno, Avaris quella degli Hyksos, Sais quella del periodo saitico." },
+    { "q": "Come si chiama la federazione delle cinque città-Stato dei Filistei?",
+      "options": ["Pentapoli filistea", "Lega delle dodici tribù", "Mezzaluna fertile", "Terra di Canaan"], "answer": 0,
+      "explanation": "Dispensa «Le civiltà dell'antica Palestina»; il libro parla di una federazione di cinque città-Stato intorno a Gaza (p. 89)." },
+    { "q": "Secondo la dispensa del prof, prima di essere tributari dell'Egitto i Fenici a chi pagavano tributi?",
+      "options": ["Agli Ittiti", "Ai Persiani", "Ai Greci", "Agli Assiri"], "answer": 0,
+      "explanation": "Dispensa: «furono tributari prima degli Hittiti, poi dell'Egitto fino al 1200 a.C.». Il libro cita solo l'Egitto (p. 94)." },
+    { "q": "Secondo la dispensa del prof, da dove nascono i segni dell'alfabeto fenicio?",
+      "options": ["Da stilizzazioni di pittogrammi", "Dai numeri babilonesi", "Dalle lettere greche", "Dai segni cuneiformi dei Sumeri"], "answer": 0,
+      "explanation": "Dispensa: la scrittura fenicia è la più antica con sistema alfabetico che conosciamo; i segni nascono da stilizzazioni di pittogrammi." },
+    { "q": "Secondo la dispensa del prof, quali di questi momenti hanno rallentato la crescita della popolazione mondiale?",
+      "options": ["La peste del XIV secolo e le guerre mondiali", "La Rivoluzione agricola e la Rivoluzione industriale", "Le cure mediche del XX secolo", "La nascita delle città"], "answer": 0,
+      "explanation": "Dispensa «La demografia»: incremento con Rivoluzione agricola, Rivoluzione industriale (XVIII sec.) e cure mediche (XX sec.); rallentamento con la pestilenza del XIV secolo e le guerre mondiali." },
+    { "q": "Secondo la dispensa del prof, verso dove vanno i migranti che partono da Cina, Indonesia e Filippine?",
+      "options": ["Verso Corea del Sud, Giappone e Australia (o gli USA)", "Verso il Golfo Persico", "Verso l'Europa occidentale", "Verso l'America Latina"], "answer": 0,
+      "explanation": "Dispensa: è uno dei quattro grandi flussi; gli altri vanno dall'America Latina a quella anglosassone, da Africa ed Est Europa all'Europa occidentale, dall'Asia meridionale al Golfo Persico." },
+    { "q": "Secondo la dispensa del prof, chi approfitta dei migranti durante il viaggio e all'arrivo?",
+      "options": ["I trafficanti durante il viaggio e gli sfruttatori nel Paese di arrivo", "I sufeti", "Gli uffici di stato civile", "Le agenzie del censimento"], "answer": 0,
+      "explanation": "Dispensa «La demografia», slide «Problemi dei migranti»; il libro parla degli scafisti (p. 123)." }
 
   ]
 };

@@ -54,9 +54,9 @@ window.QUIZ_REGISTRY = [
       {
         id:            "geostoria-allenamento",
         title:         "Allenamento a crocette — Egizi, Ebrei, Fenici, demografia",
-        description:   "43 domande a scelta multipla, diverse da quelle della verifica",
+        description:   "51 domande a scelta multipla, anche dalle slide del prof",
         icon:          "🎯",
-        questionCount: 43,
+        questionCount: 51,
         enabled:       true
       },
       {
