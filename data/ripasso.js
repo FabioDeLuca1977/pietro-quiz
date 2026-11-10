@@ -359,6 +359,14 @@ window.REVIEW = [
         "pages": "Riassunto con i disegni"
       },
       {
+        "id": "pdf-2",
+        "topic": "Geometria e gradi · da stampare",
+        "title": "Interrogazione: i due criteri di congruenza",
+        "pdf": "stampa/criteri-interrogazione.pdf",
+        "pdfPages": 2,
+        "pages": "Enunciati, dimostrazioni, domande del prof"
+      },
+      {
         "id": "vid-p07",
         "topic": "Geometria euclidea · cap. G1",
         "title": "Perché gli assiomi (video)",
