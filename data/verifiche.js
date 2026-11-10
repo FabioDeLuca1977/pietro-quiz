@@ -31,10 +31,10 @@ window.VERIFICHE = [
     what:    "Egizi, Ebrei, Fenici, demografia",
     when:    "da recuperare: data da fissare",
     steps: [
-      { k: "1 · Studia",    d: "Presentazione, mappe e domande aperte con la traccia",
-        items: ["sto-pdf-1", "sto-pdf-2", "sto-pdf-4"] },
-      { k: "2 · Verificati", d: "Ogni volta domande nuove, con 4 domande aperte alla fine",
-        tests: ["geostoria-unico"] }
+      { k: "1 · Fai la verifica", d: "Ogni volta domande nuove, con 4 domande aperte alla fine come nel compito",
+        tests: ["geostoria-unico"] },
+      { k: "2 · Se sbagli, ripassa", d: "Presentazione, mappe e domande aperte con la traccia",
+        items: ["sto-pdf-1", "sto-pdf-2", "sto-pdf-4"] }
     ]
   }
 ];
