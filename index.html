@@ -563,7 +563,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .g-go { margin-top:4px; padding:15px; border:none; border-radius:18px; background:#111; color:#fff; font-weight:900; font-size:1rem; cursor:pointer; }
 .g-go:disabled { opacity:.4; cursor:default; }
 /* GIOCO «TRASCINA AL POSTO GIUSTO» */
-.pl-board { position:relative; width:100%; border-radius:16px; overflow:hidden; background:#fbf8f2; touch-action:none; user-select:none; -webkit-user-select:none; }
+.pl-board { position:relative; width:100%; margin:0 auto; border-radius:16px; overflow:hidden; background:#fbf8f2; touch-action:pan-y; user-select:none; -webkit-user-select:none; }
 .pl-board > img { display:block; width:100%; pointer-events:none; }
 .pl-txt { position:absolute; transform:translate(-50%,-50%); color:#1F2A44; font-weight:800; white-space:nowrap; pointer-events:none; }
 .pl-zone { position:absolute; transform:translate(-50%,-50%); border:2.5px dashed #A8461A; border-radius:12px; background:rgba(255,255,255,.72);
@@ -1699,7 +1699,7 @@ function plZoneName(q, zi) { const z = q.zones[zi]; return z.name || String(zi +
 function drawPlace(done) {
   const q = G.qs[G.idx], c = G.plc;
   const all = c.pool.length === 0;
-  const board = (q.img ? `<img src="${escHtml(q.img)}" alt="${escHtml(q.imgAlt || 'figura')}">` : `<div style="padding-top:${(q.ratio || .6) * 100}%"></div>`)
+  const board = (q.img ? `<img src="${escHtml(q.img)}" alt="${escHtml(q.imgAlt || 'figura')}" onload="plFit(this)">` : `<div style="padding-top:${(q.ratio || .6) * 100}%"></div>`)
     + (q.texts || []).map(t => `<div class="pl-txt" style="left:${t.x}%;top:${t.y}%;font-size:${t.size || .9}rem">${escHtml(t.t)}</div>`).join('')
     + q.zones.map((z, zi) => {
         const it = c.at[zi], st = done ? (it !== undefined && q.items[it].z === zi ? 'ok' : 'ko') : '';
@@ -1711,12 +1711,20 @@ function drawPlace(done) {
       }).join('');
   const fix = done ? q.zones.map((z, zi) => { const it = c.at[zi]; return it !== undefined && q.items[it].z === zi ? '' : `<div>${escHtml(plZoneName(q, zi))} → ${escHtml(q.items.find(x => x.z === zi)?.t || '—')}</div>`; }).join('') : '';
   document.getElementById('opts').innerHTML = `<div class="game">
-    <div class="pl-board" id="pl-board">${board}</div>
+    <div class="pl-board" id="pl-board" style="${PL_FIT[q.img] || ''}">${board}</div>
     ${done ? (fix ? `<div class="pl-fix"><b>Al posto giusto:</b>${fix}</div>` : '')
       : `<div class="g-lab">${all ? 'Tutto sistemato: controlla e conferma' : 'Trascina ogni etichetta al suo posto (oppure toccala e poi tocca il posto)'}</div>
       <div class="pl-pool">${c.pool.map(i => `<button class="g-chip ${c.sel === i ? 'sel' : ''}" onpointerdown="plDown(event,'p',${i})">${escHtml(q.items[i].t)}</button>`).join('')}</div>
       <button class="g-go" ${all ? '' : 'disabled'} onclick="confirmGame(false)">Conferma</button>`}
   </div>`;
+}
+// le figure più alte che larghe si restringono, così sul telefono si vedono anche le etichette sotto
+const PL_FIT = {};
+function plFit(img) {
+  const r = img.naturalWidth / img.naturalHeight, b = img.parentNode;
+  if (!r || !b) return;
+  PL_FIT[img.getAttribute('src')] = r < 1.25 ? `max-width:calc(${r.toFixed(3)} * 48vh)` : '';
+  b.style.cssText = PL_FIT[img.getAttribute('src')];
 }
 function plPut(item, zi) {                       // mette l'etichetta nella zona; chi c'era torna giù
   const c = G.plc;
