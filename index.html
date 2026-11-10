@@ -22,6 +22,7 @@
 <script src="data/config.js"></script>
 <script src="data/registry.js"></script>
 <script src="data/ripasso.js"></script>
+<script src="data/verifiche.js"></script>
 
 <!-- STORIA -->
 <script src="data/storia/civilta-mesopotamiche.js"></script>
@@ -496,6 +497,21 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 .pg-note { font-size:.74rem; color:var(--mu); text-align:center; margin:18px 8px 6px; line-height:1.5; }
 .rip-item { display:flex; width:100%; align-items:center; gap:12px; text-align:left; background:var(--card); border:1px solid var(--ln2); border-radius:18px; padding:12px; margin-bottom:9px; color:#fff; font:inherit; cursor:pointer; }
 .rip-item:active { transform:scale(.98); }
+.ver-card { display:flex; width:100%; align-items:center; gap:12px; text-align:left; border:0; border-radius:20px; padding:14px 16px; margin:10px 0 0; font:inherit; cursor:pointer; color:#fff;
+  background:linear-gradient(135deg, var(--acc), color-mix(in srgb, var(--acc) 55%, #000)); box-shadow:0 6px 18px color-mix(in srgb, var(--acc) 35%, transparent); }
+.ver-card:active { transform:scale(.98); }
+.ver-card .vc-ico { font-size:1.9rem; }
+.ver-card .vc-txt { flex:1; display:flex; flex-direction:column; gap:2px; }
+.ver-card .vc-k { font-size:.7rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; opacity:.85; }
+.ver-card b { font-size:1.05rem; font-weight:800; }
+.ver-card .vc-w { font-size:.8rem; font-weight:600; opacity:.9; }
+.ver-card .vc-go { font-size:1.3rem; font-weight:900; }
+.ver-hd { margin:6px 2px 4px; }
+.ver-hd h2 { font-size:1.4rem; font-weight:900; }
+.ver-hd p { color:var(--mu2); font-weight:600; font-size:.9rem; }
+.ver-step { margin:18px 2px 8px; }
+.ver-step b { display:block; font-size:1.05rem; font-weight:900; color:var(--acc); }
+.ver-step span { font-size:.82rem; color:var(--mu2); font-weight:600; }
 .rip-topic { margin:14px 2px 8px; padding-left:10px; border-left:4px solid var(--acc); font-size:.82rem; font-weight:800; color:var(--mu2); letter-spacing:.02em; }
 #rip-all[hidden] { display:none; }
 .rip-play { width:46px; height:46px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; background:var(--acc); font-size:1.05rem; }
@@ -688,6 +704,7 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
 <!-- ══ HOME ══ -->
 <div id="s-home" class="scr">
   <div class="sec-sw"><button class="on" aria-pressed="true">📝 Esercizi</button><button aria-pressed="false" onclick="openRipasso()">🎬 Ripasso</button><button aria-pressed="false" onclick="openProg()">📊 Progressi</button></div>
+  <div id="ver-home"></div>
   <div class="subj-grid" id="subj-grid"></div>
 
   <section class="hero">
@@ -730,6 +747,12 @@ mark.rd-hl { background:#ffe27a; color:#15151d; padding:1px 3px; border-radius:3
   <div class="sec-sw"><button aria-pressed="false" onclick="goHome()">📝 Esercizi</button><button class="on" aria-pressed="true">🎬 Ripasso</button><button aria-pressed="false" onclick="openProg()">📊 Progressi</button></div>
   <button class="back" id="rip-all" onclick="openRipasso()" hidden>← Tutte le materie</button>
   <div id="rip-list"></div>
+</div>
+
+<!-- ══ VERIFICA IN ARRIVO ══ -->
+<div id="s-ver" class="scr">
+  <button class="back" onclick="G.verId = null; goHome()">← Home</button>
+  <div id="ver-body"></div>
 </div>
 
 <!-- ══ PROGRESSI ══ -->
@@ -1121,6 +1144,7 @@ function dismissInstall() { try { localStorage.setItem(LS_INST, '1'); } catch {}
 
 function renderHome() {
   setColor(DEF_ACC);
+  buildVerHome();
   const cfg = window.QUIZ_CONFIG || {};
   document.getElementById('h-name').textContent = studentName();
   const who = document.getElementById('who');
@@ -1240,6 +1264,7 @@ function reviewItem(id) {
 }
 function fmtDur(s) { return Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0'); }
 function openRipasso(subj) {
+  G.verId = null;
   G.ripSubj = reviewOf(subj) ? subj : null;
   const seen = loadSeen(), groups = (window.REVIEW || []).filter(g => !G.ripSubj || g.subject === G.ripSubj);
   setColor(groups[0]?.color || DEF_ACC);
@@ -1255,6 +1280,47 @@ function openRipasso(subj) {
   }).join('') || '<div class="empty-box">Ancora nessun video.</div>';
   showScr('s-rip');
 }
+// ═══════════════════════════════════════════════════════
+//  VERIFICHE IN ARRIVO (dati in data/verifiche.js)
+// ═══════════════════════════════════════════════════════
+function verList() {
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  return (window.VERIFICHE || []).filter(v => !v.date || new Date(v.date + 'T23:59:59') >= today)
+    .sort((a, b) => (a.date || '9') < (b.date || '9') ? -1 : 1);
+}
+function verSubj(v) { return (window.QUIZ_REGISTRY || []).find(s => s.subject === v.subject) || { subject:v.subject, subjectColor:DEF_ACC, subjectIcon:'📌' }; }
+function verDays(v) {
+  if (!v.date) return '';
+  const t = new Date(); t.setHours(0, 0, 0, 0);
+  const n = Math.round((new Date(v.date + 'T00:00:00') - t) / 864e5);
+  return n <= 0 ? ' · OGGI' : n === 1 ? ' · domani' : ' · tra ' + n + ' giorni';
+}
+function buildVerHome() {
+  const el = document.getElementById('ver-home'); if (!el) return;
+  el.innerHTML = verList().map(v => { const s = verSubj(v);
+    return `<button class="ver-card" style="--acc:${s.subjectColor}" onclick="openVer('${v.id}')">
+      <span class="vc-ico">${s.subjectIcon}</span>
+      <span class="vc-txt"><span class="vc-k">📌 Verifica in arrivo${verDays(v)}</span><b>${escHtml(v.title)}</b>
+        <span class="vc-w">${escHtml(v.what)} · ${escHtml(v.when)}</span></span>
+      <span class="vc-go">›</span></button>`; }).join('');
+}
+function openVer(id) {
+  const v = (window.VERIFICHE || []).find(x => x.id === id); if (!v) return;
+  const s = verSubj(v), seen = loadSeen();
+  G.verId = id; G.ripSubj = reviewOf(v.subject) ? v.subject : null;
+  stopVideo(); setColor(s.subjectColor);
+  document.getElementById('ver-body').innerHTML =
+    `<div class="ver-hd"><h2>${s.subjectIcon} ${escHtml(v.title)}</h2><p>${escHtml(v.what)} · ${escHtml(v.when)}${verDays(v)}</p></div>` +
+    v.steps.map(st => `<div class="ver-step"><b>${escHtml(st.k)}</b><span>${escHtml(st.d || '')}</span></div>` +
+      (st.items || []).map(rid => { const f = reviewItem(rid); if (!f) return ''; const x = f.it;
+        return `<button class="rip-item ${seen[x.id] ? 'seen' : ''}" style="--acc:${s.subjectColor}" onclick="openItem('${x.id}')">
+          <span class="rip-play">${seen[x.id] ? '✓' : x.anim ? '✨' : x.lesson ? '📖' : x.html ? '📱' : x.pdf ? '📄' : '▶'}</span>
+          <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')}</span></span></button>`; }).join('') +
+      (st.tests ? '<div class="feed">' + st.tests.map(tid => { const t = (s.tests || []).find(x => x.id === tid); return t ? testCard(t, s, false) : ''; }).join('') + '</div>' : '')
+    ).join('');
+  showScr('s-ver'); scrollTo(0, 0);
+}
+
 function openVideo(id) {
   const f = reviewItem(id); if (!f) return;
   const v = document.getElementById('vplayer'), next = f.g.items[f.i + 1];
@@ -1278,7 +1344,7 @@ function stopVideo() { const v = document.getElementById('vplayer'); if (v && !v
 // Spiegazione a slide verticali: voce del ripasso con "lesson" al posto di "file"
 // voce "pdf": un documento da leggere o stampare, aperto nel visore del telefono; "html": una pagina di ripasso
 function openItem(id) { const f = reviewItem(id); if (!f) return;
-  if (f.it.pdf || f.it.html) { markSeen(id); window.open(f.it.pdf || f.it.html, '_blank'); openRipasso(G.ripSubj); return; }
+  if (f.it.pdf || f.it.html) { markSeen(id); window.open(f.it.pdf || f.it.html, '_blank'); G.verId ? openVer(G.verId) : openRipasso(G.ripSubj); return; }
   if (f.it.anim) { openAnim(id); return; }
   f.it.lesson ? openLesson(id) : openVideo(id); }
 function openLesson(id) {
