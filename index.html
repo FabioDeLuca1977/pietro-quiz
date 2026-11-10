@@ -1249,8 +1249,8 @@ function openRipasso(subj) {
     return `<div class="lbl">${g.icon} ${cap(g.subject)} <small>${done} visti su ${g.items.length}</small></div>` + g.items.map((x, i) =>
       (x.topic && x.topic !== g.items[i - 1]?.topic ? `<div class="rip-topic" style="--acc:${g.color}">${escHtml(x.topic)}</div>` : '') +
       `<button class="rip-item ${seen[x.id] ? 'seen' : ''}" style="--acc:${g.color}" onclick="openItem('${x.id}')">
-        <span class="rip-play">${seen[x.id] ? '✓' : x.anim ? '✨' : x.lesson ? '📖' : x.pdf ? '📄' : '▶'}</span>
-        <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')} · ${x.anim ? (window.ANIMS?.[x.anim]?.items.length || 0) + ' animazioni' : x.lesson ? (window.LESSONS?.[x.lesson]?.slides.length || 0) + ' slide' : x.pdf ? x.pdfPages + ' pagine' : fmtDur(x.dur)}</span></span>
+        <span class="rip-play">${seen[x.id] ? '✓' : x.anim ? '✨' : x.lesson ? '📖' : x.html ? '📱' : x.pdf ? '📄' : '▶'}</span>
+        <span class="rip-txt"><b>${escHtml(x.title)}</b><span>${escHtml(x.pages || '')} · ${x.anim ? (window.ANIMS?.[x.anim]?.items.length || 0) + ' animazioni' : x.lesson ? (window.LESSONS?.[x.lesson]?.slides.length || 0) + ' slide' : x.html ? 'pagina da telefono' : x.pdf ? x.pdfPages + ' pagine' : fmtDur(x.dur)}</span></span>
       </button>`).join('');
   }).join('') || '<div class="empty-box">Ancora nessun video.</div>';
   showScr('s-rip');
@@ -1276,9 +1276,9 @@ function videoTick() {
 function stopVideo() { const v = document.getElementById('vplayer'); if (v && !v.paused) v.pause(); }
 
 // Spiegazione a slide verticali: voce del ripasso con "lesson" al posto di "file"
-// voce "pdf": un documento da leggere o stampare, aperto nel visore del telefono
+// voce "pdf": un documento da leggere o stampare, aperto nel visore del telefono; "html": una pagina di ripasso
 function openItem(id) { const f = reviewItem(id); if (!f) return;
-  if (f.it.pdf) { markSeen(id); window.open(f.it.pdf, '_blank'); openRipasso(G.ripSubj); return; }
+  if (f.it.pdf || f.it.html) { markSeen(id); window.open(f.it.pdf || f.it.html, '_blank'); openRipasso(G.ripSubj); return; }
   if (f.it.anim) { openAnim(id); return; }
   f.it.lesson ? openLesson(id) : openVideo(id); }
 function openLesson(id) {

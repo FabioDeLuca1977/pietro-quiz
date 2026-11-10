@@ -359,6 +359,13 @@ window.REVIEW = [
         "pages": "Riassunto con i disegni"
       },
       {
+        "id": "html-1",
+        "topic": "Geometria e gradi · da stampare",
+        "title": "Assiomi e criteri: studia, ripeti, ChatGPT",
+        "html": "ripasso/assiomi-criteri.html",
+        "pages": "Enunciati, carte da girare, prompt per l'interrogazione"
+      },
+      {
         "id": "pdf-2",
         "topic": "Geometria e gradi · da stampare",
         "title": "Interrogazione: i due criteri di congruenza",

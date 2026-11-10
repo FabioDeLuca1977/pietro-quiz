@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assiomi e criteri</title>
+<style>
+:root { --bg:#f6f4ee; --card:#fff; --ink:#1d1d1f; --mute:#666; --acc:#2f6fb3; --soft:#e8eef7; --gold:#fff6d6; --goldb:#c9a227; --ok:#2e8b57; --no:#c0392b; --line:#ddd; }
+@media (prefers-color-scheme: dark) { :root { --bg:#121417; --card:#1d2026; --ink:#eee; --mute:#a0a4ab; --acc:#7fb0ea; --soft:#243246; --gold:#3a3220; --goldb:#c9a227; --line:#333; } }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--ink); font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; padding:0 0 40px; }
+header { position:sticky; top:0; z-index:5; background:var(--bg); padding:12px 16px 8px; border-bottom:1px solid var(--line); }
+h1 { font-size:19px; }
+h1 small { display:block; font-size:12.5px; font-weight:400; color:var(--mute); }
+nav { display:flex; gap:6px; margin-top:8px; }
+nav button { flex:1; border:0; border-radius:10px; padding:9px 4px; font:600 14px system-ui,sans-serif; background:var(--soft); color:var(--ink); }
+nav button.on { background:var(--acc); color:#fff; }
+main { padding:12px 16px; max-width:640px; margin:0 auto; }
+section[hidden] { display:none; }
+.tip { font-size:13.5px; color:var(--mute); margin-bottom:10px; }
+.ax { background:var(--card); border-radius:14px; padding:12px 14px; margin-bottom:10px; box-shadow:0 1px 3px rgba(0,0,0,.08); }
+.ax h2 { font-size:15.5px; display:flex; gap:8px; align-items:baseline; }
+.ax h2 .n { background:var(--acc); color:#fff; border-radius:8px; padding:0 8px; font-size:14px; }
+.ax h2 .nm { font-weight:500; color:var(--mute); font-size:13.5px; }
+.en { margin-top:6px; }
+.en p { margin-top:4px; }
+.en b.l { color:var(--acc); }
+.simple { margin-top:8px; border:0; background:none; color:var(--acc); font:600 13.5px system-ui,sans-serif; padding:0; }
+.simple-t { margin-top:6px; background:var(--soft); border-radius:10px; padding:8px 10px; font-size:14px; }
+.simple-t i { color:var(--mute); font-size:12px; display:block; }
+.crit { background:var(--gold); border-left:4px solid var(--goldb); }
+/* Ripeti */
+.bar { display:flex; justify-content:space-between; font-size:13.5px; color:var(--mute); margin-bottom:8px; }
+.fc { background:var(--card); border-radius:18px; min-height:260px; padding:20px 18px; box-shadow:0 2px 8px rgba(0,0,0,.12); display:flex; flex-direction:column; justify-content:center; text-align:center; }
+.fc .k { font-size:12px; text-transform:uppercase; letter-spacing:.6px; color:var(--mute); }
+.fc .q { font-size:19px; font-weight:600; margin-top:8px; }
+.fc .a { margin-top:14px; padding-top:12px; border-top:1px dashed var(--line); font-size:16px; text-align:left; }
+.btns { display:flex; gap:8px; margin-top:12px; }
+.btns button { flex:1; border:0; border-radius:12px; padding:14px 6px; font:600 15px system-ui,sans-serif; color:#fff; }
+.show { background:var(--acc); }
+.yes { background:var(--ok); }
+.no { background:var(--no); }
+.end { text-align:center; padding:24px 0; }
+.end b { font-size:22px; display:block; }
+.end button { margin-top:12px; border:0; border-radius:12px; padding:12px 18px; font:600 15px system-ui,sans-serif; background:var(--acc); color:#fff; }
+/* ChatGPT */
+.copy { width:100%; border:0; border-radius:12px; padding:14px; font:600 16px system-ui,sans-serif; background:var(--acc); color:#fff; margin-bottom:10px; }
+pre { white-space:pre-wrap; background:var(--card); border-radius:12px; padding:12px; font:13px/1.45 ui-monospace,Consolas,monospace; max-height:60vh; overflow:auto; }
+ol.how { padding-left:20px; font-size:14.5px; margin-bottom:10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Assiomi e criteri di congruenza <small>Ripasso per l'interrogazione di giovedì · parole del prof e del libro</small></h1>
+  <nav>
+    <button id="t-studia" class="on" onclick="tab('studia')">📖 Studia</button>
+    <button id="t-ripeti" onclick="tab('ripeti')">🃏 Ripeti</button>
+    <button id="t-gpt" onclick="tab('gpt')">🤖 ChatGPT</button>
+  </nav>
+</header>
+<main>
+  <section id="s-studia">
+    <p class="tip">L'enunciato si studia a memoria. «In parole semplici» è una spiegazione nostra, solo per capire.</p>
+    <div id="list"></div>
+  </section>
+
+  <section id="s-ripeti" hidden>
+    <div class="bar"><span id="cnt"></span><span id="score"></span></div>
+    <div id="card"></div>
+  </section>
+
+  <section id="s-gpt" hidden>
+    <ol class="how">
+      <li>Tocca <b>Copia il prompt</b>.</li>
+      <li>Apri ChatGPT, incolla e invia.</li>
+      <li>Rispondi a voce o scrivendo, una domanda alla volta.</li>
+    </ol>
+    <button class="copy" id="copyb" onclick="copia()">📋 Copia il prompt</button>
+    <pre id="prompt"></pre>
+  </section>
+</main>
+
+<script>
+// Assiomi: enunciati dal PDF «Geometria: assiomi, criteri di congruenza e gradi» (quaderno + libro cap. G1)
+const AX = [
+ { n:"1", nm:"", en:["Ogni piano è un insieme di punti; ogni retta è un sottoinsieme del piano."],
+   s:"Il piano è come un foglio senza bordi, fatto di punti. Una retta è una parte di quei punti." },
+ { n:"2", nm:"di appartenenza", en:[
+   "<b class='l'>A.</b> A ogni retta appartengono almeno 2 punti distinti.",
+   "<b class='l'>B.</b> Dati due punti distinti, esiste una e una sola retta a cui appartengono entrambi.",
+   "<b class='l'>C.</b> Data una retta nel piano, esiste almeno 1 punto nel piano che non appartiene a essa."],
+   s:"2A: su ogni retta ci sono almeno due punti diversi. 2B: per due punti ne passa una, e una sola. 2C: fuori da ogni retta c'è sempre almeno un punto." },
+ { n:"3", nm:"di ordine", en:[
+   "<b class='l'>A.</b> Dati due punti distinti A e B tali che A precede B, ci sarà sempre un punto C tale che A precede C e C precede B.",
+   "<b class='l'>B.</b> Data una retta e preso un punto P sulla retta, ci saranno sempre A e B tali che A precede P e P precede B."],
+   s:"3A: tra due punti ce n'è sempre un altro (la retta è «densa»). 3B: prima di ogni punto ce n'è un altro, e dopo pure (la retta è «illimitata»)." },
+ { n:"4", nm:"partizione del piano", en:[
+   "Consideriamo una retta r nel piano: l'insieme dei punti del piano che non appartengono a r resta diviso da r in due sottoinsiemi disgiunti e convessi α e β, detti semipiani di origine r. Se A appartiene ad α e B appartiene a β, allora il segmento AB interseca la retta r."],
+   s:"Una retta taglia il piano in due metà. Per passare da una metà all'altra devi attraversare la retta, come un fiume." },
+ { n:"5", nm:"proprietà della congruenza", en:[
+   "<b class='l'>A.</b> (Proprietà riflessiva) Ogni figura è congruente a se stessa.",
+   "<b class='l'>B.</b> (Proprietà simmetrica) Se la figura F₁ è congruente alla figura F₂, allora la figura F₂ è congruente alla figura F₁.",
+   "<b class='l'>C.</b> (Proprietà transitiva) Se F₁ è congruente a F₂ e F₂ è congruente a F₃, allora F₁ è congruente a F₃."],
+   s:"A: ogni figura combacia con se stessa (per questo un lato in comune è congruente a se stesso). B: se la prima combacia con la seconda, anche la seconda con la prima. C: se due figure combaciano con una terza, combaciano tra loro." },
+ { n:"6", nm:"", en:["Tutti i punti sono congruenti tra loro, così come i piani, le rette, i semipiani e le semirette."],
+   s:"Un punto vale l'altro, una retta vale l'altra: non hanno una misura. Segmenti e angoli invece no." },
+ { n:"7", nm:"trasporto di segmenti e angoli", en:[
+   "<b class='l'>A.</b> Dato un segmento AB e una semiretta di origine O, sulla semiretta esiste, ed è unico, il punto P tale che OP ≅ AB.",
+   "<b class='l'>B.</b> Dato un angolo AÔB e una semiretta con origine O₁, in un semipiano fissato esiste, ed è unico, l'angolo con vertice O₁, un lato coincidente con la semiretta e l'altro appartenente al semipiano, tale che i due angoli siano congruenti."],
+   s:"7A: con il compasso copi un segmento su una semiretta: la punta cade in un punto solo. 7B: scelto da che parte disegnarlo, l'angolo copiato ha un solo secondo lato possibile." },
+ { n:"8", nm:"segmenti", en:["Somme, differenze, multipli e sottomultipli di segmenti congruenti saranno a loro volta congruenti."],
+   s:"Se due segmenti sono uguali e fai su tutti e due la stessa cosa, ottieni ancora segmenti uguali." },
+ { n:"9", nm:"misura", en:["Comunque fissati un segmento non nullo u come unità di misura e un numero reale positivo k, esiste un segmento la cui misura rispetto a u è il numero k."],
+   s:"Su un righello infinito con unità u, ogni numero positivo (anche √2) ha il suo punto: sul righello non ci sono buchi." },
+ { n:"10", nm:"angoli", en:["Somme, differenze, multipli e sottomultipli di angoli congruenti saranno a loro volta congruenti."],
+   s:"È l'assioma 8 con gli angoli." }
+];
+const CRIT = [
+ { n:"1° criterio", nm:"LAL · lato, angolo, lato", en:["Due triangoli sono congruenti se hanno ordinatamente congruenti due lati e l'angolo tra essi compreso.",
+   "<b class='l'>Perché vale:</b> B′ cade su B (7A); la semiretta A′C′ cade su AC (7B); C′ cade su C (7A); per B e C passa una sola retta (2B)."],
+   s:"Due bastoncini uniti da una cerniera: se sai quanto sono lunghi e quanto è aperta la cerniera, il terzo lato è obbligato. L'angolo deve stare in mezzo ai due lati." },
+ { n:"2° criterio", nm:"ALA · angolo, lato, angolo", en:["Due triangoli sono congruenti se hanno ordinatamente congruenti un lato e i due angoli adiacenti a esso.",
+   "<b class='l'>Per assurdo:</b> se AC non fosse ≅ A′C′, su A′C′ ci sarebbe D ≠ C′ con A′D ≅ AC (7A); ABC ≅ A′B′D per il 1° criterio; allora l'angolo in B′ verso D è ≅ a quello verso C′ e la semiretta è una sola (7B): D = C′, assurdo."],
+   s:"Hai un lato. Dalle sue due punte fai partire due righe con quegli angoli: si incontrano in un punto solo. Gli angoli devono stare alle due punte del lato." }
+];
+const list = document.getElementById('list');
+const card = (x, cls) => `<div class="ax ${cls||''}"><h2><span class="n">${x.n.length < 3 ? 'Assioma ' + x.n : x.n}</span><span class="nm">${x.nm}</span></h2>
+  <div class="en">${x.en.map(p => `<p>${p}</p>`).join('')}</div>
+  <button class="simple" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">💡 In parole semplici</button>
+  <div class="simple-t" hidden><i>spiegazione nostra</i>${x.s}</div></div>`;
+list.innerHTML = AX.map(x => card(x)).join('') + CRIT.map(x => card(x, 'crit')).join('');
+
+// Carte da ripetere: domanda → risposta (enunciati dal PDF)
+const strip = h => h.replace(/<[^>]+>/g, '');
+const DECK = [];
+AX.forEach(x => x.en.forEach(p => {
+  const m = p.match(/^<b class='l'>([A-C])\.<\/b>\s*/), id = x.n + (m ? m[1] : '');
+  DECK.push({ k:'Enuncia', q:'Assioma ' + id + (x.nm ? ' (' + x.nm + ')' : ''), a:strip(p.replace(/^<b class='l'>[A-C]\.<\/b>\s*/, '')) });
+}));
+[
+ ["Per due punti distinti passa una e una sola retta", "2B"],
+ ["Su una semiretta c'è un solo punto P con OP ≅ AB", "7A (trasporto di un segmento)"],
+ ["In un semipiano fissato l'angolo congruente con un lato sulla semiretta è unico", "7B (trasporto di un angolo)"],
+ ["Un lato in comune a due triangoli è congruente a se stesso", "5A (proprietà riflessiva)"],
+ ["Tra due punti ce n'è sempre un altro", "3A"],
+ ["Per passare da un semipiano all'altro il segmento taglia la retta", "4"],
+ ["Somme di angoli congruenti sono congruenti", "10"],
+ ["Il doppio di segmenti congruenti è congruente", "8"]
+].forEach(([q, a]) => DECK.push({ k:'Quale assioma?', q, a }));
+DECK.push(
+ { k:'Enuncia', q:'1° criterio di congruenza (LAL)', a:CRIT[0].en[0] },
+ { k:'Enuncia', q:'2° criterio di congruenza (ALA)', a:CRIT[1].en[0] },
+ { k:'Spiega', q:'Perché vale il 1° criterio? Quali assiomi usi?', a:strip(CRIT[0].en[1]).replace('Perché vale: ', '') },
+ { k:'Dimostra', q:'Dimostra il 2° criterio (per assurdo)', a:strip(CRIT[1].en[1]).replace('Per assurdo: ', '') },
+ { k:'Trabocchetto', q:'Due lati e un angolo NON compreso: i triangoli sono congruenti?', a:"Non per forza: ABC e ABD hanno AB in comune, BC ≅ BD e lo stesso angolo in A, ma non sono congruenti, perché l'angolo non è compreso." },
+ { k:'Le parole', q:"Che cosa vuol dire «ordinatamente congruenti»?", a:"A coppie, nello stesso ordine (A con A′, B con B′, C con C′)." },
+ { k:'Le parole', q:"Che cosa vuol dire «congruente»?", a:"Che combacia perfettamente: due figure sono congruenti se si possono sovrapporre punto per punto con un movimento rigido (spostare, ruotare, ribaltare senza deformare). Simbolo ≅." },
+ { k:'Le parole', q:"Angolo compreso e angoli adiacenti a un lato: che differenza c'è?", a:"Compreso tra due lati: quello che sta in mezzo a loro. Adiacenti a un lato: quelli ai suoi due estremi." }
+);
+let order = [], pos = 0, ok = 0, wrong = [];
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function newRound(items) { order = shuffle(items.slice()); pos = 0; ok = 0; wrong = []; draw(false); }
+function draw(open) {
+  const el = document.getElementById('card');
+  document.getElementById('cnt').textContent = pos < order.length ? `Carta ${pos + 1} di ${order.length}` : '';
+  document.getElementById('score').textContent = `✅ ${ok} · 🔁 ${wrong.length}`;
+  if (pos >= order.length) {
+    el.innerHTML = `<div class="end"><b>${ok} su ${order.length}</b>${wrong.length ? `Da ripassare: ${wrong.length}` : 'Tutte giuste! 🎉'}<br>
+      ${wrong.length ? `<button onclick="newRound(wrongCopy())">🔁 Ripeti le sbagliate</button><br>` : ''}
+      <button onclick="newRound(DECK)">🃏 Ricomincia tutto</button></div>`;
+    return;
+  }
+  const c = order[pos];
+  el.innerHTML = `<div class="fc"><span class="k">${c.k}</span><div class="q">${c.q}</div>${open ? `<div class="a">${c.a}</div>` : ''}</div>
+    <div class="btns">${open ? `<button class="no" onclick="next(false)">🔁 Da ripassare</button><button class="yes" onclick="next(true)">✅ Lo sapevo</button>`
+                              : `<button class="show" onclick="draw(true)">Mostra la risposta</button>`}</div>`;
+}
+function wrongCopy() { return wrong.slice(); }
+function next(y) { y ? ok++ : wrong.push(order[pos]); pos++; draw(false); }
+newRound(DECK);
+
+// Prompt per ChatGPT: contiene tutto il materiale, così non inventa
+const PROMPT = `Sei il mio professore di matematica di prima liceo scientifico. Giovedì ho l'interrogazione orale sui due criteri di congruenza dei triangoli e sugli assiomi della geometria. Interrogami come farebbe il prof.
+
+REGOLE
+- Usa SOLO il materiale qui sotto. Non aggiungere teoremi, assiomi, criteri o definizioni che non ci sono. Se una cosa non è nel materiale, dimmelo invece di inventarla.
+- Fammi UNA domanda alla volta e aspetta la mia risposta.
+- Dopo ogni risposta dimmi: che cosa era giusto, che cosa mancava o era impreciso, e la risposta corretta con le parole del materiale. Pretendi le parole precise («ordinatamente», «compreso», «adiacenti», «esiste ed è unico»).
+- Alterna: enunciati a memoria; «perché»; dimostrazioni passo per passo, chiedendomi quale assioma uso a ogni passaggio; esempi descritti a parole; domande trabocchetto (angolo non compreso).
+- Dopo 10 domande dammi un voto da 1 a 10, con il motivo e la lista delle cose da ripassare.
+- Parla in italiano, in modo semplice e incoraggiante.
+
+MATERIALE
+Il prof dice «assiomi», il libro «postulati»: sono la stessa cosa, proprietà accettate come vere senza dimostrarle.
+
+${AX.map(x => 'Assioma ' + x.n + (x.nm ? ' (' + x.nm + ')' : '') + '\n' + x.en.map(strip).join('\n')).join('\n\n')}
+
+Le parole
+- Congruente: che combacia perfettamente. Due figure sono congruenti se si possono sovrapporre punto per punto con un movimento rigido (spostare, ruotare, ribaltare senza deformare). Simbolo ≅.
+- Angolo compreso tra due lati: quello che sta in mezzo a loro. Angoli adiacenti a un lato: quelli ai suoi due estremi.
+- Ordinatamente congruenti: a coppie, nello stesso ordine (A con A′, B con B′, C con C′).
+
+1° criterio (LAL, lato angolo lato): due triangoli sono congruenti se hanno ordinatamente congruenti due lati e l'angolo tra essi compreso.
+Perché vale (sovrapponendo; ipotesi AB ≅ A′B′, AC ≅ A′C′, Â ≅ Â′): porto A′ su A e A′B′ sulla semiretta AB, con C′ dalla parte di C; poiché A′B′ ≅ AB, B′ cade su B (assioma 7A). Poiché Â′ ≅ Â, A′C′ va sulla semiretta AC (7B); poiché A′C′ ≅ AC, C′ cade su C (7A). Per B e C passa una sola retta (2B): B′C′ coincide con BC. Molti libri accettano il 1° criterio come postulato.
+
+2° criterio (ALA, angolo lato angolo): due triangoli sono congruenti se hanno ordinatamente congruenti un lato e i due angoli adiacenti a esso.
+Dimostrazione per assurdo. Ipotesi: AB ≅ A′B′, Â ≅ Â′, B̂ ≅ B̂′. Tesi: ABC ≅ A′B′C′. Se AC non fosse congruente ad A′C′, sulla semiretta A′C′ ci sarebbe un punto D ≠ C′ con A′D ≅ AC (7A). ABC e A′B′D sarebbero congruenti per il 1° criterio, quindi l'angolo A′B′D ≅ ABC ≅ A′B′C′; dalla stessa parte la semiretta è una sola (7B), quindi D starebbe su B′C′ e su A′C′: D = C′, assurdo. Quindi AC ≅ A′C′ e vale il 1° criterio.
+
+Attenzione: ABC e ABD hanno AB in comune, BC ≅ BD e lo stesso angolo in A, ma non sono congruenti, perché l'angolo non è compreso.
+Per ricordarli: LAL, l'angolo sta in mezzo tra due lati; ALA, il lato sta in mezzo tra due angoli.
+
+Come si scrive una dimostrazione: 1) ipotesi e tesi; 2) i due triangoli che contengono gli elementi della tesi; 3) tre coppie di elementi congruenti, ognuna con il suo perché (ipotesi, lato in comune = assioma 5A, bisettrice…); 4) quale criterio uso e la conclusione.
+
+Esempi
+- Aquilone ABCD con la diagonale AC: se AB ≅ AD e AC è bisettrice dell'angolo in A, allora ABC ≅ ADC per il 1° criterio (AC è in comune: assioma 5A). Se invece AC è bisettrice sia dell'angolo in A sia dell'angolo in C, ABC ≅ ADC per il 2° criterio.
+- Il fiume: da A, davanti all'albero T, passi uguali fino a C e fino a D; da D ad angolo retto fino a E, dove C e T sono allineati. I triangoli TAC ed EDC sono congruenti per il 2° criterio, quindi DE ≅ AT: la larghezza del fiume (si usa anche che gli angoli opposti al vertice sono congruenti).
+- Bisettrice di un angolo: la semiretta che lo divide in due angoli congruenti.
+
+Comincia con la prima domanda.`;
+document.getElementById('prompt').textContent = PROMPT;
+function copia() {
+  const b = document.getElementById('copyb'), done = () => { b.textContent = '✅ Copiato! Ora incollalo in ChatGPT'; };
+  if (navigator.clipboard) navigator.clipboard.writeText(PROMPT).then(done, fallback); else fallback();
+  function fallback() { const t = document.createElement('textarea'); t.value = PROMPT; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) {} t.remove(); }
+}
+
+function tab(t) {
+  ['studia', 'ripeti', 'gpt'].forEach(x => { document.getElementById('s-' + x).hidden = x !== t; document.getElementById('t-' + x).classList.toggle('on', x === t); });
+  scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
