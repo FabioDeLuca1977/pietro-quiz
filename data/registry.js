@@ -283,6 +283,30 @@ window.QUIZ_REGISTRY = [
     subjectColor:"#7c3aed",
     tests: [
       {
+        id:            "en-read-1",
+        title:         "Reading 1 · Superstitions in the UK",
+        description:   "Un testo sulle superstizioni britanniche, poi 10 domande",
+        icon:          "🍀",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "en-read-2",
+        title:         "Reading 2 · Emma's family",
+        description:   "Emma presenta la sua famiglia, poi 10 domande",
+        icon:          "👨‍👩‍👧",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
+        id:            "en-read-3",
+        title:         "Reading 3 · Tom's week",
+        description:   "La settimana di Tom tra scuola e sport, poi 10 domande",
+        icon:          "📆",
+        questionCount: 10,
+        enabled:       true
+      },
+      {
         id:            "en-be-have",
         title:         "To be e have got",
         description:   "Forme, domande, risposte brevi e i tre significati di 's",

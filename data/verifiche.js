@@ -28,18 +28,31 @@ window.VERIFICHE = [
     id:      "en-verifica",
     subject: "inglese",
     title:   "Reading comprehension test",
-    what:    "Test di comprensione del testo (prof Grossi). Ripasso di grammatica utile per capire il testo",
+    what:    "Test di comprensione del testo (prof Grossi)",
     when:    "venerdì 13 novembre, ore 11",
     date:    "2026-11-13",
     steps: [
-      { k: "1 · Ripassa", d: "Le lezioni a slide, una per argomento",
+      { k: "1 · Allenati a leggere", d: "Tre testi brevi: leggi, poi rispondi. Con il tasto 📄 riapri il testo",
+        tests: ["en-read-1", "en-read-2", "en-read-3"] },
+      { k: "2 · Ripassa la grammatica", d: "Le lezioni a slide: aiutano a capire i testi",
         items: ["en-l1", "en-l2", "en-l3", "en-l4"] },
-      { k: "2 · Esercitati", d: "Un test per argomento, poi la verifica mista con domande sempre nuove",
+      { k: "3 · Esercitati", d: "Un test per argomento, poi la verifica mista con domande sempre nuove",
         tests: ["en-be-have", "en-plurali", "en-possessivi", "en-present-simple", "en-avverbi", "en-continuous", "en-verifica"] },
-      { k: "3 · Sul foglio", d: "Le schede da stampare e le soluzioni per correggerle",
+      { k: "4 · Sul foglio", d: "Le schede da stampare e le soluzioni per correggerle",
         items: ["en-pdf-1", "en-pdf-2"] },
       { k: "Se servono: gli argomenti delle mappe", d: "Quantità, passato, futuro, comparativi, modali, present perfect, passivo",
         items: ["en-l5", "en-l6", "en-l7", "en-l8", "en-l9", "en-l10", "en-l11"] }
+    ]
+  },
+  {
+    id:      "ita-verbi",
+    subject: "italiano",
+    title:   "Verifica di grammatica",
+    what:    "I verbi (prof Remoli)",
+    when:    "mercoledì 25 novembre, ore 8",
+    date:    "2026-11-25",
+    steps: [
+      { k: "Cosa c'è sul registro", d: "Lezione del 27 ottobre: verbi impersonali, copulativi e predicativi. Compiti: esercizi a p. 203 (n. 159-162 e 164-166) e a p. 210 (n. 181, 182 e 185-188). Gli esercizi sull'app arriveranno quando avremo le pagine del libro." }
     ]
   },
   {
