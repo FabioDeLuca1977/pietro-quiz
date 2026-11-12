@@ -558,6 +558,22 @@ window.REVIEW = [
     "color": "#7c3aed",
     "items": [
       {
+        "id": "en-pdf-1",
+        "topic": "Da stampare",
+        "title": "Schede di esercizi (13 argomenti)",
+        "pdf": "stampa/inglese-schede-esercizi.pdf",
+        "pdfPages": 22,
+        "pages": "Crocette, frasi da scrivere, tabelle, riordina"
+      },
+      {
+        "id": "en-pdf-2",
+        "topic": "Da stampare",
+        "title": "Soluzioni delle schede",
+        "pdf": "stampa/inglese-schede-soluzioni.pdf",
+        "pdfPages": 6,
+        "pages": "Per correggere"
+      },
+      {
         "id": "en-l1",
         "topic": "Ripasso generale di grammatica",
         "title": "To be e have got",
