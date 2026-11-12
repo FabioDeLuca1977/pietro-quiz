@@ -13,8 +13,8 @@ window.VERIFICHE = [
     subject: "matematica",
     title:   "Interrogazione di geometria",
     what:    "Assiomi e criteri di congruenza",
-    when:    "giovedì 12 novembre",
-    date:    "2026-11-12",
+    when:    "venerdì 13 novembre, ore 10",
+    date:    "2026-11-13",
     steps: [
       { k: "1 · Capisci",   d: "Le spiegazioni con i disegni e le animazioni",
         items: ["cri-1", "cri-4", "ass-1", "ass-4"] },
@@ -27,9 +27,10 @@ window.VERIFICHE = [
   {
     id:      "en-verifica",
     subject: "inglese",
-    title:   "Verifica di inglese",
-    what:    "Grammatica: to be, have got, plurali, possessivi, present simple…",
-    when:    "data da confermare",
+    title:   "Reading comprehension test",
+    what:    "Test di comprensione del testo (prof Grossi). Ripasso di grammatica utile per capire il testo",
+    when:    "venerdì 13 novembre, ore 11",
+    date:    "2026-11-13",
     steps: [
       { k: "1 · Ripassa", d: "Le lezioni a slide, una per argomento",
         items: ["en-l1", "en-l2", "en-l3", "en-l4"] },
