@@ -25,6 +25,23 @@ window.VERIFICHE = [
     ]
   },
   {
+    id:      "en-verifica",
+    subject: "inglese",
+    title:   "Verifica di inglese",
+    what:    "Grammatica: to be, have got, plurali, possessivi, present simple…",
+    when:    "data da confermare",
+    steps: [
+      { k: "1 · Ripassa", d: "Le lezioni a slide, una per argomento",
+        items: ["en-l1", "en-l2", "en-l3", "en-l4"] },
+      { k: "2 · Esercitati", d: "Un test per argomento, poi la verifica mista con domande sempre nuove",
+        tests: ["en-be-have", "en-plurali", "en-possessivi", "en-present-simple", "en-avverbi", "en-continuous", "en-verifica"] },
+      { k: "3 · Sul foglio", d: "Le schede da stampare e le soluzioni per correggerle",
+        items: ["en-pdf-1", "en-pdf-2"] },
+      { k: "Se servono: gli argomenti delle mappe", d: "Quantità, passato, futuro, comparativi, modali, present perfect, passivo",
+        items: ["en-l5", "en-l6", "en-l7", "en-l8", "en-l9", "en-l10", "en-l11"] }
+    ]
+  },
+  {
     id:      "sto-geo",
     subject: "storia",
     title:   "Verifica di geostoria",
