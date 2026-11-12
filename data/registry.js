@@ -281,7 +281,64 @@ window.QUIZ_REGISTRY = [
     subject:     "inglese",
     subjectIcon: "🇬🇧",
     subjectColor:"#7c3aed",
-    tests: []
+    tests: [
+      {
+        id:            "en-be-have",
+        title:         "To be e have got",
+        description:   "Forme, domande, risposte brevi e i tre significati di 's",
+        icon:          "🔤",
+        questionCount: 24,
+        enabled:       true
+      },
+      {
+        id:            "en-plurali",
+        title:         "Plurali, this / these, a / an",
+        description:   "Plurali regolari e irregolari, frasi al plurale, articoli",
+        icon:          "📚",
+        questionCount: 23,
+        enabled:       true
+      },
+      {
+        id:            "en-possessivi",
+        title:         "Possessivi e genitivo sassone",
+        description:   "my / his / her…, 's oppure ', whose",
+        icon:          "🔑",
+        questionCount: 22,
+        enabled:       true
+      },
+      {
+        id:            "en-present-simple",
+        title:         "Present simple",
+        description:   "La -s della 3ª persona, don't / doesn't, domande e question words",
+        icon:          "⏰",
+        questionCount: 26,
+        enabled:       true
+      },
+      {
+        id:            "en-avverbi",
+        title:         "Avverbi di frequenza e on / in / at",
+        description:   "always, never…, dove vanno nella frase, once / twice, on / in / at",
+        icon:          "📅",
+        questionCount: 24,
+        enabled:       true
+      },
+      {
+        id:            "en-continuous",
+        title:         "Present continuous e imperativo",
+        description:   "to be + -ing, simple o continuous, love + -ing, gli ordini",
+        icon:          "🎬",
+        questionCount: 19,
+        enabled:       true
+      },
+      {
+        id:            "en-verifica",
+        title:         "Verifica mista di inglese",
+        description:   "Ogni volta 24 domande nuove da tutti gli argomenti",
+        icon:          "🏁",
+        questionCount: 24,
+        enabled:       true
+      }
+    ]
   },
   // ── SPAGNOLO ─────────────────────────────
   {

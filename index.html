@@ -23,6 +23,8 @@
 <script src="data/registry.js"></script>
 <script src="data/ripasso.js"></script>
 <script src="data/verifiche.js"></script>
+<script src="data/inglese/lezioni.js"></script>
+<script src="data/inglese/esercizi.js"></script>
 
 <!-- STORIA -->
 <script src="data/storia/civilta-mesopotamiche.js"></script>
@@ -1594,7 +1596,7 @@ function renderQ() {
          ${isFracQ(q) ? '<div class="num-prev" id="num-prev"></div>' : ''}
          <div class="num-hint">${isFracQ(q)
            ? 'Scrivi la frazione con la barra, per esempio 13/12 oppure -5/12. Un numero intero puoi scriverlo così com’è, per esempio -32.'
-           : isTextQ(q) ? 'Scrivi la parola o il termine del libro. Maiuscole e accenti non contano.'
+           : isTextQ(q) ? (q.hint || 'Scrivi la parola o il termine del libro. Maiuscole e accenti non contano.')
            : q.sci ? 'Scrivi in notazione scientifica, per esempio 2,5x10^-4.' + (q.sig ? ' Attenzione alle cifre significative.' : '')
            : q.plain ? 'Scrivi il numero per esteso, senza potenze di 10. Usa la virgola per i decimali.'
            : 'Usa la virgola per i decimali. Per le potenze di 10 scrivi per esempio 2,5x10^-4 oppure 2,5e-4.' + (q.sig ? ' Attenzione alle cifre significative.' : '')}</div>
@@ -2130,7 +2132,7 @@ function numText(q) {
 }
 // Risposta a parole (type:"text"): vale se coincide con una voce di «accept».
 function normText(s) {
-  return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  return String(s || '').replace(/[’‘`´]/g, "'").toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g, c => SUP[c]).replace(/[.,;:!?«»"']/g, ' ').replace(/\s+/g, ' ').trim();
 }
 function checkText(q, raw) { const t = normText(raw); return q.accept.some(a => normText(a) === t); }

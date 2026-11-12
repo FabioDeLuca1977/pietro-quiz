@@ -551,5 +551,44 @@ window.REVIEW = [
         "pages": "Modulo A1"
       }
     ]
+  },
+  {
+    "subject": "inglese",
+    "icon": "🇬🇧",
+    "color": "#7c3aed",
+    "items": [
+      {
+        "id": "en-l1",
+        "topic": "Ripasso generale di grammatica",
+        "title": "To be e have got",
+        "lesson": "en-be-have",
+        "pages": "Forme, domande, risposte brevi, 's",
+        "test": "en-be-have"
+      },
+      {
+        "id": "en-l2",
+        "topic": "Ripasso generale di grammatica",
+        "title": "Plurali, articoli e possessivi",
+        "lesson": "en-nomi",
+        "pages": "Plurali, a / an, my / his / her, genitivo sassone",
+        "test": "en-plurali"
+      },
+      {
+        "id": "en-l3",
+        "topic": "Ripasso generale di grammatica",
+        "title": "Present simple e avverbi di frequenza",
+        "lesson": "en-present-simple",
+        "pages": "-s, don't / doesn't, domande, always / never, on / in / at",
+        "test": "en-present-simple"
+      },
+      {
+        "id": "en-l4",
+        "topic": "Ripasso generale di grammatica",
+        "title": "Present continuous e imperativo",
+        "lesson": "en-continuous",
+        "pages": "to be + -ing, love + -ing, Don't…!",
+        "test": "en-continuous"
+      }
+    ]
   }
 ];
