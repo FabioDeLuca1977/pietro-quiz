@@ -588,6 +588,62 @@ window.REVIEW = [
         "lesson": "en-continuous",
         "pages": "to be + -ing, love + -ing, Don't…!",
         "test": "en-continuous"
+      },
+      {
+        "id": "en-l5",
+        "topic": "Dalle mappe per ripassare (pp. 108-118)",
+        "title": "Pronomi, quantità e luoghi",
+        "lesson": "en-quantita",
+        "pages": "me / him, mine, some / any, there is, much / many, in / on / under",
+        "test": "en-quantita"
+      },
+      {
+        "id": "en-l6",
+        "topic": "Dalle mappe per ripassare (pp. 108-118)",
+        "title": "Il passato",
+        "lesson": "en-passato",
+        "pages": "was / were, -ed, irregolari, didn't / did, past continuous",
+        "test": "en-passato"
+      },
+      {
+        "id": "en-l7",
+        "topic": "Dalle mappe per ripassare (pp. 108-118)",
+        "title": "Il futuro",
+        "lesson": "en-futuro",
+        "pages": "present continuous, going to, will",
+        "test": "en-futuro"
+      },
+      {
+        "id": "en-l8",
+        "topic": "Dalle mappe per ripassare (pp. 108-118)",
+        "title": "Comparativi e superlativi",
+        "lesson": "en-confronti",
+        "pages": "-er, more, as … as, the -est, the most",
+        "test": "en-confronti"
+      },
+      {
+        "id": "en-l9",
+        "topic": "Dalle mappe per ripassare (pp. 108-118)",
+        "title": "I verbi modali",
+        "lesson": "en-modali",
+        "pages": "can, could, must, have to, should, may, shall",
+        "test": "en-modali"
+      },
+      {
+        "id": "en-l10",
+        "topic": "Dalle mappe per ripassare (pp. 108-118)",
+        "title": "Present perfect",
+        "lesson": "en-perfect",
+        "pages": "have + participio, just, already, yet, ever",
+        "test": "en-perfect"
+      },
+      {
+        "id": "en-l11",
+        "topic": "Dalle mappe per ripassare (pp. 108-118)",
+        "title": "Passivo, ipotetico, indiretto",
+        "lesson": "en-passivo",
+        "pages": "is made, if…, say / tell",
+        "test": "en-passivo"
       }
     ]
   }

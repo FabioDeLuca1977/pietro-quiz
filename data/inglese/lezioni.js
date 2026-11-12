@@ -8,9 +8,10 @@
 
 window.LESSONS = window.LESSONS || {};
 
-// riga di tabella: a sinistra la forma, a destra la traduzione o la forma contratta
+// riga di tabella: a sinistra la forma, a destra la traduzione o la forma contratta (usata anche da lezioni-mappe.js)
 const ENR = rows => `<div class="ls-calc">${rows.map(([a, b]) =>
   `<div><span style="color:#fff;font-size:.95rem;font-weight:700">${a}</span><b style="white-space:normal;text-align:right;font-size:.92rem;color:#ffd23f">${b}</b></div>`).join('')}</div>`;
+window.ENR = ENR;
 
 // ── 1. To be e have got ──────────────────────────────────────────
 window.LESSONS["en-be-have"] = {

@@ -209,12 +209,14 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
   ]);
 
   // ── 7. Verifica mista: ogni volta domande nuove da tutti i test ─
-  const IDS = ["en-be-have", "en-plurali", "en-possessivi", "en-present-simple", "en-avverbi", "en-continuous"];
+  // gli altri file di inglese aggiungono qui i loro test (data/inglese/esercizi-mappe.js)
+  window.EN_IDS = ["en-be-have", "en-plurali", "en-possessivi", "en-present-simple", "en-avverbi", "en-continuous"];
+  window.EN_HELP = { T, bank };
   const pick = (arr, n) => { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a.slice(0, n); };
-  const mix = { id: "en-verifica", subject: "inglese", title: "Verifica mista di inglese", description: "Ogni volta 24 domande nuove da tutti gli argomenti: crocette e frasi da scrivere", icon: "🏁", version: 1, timePerQuestion: 30 };
+  const mix = { id: "en-verifica", subject: "inglese", title: "Verifica mista di inglese", description: "Ogni volta domande nuove da tutti gli argomenti: crocette e frasi da scrivere", icon: "🏁", version: 1, timePerQuestion: 30 };
   Object.defineProperty(mix, "questions", { enumerable: true, get() {
-    return IDS.flatMap(id => { const qs = window.QUIZ_BANK[id].questions;
-      return [...pick(qs.filter(q => !q.type), 2), ...pick(qs.filter(q => q.type === "text"), 2)]; });
+    return pick(window.EN_IDS, 12).flatMap(id => { const qs = window.QUIZ_BANK[id].questions;   // 12 argomenti a caso, 2 domande per argomento
+      return [...pick(qs.filter(q => !q.type), 1), ...pick(qs.filter(q => q.type === "text"), 1)]; });
   } });
   window.QUIZ_BANK["en-verifica"] = mix;
 })();

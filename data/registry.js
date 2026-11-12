@@ -331,9 +331,65 @@ window.QUIZ_REGISTRY = [
         enabled:       true
       },
       {
+        id:            "en-quantita",
+        title:         "Pronomi, quantità e luoghi",
+        description:   "me / him / them, mine / yours, some / any, there is / are, much / many, in / on / under…",
+        icon:          "🧺",
+        questionCount: 28,
+        enabled:       true
+      },
+      {
+        id:            "en-passato",
+        title:         "Il passato",
+        description:   "was / were, -ed, irregolari, didn't / did, past continuous",
+        icon:          "⏪",
+        questionCount: 20,
+        enabled:       true
+      },
+      {
+        id:            "en-futuro",
+        title:         "Il futuro",
+        description:   "present continuous, be going to, will / won't",
+        icon:          "🔮",
+        questionCount: 12,
+        enabled:       true
+      },
+      {
+        id:            "en-confronti",
+        title:         "Comparativi e superlativi",
+        description:   "-er / more, less, as … as, the -est / the most, irregolari",
+        icon:          "📏",
+        questionCount: 16,
+        enabled:       true
+      },
+      {
+        id:            "en-modali",
+        title:         "Verbi modali",
+        description:   "can, could, must, have to, should, may / might, shall",
+        icon:          "🚦",
+        questionCount: 14,
+        enabled:       true
+      },
+      {
+        id:            "en-perfect",
+        title:         "Present perfect",
+        description:   "have / has + participio, just, already, yet, ever, never",
+        icon:          "✅",
+        questionCount: 12,
+        enabled:       true
+      },
+      {
+        id:            "en-passivo",
+        title:         "Passivo, ipotetico, indiretto",
+        description:   "is made / was built, if … (zero e first conditional), say / tell",
+        icon:          "🔁",
+        questionCount: 12,
+        enabled:       true
+      },
+      {
         id:            "en-verifica",
         title:         "Verifica mista di inglese",
-        description:   "Ogni volta 24 domande nuove da tutti gli argomenti",
+        description:   "Ogni volta 24 domande nuove da 12 argomenti a caso",
         icon:          "🏁",
         questionCount: 24,
         enabled:       true
