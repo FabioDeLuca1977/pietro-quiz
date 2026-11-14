@@ -135,7 +135,7 @@ window.LESSONS = window.LESSONS || {};
     slides: [
       { k: "Patto narrativo · p. 74", t: "Un accordo tacito",
         h: `<p class="ls-big">Chi scrive chiede a chi legge di <b>abbandonarsi alla storia</b> e di accettare che sia vera.</p>
-            ${R([["sospensione dell'incredulità", "si accettano anche cose impossibili"], ["atto di fiducia", "di chi legge verso l'autore"]])}
+            ${R([["sospensione dell'incredulità", "si leggono avventure, creature e mondi inventati senza metterne in dubbio l'esistenza"], ["atto di fiducia", "di chi legge verso l'autore"]])}
             <p class="ls-hint">Scorri verso l'alto ↑</p>` },
       { k: "Patto narrativo", t: "Le aspettative",
         h: `<p>Fin dalle prime pagine l'autore dà delle <b>coordinate</b>, che creano le <b>aspettative</b> di chi legge (l'incipit di Pinocchio: «C'era una volta…»).</p>
