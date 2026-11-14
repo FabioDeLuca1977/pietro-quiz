@@ -5,6 +5,77 @@
 // ============================================================
 window.REVIEW = [
   {
+    "subject": "italiano",
+    "icon": "✍️",
+    "color": "#d97706",
+    "items": [
+      {
+        "id": "ant-pdf-2",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Sintesi in 2 pagine",
+        "pdf": "stampa/antologia-sintesi.pdf",
+        "pdfPages": 2,
+        "pages": "Tutto l'essenziale, schematizzato"
+      },
+      {
+        "id": "ant-pdf-1",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Riassunto completo (da stampare)",
+        "pdf": "stampa/antologia-riassunto.pdf",
+        "pdfPages": 7,
+        "pages": "Tutte le pagine assegnate, con schemi e tabelle"
+      },
+      {
+        "id": "ant-l1",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Il modello narrativo",
+        "lesson": "ant-modello",
+        "pages": "pp. 4-9 · 5 momenti, fabula e intreccio",
+        "test": "ant-modello"
+      },
+      {
+        "id": "ant-l2",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Le sequenze e la durata",
+        "lesson": "ant-sequenze",
+        "pages": "pp. 22-27 e 37",
+        "test": "ant-sequenze"
+      },
+      {
+        "id": "ant-l3",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Lo spazio e i personaggi",
+        "lesson": "ant-spazio-personaggi",
+        "pages": "pp. 50-51 e 58-60",
+        "test": "ant-spazio-personaggi"
+      },
+      {
+        "id": "ant-l4",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Voce narrante e focalizzazione",
+        "lesson": "ant-voce",
+        "pages": "pp. 74-77 e 80-82",
+        "test": "ant-voce"
+      },
+      {
+        "id": "ant-l5",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Pensieri e parole dei personaggi",
+        "lesson": "ant-parole",
+        "pages": "pp. 90-93",
+        "test": "ant-parole"
+      },
+      {
+        "id": "ant-l6",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Gli stili narrativi",
+        "lesson": "ant-stili",
+        "pages": "pp. 100-104",
+        "test": "ant-stili"
+      }
+    ]
+  },
+  {
     "subject": "storia",
     "icon": "🏛️",
     "color": "#dc2626",

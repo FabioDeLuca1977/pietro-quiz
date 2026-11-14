@@ -274,7 +274,64 @@ window.QUIZ_REGISTRY = [
     subject:     "italiano",
     subjectIcon: "✍️",
     subjectColor:"#d97706",
-    tests: []
+    tests: [
+      {
+        id:            "ant-verifica",
+        title:         "Interrogazione di antologia: prova mista",
+        description:   "Ogni volta domande nuove da tutti gli argomenti",
+        icon:          "🏁",
+        questionCount: 18,
+        enabled:       true
+      },
+      {
+        id:            "ant-modello",
+        title:         "Il modello narrativo",
+        description:   "I 5 momenti, Propp, fabula e intreccio",
+        icon:          "📖",
+        questionCount: 16,
+        enabled:       true
+      },
+      {
+        id:            "ant-sequenze",
+        title:         "Le sequenze e la durata",
+        description:   "Tipi di sequenza, marcatori, ritmo, scena, sommario, pausa, ellissi",
+        icon:          "🧱",
+        questionCount: 14,
+        enabled:       true
+      },
+      {
+        id:            "ant-spazio-personaggi",
+        title:         "Lo spazio e i personaggi",
+        description:   "Funzioni dello spazio, coppie oppositive, tipi di ritratto",
+        icon:          "🏠",
+        questionCount: 14,
+        enabled:       true
+      },
+      {
+        id:            "ant-voce",
+        title:         "Voce narrante e focalizzazione",
+        description:   "Patto narrativo, voce esterna e interna, gradi, focalizzazione",
+        icon:          "🎙️",
+        questionCount: 15,
+        enabled:       true
+      },
+      {
+        id:            "ant-parole",
+        title:         "Pensieri e parole dei personaggi",
+        description:   "Discorso diretto, indiretto, raccontato, monologo, flusso di coscienza",
+        icon:          "💬",
+        questionCount: 13,
+        enabled:       true
+      },
+      {
+        id:            "ant-stili",
+        title:         "Gli stili narrativi",
+        description:   "Registro, lessico, paratassi e ipotassi, figure retoriche",
+        icon:          "✒️",
+        questionCount: 14,
+        enabled:       true
+      }
+    ]
   },
   // ── INGLESE ─────────────────────────────
   {

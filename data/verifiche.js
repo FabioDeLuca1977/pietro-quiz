@@ -45,6 +45,23 @@ window.VERIFICHE = [
     ]
   },
   {
+    id:      "ita-antologia",
+    subject: "italiano",
+    title:   "Interrogazione di antologia",
+    what:    "Il testo narrativo (prof Remoli)",
+    when:    "mercoledì 18 novembre",
+    date:    "2026-11-18",
+    steps: [
+      { k: "1 · Leggi la sintesi", d: "Due pagine con tutto l'essenziale; se serve, il riassunto completo",
+        items: ["ant-pdf-2", "ant-pdf-1"] },
+      { k: "2 · Studia a slide", d: "Un argomento per lezione, con le definizioni del libro",
+        items: ["ant-l1", "ant-l2", "ant-l3", "ant-l4", "ant-l5", "ant-l6"] },
+      { k: "3 · Verificati", d: "Un test per argomento, poi la prova mista con domande sempre nuove",
+        tests: ["ant-modello", "ant-sequenze", "ant-spazio-personaggi", "ant-voce", "ant-parole", "ant-stili", "ant-verifica"] },
+      { k: "Sul libro", d: "Ripassa anche i brani letti: p. 27, 61, 69, 84, 96, 113 e gli esercizi assegnati. In classe: «Una barca nel bosco» e «Il viaggiatore dalla voce profonda». Per lo stesso giorno, epica p. 95-96." }
+    ]
+  },
+  {
     id:      "ita-verbi",
     subject: "italiano",
     title:   "Verifica di grammatica",
