@@ -58,7 +58,7 @@ window.VERIFICHE = [
         items: ["ant-l1", "ant-l2", "ant-l3", "ant-l4", "ant-l5", "ant-l6"] },
       { k: "3 · Verificati", d: "Un test per argomento, poi la prova mista con domande sempre nuove",
         tests: ["ant-modello", "ant-sequenze", "ant-spazio-personaggi", "ant-voce", "ant-parole", "ant-stili", "ant-verifica"] },
-      { k: "Sul libro", d: "Ripassa anche i brani letti: p. 27, 61, 69, 84, 96, 113 e gli esercizi assegnati. In classe: «Una barca nel bosco» e «Il viaggiatore dalla voce profonda». Per lo stesso giorno, epica p. 95-96." }
+      { k: "Sul libro", d: "Ripassa i brani assegnati (p. 61, 69, 84, 96, 113) e gli esercizi di p. 12, 31, 72 e 118. In classe: «Una barca nel bosco» e «Il viaggiatore dalla voce profonda». Per lo stesso giorno, epica p. 95-96." }
     ]
   },
   {

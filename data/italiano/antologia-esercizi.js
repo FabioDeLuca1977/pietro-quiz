@@ -142,7 +142,7 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
     { q: "Nella focalizzazione esterna chi narra…", options: ["sa meno dei personaggi e registra solo ciò che si percepisce con i sensi", "sa tutto di tutti", "conosce i pensieri del protagonista", "commenta sempre"], answer: 0,
       explanation: "p. 82." },
     { type: "classify", q: "Che focalizzazione è? (frasi nostre)", categories: ["zero", "interna", "esterna"],
-      items: [{ t: "Anna non lo sapeva, ma quel treno le avrebbe cambiato la vita.", c: 0 }, { t: "Il re pensava alla guerra; la regina, intanto, sognava il mare.", c: 0 },
+      items: [{ t: "Anna non lo sapeva, ma quel treno le avrebbe cambiato la vita.", c: 0 }, { t: "Nessuno in paese poteva immaginarlo, ma quella sera sarebbe tornato.", c: 0 },
               { t: "Pietro sentiva il cuore battere: e se lo avessero scoperto?", c: 1 }, { t: "Anna guardava la stazione e si sentiva sola.", c: 1 },
               { t: "L'uomo entrò, posò il cappello e rimase in silenzio.", c: 2 }, { t: "Si sentì un colpo alla porta. Poi più niente.", c: 2 }],
       explanation: "Zero: conosce il futuro o i pensieri di più personaggi. Interna: i pensieri di uno solo. Esterna: solo ciò che si vede e si sente." },
