@@ -10,6 +10,14 @@ window.REVIEW = [
     "color": "#d97706",
     "items": [
       {
+        "id": "ant-pdf-3",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Spiegato semplice (1 pagina)",
+        "pdf": "stampa/antologia-semplice.pdf",
+        "pdfPages": 1,
+        "pages": "I 10 argomenti con parole semplici ed esempi"
+      },
+      {
         "id": "ant-pdf-2",
         "topic": "Antologia · il testo narrativo",
         "title": "Sintesi in 2 pagine",

@@ -52,8 +52,8 @@ window.VERIFICHE = [
     when:    "mercoledì 18 novembre",
     date:    "2026-11-18",
     steps: [
-      { k: "1 · Leggi la sintesi", d: "Due pagine con tutto l'essenziale; se serve, il riassunto completo",
-        items: ["ant-pdf-2", "ant-pdf-1"] },
+      { k: "1 · Leggi la sintesi", d: "Prima la pagina semplice, poi le due pagine; se serve, il riassunto completo",
+        items: ["ant-pdf-3", "ant-pdf-2", "ant-pdf-1"] },
       { k: "2 · Studia a slide", d: "Un argomento per lezione, con le definizioni del libro",
         items: ["ant-l1", "ant-l2", "ant-l3", "ant-l4", "ant-l5", "ant-l6"] },
       { k: "3 · Verificati", d: "Un test per argomento, poi la prova mista con domande sempre nuove",
