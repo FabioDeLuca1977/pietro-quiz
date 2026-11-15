@@ -53,7 +53,7 @@ window.LESSONS = window.LESSONS || {};
       { k: "4 · Le sequenze (pp. 22-27)", t: "I pezzi del testo",
         h: `<p class="ls-big">Una <b>sequenza</b> è un pezzo di testo completo, che parla di una cosa sola.</p>
             <p>Piccole = <b>micro</b>; grandi blocchi = <b>macro</b>.</p>
-            <div class="ls-why"><b>Marcatori</b>: capisci che inizia una nuova sequenza quando cambia il tempo, il luogo, l'argomento, il tipo di sequenza o il tempo dei verbi (da imperfetto a passato remoto), o arrivano nuovi personaggi.</div>` },
+            <div class="ls-why"><b>Marcatori</b>: capisci che inizia una nuova sequenza quando cambia il tempo, il luogo, l'argomento, il tipo di sequenza o il tempo dei verbi (dall'imperfetto al passato remoto o al presente), o arrivano nuovi personaggi.</div>` },
       { k: "4 · Le sequenze (pp. 22-27)", t: "I 5 tipi",
         h: `${R([["Narrativa", "succedono fatti → veloce"], ["Dialogica", "i personaggi parlano → veloce"], ["Descrittiva", "luoghi, persone, oggetti → lenta"], ["Espressiva", "emozioni → lenta"], ["Riflessiva", "pensieri, ragionamenti → lenta"]])}
             <p class="ls-note">Le sequenze «pure» sono rare: si dice il tipo che prevale, oppure «sequenza mista».</p>
@@ -86,7 +86,7 @@ window.LESSONS = window.LESSONS || {};
 
       // 9 parole e pensieri
       { k: "9 · Parole e pensieri (pp. 90-93)", t: "Come parlano i personaggi",
-        h: `${R([["Diretto", "le parole esatte, tra virgolette"], ["Indiretto", "riferite con «che»"], ["Raccontato", "chi narra riassume"]])}
+        h: `${R([["Diretto", "le parole esatte, tra virgolette"], ["Indiretto", "riferite da chi narra, spesso con «che»"], ["Raccontato", "chi narra riassume"]])}
             ${ES("Disse: «Arrivo!» → diretto · Disse che arrivava → indiretto · Parlarono a lungo → raccontato")}
             <div class="ls-why"><b>Legato</b> = c'è un verbo come «disse», «pensò». <b>Libero</b> = non c'è.</div>` },
       { k: "9 · Parole e pensieri (pp. 90-93)", t: "Dentro la testa",
