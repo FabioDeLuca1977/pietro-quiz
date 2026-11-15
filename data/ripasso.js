@@ -42,6 +42,14 @@ window.REVIEW = [
         "pages": "Tutte le pagine assegnate, con schemi e tabelle"
       },
       {
+        "id": "ant-l0",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Ripasso spiegato semplice (tutti gli argomenti)",
+        "lesson": "ant-semplice",
+        "pages": "pp. 4-104",
+        "test": "ant-verifica"
+      },
+      {
         "id": "ant-l1",
         "topic": "Antologia · il testo narrativo",
         "title": "Il modello narrativo",

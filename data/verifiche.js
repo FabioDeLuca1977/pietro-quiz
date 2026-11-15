@@ -55,7 +55,7 @@ window.VERIFICHE = [
       { k: "1 · Leggi la sintesi", d: "La sintesi e il riassunto, anche nella versione spiegata semplice",
         items: ["ant-pdf-3", "ant-pdf-4", "ant-pdf-2", "ant-pdf-1"] },
       { k: "2 · Studia a slide", d: "Un argomento per lezione, con le definizioni del libro",
-        items: ["ant-l1", "ant-l2", "ant-l3", "ant-l4", "ant-l5", "ant-l6"] },
+        items: ["ant-l0", "ant-l1", "ant-l2", "ant-l3", "ant-l4", "ant-l5", "ant-l6"] },
       { k: "3 · Verificati", d: "Un test per argomento, poi la prova mista con domande sempre nuove",
         tests: ["ant-modello", "ant-sequenze", "ant-spazio-personaggi", "ant-voce", "ant-parole", "ant-stili", "ant-verifica"] },
       { k: "Sul libro", d: "Ripassa i brani assegnati (p. 61, 69, 84, 96, 113) e gli esercizi di p. 12, 31, 72 e 118. In classe: «Una barca nel bosco» e «Il viaggiatore dalla voce profonda». Per lo stesso giorno, epica p. 95-96." }
