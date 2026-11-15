@@ -12,10 +12,18 @@ window.REVIEW = [
       {
         "id": "ant-pdf-3",
         "topic": "Antologia · il testo narrativo",
-        "title": "Spiegato semplice (1 pagina)",
+        "title": "Sintesi spiegata semplice (2 pagine)",
         "pdf": "stampa/antologia-semplice.pdf",
-        "pdfPages": 1,
-        "pages": "I 10 argomenti con parole semplici ed esempi"
+        "pdfPages": 2,
+        "pages": "La sintesi con parole più semplici ed esempi"
+      },
+      {
+        "id": "ant-pdf-4",
+        "topic": "Antologia · il testo narrativo",
+        "title": "Riassunto spiegato semplice (8 pagine)",
+        "pdf": "stampa/antologia-riassunto-semplice.pdf",
+        "pdfPages": 8,
+        "pages": "Tutto il riassunto con parole più semplici"
       },
       {
         "id": "ant-pdf-2",
