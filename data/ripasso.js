@@ -9,7 +9,7 @@ window.REVIEW = [
     "icon": "🧪",
     "color": "#0891b2",
     "items": [
-      { "id": "chim-pdf-1", "topic": "Chimica · interrogazione", "title": "Chimica a piccoli passi + esercizi (5 pagine)", "pdf": "stampa/chimica-sintesi-esercizi.pdf", "pdfPages": 5, "pages": "11 blocchi brevi con domanda, poi 16 esercizi e soluzioni" },
+      { "id": "chim-pdf-1", "topic": "Chimica · interrogazione", "title": "Chimica a piccoli passi + esercizi (7 pagine)", "pdf": "stampa/chimica-sintesi-esercizi.pdf", "pdfPages": 7, "pages": "11 blocchi brevi con domanda, poi 16 esercizi e soluzioni" },
       { "id": "chim-pdf-2", "topic": "Chimica · interrogazione", "title": "Riassunto completo (5 pagine)", "pdf": "stampa/chimica-riassunto.pdf", "pdfPages": 5, "pages": "Cap. 2 pp. 40-63 e cap. 3 pp. 76-88, con gli esercizi 24 e 25" },
       { "id": "chim-l1", "topic": "Chimica · interrogazione", "title": "Stati fisici, sostanze pure e miscele", "lesson": "chim-materia", "pages": "pp. 40-54", "test": "chim-fisiche" },
       { "id": "chim-l2", "topic": "Chimica · interrogazione", "title": "Passaggi di stato e metodi di separazione", "lesson": "chim-separazione", "pages": "pp. 55-63", "test": "chim-fisiche" },
