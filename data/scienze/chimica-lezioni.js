@@ -2,7 +2,7 @@
 //  data/scienze/chimica-lezioni.js  (v1)
 //  Chimica, interrogazione del modulo (prof Flaccavento): ripasso a slide.
 //  Cap. 2 pp. 40-61 e cap. 3 pp. 77-88, dalle foto del libro (20/11/2026).
-//  Mancano ancora le pp. 50-52, 62-63 e 76.
+//  Mancano ancora le pp. 62-63 e 76.
 // ============================================================
 
 window.LESSONS = window.LESSONS || {};

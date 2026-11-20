@@ -41,6 +41,8 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
     { q: "Per separare il sale dall'acqua di una soluzione si usa…", options: ["la distillazione", "la filtrazione", "la calamita", "la centrifugazione"], answer: 0, explanation: "p. 60: il sale rimane nel pallone." },
     { q: "Alcol (78 °C) e acqua (100 °C) si separano con…", options: ["la distillazione frazionata", "la filtrazione", "la centrifugazione", "l'estrazione con il tè"], answer: 0, explanation: "p. 60: punti di ebollizione vicini." },
     { q: "Preparare una tazza di tè è un esempio di…", options: ["estrazione con solvente", "distillazione", "centrifugazione", "sublimazione"], answer: 0, explanation: "p. 61." },
+    { q: "Nella depurazione delle acque reflue, a che cosa serve la grigliatura?", options: ["A trattenere materiali grossi come foglie, stracci e pezzi di legno", "A eliminare oli e grassi", "A uccidere i batteri", "A far bollire l'acqua"], answer: 0, explanation: "p. 50: poi vengono dissabbiatura, deoleazione e decantazione." },
+    { q: "Nella vasca di aerazione di un depuratore, le sostanze organiche…", options: ["vengono attaccate dai batteri e trasformate in diossido di carbonio e acqua", "vengono filtrate con la sabbia", "evaporano", "si sciolgono nel cloro"], answer: 0, explanation: "p. 51: restano i fanghi." },
     { q: "Lo zucchero greggio diventa zucchero bianco con la…", options: ["cristallizzazione", "filtrazione", "centrifugazione", "condensazione"], answer: 0, explanation: "p. 61." }
   ]);
 

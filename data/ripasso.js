@@ -10,7 +10,7 @@ window.REVIEW = [
     "color": "#0891b2",
     "items": [
       { "id": "chim-pdf-1", "topic": "Chimica · interrogazione", "title": "Chimica a piccoli passi + esercizi (5 pagine)", "pdf": "stampa/chimica-sintesi-esercizi.pdf", "pdfPages": 5, "pages": "11 blocchi brevi con domanda, poi 16 esercizi e soluzioni" },
-      { "id": "chim-pdf-2", "topic": "Chimica · interrogazione", "title": "Riassunto completo (5 pagine)", "pdf": "stampa/chimica-riassunto.pdf", "pdfPages": 5, "pages": "Cap. 2 pp. 40-61 e cap. 3 pp. 77-88, con gli esercizi 24 e 25" },
+      { "id": "chim-pdf-2", "topic": "Chimica · interrogazione", "title": "Riassunto completo (5 pagine)", "pdf": "stampa/chimica-riassunto.pdf", "pdfPages": 5, "pages": "Cap. 2 pp. 40-61 (con la depurazione delle acque) e cap. 3 pp. 77-88, con gli esercizi 24 e 25" },
       { "id": "chim-l1", "topic": "Chimica · interrogazione", "title": "Stati fisici, sostanze pure e miscele", "lesson": "chim-materia", "pages": "pp. 40-54", "test": "chim-fisiche" },
       { "id": "chim-l2", "topic": "Chimica · interrogazione", "title": "Passaggi di stato e metodi di separazione", "lesson": "chim-separazione", "pages": "pp. 55-61", "test": "chim-fisiche" },
       { "id": "chim-l3", "topic": "Chimica · interrogazione", "title": "Elementi, composti e teoria atomica", "lesson": "chim-atomi", "pages": "pp. 77-84", "test": "chim-chimiche" },
