@@ -12,7 +12,7 @@ window.REVIEW = [
       { "id": "chim-v1", "topic": "Chimica · interrogazione", "title": "Ripasso lampo (video, 45 secondi)", "file": "video/scienze/chimica-ripasso-lampo.mp4", "dur": 44, "pages": "Tutto in 45 secondi", "test": "chim-verifica" },
       { "id": "chim-html", "topic": "Chimica · interrogazione", "title": "Slide da scorrere (telefono e PC)", "html": "ripasso/chimica-slide.html", "pages": "14 slide grandi, una idea alla volta" },
       { "id": "chim-pdf-1", "topic": "Chimica · interrogazione", "title": "Chimica a piccoli passi + esercizi (7 pagine)", "pdf": "stampa/chimica-sintesi-esercizi.pdf", "pdfPages": 7, "pages": "11 blocchi brevi con domanda, poi 16 esercizi e soluzioni" },
-      { "id": "chim-pdf-2", "topic": "Chimica · interrogazione", "title": "Riassunto completo (5 pagine)", "pdf": "stampa/chimica-riassunto.pdf", "pdfPages": 5, "pages": "Cap. 2 pp. 40-63 e cap. 3 pp. 76-88, con gli esercizi 24 e 25" },
+      { "id": "chim-pdf-2", "topic": "Chimica · interrogazione", "title": "Da studiare: tutto il programma (8 pagine)", "pdf": "stampa/chimica-studio-completo.pdf", "pdfPages": 8, "pages": "Tutto il libro (pp. 40-63, 76-88, 99) a blocchi brevi" },
       { "id": "chim-l1", "topic": "Chimica · interrogazione", "title": "Stati fisici, sostanze pure e miscele", "lesson": "chim-materia", "pages": "pp. 40-54", "test": "chim-fisiche" },
       { "id": "chim-l2", "topic": "Chimica · interrogazione", "title": "Passaggi di stato e metodi di separazione", "lesson": "chim-separazione", "pages": "pp. 55-63", "test": "chim-fisiche" },
       { "id": "chim-l3", "topic": "Chimica · interrogazione", "title": "Elementi, composti e teoria atomica", "lesson": "chim-atomi", "pages": "pp. 76-84", "test": "chim-chimiche" },
