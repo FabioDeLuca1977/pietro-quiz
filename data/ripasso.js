@@ -9,7 +9,7 @@ window.REVIEW = [
     "icon": "🧪",
     "color": "#0891b2",
     "items": [
-      { "id": "chim-v1", "topic": "Chimica · interrogazione", "title": "Ripasso lampo (video, 45 secondi)", "file": "video/scienze/chimica-ripasso-lampo.mp4", "dur": 44, "pages": "Tutto in 45 secondi, con la voce di papà", "test": "chim-verifica" },
+      { "id": "chim-v1", "topic": "Chimica · interrogazione", "title": "Ripasso lampo (video, 45 secondi)", "file": "video/scienze/chimica-ripasso-lampo.mp4", "dur": 44, "pages": "Tutto in 45 secondi", "test": "chim-verifica" },
       { "id": "chim-html", "topic": "Chimica · interrogazione", "title": "Slide da scorrere (telefono e PC)", "html": "ripasso/chimica-slide.html", "pages": "14 slide grandi, una idea alla volta" },
       { "id": "chim-pdf-1", "topic": "Chimica · interrogazione", "title": "Chimica a piccoli passi + esercizi (7 pagine)", "pdf": "stampa/chimica-sintesi-esercizi.pdf", "pdfPages": 7, "pages": "11 blocchi brevi con domanda, poi 16 esercizi e soluzioni" },
       { "id": "chim-pdf-2", "topic": "Chimica · interrogazione", "title": "Riassunto completo (5 pagine)", "pdf": "stampa/chimica-riassunto.pdf", "pdfPages": 5, "pages": "Cap. 2 pp. 40-63 e cap. 3 pp. 76-88, con gli esercizi 24 e 25" },
