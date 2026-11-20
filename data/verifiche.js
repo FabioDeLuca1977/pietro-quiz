@@ -16,7 +16,7 @@ window.VERIFICHE = [
     when:    "venerdì 20 novembre (se non ancora fatta, la prossima lezione)",
     steps: [
       { k: "1 · Leggi la sintesi", d: "Un blocco alla volta, con la domanda per verificarti; poi esercizi e soluzioni",
-        items: ["chim-pdf-1", "chim-pdf-2"] },
+        items: ["chim-v1", "chim-html", "chim-pdf-1", "chim-pdf-2"] },
       { k: "2 · Studia a slide", d: "Quattro lezioni, una per argomento",
         items: ["chim-l1", "chim-l2", "chim-l3", "chim-l4"] },
       { k: "3 · Verificati", d: "Un test per parte, i problemi, poi la prova mista con domande sempre nuove",

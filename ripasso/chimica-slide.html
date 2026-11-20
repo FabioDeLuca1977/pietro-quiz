@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chimica a piccoli passi</title>
+<style>
+:root { --bg:#0f2418; --card:#ffffff; --ink:#1b1b1b; --acc:#2f7d32; --acc2:#7b2d8b; --key:#fff1a8; --q:#e8f1fb; }
+* { box-sizing:border-box; }
+html, body { margin:0; height:100%; background:var(--bg); }
+body { font-family:"Segoe UI", system-ui, Arial, sans-serif; color:var(--ink); }
+#deck { height:100dvh; overflow-y:auto; scroll-snap-type:y mandatory; }
+section { height:100dvh; scroll-snap-align:start; display:flex; align-items:center; justify-content:center; padding:20px 14px 72px; }
+.card { background:var(--card); width:min(100%, 980px); max-height:100%; overflow:auto; border-radius:22px; padding:clamp(18px, 3vw, 44px); border-top:10px solid var(--acc);
+        font-size:clamp(16px, min(1.1vw + 12px, 3.1vh), 30px); line-height:1.42; }
+.c3 .card { border-top-color:var(--acc2); }
+.tag { display:inline-block; font-size:.62em; font-weight:700; color:#fff; background:var(--acc); padding:3px 12px; border-radius:20px; margin-bottom:8px; }
+.c3 .tag { background:var(--acc2); }
+h2 { margin:0 0 .45em; font-size:1.35em; line-height:1.2; }
+ul { margin:.2em 0; padding-left:1.1em; } li { margin:.3em 0; }
+mark { background:var(--key); padding:0 .15em; border-radius:4px; }
+.rem { border-left:6px solid #e0b400; background:#fffbe6; padding:.35em .7em; margin:.5em 0; border-radius:6px; font-weight:700; }
+.q { background:var(--q); border-radius:10px; padding:.4em .7em; margin-top:.6em; }
+.q b { white-space:nowrap; }
+.es { color:#1f5f8b; }
+.f { font-family:Consolas, monospace; background:#f1f1f1; padding:0 .25em; border-radius:4px; }
+table { border-collapse:collapse; width:100%; margin:.3em 0; }
+td { border:2px solid #e3e9e3; padding:.3em .55em; vertical-align:top; }
+td:first-child { font-weight:700; width:40%; }
+.big { font-size:1.5em; text-align:center; margin:.3em 0; }
+.hint { text-align:center; color:#666; font-size:.8em; }
+#bar { position:fixed; top:0; left:0; height:6px; background:#ffd23f; width:0; z-index:5; transition:width .2s; }
+#nav { position:fixed; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:10px; align-items:center; z-index:5; }
+#nav button { font-size:20px; width:48px; height:48px; border-radius:50%; border:0; background:#ffd23f; cursor:pointer; }
+#num { color:#fff; font-size:16px; min-width:60px; text-align:center; }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="deck">
+
+<section><div class="card">
+  <div class="big">🧪</div>
+  <h2 style="text-align:center">Chimica a piccoli passi</h2>
+  <p style="text-align:center">Separazione · trasformazioni fisiche e chimiche · le leggi</p>
+  <div class="rem">Una slide alla volta. Leggi, poi rispondi alla domanda ✋ senza guardare.</div>
+  <p class="hint">Scorri in giù, usa le frecce ↓ o i pulsanti in basso.<br>Gli esempi in blu con 👉 sono nostri; le pagine sono quelle del libro.</p>
+</div></section>
+
+<section><div class="card"><span class="tag">1 · p. 40-41</span>
+  <h2>Gli stati della materia</h2>
+  <table>
+    <tr><td>🧊 Solido</td><td>forma e volume <b>suoi</b></td></tr>
+    <tr><td>💧 Liquido</td><td>volume suo, forma <b>del recipiente</b></td></tr>
+    <tr><td>💨 Gas</td><td>occupa <b>tutto</b> lo spazio</td></tr>
+  </table>
+  <div class="rem">La materia è fatta di particelle piccolissime che si muovono sempre.</div>
+  <div class="q">✋ <b>Prova a dire:</b> quali sono i tre stati?</div>
+</div></section>
+
+<section><div class="card"><span class="tag">2 · p. 42-45</span>
+  <h2>Sostanza pura o miscela?</h2>
+  <ul>
+    <li><mark>Sostanza pura</mark> = <b>una sola</b> sostanza. <span class="es">👉 Acqua distillata.</span></li>
+    <li><mark>Miscela</mark> = <b>più sostanze</b> mescolate.</li>
+    <li><b>Eterogenea</b>: vedi parti diverse. <span class="es">👉 Latte, granito.</span></li>
+    <li><b>Omogenea</b> = <b>soluzione</b>: tutta uguale. <span class="es">👉 Acqua di mare.</span></li>
+  </ul>
+  <div class="rem">Soluzione = solvente (scioglie) + soluto (sciolto).</div>
+  <div class="q">✋ <b>Prova a dire:</b> il latte è omogeneo o eterogeneo?</div>
+</div></section>
+
+<section><div class="card"><span class="tag">3 · p. 55-56</span>
+  <h2>Trasformazioni fisiche</h2>
+  <div class="rem">Fisica = la sostanza resta la stessa.</div>
+  <table>
+    <tr><td>Fusione</td><td>solido → liquido</td></tr>
+    <tr><td>Solidificazione</td><td>liquido → solido</td></tr>
+    <tr><td>Evaporazione</td><td>liquido → gas</td></tr>
+    <tr><td>Condensazione</td><td>gas → liquido</td></tr>
+    <tr><td>Sublimazione</td><td>solido → gas</td></tr>
+    <tr><td>Brinamento</td><td>gas → solido</td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> da gas a liquido come si chiama?</div>
+</div></section>
+
+<section><div class="card"><span class="tag">4 · p. 57</span>
+  <h2>La sosta termica</h2>
+  <ul>
+    <li>Mentre una sostanza pura <b>fonde</b> o <b>bolle</b>…</li>
+    <li>… la temperatura <mark>resta ferma</mark>.</li>
+    <li>Il calore serve a vincere le forze tra le particelle: <b>calore latente</b>.</li>
+  </ul>
+  <div class="q">✋ <b>Prova a dire:</b> che cosa fa la temperatura mentre il ghiaccio fonde?</div>
+</div></section>
+
+<section><div class="card"><span class="tag">5 · p. 58-63</span>
+  <h2>Separare le miscele</h2>
+  <div class="rem">Si usano metodi fisici.</div>
+  <table>
+    <tr><td>Filtrazione</td><td>il filtro ferma il solido</td></tr>
+    <tr><td>Centrifugazione</td><td>girando, la parte più <b>densa</b> va sul fondo</td></tr>
+    <tr><td>Distillazione</td><td>si fa bollire; il vapore torna liquido e si raccoglie</td></tr>
+    <tr><td>Cristallizzazione</td><td>raffreddando escono i cristalli</td></tr>
+    <tr><td>Estrazione</td><td>un solvente «tira fuori» le sostanze 🍵</td></tr>
+    <tr><td>Cromatografia</td><td>le sostanze corrono a velocità diverse 🌈</td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> come separi il sale dall'acqua?</div>
+</div></section>
+
+<section><div class="card"><span class="tag">5+ · p. 50-51</span>
+  <h2>Pulire l'acqua</h2>
+  <ul>
+    <li>🧱 <b>Grigliatura</b>: una griglia ferma foglie, stracci, legno.</li>
+    <li>⏳ <b>Decantazione</b>: le particelle vanno sul fondo.</li>
+    <li>🦠 Nella vasca di aerazione i <b>batteri</b> trasformano lo sporco.</li>
+    <li>Per l'acqua da bere: <b>sabbia</b>, <b>ozono</b>, <b>carboni attivi</b>, <b>cloro</b>.</li>
+  </ul>
+  <div class="q">✋ <b>Prova a dire:</b> a che cosa serve la grigliatura?</div>
+</div></section>
+
+<section class="c3"><div class="card"><span class="tag">6 · p. 76-77</span>
+  <h2>Trasformazioni chimiche</h2>
+  <div class="rem">Chimica = nasce una sostanza nuova.</div>
+  <p>Lo <b>zucchero</b> scaldato diventa <b>carbonio</b> + <b>acqua</b>: <span class="f">reagenti → prodotti</span></p>
+  <ul>
+    <li>🫧 si forma un <b>gas</b></li>
+    <li>🔥 escono <b>luce e calore</b></li>
+    <li>🔄 cambiano le <b>proprietà</b> (ferro → ruggine)</li>
+  </ul>
+  <div class="q">✋ <b>Prova a dire:</b> il ferro che arrugginisce è fisica o chimica?</div>
+</div></section>
+
+<section class="c3"><div class="card"><span class="tag">7 · p. 77-79</span>
+  <h2>Elementi e composti</h2>
+  <ul>
+    <li><mark>Composto</mark>: si può <b>scomporre</b>. <span class="es">👉 Acqua → idrogeno + ossigeno (elettrolisi).</span></li>
+    <li><mark>Elemento</mark>: <b>non</b> si può scomporre. <span class="es">👉 Ossigeno, carbonio.</span></li>
+    <li>Gli elementi sono <b>118</b>, con un simbolo: O, H, C, Na, Cu.</li>
+  </ul>
+  <div class="q">✋ <b>Prova a dire:</b> l'acqua è un elemento o un composto?</div>
+</div></section>
+
+<section class="c3"><div class="card"><span class="tag">8 · p. 79-83</span>
+  <h2>Atomi, molecole, ioni</h2>
+  <ul>
+    <li><b>Dalton</b> (1803): tutto è fatto di <mark>atomi</mark>; nelle reazioni non nascono e non spariscono.</li>
+    <li><b>Atomo</b>: la particella più piccola di un elemento.</li>
+    <li><b>Molecola</b>: la particella più piccola di un composto. <span class="f">H₂O</span> = 2 H + 1 O.</li>
+    <li><b>Ioni</b>: atomi o gruppi di atomi con carica: + cationi, − anioni.</li>
+  </ul>
+  <div class="q">✋ <b>Prova a dire:</b> quanti atomi di idrogeno in H₂O?</div>
+</div></section>
+
+<section class="c3"><div class="card"><span class="tag">9 · p. 84</span>
+  <h2>Ferro e zolfo</h2>
+  <table>
+    <tr><td>Mescolati</td><td><b>miscela</b>: la calamita prende il ferro 🧲</td></tr>
+    <tr><td>Scaldati</td><td><b>composto</b> (solfuro di ferro): la calamita non lo prende più</td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> perché dopo la calamita non funziona?</div>
+</div></section>
+
+<section class="c3"><div class="card"><span class="tag">10 · p. 85-88</span>
+  <h2>Le 3 leggi</h2>
+  <table>
+    <tr><td>⚖️ Lavoisier</td><td>massa dei reagenti = massa dei prodotti</td></tr>
+    <tr><td>📏 Proust</td><td>un composto ha sempre le stesse proporzioni (acqua: 1 g H ogni 8 g O)</td></tr>
+    <tr><td>✖️ Dalton</td><td>più composti degli stessi elementi → rapporti interi e piccoli (CO, CO₂ → 2 : 1)</td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> che cosa dice Lavoisier?</div>
+</div></section>
+
+<section><div class="card"><span class="tag">11</span>
+  <h2>Le formule dei problemi</h2>
+  <table>
+    <tr><td>Lavoisier</td><td><span class="f">reagenti = prodotti</span></td></tr>
+    <tr><td>% in massa</td><td><span class="f">g soluto ÷ g soluzione × 100</span></td></tr>
+    <tr><td>% in volume</td><td><span class="f">mL soluto ÷ mL soluzione × 100</span></td></tr>
+    <tr><td>% m/V</td><td><span class="f">g soluto ÷ mL soluzione × 100</span></td></tr>
+    <tr><td>Diluizione</td><td><span class="f">C₁ × V₁ = C₂ × V₂</span></td></tr>
+  </table>
+  <div class="rem">Soluzione = soluto + solvente!</div>
+</div></section>
+
+<section><div class="card">
+  <div class="big">💪</div>
+  <h2 style="text-align:center">Fatto!</h2>
+  <p style="text-align:center">Ora torna nell'app e fai la <b>prova mista di chimica</b>.</p>
+</div></section>
+
+</div>
+<div id="nav"><button id="up" aria-label="Slide precedente">↑</button><span id="num"></span><button id="dn" aria-label="Slide successiva">↓</button></div>
+<script>
+const deck=document.getElementById('deck'), S=[...deck.children], bar=document.getElementById('bar'), num=document.getElementById('num');
+const cur=()=>Math.round(deck.scrollTop/deck.clientHeight);
+const go=i=>S[Math.max(0,Math.min(S.length-1,i))].scrollIntoView({behavior:'smooth'});
+const upd=()=>{const i=cur();num.textContent=(i+1)+' / '+S.length;bar.style.width=((i+1)/S.length*100)+'%';};
+deck.addEventListener('scroll',upd); upd();
+document.getElementById('up').onclick=()=>go(cur()-1);
+document.getElementById('dn').onclick=()=>go(cur()+1);
+document.addEventListener('keydown',e=>{ if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(cur()+1);} if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(cur()-1);} });
+</script>
+</body>
+</html>
