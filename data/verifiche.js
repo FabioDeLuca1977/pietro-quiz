@@ -21,7 +21,7 @@ window.VERIFICHE = [
         items: ["chim-l1", "chim-l2", "chim-l3", "chim-l4"] },
       { k: "3 · Verificati", d: "Un test per parte, i problemi, poi la prova mista con domande sempre nuove",
         tests: ["chim-fisiche", "chim-chimiche", "chim-problemi", "chim-verifica", "materia-cap2-problemi"] },
-      { k: "Sul libro", d: "Ripassa p. 40-63 e studia p. 76-88; esercizi p. 99 n. 24 e 25, copiando i testi. Mancano ancora le foto di p. 62-63 e 76." }
+      { k: "Sul libro", d: "Ripassa p. 40-63 e studia p. 76-88; esercizi p. 99 n. 24 e 25, copiando i testi." }
     ]
   },
   {

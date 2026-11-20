@@ -68,8 +68,8 @@ window.QUIZ_REGISTRY = [
     subjectColor:"#0891b2",
     tests: [
       { id: "chim-verifica", title: "Interrogazione di chimica: prova mista", description: "Ogni volta domande nuove da tutti gli argomenti", icon: "🏁", questionCount: 15, enabled: true },
-      { id: "chim-fisiche", title: "Chimica: stati, miscele, passaggi di stato", description: "Cap. 2: sostanze pure, miscele, passaggi di stato, metodi di separazione", icon: "🌡️", questionCount: 22, enabled: true },
-      { id: "chim-chimiche", title: "Chimica: elementi, composti e leggi", description: "Cap. 3: reazioni, elementi e composti, Dalton, atomi, ioni, Lavoisier, Proust", icon: "⚛️", questionCount: 20, enabled: true },
+      { id: "chim-fisiche", title: "Chimica: stati, miscele, passaggi di stato", description: "Cap. 2: sostanze pure, miscele, passaggi di stato, metodi di separazione", icon: "🌡️", questionCount: 25, enabled: true },
+      { id: "chim-chimiche", title: "Chimica: elementi, composti e leggi", description: "Cap. 3: reazioni, elementi e composti, Dalton, atomi, ioni, Lavoisier, Proust", icon: "⚛️", questionCount: 23, enabled: true },
       { id: "chim-problemi", title: "Chimica: problemi", description: "Lavoisier, Proust, percentuale in massa, concentrazioni · risposta da scrivere", icon: "🧮", questionCount: 12, enabled: true },
       {
         id:            "misure-cap1",

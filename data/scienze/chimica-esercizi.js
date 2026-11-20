@@ -43,11 +43,17 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
     { q: "Preparare una tazza di tè è un esempio di…", options: ["estrazione con solvente", "distillazione", "centrifugazione", "sublimazione"], answer: 0, explanation: "p. 61." },
     { q: "Nella depurazione delle acque reflue, a che cosa serve la grigliatura?", options: ["A trattenere materiali grossi come foglie, stracci e pezzi di legno", "A eliminare oli e grassi", "A uccidere i batteri", "A far bollire l'acqua"], answer: 0, explanation: "p. 50: poi vengono dissabbiatura, deoleazione e decantazione." },
     { q: "Nella vasca di aerazione di un depuratore, le sostanze organiche…", options: ["vengono attaccate dai batteri e trasformate in diossido di carbonio e acqua", "vengono filtrate con la sabbia", "evaporano", "si sciolgono nel cloro"], answer: 0, explanation: "p. 51: restano i fanghi." },
+    { q: "Nella cromatografia, l'eluente è…", options: ["la fase mobile che trascina i componenti", "il solido che trattiene i componenti", "il residuo sul filtro", "il vapore della distillazione"], answer: 0, explanation: "p. 62: il solido o la carta è la fase stazionaria." },
+    { q: "Con la cromatografia su carta si separano facilmente…", options: ["i componenti degli inchiostri", "la sabbia dall'acqua", "l'olio dall'acqua del mare", "i metalli pesanti"], answer: 0, explanation: "p. 62: anche gli estratti delle foglie verdi." },
+    { q: "Quale metodo di separazione comporta un passaggio di stato?", options: ["La distillazione", "La filtrazione", "L'estrazione con solvente", "La cromatografia"], answer: 0, explanation: "Fai il punto di p. 63: nella distillazione il liquido diventa vapore e poi di nuovo liquido." },
     { q: "Lo zucchero greggio diventa zucchero bianco con la…", options: ["cristallizzazione", "filtrazione", "centrifugazione", "condensazione"], answer: 0, explanation: "p. 61." }
   ]);
 
   // ── 2. Elementi, composti e leggi (cap. 3) ────────────────────
   bank("chim-chimiche", "Chimica: elementi, composti e leggi", "Cap. 3: reazioni, elementi e composti, Dalton, atomi, ioni, Lavoisier, Proust", "⚛️", [
+    { q: "In una reazione chimica…", options: ["si formano nuove sostanze, diverse da quelle iniziali", "le sostanze restano le stesse", "cambia solo lo stato fisico", "si separano i componenti di una miscela"], answer: 0, explanation: "p. 76." },
+    { q: "Nell'equazione «saccarosio → carbonio + acqua», il saccarosio è…", options: ["il reagente", "un prodotto", "un catalizzatore", "un elemento"], answer: 0, explanation: "p. 76: a sinistra della freccia i reagenti, a destra i prodotti." },
+    { q: "Lo zucchero (saccarosio) scaldato in una provetta…", options: ["si decompone in carbonio e acqua", "fonde e resta zucchero", "sublima", "diventa sale"], answer: 0, explanation: "p. 76: prima ingiallisce, poi diventa una massa nera; sulle pareti si formano goccioline d'acqua." },
     { q: "Quale NON è un indizio di reazione chimica?", options: ["L'evaporazione", "Lo sviluppo di un gas", "La produzione di luce e calore", "Il cambiamento delle proprietà"], answer: 0, explanation: "p. 77: l'evaporazione è un passaggio di stato, cioè una trasformazione fisica." },
     { q: "La ruggine rispetto al ferro…", options: ["ha proprietà diverse: è friabile e non magnetica", "è uguale al ferro", "è più dura e magnetica", "è una miscela di ferro e acqua"], answer: 0, explanation: "p. 77." },
     T("Come si chiama il processo che scompone l'acqua con la corrente elettrica?", ["elettrolisi"], "p. 77: si ottengono idrogeno e ossigeno."),

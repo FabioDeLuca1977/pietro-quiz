@@ -2,7 +2,7 @@
 //  data/scienze/chimica-lezioni.js  (v1)
 //  Chimica, interrogazione del modulo (prof Flaccavento): ripasso a slide.
 //  Cap. 2 pp. 40-61 e cap. 3 pp. 77-88, dalle foto del libro (20/11/2026).
-//  Mancano ancora le pp. 62-63 e 76.
+//  Tutte le pagine assegnate: 40-63, 76-88, 99.
 // ============================================================
 
 window.LESSONS = window.LESSONS || {};
@@ -67,7 +67,10 @@ window.LESSONS = window.LESSONS || {};
       { k: "Separazione (pp. 59-61)", t: "Quale miscela",
         h: `${BOX(["<b>Eterogenee</b>: filtrazione (imbuto e filtro di carta), centrifugazione (il solido va sul fondo della provetta).", "<b>Omogenee</b>: distillazione semplice (sale e acqua) o frazionata (alcol e acqua, con ebollizioni vicine)."])}
             <p class="ls-note">Cristallizzazione: zucchero greggio → zucchero bianco. Estrazione: tè, caffè, essenze degli agrumi.</p>` },
-      END("Chimica: stati, miscele, passaggi di stato", "pp. 55-61")
+      { k: "Cromatografia (pp. 62-63)", t: "Corrono a velocità diverse",
+        h: `<p>Un solido o una carta (<b>fase stazionaria</b>) trattiene i componenti con forza diversa; un liquido, l'<b>eluente</b> (fase mobile), li trascina. Così si separano in <b>bande</b>.</p>
+            ${R([["In colonna", "pigmenti delle foglie verdi"], ["Su carta", "inchiostri; l'eluente sale per capillarità"], ["Gascromatografia", "l'eluente è un gas (elio o azoto)"]])}` },
+      END("Chimica: stati, miscele, passaggi di stato", "pp. 55-63")
     ]
   };
 
@@ -76,9 +79,13 @@ window.LESSONS = window.LESSONS || {};
     title: "Elementi, composti e teoria atomica",
     slides: [
       { k: "Chimica · cap. 3", t: "Le trasformazioni chimiche",
-        h: `<p class="ls-big">Nelle trasformazioni chimiche si formano <b>nuove sostanze</b>.</p>
+        h: `<p class="ls-big">In una <b>reazione chimica</b> si formano una o più <b>nuove sostanze</b>, diverse da quelle iniziali (p. 76).</p>
             <p>Come capire che c'è una reazione (p. 77):</p>
             <ol class="ls-steps"><li>si sviluppa un <b>gas</b></li><li>si producono <b>luce e calore</b></li><li>cambiano le <b>proprietà</b> (ferro → ruggine)</li></ol>` },
+      { k: "Reagenti e prodotti (p. 76)", t: "Lo zucchero scaldato",
+        h: `<p>Il <b>saccarosio</b> scaldato non fonde: si decompone in una massa nera (<b>carbonio</b>) e goccioline di <b>acqua</b>.</p>
+            <div class="ls-res">saccarosio → carbonio + acqua</div>
+            ${R([["Reagenti", "a sinistra: si trasformano"], ["Prodotti", "a destra: si formano"]])}` },
       { k: "Elementi e composti (pp. 77-78)", t: "Si può decomporre?",
         h: `${R([["Composto", "si decompone in sostanze più semplici (acqua, saccarosio)"], ["Elemento", "non si decompone (idrogeno, ossigeno, carbonio)"]])}
             <div class="ls-why"><b>Elettrolisi</b>: con la corrente l'acqua si scompone in idrogeno e ossigeno; l'idrogeno ha volume doppio.</div>` },
