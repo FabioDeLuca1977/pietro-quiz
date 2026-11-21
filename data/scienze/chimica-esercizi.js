@@ -60,7 +60,7 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
     { q: "Nell'elettrolisi dell'acqua, il volume di idrogeno è…", options: ["il doppio di quello dell'ossigeno", "uguale a quello dell'ossigeno", "la metà di quello dell'ossigeno", "zero"], answer: 0, explanation: "p. 77." },
     { q: "Un elemento…", options: ["non può essere decomposto in sostanze più semplici", "si decompone con l'elettrolisi", "è sempre una miscela", "contiene sempre due atomi diversi"], answer: 0, explanation: "p. 78." },
     { type: "classify", q: "Elemento o composto?", categories: ["Elemento", "Composto"],
-      items: [{ t: "ossigeno", c: 0 }, { t: "carbonio", c: 0 }, { t: "azoto (N)", c: 0 }, { t: "acqua", c: 1 }, { t: "saccarosio", c: 1 }, { t: "cloruro di sodio", c: 1 }], explanation: "pp. 78-79." },
+      items: [{ t: "ossigeno", c: 0 }, { t: "carbonio", c: 0 }, { t: "azoto (N)", c: 0 }, { t: "acqua", c: 1 }, { t: "saccarosio", c: 1 }, { t: "cloruro di sodio", c: 1 }], explanation: "pp. 78-79 e 83." },
     { type: "order", q: "Metti in ordine le domande della mappa per classificare la materia.", items: ["Le proprietà sono uniformi?", "Si separa con processi fisici?", "Si decompone con processi chimici?"], explanation: "Mappa di p. 78." },
     T("Qual è il simbolo del rame?", ["Cu"], "p. 79: dal latino Cuprum."),
     T("Qual è il simbolo del sodio?", ["Na"], "p. 79: dal latino Natrium."),
@@ -73,7 +73,7 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
     { q: "Scaldando ferro e zolfo si ottiene…", options: ["un composto, il solfuro di ferro, da cui la calamita non separa il ferro", "una miscela separabile con la calamita", "due elementi nuovi", "solo vapore"], answer: 0, explanation: "p. 84." },
     { q: "La legge di Lavoisier dice che…", options: ["la massa dei reagenti è uguale alla massa dei prodotti", "un composto ha sempre lo stesso rapporto in massa", "i volumi dei gas stanno in rapporti semplici", "gli atomi sono indivisibili"], answer: 0, explanation: "p. 85: legge di conservazione della massa." },
     { q: "La legge di Proust dice che…", options: ["un composto è sempre fatto degli stessi elementi nello stesso rapporto in massa", "la massa si conserva", "gli atomi non si distruggono", "le soluzioni hanno un soluto"], answer: 0, explanation: "p. 86: legge della composizione costante." },
-    { q: "Nel CO e nel CO₂ le masse di ossigeno legate a 1 g di carbonio stanno nel rapporto…", options: ["2 : 1", "1 : 1", "3 : 1", "8 : 1"], answer: 0, explanation: "p. 88: 2,66 g e 1,33 g; è la legge delle proporzioni multiple (Dalton)." },
+    { q: "Nel CO₂ e nel CO le masse di ossigeno legate a 1 g di carbonio stanno nel rapporto…", options: ["2 : 1", "1 : 1", "3 : 1", "8 : 1"], answer: 0, explanation: "p. 88: 2,66 g e 1,33 g; è la legge delle proporzioni multiple (Dalton)." },
     { type: "classify", q: "Di chi è ogni legge?", categories: ["Lavoisier", "Proust", "Dalton"],
       items: [{ t: "conservazione della massa", c: 0 }, { t: "composizione costante", c: 1 }, { t: "proporzioni multiple", c: 2 }], explanation: "pp. 85-88." }
   ]);
@@ -91,7 +91,7 @@ window.QUIZ_BANK = window.QUIZ_BANK || {};
     N("% in massa. 10 g di sale sciolti in 40 g di acqua. Qual è la % m/m?", ["20", "20%"], "Massa soluzione = 10 + 40 = 50 g → 10 ÷ 50 × 100 = 20% (p. 48)."),
     N("% in volume. 30 mL di alcol in 200 mL di soluzione. Qual è la % V/V?", ["15", "15%"], "30 ÷ 200 × 100 = 15% (p. 48)."),
     N("Massa su volume. Quanti grammi di zucchero servono per 200 mL di soluzione al 5% m/V?", ["10"], "5 × 200 ÷ 100 = 10 g (p. 49)."),
-    N("Diluizione. Da 100 mL di una soluzione al 20% aggiungo acqua fino a 400 mL. Qual è la nuova concentrazione (%)?", ["5", "5%"], "C₁V₁ = C₂V₂: 20 × 100 = C₂ × 400 → C₂ = 5% (p. 53).")
+    N("Diluizione. Da 100 mL di una soluzione al 20% V/V aggiungo acqua fino a 400 mL. Qual è la nuova concentrazione (%)?", ["5", "5%"], "C₁V₁ = C₂V₂: 20 × 100 = C₂ × 400 → C₂ = 5% (p. 53).")
   ]);
 
   // ── 4. Prova mista ────────────────────────────────────────────

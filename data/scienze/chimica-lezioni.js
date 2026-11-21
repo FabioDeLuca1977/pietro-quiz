@@ -54,10 +54,10 @@ window.LESSONS = window.LESSONS || {};
         h: `${R([["Fusione", "solido → liquido"], ["Solidificazione", "liquido → solido"], ["Evaporazione", "liquido → gas"], ["Condensazione", "gas → liquido"], ["Sublimazione", "solido → gas"], ["Brinamento", "gas → solido"]])}` },
       { k: "Ebollizione (p. 56)", t: "Dipende dalla pressione",
         h: `${BOX(["<b>Evaporazione</b>: solo lo strato in superficie.", "<b>Ebollizione</b>: tutto il liquido, con bollicine. Acqua 100 °C, alcol 78 °C (a 1 atm)."])}
-            <p class="ls-note">Pentola a pressione: più pressione, l'acqua bolle a circa 120 °C. In alta montagna bolle sotto i 100 °C.</p>` },
+            <p class="ls-note">Pentola a pressione: più pressione, l'acqua bolle a circa 120 °C (a 2 atm). In alta montagna bolle sotto i 100 °C.</p>` },
       { k: "Curve di riscaldamento (pp. 57-58)", t: "La sosta termica",
         h: `<p>Mentre una sostanza pura cambia stato, la sua <b>temperatura resta costante</b>: è la <b>sosta termica</b> (il tratto orizzontale del grafico).</p>
-            <div class="ls-why">Il calore serve a vincere le forze tra le particelle: si chiama <b>calore latente</b>.</div>
+            <div class="ls-why">Il calore serve a vincere le forze tra le particelle: si chiama <b>calore latente di fusione</b>, cioè calore «nascosto».</div>
             <p class="ls-note">Il naftalene (puro) fonde a 80 °C precisi; la cera (miscela) in un intervallo di temperature.</p>` },
       { k: "Separazione (p. 58)", t: "Come si separano le miscele",
         h: `<p>Si usano processi <b>fisici</b>, basati sulle diverse proprietà fisiche delle sostanze.</p>
