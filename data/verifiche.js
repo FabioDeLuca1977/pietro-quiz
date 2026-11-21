@@ -91,6 +91,8 @@ window.VERIFICHE = [
     steps: [
       { k: "1 · Le tabelle", d: "Tutti i modi e i tempi di essere, avere e mangiare; i complementi con la loro domanda",
         items: ["gram-html-1", "gram-pdf-1", "gram-pdf-3", "gram-html-2", "gram-pdf-2"] },
+      { k: "2 · Ridillo a voce", d: "ChatGPT ti chiede i tempi e li ridici corretti; alla fine la prova con il voto",
+        items: ["gram-gpt-1"] },
       { k: "Da studiare (dal registro)", d: "Libro di grammatica: p. 141-143 (le forme del verbo) e p. 175-176. Nessun materiale della prof sul registro." },
       { k: "Lezioni sul verbo", d: "Modo e tempo; indicativo e congiuntivo; condizionale e imperativo; modi indefiniti e gerundio; transitivi e intransitivi; la forma del verbo; impersonali, copulativi e predicativi; ausiliari, servili, fraseologici, causativi; analisi dei verbi; riepilogo (12 novembre)." },
       { k: "Esercizi già assegnati", d: "p. 144, 146, 158, 162, 164, 174, 177, 180, 187, 189, 195, 203, 207 e 210 (questi per martedì 17)." }

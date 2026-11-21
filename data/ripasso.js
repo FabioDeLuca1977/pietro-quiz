@@ -28,6 +28,7 @@ window.REVIEW = [
       { "id": "gram-html-1", "topic": "Grammatica · verbi e analisi logica", "title": "Verbi: tutti i modi e i tempi (essere, avere, mangiare)", "html": "ripasso/verbi-modi-tempi.html", "pages": "Pagina da telefono" },
       { "id": "gram-pdf-1", "topic": "Grammatica · verbi e analisi logica", "title": "Verbi da stampare (6 pagine)", "pdf": "stampa/verbi-essere-avere-mangiare.pdf", "pdfPages": 6, "pages": "Un modo per pagina" },
       { "id": "gram-pdf-3", "topic": "Grammatica · verbi e analisi logica", "title": "Verbi da stampare in orizzontale: una pagina per verbo (3 pagine)", "pdf": "stampa/verbi-una-pagina-per-verbo.pdf", "pdfPages": 3, "pages": "Essere, avere, mangiare: tutti i modi e i tempi su un foglio" },
+      { "id": "gram-gpt-1", "topic": "Grammatica · verbi e analisi logica", "title": "🗣️ Verbi a voce con ChatGPT", "html": "ripasso/verbi-a-voce.html", "pages": "Ridire i tempi, riconoscerli, prova finale con il voto" },
       { "id": "gram-html-2", "topic": "Grammatica · verbi e analisi logica", "title": "I complementi e le loro domande", "html": "ripasso/complementi.html", "pages": "Pagina da telefono" },
       { "id": "gram-pdf-2", "topic": "Grammatica · verbi e analisi logica", "title": "Complementi da stampare (3 pagine)", "pdf": "stampa/complementi-analisi-logica.pdf", "pdfPages": 3, "pages": "Domanda ed esempio per ogni complemento" },
       {
