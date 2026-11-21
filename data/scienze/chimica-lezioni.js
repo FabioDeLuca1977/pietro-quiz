@@ -38,7 +38,7 @@ window.LESSONS = window.LESSONS || {};
         h: `${R([["Acqua distillata", "bolle a 100 °C costanti, congela a 0 °C"], ["Acqua salata", "bolle più in alto e la T sale; congela più in basso e la T scende"]])}` },
       { k: "Solubilità e concentrazione (pp. 47-54)", t: "Quanto soluto",
         h: `<p><b>Solubilità</b>: la quantità massima di soluto che si scioglie, a una certa temperatura, in una data quantità di solvente. Il resto va sul fondo (corpo di fondo).</p>
-            ${R([["% m/m", "g soluto ÷ g soluzione × 100"], ["% V/V", "mL soluto ÷ mL soluzione × 100"], ["% m/V", "g soluto ÷ mL soluzione × 100"], ["Diluizione", "C₁ × V₁ = C₂ × V₂"], ["ppm", "g soluto ÷ g soluzione × 1 000 000"]])}` },
+            ${R([["% m/m", "g di soluto in 100 g di soluzione: g soluto ÷ g soluzione × 100"], ["% V/V", "mL di soluto in 100 mL di soluzione: mL soluto ÷ mL soluzione × 100"], ["g/L", "g di soluto in un volume di soluzione, in genere 1 L"], ["% m/V", "g soluto ÷ mL soluzione × 100"], ["Diluizione", "C₁ × V₁ = C₂ × V₂"], ["ppm", "g soluto ÷ g soluzione × 1 000 000"]])}` },
       END("Chimica: stati, miscele, passaggi di stato", "pp. 40-58")
     ]
   };
@@ -100,8 +100,9 @@ window.LESSONS = window.LESSONS || {};
         h: `${BOX(["<b>Atomo</b>: la più piccola particella di un elemento che ha le sue proprietà chimiche.", "<b>Molecola</b>: la più piccola particella che ha le proprietà chimiche e la composizione di un composto."])}
             <p class="ls-note">Molecole biatomiche: N₂, O₂, H₂, F₂, Cl₂, Br₂, I₂. L'elio è fatto di atomi singoli.</p>` },
       { k: "Formule (pp. 81-82)", t: "Che cosa dice una formula",
-        h: `<p>La <b>formula</b> indica il tipo e il numero di atomi. Gli <b>indici</b> in basso dicono quanti atomi.</p>
-            ${R([["H₂O", "2 idrogeno, 1 ossigeno"], ["NH₃", "1 azoto, 3 idrogeno"], ["HNO₃", "1 idrogeno, 1 azoto, 3 ossigeno"]])}` },
+        h: `<p>La <b>formula</b> indica il tipo e il numero di atomi. La <b>formula molecolare</b> indica gli atomi che costituiscono la molecola. Gli <b>indici</b> in basso dicono quanti atomi.</p>
+            ${R([["H₂O", "2 idrogeno, 1 ossigeno"], ["NH₃", "1 azoto, 3 idrogeno"], ["HNO₃", "1 idrogeno, 1 azoto, 3 ossigeno"]])}
+            <p class="ls-note">La <b>formula di struttura</b> mostra l'ordine in cui gli atomi sono connessi tra loro, ma non dà indicazioni sulla forma della molecola (p. 82).</p>` },
       { k: "Ioni (p. 83)", t: "Atomi con carica",
         h: `${R([["Catione", "carica positiva: Na⁺, Ca²⁺"], ["Anione", "carica negativa: Cl⁻, O²⁻"]])}
             <p>Composti <b>molecolari</b> (acqua, H₂O) e composti <b>ionici</b> (cloruro di sodio, NaCl: ioni in rapporto 1 : 1).</p>` },
