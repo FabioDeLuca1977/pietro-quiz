@@ -38,7 +38,8 @@ window.LESSONS = window.LESSONS || {};
         h: `${R([["Acqua distillata", "bolle a 100 °C costanti, congela a 0 °C"], ["Acqua salata", "bolle più in alto e la T sale; congela più in basso e la T scende"]])}` },
       { k: "Solubilità e concentrazione (pp. 47-54)", t: "Quanto soluto",
         h: `<p><b>Solubilità</b>: la quantità massima di soluto che si scioglie, a una certa temperatura, in una data quantità di solvente. Il resto va sul fondo (corpo di fondo).</p>
-            ${R([["% m/m", "g di soluto in 100 g di soluzione: g soluto ÷ g soluzione × 100"], ["% V/V", "mL di soluto in 100 mL di soluzione: mL soluto ÷ mL soluzione × 100"], ["g/L", "g di soluto in un volume di soluzione, in genere 1 L"], ["% m/V", "g soluto ÷ mL soluzione × 100"], ["Diluizione", "C₁ × V₁ = C₂ × V₂"], ["ppm", "g soluto ÷ g soluzione × 1 000 000"]])}` },
+            ${R([["% m/m", "g di soluto in 100 g di soluzione: g soluto ÷ g soluzione × 100"], ["% V/V", "mL di soluto in 100 mL di soluzione: mL soluto ÷ mL soluzione × 100"], ["g/L", "g di soluto in un volume di soluzione, in genere 1 L"], ["% m/V", "g soluto ÷ mL soluzione × 100"], ["ppm", "g soluto ÷ g soluzione × 1 000 000"]])}
+            <p class="ls-note">Questi sono i modi di esprimere la concentrazione. La <b>diluizione</b> è un'altra cosa (p. 53): aggiungendo acqua la soluzione diventa più diluita, e vale C₁ × V₁ = C₂ × V₂.</p>` },
       END("Chimica: stati, miscele, passaggi di stato", "pp. 40-58")
     ]
   };
@@ -69,7 +70,8 @@ window.LESSONS = window.LESSONS || {};
             <p class="ls-note">Cristallizzazione: zucchero greggio → zucchero bianco. Estrazione: tè, caffè, essenze degli agrumi.</p>` },
       { k: "Cromatografia (pp. 62-63)", t: "Corrono a velocità diverse",
         h: `<p>Un solido o una carta (<b>fase stazionaria</b>) trattiene i componenti con forza diversa; un liquido, l'<b>eluente</b> (fase mobile), li trascina. Così si separano in <b>bande</b>.</p>
-            ${R([["In colonna", "pigmenti delle foglie verdi"], ["Su carta", "inchiostri; l'eluente sale per capillarità"], ["Gascromatografia", "l'eluente è un gas (elio o azoto)"]])}` },
+            ${R([["In colonna", "fase stazionaria: ossido di alluminio; pigmenti delle foglie verdi"], ["Su carta", "fase stazionaria: carta porosa; inchiostri; l'eluente sale per capillarità"], ["Gascromatografia (in fase vapore)", "fase stazionaria: liquido inerte su un solido in granuli; eluente: gas inerte (elio o azoto)"]])}
+            <p class="ls-note">La cromatografia non è tra i 5 metodi principali di p. 58: il libro la spiega a parte.</p>` },
       END("Chimica: stati, miscele, passaggi di stato", "pp. 55-63")
     ]
   };
@@ -88,7 +90,7 @@ window.LESSONS = window.LESSONS || {};
             ${R([["Reagenti", "a sinistra: si trasformano"], ["Prodotti", "a destra: si formano"]])}` },
       { k: "Elementi e composti (pp. 77-78)", t: "Si può decomporre?",
         h: `${R([["Composto", "si decompone in sostanze più semplici (acqua, saccarosio)"], ["Elemento", "non si decompone (idrogeno, ossigeno, carbonio)"]])}
-            <div class="ls-why"><b>Elettrolisi</b>: con la corrente l'acqua si scompone in idrogeno e ossigeno; l'idrogeno ha volume doppio.</div>` },
+            <div class="ls-why">Con la corrente elettrica l'acqua si scompone in sostanze più semplici, idrogeno e ossigeno: questo processo si chiama <b>elettrolisi</b>. L'idrogeno ha volume doppio.</div>` },
       { k: "Classificare la materia (p. 78)", t: "Tre domande",
         h: `<ol class="ls-steps"><li>Proprietà uniformi? No → <b>miscela eterogenea</b></li><li>Si separa con processi fisici? Sì → <b>soluzione</b></li><li>Si decompone con processi chimici? Sì → <b>composto</b>; no → <b>elemento</b></li></ol>` },
       { k: "Simboli (p. 79)", t: "118 elementi",
