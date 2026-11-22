@@ -95,7 +95,7 @@ window.VERIFICHE = [
         items: ["gram-gpt-1"] },
       { k: "3 · Le altre cose da sapere", d: "Transitivi e intransitivi, la forma del verbo, impersonali e copulativi, i verbi di servizio, l'analisi del verbo: dal libro",
         items: ["gram-html-3", "gram-pdf-4"] },
-      { k: "Da studiare (dal registro)", d: "Libro di grammatica: p. 141-143 (le forme del verbo) e p. 175-176. Nessun materiale della prof sul registro." },
+      { k: "Da studiare (dal registro)", d: "Libro di grammatica: p. 141-143 (le forme del verbo) e p. 175-176. Nessun materiale della prof sul registro. Le schede sono controllate sulle foto del libro, pp. 140-235." },
       { k: "Lezioni sul verbo", d: "Modo e tempo; indicativo e congiuntivo; condizionale e imperativo; modi indefiniti e gerundio; transitivi e intransitivi; la forma del verbo; impersonali, copulativi e predicativi; ausiliari, servili, fraseologici, causativi; analisi dei verbi; riepilogo (12 novembre)." },
       { k: "Esercizi già assegnati", d: "p. 144, 146, 158, 162, 164, 174, 177, 180, 187, 189, 195, 203, 207 e 210 (questi per martedì 17)." }
     ]
