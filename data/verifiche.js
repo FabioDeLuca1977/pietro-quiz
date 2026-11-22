@@ -13,7 +13,7 @@ window.VERIFICHE = [
     subject: "scienze",
     title:   "Interrogazione di chimica",
     what:    "Separazione, trasformazioni fisiche e chimiche, teorie della materia (prof Flaccavento)",
-    when:    "venerdì 20 novembre (se non ancora fatta, la prossima lezione)",
+    when:    "iniziata venerdì 20 novembre; martedì 24 «ripassare per l'interrogazione»",
     steps: [
       { k: "1 · La mappa", d: "Il video di 45 secondi e la sintesi a piccoli passi letta tutta di seguito",
         items: ["chim-v1", "chim-pdf-1", "chim-html"] },
