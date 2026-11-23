@@ -94,7 +94,7 @@ window.VERIFICHE = [
       { k: "1 · Le tabelle", d: "Tutti i modi e i tempi di essere, avere e mangiare; i complementi con la loro domanda",
         items: ["gram-html-1", "gram-pdf-1", "gram-pdf-3", "gram-html-2", "gram-pdf-2"] },
       { k: "2 · Ridillo a voce", d: "ChatGPT ti chiede i tempi e li ridici corretti; alla fine la prova con il voto",
-        items: ["gram-gpt-1"] },
+        items: ["gram-gpt-2", "gram-gpt-1"] },
       { k: "3 · Le altre cose da sapere", d: "Transitivi e intransitivi, la forma del verbo, impersonali e copulativi, i verbi di servizio, l'analisi del verbo: dal libro",
         items: ["gram-html-3", "gram-pdf-4"] },
       { k: "Da studiare (dal registro)", d: "Libro di grammatica: p. 141-143 (le forme del verbo) e p. 175-176. Nessun materiale della prof sul registro. Le schede sono controllate sulle foto del libro, pp. 140-235." },
