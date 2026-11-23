@@ -90,7 +90,7 @@ window.VERIFICHE = [
     date:    "2026-11-25",
     steps: [
       { k: "0 · Lo schema", d: "Tutto quello da sapere in 2 pagine: da qui si parte",
-        items: ["gram-html-0", "gram-pdf-0"] },
+        items: ["gram-html-0", "gram-pdf-0", "gram-pdf-5"] },
       { k: "1 · Le tabelle", d: "Tutti i modi e i tempi di essere, avere e mangiare; i complementi con la loro domanda",
         items: ["gram-html-1", "gram-pdf-1", "gram-pdf-3", "gram-html-2", "gram-pdf-2"] },
       { k: "2 · Ridillo a voce", d: "ChatGPT ti chiede i tempi e li ridici corretti; alla fine la prova con il voto",
