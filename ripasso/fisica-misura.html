@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fisica · La misura di una grandezza</title>
+<style>
+:root{--acc:#c2410c;--acc2:#1e3a8a;--line:#f1d6c8;--q:#e8f1fb;--box:#fff4ec;--def:#fff8e1}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#1b1b1b;font:18px/1.6 "Segoe UI",Verdana,Arial,sans-serif}
+main{max-width:820px;margin:0 auto;padding:16px}
+h1{font-size:25px;color:var(--acc);margin:0 0 4px}
+.sub{margin:0 0 10px}
+.how{background:#f5f5f5;border-radius:8px;padding:8px 12px;margin-bottom:10px}
+.par{background:var(--acc);color:#fff;font-weight:700;padding:6px 12px;border-radius:8px;margin:18px 0 6px;font-size:20px}
+.step{border:2px solid var(--line);border-radius:10px;padding:8px 14px;margin:10px 0}
+.step h2{margin:0 0 6px;font-size:19px;color:var(--acc)}
+.step h2 small{color:#666;font-weight:400;font-size:14px}
+.start{border-color:#b7dfc0;background:#f3fbf4}
+.start h2{color:#2f7d32}
+p{margin:5px 0}
+ul,ol{margin:3px 0 6px;padding-left:24px} li{margin:3px 0}
+.def{background:var(--def);border-left:5px solid #f0b429;padding:5px 10px;margin:6px 0;border-radius:4px}
+.f{font-family:"Cambria Math","Times New Roman",serif;font-size:1.1em;text-align:center;margin:6px 0;white-space:nowrap;overflow-x:auto}
+.noi{color:#1d4ed8;font-weight:600}
+.q{background:var(--q);border-radius:6px;padding:5px 12px;margin-top:8px}
+.q::before{content:"✋ Prova a dire: ";font-weight:700}
+.rip{background:#f3f0ff;border-radius:8px;padding:6px 12px;margin:8px 0}
+.rip b.t{display:block;color:#5b21b6}
+.es{background:#fdf2f8;border-radius:8px;padding:6px 12px;margin:8px 0}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;margin:6px 0;font-size:.95em}
+th{background:var(--box);text-align:left;padding:4px 8px;border:1px solid var(--line);vertical-align:top}
+td{border:1px solid var(--line);padding:4px 8px;vertical-align:top}
+td.k{font-weight:700;background:#fffaf6}
+.nota{font-size:.85em;color:#555}
+table,li,.q,tr,.def,.rip{break-inside:avoid} h2{break-after:avoid}
+@media print{@page{size:A4;margin:10mm 11mm}
+ body{font-size:12pt;line-height:1.45} main{max-width:none;padding:0}
+ .step{padding:6px 12px;margin:7px 0}
+ .par,th,.q,.how,.def,.rip,.es,.start,td.k{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style></head><body><main>
+
+<h1>📏 Fisica · La misura di una grandezza</h1>
+<p class="sub">Capitolo 2, paragrafi 1-4, pp. 51-57: le parti fatte in classe finora. Le frasi sono del libro. Le frasi in blu con 👉 sono nostre.</p>
+<div class="how">👉 <b>Come si studia:</b> un blocco alla volta. Leggi, ripeti a voce, poi rispondi alla domanda ✋ senza guardare. Pausa breve ogni 2-3 blocchi.</div>
+
+<div class="step start"><h2>Per partire: le misure le fai già <small>p. 51</small></h2>
+<p>Ogni giorno abbiamo a che fare con molti <b>strumenti di misura</b>.</p>
+<ul>
+<li>A casa: l'<b>orologio</b> misura il tempo, la <b>bilancia</b> misura la massa, il <b>termostato</b> misura la temperatura.</li>
+<li>I <b>contatori</b> misurano il volume di gas, il volume d'acqua e l'energia elettrica che consumiamo.</li>
+<li>Auto e scooter hanno il <b>contachilometri</b> (misura le distanze percorse) e il <b>tachimetro</b> (misura la velocità).</li>
+<li>Con un'app, lo <b>smartphone</b> diventa uno strumento: misura la distanza di una passeggiata o la velocità di una pallina da tennis.</li>
+</ul>
+<div class="q">quali strumenti di misura hai usato oggi? Che cosa misuravano?</div>
+</div>
+
+<div class="par">§1 · Gli strumenti di misura (pp. 51-54)</div>
+
+<div class="step"><h2>1 · Strumenti analogici e digitali <small>p. 51</small></h2>
+<p>Gli strumenti di misura possono essere <b>analogici</b> o <b>digitali</b>:</p>
+<ul>
+<li>in uno <b>strumento analogico</b> il valore della misura si legge su una <b>scala graduata</b> (una scala con le tacche e i numeri);</li>
+<li>in uno <b>strumento digitale</b> il valore della misura si legge su un <b>display</b> (lo schermo con i numeri).</li>
+</ul>
+<p>Esempi del libro: un <b>orologio analogico</b> (con le lancette) e un <b>termostato digitale</b> (figura 1).</p>
+<div class="q">che differenza c'è tra uno strumento analogico e uno digitale? Dimmi un esempio per tipo.</div>
+</div>
+
+<div class="step"><h2>2 · Portata, sensibilità, prontezza <small>p. 52</small></h2>
+<p class="noi">👉 Spiegazione nostra: sono tre caratteristiche di ogni strumento. Dicono fino a quanto misura, quanto è fine, quanto è veloce. Per ognuna il libro dice come si trova negli strumenti analogici e in quelli digitali.</p>
+<div class="wrap"><table>
+<tr><th></th><th>Che cos'è</th><th>Strumento analogico</th><th>Strumento digitale</th><th>Esempi del libro</th></tr>
+<tr><td class="k">Portata</td><td>Il <b>valore massimo</b> della grandezza che lo strumento è in grado di misurare. Oltre quel valore lo strumento non fornisce misure corrette e può danneggiarsi.</td><td>È il valore più grande della scala.</td><td>Dipende dall'elettronica. Di solito è il numero più grande che può apparire nel display.</td><td>Bilancia: 10 kg.<br>Contachilometri: 999 999 km.</td></tr>
+<tr><td class="k">Sensibilità</td><td>La <b>minima variazione</b> della grandezza che lo strumento è in grado di apprezzare (di notare). Uno strumento che apprezza una variazione molto piccola ha una sensibilità molto grande.</td><td>È la differenza fra i valori di due tacche successive.</td><td>Dipende dall'elettronica. Di solito è il più piccolo valore diverso da zero che può comparire nell'ultima cifra a destra.</td><td>Cronometro a lancetta: 0,2 s.<br>Cronometro digitale: 0,001 s.</td></tr>
+<tr><td class="k">Prontezza</td><td>La <b>rapidità</b> con cui lo strumento risponde a una variazione della grandezza che sta misurando. È tanto maggiore quanto minore è il tempo che lo strumento impiega per assestarsi (fermarsi) su un valore stabile.</td><td colspan="2">Dipende dai fenomeni fisici su cui si basa il funzionamento dello strumento.</td><td>Termometro analogico: più di un minuto.<br>Termometro digitale: pochi secondi.</td></tr>
+</table></div>
+<div class="q">che cosa sono la portata, la sensibilità e la prontezza? Dimmi un esempio per ognuna.</div>
+</div>
+
+<div class="step"><h2>3 · Le misure indirette <small>pp. 53-54</small></h2>
+<p>La misura di alcune grandezze <b>non avviene in modo diretto</b>, cioè con uno strumento analogico o digitale. In questi casi si parla di <b>misura indiretta</b>. Succede per due motivi:</p>
+<ul>
+<li>non esiste uno strumento reale che ci permette di misurare quella grandezza (per esempio la distanza Terra-Luna);</li>
+<li>oppure la grandezza è una <b>grandezza derivata</b> (che si ricava da altre grandezze).</li>
+</ul>
+<div class="def">Una <b>misura indiretta</b> di una grandezza si ottiene dalla <b>combinazione di misure di altre grandezze</b>, e il suo valore è il risultato di un <b>calcolo matematico</b>.</div>
+<p>Esempi: l'<b>area</b> e la <b>densità</b>. Anche l'impronta ecologica è una misura indiretta (blocco 4).</p>
+<p>Le misure indirette servono agli scienziati che studiano il clima. Per conoscere il clima del passato analizzano le bollicine d'aria nelle <b>carote di ghiaccio</b> dell'Antartide (cilindri di ghiaccio estratti dal suolo). Dall'ossigeno-16 e dall'ossigeno-18 nelle bollicine ricavano la temperatura della Terra fino a 800 mila anni fa (p. 54).</p>
+<div class="q">che cos'è una misura indiretta? Dimmi due esempi.</div>
+</div>
+
+<div class="step"><h2>4 · Esempio 1: l'impronta ecologica <small>pp. 51 e 53</small></h2>
+<p>L'<b>impronta ecologica</b> è lo strumento per misurare gli effetti degli esseri umani sull'ambiente. Misura quante risorse biologiche (pesce, grano, legname…) consumano le società umane in un anno.</p>
+<ul>
+<li>Si calcola così: consumo medio annuale di una risorsa (kilogrammi) <b>diviso</b> produttività media annuale di quella risorsa (kilogrammi/ettaro).</li>
+<li>Il risultato è una <b>superficie</b> in ettari: la superficie del pianeta che serve per quel consumo.</li>
+<li>Spesso si esprime <b>«in pianeti»</b>: quante Terre servirebbero se tutti gli abitanti avessero il nostro stile di vita.</li>
+</ul>
+<p>Il grafico dell'Italia dice che:</p>
+<ul>
+<li>dal <b>1965</b> l'impronta è sempre stata maggiore di un pianeta;</li>
+<li>nel <b>1980</b> era di due pianeti;</li>
+<li>è stata massima nel <b>2006</b>, circa 3,5 Terre;</li>
+<li>oggi è intorno a 2,5 Terre: è calata, ma resta molto elevata e non sostenibile.</li>
+</ul>
+<div class="q">perché l'impronta ecologica è una misura indiretta? Come si calcola?</div>
+</div>
+
+<div class="rip"><b class="t">🔁 Ripasso del §1, a voce</b>
+<ol><li>In quale strumento leggi la misura su una scala graduata?</li>
+<li>Una bilancia arriva fino a 10 kg: è la portata o la sensibilità?</li>
+<li>Perché la distanza Terra-Luna si misura in modo indiretto?</li></ol></div>
+
+<div class="par">§2 · Gli errori di misura (pp. 54-55)</div>
+
+<div class="step"><h2>5 · Ogni misura ha un'incertezza <small>p. 54</small></h2>
+<p>Prova: un amico lascia cadere una pallina da tennis da 2,5 m e tu cronometri quanto impiega a toccare terra. Se ripeti l'esperimento più volte, la misura è <b>ogni volta diversa</b>.</p>
+<div class="def">Il risultato di un processo di misura è sempre affetto da un'<b>incertezza</b>.</div>
+<p>L'incertezza deriva essenzialmente da <b>due fattori</b>:</p>
+<ul>
+<li>la <b>sensibilità degli strumenti</b>, che non ci consente di distinguere valori troppo vicini tra loro;</li>
+<li>gli <b>errori</b> che inevitabilmente si commettono nel processo di misura.</li>
+</ul>
+<p>Gli errori di misura possono essere di <b>due tipi</b>: <b>sistematici</b> o <b>casuali</b>.</p>
+<div class="q">da quali due fattori deriva l'incertezza di una misura?</div>
+</div>
+
+<div class="step"><h2>6 · Errori sistematici ed errori casuali <small>pp. 54-55</small></h2>
+<div class="wrap"><table>
+<tr><th></th><th>Errori sistematici</th><th>Errori casuali</th></tr>
+<tr><td class="k">Che cosa sono</td><td>Avvengono <b>sempre nello stesso verso</b>: o sempre per eccesso (in più) o sempre per difetto (in meno).</td><td>Influenzano il risultato <b>in modo imprevedibile</b>: a volte per eccesso, altre per difetto. Dipendono dal caso.</td></tr>
+<tr><td class="k">Da che cosa sono causati</td><td>
+<ul><li>mancata <b>taratura</b> dello strumento (lo strumento non parte da zero);</li>
+<li><b>malfunzionamento</b> dello strumento;</li>
+<li><b>errore di utilizzo</b>, per esempio l'<b>errore di parallasse</b>: si legge uno strumento analogico senza mettersi esattamente di fronte alla scala graduata (figura 4).</li></ul></td>
+<td><ul><li>imprecisione di chi compie la misura;</li>
+<li>variazioni imprevedibili della grandezza misurata;</li>
+<li>variazione delle condizioni in cui avviene l'esperimento.</li></ul></td></tr>
+<tr><td class="k">Esempi</td><td>Bilancia da cucina con la lancetta non sullo zero (figura 3):
+<ul><li>lancetta a destra dello zero → misura sempre <b>sovrastimata</b> (più grande del reale);</li>
+<li>lancetta a sinistra dello zero → misura sempre <b>sottostimata</b> (più piccola del reale).</li></ul></td>
+<td>Pallina da tennis: fai partire o fermi il cronometro un po' in anticipo o in ritardo; l'altezza da cui cade può cambiare tra una prova e l'altra.</td></tr>
+<tr><td class="k">Si possono eliminare?</td><td>Non abbiamo la certezza di eliminarli del tutto, ma si possono <b>ridurre</b> con un po' di esperienza e attenzione.</td><td><b>No</b>, perché sono imprevedibili e dipendono da molte variabili. Per ridurre i loro effetti si <b>ripete molte volte la misura</b>.</td></tr>
+</table></div>
+<div class="q">che differenza c'è tra errori sistematici e casuali? Dimmi un esempio per tipo.</div>
+</div>
+
+<div class="rip"><b class="t">🔁 Ripasso del §2, a voce</b>
+<ol><li>Una misura può essere senza incertezza?</li>
+<li>La lancetta della bilancia parte da destra dello zero: la misura è sovrastimata o sottostimata? Che tipo di errore è?</li>
+<li>Che cosa fai per ridurre gli errori casuali?</li></ol></div>
+
+<div class="par">§3 · L'incertezza nelle misure (pp. 55-57)</div>
+
+<div class="step"><h2>7 · Come si scrive il risultato di una misura <small>p. 55</small></h2>
+<p>Gli errori non si possono eliminare, quindi non ha senso chiedersi il valore <b>esatto</b>. Il risultato di una misura è il <b>valore più attendibile</b> (il più credibile), insieme a un'<b>incertezza</b>.</p>
+<p>Quando eseguiamo una misura:</p>
+<ul><li>stimiamo il <b>valore più attendibile</b> della grandezza;</li>
+<li>valutiamo con un numero l'<b>incertezza</b> del risultato.</li></ul>
+<div class="def">Il <b>risultato della misura</b> di una grandezza x si scrive:
+<div class="f">x = x̄ ± Δx &nbsp;&nbsp;[1]</div>
+x̄ è il <b>valore più attendibile</b>; Δx (si legge «delta x») è la sua <b>incertezza</b>.</div>
+<p>Per esempio: x = (1,67 ± 0,02) m.</p>
+<p>La [1] vuol dire che il valore esatto è compreso, con buona approssimazione, <b>tra x̄ − Δx e x̄ + Δx</b>.</p>
+<p>Le regole per trovare valore e incertezza dipendono dalla grandezza, dagli strumenti e dal <b>numero di misure</b> eseguite. Il libro distingue due casi: la <b>misura singola</b> (blocco 8) e la <b>misura con più ripetizioni</b> (blocco 9).</p>
+<div class="q">come si scrive il risultato di una misura? Che cosa vogliono dire x̄ e Δx?</div>
+</div>
+
+<div class="step"><h2>8 · Caso 1: l'incertezza in una misura singola <small>p. 56</small></h2>
+<p>Misuriamo una volta sola, con un righello, la larghezza del libro: <b>21,1 cm</b>.</p>
+<p>Come incertezza prendiamo la <b>sensibilità del righello</b>: 0,1 cm.</p>
+<div class="f">l = (21,1 ± 0,1) cm</div>
+<p>Cioè la larghezza è compresa tra 21,0 cm e 21,2 cm.</p>
+<div class="def">Il risultato di una <b>misura singola</b> di una grandezza x si scrive:
+<div class="f">x = valore misurato ± sensibilità dello strumento</div></div>
+<div class="q">misuri una volta sola: quale incertezza usi?</div>
+</div>
+
+<div class="step"><h2>9 · Caso 2: misura con più ripetizioni <small>pp. 56-57</small></h2>
+<p>Quando ci sono errori casuali inevitabili, come col cronometro della pallina, è utile <b>ripetere la misura</b> più volte.</p>
+<p>Tabella 1: cinque misure del tempo di caduta, con un cronometro di sensibilità 0,01 s.</p>
+<div class="wrap"><table style="width:auto"><tr><th>Misura</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><th>Valore (s)</th><td>0,71</td><td>0,77</td><td>0,65</td><td>0,69</td><td>0,73</td></tr></table></div>
+<p><b>Passo 1 · Il valore medio.</b> Gli errori casuali sono a volte in più e a volte in meno. Quindi il valore più attendibile è il <b>valore medio</b>.</p>
+<div class="def">Il <b>valore medio</b> è il rapporto tra la somma delle misure e il numero n delle misure:
+<div class="f">x̄ = (x₁ + x₂ + … + xₙ) / n</div></div>
+<div class="f">t̄ = (0,71 + 0,77 + 0,65 + 0,69 + 0,73) s / 5 = 0,71 s</div>
+<div class="q">come si calcola il valore medio?</div>
+</div>
+
+<div class="step"><h2>10 · Caso 2: l'errore assoluto <small>pp. 56-57</small></h2>
+<p><b>Passo 2 · L'incertezza.</b> Se le ripetizioni non sono troppe, l'incertezza si stima con l'<b>errore assoluto</b>.</p>
+<div class="def">L'<b>errore assoluto</b> è la differenza tra il valore massimo e il valore minimo, diviso due:
+<div class="f">eₐ = (x<sub>max</sub> − x<sub>min</sub>) / 2</div></div>
+<div class="f">eₐ = (0,77 s − 0,65 s) / 2 = 0,06 s</div>
+<p>Si chiama anche <b>semidispersione massima</b>. Più i dati sono dispersi, cioè diversi tra loro, più la misura è incerta.</p>
+<p><b>Passo 3 · Il confronto con la sensibilità.</b></p>
+<div class="def">L'incertezza di una misura <b>non può mai essere più piccola della sensibilità</b> dello strumento.</div>
+<p>Qui 0,06 s è più grande di 0,01 s, quindi il risultato è:</p>
+<div class="f">t = (0,71 ± 0,06) s</div>
+<div class="q">che cos'è l'errore assoluto? Perché si chiama anche semidispersione massima?</div>
+</div>
+
+<div class="rip"><b class="t">🔁 Ripasso del §3, a voce</b>
+<ol><li>Che cosa vuol dire x = (1,67 ± 0,02) m?</li>
+<li>Misura singola: che cosa metti dopo il ±?</li>
+<li>L'incertezza può essere più piccola della sensibilità dello strumento?</li></ol></div>
+
+<div class="par">§4 · La scrittura di una misura (p. 57)</div>
+
+<div class="step"><h2>11 · Le cifre significative <small>p. 57</small></h2>
+<p>Una gomma misura l = 4,26 ± 0,03 cm.</p>
+<ul><li>Le cifre <b>4 e 2</b> (unità e decimi di centimetro) sono <b>esatte</b>.</li>
+<li>La cifra <b>6</b> (centesimi) è <b>incerta</b>: può andare da 3 a 9, perché la misura è tra 4,23 cm e 4,29 cm.</li></ul>
+<p>La misura ha quindi <b>tre cifre significative</b>.</p>
+<div class="def">Le <b>cifre significative</b> di una misura sono <b>tutte quelle esatte e la prima incerta</b>.</div>
+<p>Il modo in cui è scritta una misura dice già quale cifra è incerta:</p>
+<ul><li>1,78 m → 1 e 7 sono esatte, 8 è incerta: <b>3 cifre</b> significative;</li>
+<li>1,780 m → anche l'8 è certo: <b>4 cifre</b> significative.</li></ul>
+<div class="q">che cosa sono le cifre significative? Quante ne ha 1,780 m?</div>
+</div>
+
+<div class="step"><h2>12 · Gli zeri e la tabella 2 <small>p. 57</small></h2>
+<p>Gli <b>zeri all'inizio</b> della misura <b>non sono significativi</b>. Infatti scompaiono se usi la notazione scientifica o un sottomultiplo dell'unità di misura.</p>
+<ul><li>150,2 m → 4 cifre significative;</li>
+<li>0,02 m → 1 cifra significativa, perché si può scrivere 2 · 10⁻² m oppure 2 cm.</li></ul>
+<p>Tabella 2 del libro:</p>
+<div class="wrap"><table style="width:auto">
+<tr><th>Misura</th><th>Numero di cifre significative</th></tr>
+<tr><td>3,2 m</td><td>2</td></tr><tr><td>4,41 s</td><td>3</td></tr><tr><td>6,201 km</td><td>4</td></tr>
+<tr><td>0,2 g</td><td>1</td></tr><tr><td>0,32 s</td><td>2</td></tr><tr><td>0,040 m</td><td>2</td></tr>
+<tr><td>2,30 g</td><td>3</td></tr><tr><td>1,0 m</td><td>2</td></tr><tr><td>4,440 s</td><td>4</td></tr>
+<tr><td>2,3 · 10⁻⁴ kg</td><td>2</td></tr><tr><td>4,50 · 10³ kg</td><td>3</td></tr><tr><td>2,0 · 10⁷ m</td><td>2</td></tr>
+</table></div>
+<p class="nota">Nella foto gli esponenti piccoli delle ultime tre righe si leggono male: controllali sul libro. Il numero di cifre significative non cambia.</p>
+<div class="q">perché 0,040 m ha 2 cifre significative e non 4?</div>
+</div>
+
+<div class="step"><h2>13 · Le cifre significative nella stima di una misura <small>p. 57</small></h2>
+<p>Valore medio di alcune misure di tempo: t̄ = 15,58 s. Errore assoluto: eₐ = 0,21 s.</p>
+<p>La misura è tra 15,37 s e 15,79 s. La prima cifra incerta è quella dei <b>decimi</b>, quindi non ha senso scrivere l'incertezza anche con i centesimi.</p>
+<p>Prima di scrivere la misura, quindi, bisogna:</p>
+<ol><li><b>arrotondare l'errore a una cifra significativa</b>: eₐ = 0,2 s;</li>
+<li><b>arrotondare il valore medio</b> alla stessa posizione decimale, qui una sola cifra dopo la virgola: t̄ = 15,6 s.</li></ol>
+<p>La scrittura corretta della misura è:</p>
+<div class="f">t = (15,6 ± 0,2) s</div>
+<div class="q">quali sono i due passi prima di scrivere una misura?</div>
+</div>
+
+<div class="rip"><b class="t">🔁 Ripasso del §4, a voce</b>
+<ol><li>Quante cifre significative ha 4,41 s?</li>
+<li>Gli zeri all'inizio di una misura sono significativi?</li>
+<li>L'errore è 0,21 s: come lo arrotondi?</li></ol></div>
+
+<div class="es"><b>✏️ Esercizi assegnati dal prof</b> (dal registro)
+<ul><li><b>p. 70, n. 1-5</b>: §1, gli strumenti di misura.</li>
+<li><b>p. 73, n. 21, 22, 24, 25</b>: §4, la scrittura di una misura.</li></ul>
+<p>Per ogni esercizio: che cosa ti chiede? Quali dati hai? Quale blocco di questa scheda ti serve?</p></div>
+
+</main></body></html>
