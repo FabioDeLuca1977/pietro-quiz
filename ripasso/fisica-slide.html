@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fisica a piccoli passi · La misura</title>
+<style>
+:root { --bg:#2a1406; --card:#ffffff; --ink:#1b1b1b; --acc:#c2410c; --acc2:#1e3a8a; --key:#fff1a8; --q:#e8f1fb; }
+* { box-sizing:border-box; }
+html, body { margin:0; height:100%; background:var(--bg); }
+body { font-family:"Segoe UI", system-ui, Arial, sans-serif; color:var(--ink); }
+#deck { height:100dvh; overflow-y:auto; scroll-snap-type:y mandatory; }
+section { height:100dvh; scroll-snap-align:start; display:flex; align-items:center; justify-content:center; padding:20px 14px 72px; }
+.card { background:var(--card); width:min(100%, 980px); max-height:100%; overflow:auto; border-radius:22px; padding:clamp(18px, 3vw, 44px); border-top:10px solid var(--acc);
+        font-size:clamp(16px, min(1.1vw + 12px, 3.1vh), 30px); line-height:1.42; }
+.b .card { border-top-color:var(--acc2); }
+.tag { display:inline-block; font-size:.62em; font-weight:700; color:#fff; background:var(--acc); padding:3px 12px; border-radius:20px; margin-bottom:8px; }
+.b .tag { background:var(--acc2); }
+h2 { margin:0 0 .45em; font-size:1.35em; line-height:1.2; }
+ul, ol { margin:.2em 0; padding-left:1.2em; } li { margin:.3em 0; }
+mark { background:var(--key); padding:0 .15em; border-radius:4px; }
+.rem { border-left:6px solid #e0b400; background:#fffbe6; padding:.35em .7em; margin:.5em 0; border-radius:6px; font-weight:700; }
+.q { background:var(--q); border-radius:10px; padding:.4em .7em; margin-top:.6em; }
+.q b { white-space:nowrap; }
+details { margin-top:.35em; }
+summary { cursor:pointer; color:#1d4ed8; font-weight:700; font-size:.9em; }
+details p { margin:.3em 0 0; }
+.noi { color:#1d4ed8; }
+.f { font-family:"Cambria Math","Times New Roman",serif; font-size:1.15em; text-align:center; margin:.4em 0; }
+table { border-collapse:collapse; width:100%; margin:.3em 0; }
+td, th { border:2px solid #f1e0d6; padding:.3em .55em; vertical-align:top; text-align:left; }
+th { background:#fff4ec; }
+td:first-child { font-weight:700; }
+.big { font-size:1.5em; text-align:center; margin:.3em 0; }
+.hint { text-align:center; color:#666; font-size:.8em; }
+#bar { position:fixed; top:0; left:0; height:6px; background:#ffd23f; width:0; z-index:5; transition:width .2s; }
+#nav { position:fixed; bottom:10px; left:50%; transform:translateX(-50%); display:flex; gap:10px; align-items:center; z-index:5; }
+#nav button { font-size:20px; width:48px; height:48px; border-radius:50%; border:0; background:#ffd23f; cursor:pointer; }
+#num { color:#fff; font-size:16px; min-width:60px; text-align:center; }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="deck">
+
+<section><div class="card">
+  <div class="big">📏</div>
+  <h2 style="text-align:center">Fisica a piccoli passi<br>La misura di una grandezza</h2>
+  <p style="text-align:center">Capitolo 2, §1-4, pp. 51-57</p>
+  <div class="rem">Una slide alla volta. Leggi, poi rispondi alla domanda ✋ a voce, senza guardare. Solo dopo apri «Risposta».</div>
+  <p class="hint">Scorri in giù, usa le frecce ↓ o i pulsanti in basso.<br>Le pagine sono quelle del libro. Le frasi in blu con 👉 sono nostre.</p>
+</div></section>
+
+<section><div class="card"><span class="tag">Per partire · p. 51</span>
+  <h2>Le misure le fai già</h2>
+  <table>
+    <tr><td>⏰ Orologio</td><td>misura il <b>tempo</b></td></tr>
+    <tr><td>⚖️ Bilancia</td><td>misura la <b>massa</b></td></tr>
+    <tr><td>🌡️ Termostato</td><td>misura la <b>temperatura</b></td></tr>
+    <tr><td>🛵 Tachimetro</td><td>misura la <b>velocità</b></td></tr>
+    <tr><td>🛵 Contachilometri</td><td>misura le <b>distanze</b> percorse</td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> che cosa misura una bilancia?
+  <details><summary>Risposta</summary><p>La massa.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§1 · p. 51</span>
+  <h2>Analogico o digitale?</h2>
+  <table>
+    <tr><td>Strumento <mark>analogico</mark></td><td>il valore si legge su una <b>scala graduata</b> (tacche e numeri)</td></tr>
+    <tr><td>Strumento <mark>digitale</mark></td><td>il valore si legge su un <b>display</b></td></tr>
+  </table>
+  <p>Esempi del libro: orologio <b>analogico</b> (con le lancette), termostato <b>digitale</b>.</p>
+  <div class="q">✋ <b>Prova a dire:</b> dove leggi la misura in uno strumento digitale?
+  <details><summary>Risposta</summary><p>Su un display.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§1 · p. 52</span>
+  <h2>Portata = fino a quanto misura</h2>
+  <div class="rem">Portata = il valore <u>massimo</u> che lo strumento è in grado di misurare.</div>
+  <ul>
+    <li>Oltre quel valore la misura non è corretta e lo strumento può danneggiarsi.</li>
+    <li>Analogico: il valore più grande della <b>scala</b>.</li>
+    <li>Digitale: di solito il numero più grande che può apparire nel <b>display</b>.</li>
+  </ul>
+  <p>Esempio del libro: la bilancia ha portata <b>10 kg</b>.</p>
+  <div class="q">✋ <b>Prova a dire:</b> che cos'è la portata?
+  <details><summary>Risposta</summary><p>Il valore massimo della grandezza che lo strumento è in grado di misurare.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§1 · p. 52</span>
+  <h2>Sensibilità = quanto è fine</h2>
+  <div class="rem">Sensibilità = la <u>minima variazione</u> che lo strumento è in grado di apprezzare (di notare).</div>
+  <ul>
+    <li>Analogico: la differenza tra <b>due tacche successive</b>.</li>
+    <li>Digitale: di solito il valore più piccolo diverso da zero nell'<b>ultima cifra a destra</b>.</li>
+  </ul>
+  <p>Esempi del libro: cronometro a lancetta <b>0,2 s</b>, cronometro digitale <b>0,001 s</b>.</p>
+  <div class="q">✋ <b>Prova a dire:</b> in un righello, che cos'è la sensibilità?
+  <details><summary>Risposta</summary><p>La differenza tra due tacche successive (il righello è analogico).</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§1 · p. 52</span>
+  <h2>Prontezza = quanto è veloce</h2>
+  <div class="rem">Prontezza = la <u>rapidità</u> con cui lo strumento risponde a una variazione della grandezza.</div>
+  <ul>
+    <li>Meno tempo per fermarsi su un valore stabile → <b>più prontezza</b>.</li>
+    <li>Termometro analogico: più di <b>un minuto</b>.</li>
+    <li>Termometro digitale: <b>pochi secondi</b>.</li>
+  </ul>
+  <div class="q">✋ <b>Prova a dire:</b> quale termometro ha più prontezza?
+  <details><summary>Risposta</summary><p>Quello digitale: rileva la temperatura in pochi secondi.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§1 · ripasso</span>
+  <h2>Le tre caratteristiche</h2>
+  <table>
+    <tr><td>Portata</td><td>il valore <b>massimo</b></td></tr>
+    <tr><td>Sensibilità</td><td>la variazione <b>minima</b></td></tr>
+    <tr><td>Prontezza</td><td>la <b>rapidità</b></td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> la bilancia arriva fino a 10 kg. È portata, sensibilità o prontezza?
+  <details><summary>Risposta</summary><p>Portata.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§1 · p. 53</span>
+  <h2>Le misure indirette</h2>
+  <div class="rem">Misura indiretta = si ottiene <u>combinando misure di altre grandezze</u> con un <u>calcolo</u>.</div>
+  <p>Si usa quando:</p>
+  <ul>
+    <li>non esiste uno strumento per misurarla (la distanza <b>Terra-Luna</b>);</li>
+    <li>oppure è una <b>grandezza derivata</b>.</li>
+  </ul>
+  <p>Esempi: l'<b>area</b>, la <b>densità</b>, l'<b>impronta ecologica</b>.</p>
+  <div class="q">✋ <b>Prova a dire:</b> perché la distanza Terra-Luna è una misura indiretta?
+  <details><summary>Risposta</summary><p>Perché non esiste uno strumento reale che la misuri direttamente.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§1 · pp. 51, 53</span>
+  <h2>L'impronta ecologica</h2>
+  <ul>
+    <li>Misura quante <b>risorse</b> (pesce, grano, legname…) consumiamo in un anno.</li>
+    <li>Si calcola: consumo (kg) <b>÷</b> produttività (kg/ettaro) → una <b>superficie</b>.</li>
+    <li>Si dice <b>«in pianeti»</b>: quante Terre servirebbero se tutti vivessero come noi.</li>
+  </ul>
+  <p>Italia: massima nel <b>2006</b> (circa 3,5 Terre); oggi circa <b>2,5 Terre</b>.</p>
+  <div class="q">✋ <b>Prova a dire:</b> perché è una misura indiretta?
+  <details><summary>Risposta</summary><p>Perché si ottiene con un calcolo: consumo diviso produttività.</p></details></div>
+</div></section>
+
+<section class="b"><div class="card"><span class="tag">§2 · p. 54</span>
+  <h2>Ogni misura ha un'incertezza</h2>
+  <p>Cronometri una pallina che cade da 2,5 m: ogni volta il tempo è <b>diverso</b>.</p>
+  <div class="rem">Il risultato di una misura è sempre affetto da un'incertezza.</div>
+  <p>L'incertezza viene da <b>due fattori</b>:</p>
+  <ol>
+    <li>la <b>sensibilità</b> dello strumento;</li>
+    <li>gli <b>errori</b> di misura: <mark>sistematici</mark> o <mark>casuali</mark>.</li>
+  </ol>
+  <div class="q">✋ <b>Prova a dire:</b> da quali due fattori viene l'incertezza?
+  <details><summary>Risposta</summary><p>Dalla sensibilità degli strumenti e dagli errori che si commettono misurando.</p></details></div>
+</div></section>
+
+<section class="b"><div class="card"><span class="tag">§2 · pp. 54-55</span>
+  <h2>Errori sistematici ➡️ sempre nello stesso verso</h2>
+  <div class="rem">Sempre per eccesso (in più) o sempre per difetto (in meno).</div>
+  <ul>
+    <li>Bilancia con la lancetta <b>a destra</b> dello zero → misura <b>sovrastimata</b> (più grande).</li>
+    <li>Lancetta <b>a sinistra</b> dello zero → misura <b>sottostimata</b> (più piccola).</li>
+    <li>Cause: mancata <b>taratura</b>, <b>malfunzionamento</b>, <b>errore di utilizzo</b> (es. <b>parallasse</b>: guardi la scala di lato).</li>
+  </ul>
+  <p>Si <b>riducono</b> con esperienza e attenzione.</p>
+  <div class="q">✋ <b>Prova a dire:</b> che cos'è l'errore di parallasse?
+  <details><summary>Risposta</summary><p>Leggi uno strumento analogico senza metterti esattamente di fronte alla scala graduata.</p></details></div>
+</div></section>
+
+<section class="b"><div class="card"><span class="tag">§2 · p. 55</span>
+  <h2>Errori casuali 🎲 imprevedibili</h2>
+  <div class="rem">A volte per eccesso, altre per difetto. Dipendono dal caso.</div>
+  <ul>
+    <li>Fai partire il cronometro un po' prima o un po' dopo.</li>
+    <li>Cause: chi misura è impreciso; la grandezza cambia; cambiano le condizioni.</li>
+  </ul>
+  <p><b>Non</b> si possono eliminare. Per ridurne gli effetti: <mark>ripeti molte volte la misura</mark>.</p>
+  <div class="q">✋ <b>Prova a dire:</b> che cosa fai contro gli errori casuali?
+  <details><summary>Risposta</summary><p>Ripeto molte volte la misura.</p></details></div>
+</div></section>
+
+<section class="b"><div class="card"><span class="tag">§3 · p. 55</span>
+  <h2>Come si scrive una misura</h2>
+  <div class="f">x = x̄ ± Δx</div>
+  <ul>
+    <li><b>x̄</b> = il valore più attendibile (il più credibile);</li>
+    <li><b>Δx</b> («delta x») = l'incertezza.</li>
+  </ul>
+  <p>Es. x = (1,67 ± 0,02) m: il valore vero è tra <b>x̄ − Δx</b> e <b>x̄ + Δx</b>.</p>
+  <div class="q">✋ <b>Prova a dire:</b> che cosa vuol dire Δx?
+  <details><summary>Risposta</summary><p>È l'incertezza della misura.</p></details></div>
+</div></section>
+
+<section class="b"><div class="card"><span class="tag">§3 · p. 56 · caso 1</span>
+  <h2>Misuri una volta sola</h2>
+  <div class="rem">Incertezza = la sensibilità dello strumento.</div>
+  <div class="f">x = valore misurato ± sensibilità</div>
+  <p>Libro largo <b>21,1 cm</b>, righello con sensibilità <b>0,1 cm</b>:</p>
+  <div class="f">l = (21,1 ± 0,1) cm</div>
+  <div class="q">✋ <b>Prova a dire:</b> tra quali due valori è la larghezza del libro?
+  <details><summary>Risposta</summary><p>Tra 21,0 cm e 21,2 cm.</p></details></div>
+</div></section>
+
+<section class="b"><div class="card"><span class="tag">§3 · p. 56 · caso 2</span>
+  <h2>Misuri più volte: il valore medio</h2>
+  <p>Cinque tempi: 0,71 · 0,77 · 0,65 · 0,69 · 0,73 s</p>
+  <div class="rem">Valore medio = somma delle misure ÷ numero di misure</div>
+  <div class="f">x̄ = (x₁ + x₂ + … + xₙ) / n</div>
+  <div class="q">✋ <b>Prova:</b> la somma è 3,55 s e le misure sono 5. Quanto fa il valore medio?
+  <details><summary>Risposta</summary><p>3,55 ÷ 5 = 0,71 s.</p></details></div>
+</div></section>
+
+<section class="b"><div class="card"><span class="tag">§3 · pp. 56-57 · caso 2</span>
+  <h2>Misuri più volte: l'errore assoluto</h2>
+  <div class="rem">Errore assoluto = (massimo − minimo) ÷ 2</div>
+  <div class="f">eₐ = (x<sub>max</sub> − x<sub>min</sub>) / 2</div>
+  <p>Si chiama anche <b>semidispersione massima</b>.</p>
+  <div class="rem">L'incertezza non è mai più piccola della sensibilità.</div>
+  <div class="q">✋ <b>Prova:</b> il massimo è 0,77 s, il minimo è 0,65 s. Quanto fa l'errore assoluto?
+  <details><summary>Risposta</summary><p>(0,77 − 0,65) ÷ 2 = 0,12 ÷ 2 = 0,06 s. È più grande della sensibilità (0,01 s), quindi t = (0,71 ± 0,06) s.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§4 · p. 57</span>
+  <h2>Le cifre significative</h2>
+  <div class="rem">Cifre significative = tutte quelle esatte + la prima incerta.</div>
+  <p>Gomma: l = 4,26 ± 0,03 cm</p>
+  <ul>
+    <li><b>4</b> e <b>2</b> sono esatte;</li>
+    <li><b>6</b> è incerta (può andare da 3 a 9).</li>
+  </ul>
+  <p>→ <b>3</b> cifre significative.</p>
+  <div class="q">✋ <b>Prova a dire:</b> quante cifre significative ha 1,780 m?
+  <details><summary>Risposta</summary><p>4: anche l'8 è certo.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§4 · p. 57</span>
+  <h2>Gli zeri all'inizio non contano</h2>
+  <div class="rem">Gli zeri all'inizio non sono significativi.</div>
+  <p>Spariscono se scrivi 0,02 m come <b>2 · 10⁻² m</b> o <b>2 cm</b> → 1 cifra.</p>
+  <table>
+    <tr><th>Misura</th><th>Cifre</th></tr>
+    <tr><td>3,2 m</td><td>2</td></tr>
+    <tr><td>6,201 km</td><td>4</td></tr>
+    <tr><td>0,2 g</td><td>1</td></tr>
+    <tr><td>2,30 g</td><td>3</td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> quante cifre significative ha 0,040 m?
+  <details><summary>Risposta</summary><p>2, come dice la tabella 2 del libro. <span class="noi">👉 Spiegazione nostra: gli zeri all'inizio non contano, restano il 4 e lo 0 finale.</span></p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§4 · p. 57</span>
+  <h2>Prima di scrivere: arrotonda</h2>
+  <p>t̄ = 15,58 s &nbsp; eₐ = 0,21 s</p>
+  <ol>
+    <li>Arrotonda l'<b>errore</b> a <b>una</b> cifra significativa → 0,2 s</li>
+    <li>Arrotonda il <b>valore medio</b> alla <b>stessa posizione decimale</b> → 15,6 s</li>
+  </ol>
+  <div class="f">t = (15,6 ± 0,2) s</div>
+  <div class="q">✋ <b>Prova a dire:</b> quali sono i due passi?
+  <details><summary>Risposta</summary><p>1. Arrotondo l'errore a una cifra significativa. 2. Arrotondo il valore medio alla stessa posizione decimale.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">Riepilogo</span>
+  <h2>Le formule</h2>
+  <table>
+    <tr><td>Risultato</td><td>x = x̄ ± Δx</td></tr>
+    <tr><td>Misura singola</td><td>valore misurato ± sensibilità</td></tr>
+    <tr><td>Valore medio</td><td>somma ÷ numero di misure</td></tr>
+    <tr><td>Errore assoluto</td><td>(massimo − minimo) ÷ 2</td></tr>
+  </table>
+  <div class="rem">L'incertezza non è mai più piccola della sensibilità.</div>
+</div></section>
+
+<section><div class="card">
+  <div class="big">💪</div>
+  <h2 style="text-align:center">Fatto!</h2>
+  <p>Ora rispondi a voce, senza guardare:</p>
+  <ol>
+    <li>Che differenza c'è tra portata e sensibilità?</li>
+    <li>Che differenza c'è tra errori sistematici e casuali?</li>
+    <li>Che cosa sono le cifre significative?</li>
+  </ol>
+  <p class="hint">Esercizi assegnati: p. 70 n. 1-5 e p. 73 n. 21, 22, 24, 25.</p>
+</div></section>
+
+</div>
+<div id="nav"><button id="up" aria-label="Slide precedente">↑</button><span id="num"></span><button id="dn" aria-label="Slide successiva">↓</button></div>
+<script>
+const deck=document.getElementById('deck'), S=[...deck.children], bar=document.getElementById('bar'), num=document.getElementById('num');
+const cur=()=>Math.round(deck.scrollTop/deck.clientHeight);
+const go=i=>S[Math.max(0,Math.min(S.length-1,i))].scrollIntoView({behavior:'smooth'});
+const upd=()=>{const i=cur();num.textContent=(i+1)+' / '+S.length;bar.style.width=((i+1)/S.length*100)+'%';};
+deck.addEventListener('scroll',upd); upd();
+document.getElementById('up').onclick=()=>go(cur()-1);
+document.getElementById('dn').onclick=()=>go(cur()+1);
+document.addEventListener('keydown',e=>{ if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(cur()+1);} if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(cur()-1);} });
+</script>
+</body>
+</html>

@@ -167,6 +167,7 @@ window.REVIEW = [
     "icon": "🧲",
     "color": "#ea580c",
     "items": [
+      { "id": "fis-slide-m1", "topic": "Cap. 2 · La misura di una grandezza", "title": "Slide da scorrere (telefono e PC)", "html": "ripasso/fisica-slide.html", "pages": "21 slide grandi, una idea alla volta, pp. 51-57" },
       { "id": "fis-html-m1", "topic": "Cap. 2 · La misura di una grandezza", "title": "Strumenti, errori, incertezza, cifre significative (§1-4)", "html": "ripasso/fisica-misura.html", "pages": "pp. 51-57, con le domande ✋ e il ripasso a voce" },
       { "id": "fis-pdf-m1", "topic": "Cap. 2 · La misura di una grandezza", "title": "La misura di una grandezza: da stampare (8 pagine)", "pdf": "stampa/fisica-misura-sintesi.pdf", "pdfPages": 8, "pages": "§1-4, pp. 51-57, con gli esercizi assegnati" },
       {
