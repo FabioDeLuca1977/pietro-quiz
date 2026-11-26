@@ -7,7 +7,7 @@ body{margin:0;background:#fff;color:#1b1b1b;font:15px/1.35 "Segoe UI",Verdana,Ar
 main{max-width:1000px;margin:0 auto;padding:10px}
 h1{font-size:18px;margin:0 0 6px;color:#b91c1c}
 .sub{margin:0 0 8px;font-size:13px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-bottom:10px}
 .c{border:1.5px dashed #888;padding:6px 8px;overflow:hidden}
 .c h2{margin:0 0 3px;font-size:15px;color:#fff;background:#b91c1c;padding:2px 6px;border-radius:4px}
 .c h2 .n{font-weight:400;opacity:.85}
@@ -23,17 +23,16 @@ th{background:#fde8e8}
 .nota{font-size:12px;color:#555;margin-top:6px}
 @media (max-width:700px){.grid{grid-template-columns:1fr}}
 @media print{@page{size:A4;margin:6mm}
- body{font-size:8.5pt;line-height:1.28} main{max-width:none;padding:0}
- h1{font-size:11pt;margin:0 0 2px} .sub{font-size:7pt;margin:0 0 3px}
- .grid{grid-template-rows:repeat(4,68.5mm)}
- .c{padding:4px 6px} .c h2{font-size:9.4pt;padding:1px 5px}
+ body{font-size:16pt;line-height:1.36} main{max-width:none;padding:0}
+ h1,.sub{display:none}
+ .grid{grid-template-rows:repeat(2,141mm);margin:0} .pg{break-after:page} .pg:last-of-type{break-after:auto}
+ .c{padding:9px 13px} .c h2{font-size:17.5pt;padding:1px 5px}
  .c h2,th,.k{-webkit-print-color-adjust:exact;print-color-adjust:exact}
  .nota{display:none}}
 </style></head><body><main>
 <h1>✂️ Grammar test · le regole da ritagliare</h1>
 <p class="sub">Regole dalle mappe e dalle schede della prof. Le frasi in blu con ⚽ sono nostre, con il Milan.</p>
-<div class="grid">
-
+<div class="grid pg">
 <div class="c"><h2>1 · TO BE <span class="n">essere</span></h2>
 <table><tr><th>+</th><th>−</th><th>?</th></tr>
 <tr><td>I'm</td><td>I'm not</td><td>Am I?</td></tr>
@@ -74,7 +73,8 @@ th{background:#fde8e8}
 <li>'s = <b>has</b>: Tom's got a brother.</li>
 <li>'s = <b>possessive 's</b>: Tom's brother is a DJ.</li></ul>
 <p class="m">Rabiot's pass → Ramos's goal.</p></div>
-
+</div>
+<div class="grid pg">
 <div class="c"><h2>5 · POSSESSIVE 'S <span class="n">genitivo sassone</span></h2>
 <p>Per dire <b>di chi è</b> (appartenenza) o una <b>relazione</b>.</p>
 <table>
@@ -114,7 +114,8 @@ th{background:#fde8e8}
 <tr><td>they</td><td><b>their</b></td><td>il loro</td></tr></table>
 <p>Vanno <b>davanti a un nome</b>: my pen, his cousin.</p>
 <p class="m">Pulisic and his teammates.</p></div>
-
+</div>
+<div class="grid pg">
 <div class="c"><h2>9 · POSSESSIVE PRONOUNS · WHOSE</h2>
 <table><tr><th>aggettivo + nome</th><th>pronome (da solo)</th></tr>
 <tr><td>my</td><td><b>mine</b></td></tr><tr><td>your</td><td><b>yours</b></td></tr>
@@ -146,7 +147,7 @@ th{background:#fde8e8}
 <p><b>Pronomi complemento</b>: I → <b>me</b>, you → you, he → <b>him</b>, she → <b>her</b>, it → it, we → <b>us</b>, they → <b>them</b>.</p>
 <p><b>Imperativo</b>: forma base. <span class="k">Open the door!</span> Negativo con <b>don't</b>: <span class="k">Don't open the door!</span></p>
 <p class="m">Come on, Milan! Don't stop!</p></div>
-
 </div>
-<p class="nota">Stampa su A4: 12 schede, 3 per riga. Ritaglia lungo le righe tratteggiate.</p>
+
+<p class="nota">Stampa su A4: 3 fogli, 4 schede per foglio. Ritaglia lungo le righe tratteggiate.</p>
 </main></body></html>
