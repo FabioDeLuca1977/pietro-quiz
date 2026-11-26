@@ -45,6 +45,21 @@ window.VERIFICHE = [
     ]
   },
   {
+    id:      "en-grammar",
+    subject: "inglese",
+    title:   "Grammar test",
+    what:    "To be, have got, possessive 's, there is/are, articles, possessive pronouns, can, this/that/these/those",
+    when:    "venerdì 27 novembre, ore 11",
+    date:    "2026-11-27",
+    steps: [
+      { k: "1 · Le regole", d: "Una scheda per argomento: leggila, poi ripetila a voce senza guardare",
+        items: ["en-gt-1", "en-gt-2"] },
+      { k: "2 · Il quiz rossonero", d: "Come la verifica: scelta multipla, completa le frasi, riordina le parole con il verbo giusto",
+        items: ["en-gt-3", "en-gt-4"] },
+      { k: "Compiti (dal registro)", d: "Studiare le regole di p. 136 e fare tutti gli esercizi delle pp. 142-143." }
+    ]
+  },
+  {
     id:      "en-verifica",
     subject: "inglese",
     title:   "Reading comprehension test",

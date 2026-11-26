@@ -684,6 +684,10 @@ window.REVIEW = [
     "icon": "🇬🇧",
     "color": "#7c3aed",
     "items": [
+      { "id": "en-gt-1", "topic": "Grammar test · venerdì 27 novembre", "title": "Le regole, una scheda per argomento", "html": "ripasso/inglese-regole-schede.html", "pages": "To be, have got, 's, there is/are, articoli, possessivi, can, this/that" },
+      { "id": "en-gt-2", "topic": "Grammar test · venerdì 27 novembre", "title": "Le regole da ritagliare (1 foglio A4)", "pdf": "stampa/inglese-regole-da-ritagliare.pdf", "pdfPages": 1, "pages": "12 schede da ritagliare" },
+      { "id": "en-gt-3", "topic": "Grammar test · venerdì 27 novembre", "title": "⚽ Quiz rossonero (pagina da telefono)", "html": "ripasso/inglese-quiz-milan.html", "pages": "Scelta multipla, completa, riordina: con le notizie del Milan" },
+      { "id": "en-gt-4", "topic": "Grammar test · venerdì 27 novembre", "title": "⚽ Quiz rossonero da stampare (2 pagine)", "pdf": "stampa/inglese-quiz-milan.pdf", "pdfPages": 2, "pages": "Le soluzioni le ha il papà" },
       {
         "id": "en-pdf-1",
         "topic": "Da stampare",
