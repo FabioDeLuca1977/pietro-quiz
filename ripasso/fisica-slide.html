@@ -46,7 +46,7 @@ td:first-child { font-weight:700; }
 <section><div class="card">
   <div class="big">📏</div>
   <h2 style="text-align:center">Fisica a piccoli passi<br>La misura di una grandezza</h2>
-  <p style="text-align:center">Capitolo 2, §1-4, pp. 51-57</p>
+  <p style="text-align:center">Capitolo 2, §1-5 e inizio del §6, pp. 51-59</p>
   <div class="rem">Una slide alla volta. Leggi, poi rispondi alla domanda ✋ a voce, senza guardare. Solo dopo apri «Risposta».</div>
   <p class="hint">Scorri in giù, usa le frecce ↓ o i pulsanti in basso.<br>Le pagine sono quelle del libro. Le frasi in blu con 👉 sono nostre.</p>
 </div></section>
@@ -267,6 +267,71 @@ td:first-child { font-weight:700; }
   <details><summary>Risposta</summary><p>1. Arrotondo l'errore a una cifra significativa. 2. Arrotondo il valore medio alla stessa posizione decimale.</p></details></div>
 </div></section>
 
+<section class="b"><div class="card"><span class="tag">§4 · p. 58</span>
+  <h2>Le due regole per scrivere una misura</h2>
+  <ol>
+    <li>L'<b>incertezza</b> si arrotonda a <b>una</b> cifra significativa.</li>
+    <li>Il <b>valore più attendibile</b> si arrotonda alla <b>stessa posizione decimale</b> dell'incertezza.</li>
+  </ol>
+  <div class="f">(15,58 ± 0,21) s → (15,6 ± 0,2) s</div>
+  <div class="q">✋ <b>Prova a dire:</b> le due regole, senza guardare.
+  <details><summary>Risposta</summary><p>1. Incertezza a una cifra significativa. 2. Valore più attendibile alla stessa posizione decimale dell'incertezza.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§5 · p. 58</span>
+  <h2>Accurata o precisa?</h2>
+  <table>
+    <tr><td>🎯 Accurata</td><td>il <b>valore medio</b> è vicino al <b>valore esatto</b>. Dipende dagli errori <b>sistematici</b>.</td></tr>
+    <tr><td>📌 Precisa</td><td>le singole misure sono <b>vicine tra loro</b>, intorno al valore medio. Dipende dagli errori <b>casuali</b>.</td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> da quali errori dipende la precisione?
+  <details><summary>Risposta</summary><p>Dagli errori casuali.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§5 · p. 58</span>
+  <h2>Il bersaglio: 4 casi</h2>
+  <table>
+    <tr><td>accurata e precisa</td><td>tutte al centro: la misura ottimale</td></tr>
+    <tr><td>accurata, non precisa</td><td>intorno al centro ma sparpagliate → errori casuali</td></tr>
+    <tr><td>precisa, non accurata</td><td>vicine tra loro ma lontane dal centro → errore sistematico</td></tr>
+    <tr><td>né l'una né l'altra</td><td>sparpagliate e lontane → tutti e due gli errori</td></tr>
+  </table>
+  <div class="q">✋ <b>Prova a dire:</b> freccette tutte vicine ma in un angolo: com'è la misura?
+  <details><summary>Risposta</summary><p>Precisa ma non accurata: c'è un errore sistematico.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§5 · pp. 58-59</span>
+  <h2>L'incertezza relativa</h2>
+  <div class="rem">Incertezza relativa = incertezza ÷ valore più attendibile</div>
+  <div class="f">eᵣ = Δx / x̄</div>
+  <p>È un indice della <b>precisione</b>. Non ha unità di misura (è <b>adimensionale</b>).</p>
+  <p>In percentuale: <b>e% = eᵣ · 100</b>.</p>
+  <div class="q">✋ <b>Prova:</b> l = (4,26 ± 0,03) cm. Quanto fa eᵣ? E in percentuale?
+  <details><summary>Risposta</summary><p>0,03 ÷ 4,26 = 0,007, cioè lo 0,7%.</p></details></div>
+</div></section>
+
+<section><div class="card"><span class="tag">§5 · p. 59</span>
+  <h2>Quale misura è più precisa?</h2>
+  <table>
+    <tr><td>(4,26 ± 0,03) cm</td><td>eᵣ = 0,007</td></tr>
+    <tr><td>(120,4 ± 0,1) m</td><td>eᵣ = 0,0008</td></tr>
+  </table>
+  <div class="rem">È più precisa quella con l'incertezza relativa più piccola, anche se ha l'errore assoluto più grande.</div>
+  <div class="q">✋ <b>Prova a dire:</b> quale delle due è più precisa?
+  <details><summary>Risposta</summary><p>(120,4 ± 0,1) m: ha l'incertezza relativa più piccola.</p></details></div>
+</div></section>
+
+<section class="b"><div class="card"><span class="tag">§6 · p. 59</span>
+  <h2>Tante misure: lo scarto quadratico medio</h2>
+  <p>Con più di <b>10</b> misure, come incertezza è meglio lo <b>scarto quadratico medio σ</b>.</p>
+  <div class="f">σ = √[ ((x₁ − x̄)² + … + (xₙ − x̄)²) / n ]</div>
+  <div class="f">x = x̄ ± σ</div>
+  <p>L'errore assoluto usa solo il minimo e il massimo; σ usa <b>tutte</b> le misure, quindi è più attendibile.</p>
+  <p class="hint">Il §6 continua a p. 60: il prof ha detto «fino a pag 59».</p>
+  <div class="q">✋ <b>Prova a dire:</b> perché σ è meglio dell'errore assoluto?
+  <details><summary>Risposta</summary><p>Perché considera tutte le misure, non solo la più grande e la più piccola.</p></details></div>
+</div></section>
+
 <section><div class="card"><span class="tag">Riepilogo</span>
   <h2>Le formule</h2>
   <table>
@@ -274,6 +339,8 @@ td:first-child { font-weight:700; }
     <tr><td>Misura singola</td><td>valore misurato ± sensibilità</td></tr>
     <tr><td>Valore medio</td><td>somma ÷ numero di misure</td></tr>
     <tr><td>Errore assoluto</td><td>(massimo − minimo) ÷ 2</td></tr>
+    <tr><td>Incertezza relativa</td><td>Δx ÷ x̄ (in % × 100)</td></tr>
+    <tr><td>Più di 10 misure</td><td>x = x̄ ± σ</td></tr>
   </table>
   <div class="rem">L'incertezza non è mai più piccola della sensibilità.</div>
 </div></section>
@@ -287,7 +354,7 @@ td:first-child { font-weight:700; }
     <li>Che differenza c'è tra errori sistematici e casuali?</li>
     <li>Che cosa sono le cifre significative?</li>
   </ol>
-  <p class="hint">Esercizi assegnati: p. 70 n. 1-5 e p. 73 n. 21, 22, 24, 25.</p>
+  <p class="hint">Esercizi assegnati: p. 70 n. 1-5; p. 73 n. 21, 22, 24, 25; per giovedì 3 dicembre p. 73 n. 19, 20, 26, 29.</p>
 </div></section>
 
 </div>
