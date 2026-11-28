@@ -174,7 +174,7 @@ window.REVIEW = [
       { "id": "fis-interr-m1", "topic": "Cap. 2 · La misura di una grandezza", "title": "🎤 Il tutor: studiamo insieme o interrogazione (ChatGPT con la voce)", "html": "ripasso/fisica-interrogazione.html", "pages": "Solo il tuo libro: un pezzo alla volta, oppure domande come all'orale" },
       { "id": "fis-slide-m1", "topic": "Cap. 2 · La misura di una grandezza", "title": "Slide da scorrere (telefono e PC)", "html": "ripasso/fisica-slide.html", "pages": "27 slide grandi, una idea alla volta, pp. 51-59" },
       { "id": "fis-html-m1", "topic": "Cap. 2 · La misura di una grandezza", "title": "Strumenti, errori, incertezza, cifre significative, incertezza relativa (§1-6)", "html": "ripasso/fisica-misura.html", "pages": "pp. 51-59, con le domande ✋ e il ripasso a voce" },
-      { "id": "fis-pdf-m1", "topic": "Cap. 2 · La misura di una grandezza", "title": "La misura di una grandezza: da stampare (10 pagine)", "pdf": "stampa/fisica-misura-sintesi.pdf", "pdfPages": 10, "pages": "pp. 51-59, con gli esercizi assegnati" },
+      { "id": "fis-pdf-m1", "topic": "Cap. 2 · La misura di una grandezza", "title": "La misura di una grandezza: da stampare (12 pagine)", "pdf": "stampa/fisica-misura-sintesi.pdf", "pdfPages": 12, "pages": "pp. 51-59, con gli esercizi assegnati" },
       {
         "id": "fis-1",
         "topic": "Unità 0 · La matematica per cominciare",

@@ -31,7 +31,7 @@ th{background:var(--box);text-align:left;padding:4px 8px;border:1px solid var(--
 td{border:1px solid var(--line);padding:4px 8px;vertical-align:top}
 td.k{font-weight:700;background:#fffaf6}
 .nota{font-size:.85em;color:#555}
-table,li,.q,tr,.def,.rip{break-inside:avoid} h2{break-after:avoid}
+table,li,.q,tr,.def,.rip,.step,.es{break-inside:avoid} h2,.par{break-after:avoid}
 @media print{@page{size:A4;margin:10mm 11mm}
  body{font-size:12pt;line-height:1.45} main{max-width:none;padding:0}
  .step{padding:6px 12px;margin:7px 0}
@@ -311,6 +311,23 @@ x̄ è il <b>valore più attendibile</b>; Δx (si legge «delta x») è la sua <
 <p>La stima della misura si scrive: <b>x = x̄ ± σ</b>.</p>
 <p>L'errore assoluto usa solo due valori, il minimo e il massimo, che sono quelli meno attendibili. Lo scarto quadratico medio considera <b>tutte</b> le misure: dà una stima più attendibile dell'incertezza.</p>
 <div class="q">quando si usa lo scarto quadratico medio invece dell'errore assoluto? Perché è migliore?</div>
+</div>
+
+<div class="rip"><b class="t">🔁 Ripasso del §6, a voce</b>
+<ol><li>Quando conviene usare lo scarto quadratico medio?</li>
+<li>Come si scrive la misura con lo scarto quadratico medio?</li>
+<li>Quanti valori usa l'errore assoluto? E lo scarto quadratico medio?</li></ol></div>
+
+<div class="step"><h2>📌 Le formule del capitolo, tutte insieme</h2>
+<p class="noi">👉 Riepilogo nostro: sono le formule dei blocchi qui sopra, nello stesso ordine.</p>
+<table><tr><th>Che cosa</th><th>Formula</th><th>Blocco</th></tr>
+<tr><td class="k">Risultato di una misura</td><td>x = x̄ ± Δx</td><td>7</td></tr>
+<tr><td class="k">Misura singola</td><td>x = valore misurato ± sensibilità</td><td>8</td></tr>
+<tr><td class="k">Valore medio</td><td>x̄ = (x₁ + x₂ + … + xₙ) / n</td><td>9</td></tr>
+<tr><td class="k">Errore assoluto</td><td>eₐ = (xmax − xmin) / 2</td><td>10</td></tr>
+<tr><td class="k">Incertezza relativa</td><td>eᵣ = Δx / x̄</td><td>16</td></tr>
+<tr><td class="k">Incertezza percentuale</td><td>e% = (eᵣ · 100)%</td><td>16</td></tr>
+<tr><td class="k">Scarto quadratico medio</td><td>x = x̄ ± σ (più di 10 misure)</td><td>18</td></tr></table>
 </div>
 
 <div class="es"><b>✏️ Esercizi assegnati dal prof</b> (dal registro)
