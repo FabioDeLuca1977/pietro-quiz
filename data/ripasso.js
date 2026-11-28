@@ -132,6 +132,9 @@ window.REVIEW = [
     "icon": "🏛️",
     "color": "#dc2626",
     "items": [
+      { "id": "sto-interr-5", "topic": "Cap. 5-6 · Minoici, Micenei e Grecia delle poleis", "title": "🎤 Il tutor: studiamo insieme o interrogazione (ChatGPT con la voce)", "html": "ripasso/storia-interrogazione.html", "pages": "Solo il libro e le slide del prof: un pezzo alla volta, oppure domande come all'orale" },
+      { "id": "sto-html-5", "topic": "Cap. 5-6 · Minoici, Micenei e Grecia delle poleis", "title": "Lo schema: slide del prof e libro, un blocco alla volta", "html": "ripasso/storia-cap5-6.html", "pages": "pp. 130-149 e 156-177, con le domande ✋ e il ripasso a voce" },
+      { "id": "sto-pdf-5", "topic": "Cap. 5-6 · Minoici, Micenei e Grecia delle poleis", "title": "Lo schema da stampare (11 pagine)", "pdf": "stampa/storia-cap5-6-schema.pdf", "pdfPages": 11, "pages": "pp. 130-149 e 156-177" },
       {
         "id": "sto-pdf-1",
         "topic": "Verifica di geostoria · Egizi, Ebrei, Fenici, demografia",
